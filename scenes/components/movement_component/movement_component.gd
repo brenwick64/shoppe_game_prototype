@@ -4,10 +4,12 @@ extends Node
 signal moveable_moved(new_position: Vector2)
 signal moveable_stopped()
 
-@export var SPEED: float = 100
+@export_category("Behavior Settings")
 @export var move_threshold_px: int = 5
 @export var stop_threshold_sec: float = 0.2
 @export var pixel_smoothing: bool = true
+@export_category("Movement Settings")
+@export var SPEED: float = 100
 
 var moveable_parent: CharacterBody2D
 var _last_position: Vector2

@@ -194,19 +194,11 @@ animations = [{
 radius = 4.12311
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_input_component", "movement_component", "animation_component", "movement_sound")]
-texture_filter = 1
-motion_mode = 1
 script = ExtResource("1_ym86x")
 player_input_component = NodePath("PlayerInputComponent")
 movement_component = NodePath("MovementComponent")
 animation_component = NodePath("AnimationComponent")
 movement_sound = NodePath("LoopSoundComponent")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_y4dbi")
-animation = &"move_up"
-autoplay = "idle_down"
 
 [node name="PlayerInputComponent" type="Node" parent="."]
 script = ExtResource("1_bfyut")
@@ -217,6 +209,11 @@ stop_threshold_sec = 0.1
 
 [node name="AnimationComponent" type="Node" parent="."]
 script = ExtResource("3_if003")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_y4dbi")
+animation = &"move_up"
+autoplay = "idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9)
