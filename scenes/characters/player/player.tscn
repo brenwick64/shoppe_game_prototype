@@ -1,10 +1,11 @@
-[gd_scene load_steps=28 format=3 uid="uid://x0hp764aoxfp"]
+[gd_scene load_steps=29 format=3 uid="uid://x0hp764aoxfp"]
 
 [ext_resource type="Texture2D" uid="uid://cn53uads4bci0" path="res://assets/characters/Character_001.png" id="1_1m8w0"]
 [ext_resource type="Script" path="res://scenes/components/player_input_component/player_input_component.gd" id="1_bfyut"]
 [ext_resource type="Script" path="res://scenes/characters/player/player.gd" id="1_ym86x"]
 [ext_resource type="Script" path="res://scenes/components/movement_component/movement_component.gd" id="2_6reun"]
 [ext_resource type="Script" path="res://scenes/components/animation_component/animation_component.gd" id="3_if003"]
+[ext_resource type="Script" path="res://scenes/components/sound_components/loop_sound_component.gd" id="6_acsqp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nhci1"]
 atlas = ExtResource("1_1m8w0")
@@ -192,17 +193,19 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_8xl6h"]
 radius = 4.12311
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_input_component", "movement_component", "animation_component")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_input_component", "movement_component", "animation_component", "movement_sound")]
 script = ExtResource("1_ym86x")
 player_input_component = NodePath("PlayerInputComponent")
 movement_component = NodePath("MovementComponent")
 animation_component = NodePath("AnimationComponent")
+movement_sound = NodePath("LoopSoundComponent")
 
 [node name="PlayerInputComponent" type="Node" parent="."]
 script = ExtResource("1_bfyut")
 
 [node name="MovementComponent" type="Node" parent="."]
 script = ExtResource("2_6reun")
+stop_threshold_sec = 0.1
 
 [node name="AnimationComponent" type="Node" parent="."]
 script = ExtResource("3_if003")
@@ -215,3 +218,20 @@ autoplay = "idle_down"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9)
 shape = SubResource("CircleShape2D_8xl6h")
+
+[node name="LoopSoundComponent" type="AudioStreamPlayer2D" parent="."]
+volume_db = -22.0
+pitch_scale = 2.87
+max_distance = 200.0
+attenuation = 0.672909
+script = ExtResource("6_acsqp")
+
+[node name="PlayCooldown" type="Timer" parent="LoopSoundComponent"]
+wait_time = 0.2
+one_shot = true
+
+[node name="DelayTimer" type="Timer" parent="LoopSoundComponent"]
+wait_time = 0.4
+
+[connection signal="moveable_moved" from="MovementComponent" to="." method="_on_movement_component_moveable_moved"]
+[connection signal="animation_state_changed" from="AnimationComponent" to="." method="_on_animation_component_animation_state_changed"]

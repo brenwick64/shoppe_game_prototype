@@ -14,6 +14,10 @@ config/name="shoppe_game_prototype"
 run/main_scene="res://scenes/test_scenes/test_terrain.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [file_customization]
 
 folder_colors={
@@ -50,3 +54,4 @@ move_right={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+2d/snap/snap_2d_transforms_to_pixel=true

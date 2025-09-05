@@ -1,9 +1,13 @@
 class_name AnimationComponent
 extends Node
 
+signal animation_state_changed(state: String)
+
 var moveable_parent: CharacterBody2D
 var animated_sprite: AnimatedSprite2D
 var last_direction_name: String = "down"
+
+var _current_state: String
 
 func _ready() -> void:
 	var parent: Node = get_parent()
@@ -31,7 +35,11 @@ func handle_movement(direction: Vector2) -> void:
 	
 	var direction_name: String = _get_direction_name(direction)
 	if direction_name == "none":
+		if _current_state != "idle":
+			animation_state_changed.emit("idle")
 		animated_sprite.play("idle_" + last_direction_name)
 	else:
+		if _current_state != "moving":
+			animation_state_changed.emit("moving")
 		last_direction_name = direction_name
 		animated_sprite.play("move_" + last_direction_name)
