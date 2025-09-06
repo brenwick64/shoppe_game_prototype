@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b3e78tu5wd3qe" path="res://scenes/game_objects/game_tile_map/game_tile_map.tscn" id="2_a8t78"]
 [ext_resource type="Texture2D" uid="uid://70jdhwork83t" path="res://assets/enemies/Enemy08_03.png" id="3_wjuag"]
 [ext_resource type="AudioStream" uid="uid://l0u3abr2jd2k" path="res://audio/crafting_and_gathering/Gathering_Professions/Bug_Catching/Bugs_Loop_2.wav" id="4_6dagy"]
-[ext_resource type="PackedScene" uid="uid://dg64qu0aj0j6h" path="res://scenes/components/sound_components/loop_sound_component.tscn" id="5_lucjk"]
+[ext_resource type="Script" path="res://scenes/components/sound_components/sound_component.gd" id="5_f4h3w"]
 [ext_resource type="PackedScene" uid="uid://cx33pk6ute2hg" path="res://scenes/managers/tile_manager/tile_manager.tscn" id="6_dw08q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7aqpy"]
@@ -17,19 +17,20 @@ region = Rect2(30, 4, 12, 20)
 [node name="TileManager" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("6_dw08q")]
 tile_map = NodePath("../GameTileMap")
 
-[node name="PlayerCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("1_o0kcu")]
-target = NodePath("../Player")
+[node name="PlayerCamera" parent="." instance=ExtResource("1_o0kcu")]
 
 [node name="GameTileMap" parent="." instance=ExtResource("2_a8t78")]
 
-[node name="Player" parent="." node_paths=PackedStringArray("tile_manager") instance=ExtResource("2_2hste")]
-tile_manager = NodePath("../TileManager")
+[node name="Player" parent="." instance=ExtResource("2_2hste")]
 
 [node name="Node2D" type="Sprite2D" parent="."]
 position = Vector2(-96, 341)
 texture = SubResource("AtlasTexture_7aqpy")
 
-[node name="LoopSoundComponent" parent="Node2D" instance=ExtResource("5_lucjk")]
+[node name="SoundComponent" type="AudioStreamPlayer2D" parent="Node2D"]
+stream = ExtResource("4_6dagy")
 autoplay = true
-tracks = Array[AudioStream]([ExtResource("4_6dagy")])
-delay_between_tracks = 0.0
+max_distance = 200.0
+attenuation = 0.672909
+script = ExtResource("5_f4h3w")
+DEBUG_MAX_RANGE = false

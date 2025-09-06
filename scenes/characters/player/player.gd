@@ -8,12 +8,14 @@ extends CharacterBody2D
 @export var animation_component: AnimationComponent
 @export var movement_sound: LoopSoundComponent
 
+var _current_terrain: String
+
 func _ready() -> void:
 	physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
 
 func _physics_process(delta: float) -> void:
 	var input_direction: Vector2 = player_input_component.get_input_direction()
-	animation_component.handle_movement(input_direction)
+	animation_component.handle_movement(input_direction, delta)
 	movement_component.handle_movement(input_direction, delta)
 
 func _on_animation_component_animation_state_changed(state: String) -> void:
@@ -23,4 +25,8 @@ func _on_animation_component_animation_state_changed(state: String) -> void:
 		movement_sound.stop_loop()
 
 func _on_movement_component_moveable_moved(_new_position: Vector2) -> void:
-	tile_manager.get_terrain_type_from_global_pos(global_position)
+	var terrain_type:String = tile_manager.get_terrain_type_from_global_pos(global_position)
+	if terrain_type != _current_terrain:
+		var new_track: Array[AudioStream] = GlobalAudioManager.get_audio_track("move_" + terrain_type)
+		movement_sound.switch_tracks(new_track)
+		_current_terrain = terrain_type

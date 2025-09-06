@@ -8,6 +8,7 @@ signal moveable_stopped()
 @export var move_threshold_px: int = 5
 @export var stop_threshold_sec: float = 0.2
 @export var pixel_smoothing: bool = true
+
 @export_category("Movement Settings")
 @export var SPEED: float = 100
 
@@ -15,11 +16,13 @@ var moveable_parent: CharacterBody2D
 var _last_position: Vector2
 var _time_since_moved: float = 0.0
 var _stopped_emitted: bool = false
+var _float_position: Vector2
 
 func _ready() -> void:
 	var parent: Node = get_parent()
 	if parent is CharacterBody2D:
 		moveable_parent = parent
+		_float_position = moveable_parent.global_position
 		_last_position = moveable_parent.global_position
 
 func _check_movement(delta: float) -> void:
@@ -38,8 +41,12 @@ func _check_movement(delta: float) -> void:
 
 func handle_movement(direction: Vector2, delta: float) -> void:
 	if not moveable_parent: return
-	moveable_parent.velocity = direction.normalized() * SPEED
+	# set velocity for parent movement
+	moveable_parent.velocity = direction * SPEED
+		
 	moveable_parent.move_and_slide()
+	
 	if pixel_smoothing:
 		moveable_parent.global_position = moveable_parent.global_position.round()
+		
 	_check_movement(delta)
