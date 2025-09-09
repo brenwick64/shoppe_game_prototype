@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://eeg5x8snkfqw"]
+
+[ext_resource type="Script" path="res://scenes/characters/firefly/firefly.gd" id="1_immqi"]
+
+[sub_resource type="Gradient" id="Gradient_aouxq"]
+offsets = PackedFloat32Array(0, 0.839806)
+colors = PackedColorArray(0.935236, 0.871675, 0.61329, 1, 0.988235, 0.976471, 0.92549, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3cafd"]
+gradient = SubResource("Gradient_aouxq")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Firefly" type="PointLight2D"]
+position = Vector2(-309, -99)
+texture = SubResource("GradientTexture2D_3cafd")
+script = ExtResource("1_immqi")
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

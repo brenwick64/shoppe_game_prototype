@@ -1,0 +1,99 @@
+[gd_scene load_steps=16 format=3 uid="uid://bmce4hybdi20v"]
+
+[ext_resource type="Script" path="res://scenes/canvas_modulate.gd" id="1_d1bop"]
+[ext_resource type="PackedScene" uid="uid://cx33pk6ute2hg" path="res://scenes/managers/tile_manager/tile_manager.tscn" id="1_hgfxd"]
+[ext_resource type="PackedScene" uid="uid://csogmde7287ni" path="res://scenes/game_objects/camera/player_camera.tscn" id="2_vxtlm"]
+[ext_resource type="PackedScene" uid="uid://b3e78tu5wd3qe" path="res://scenes/game_objects/game_tile_map/game_tile_map.tscn" id="3_gu5lt"]
+[ext_resource type="PackedScene" uid="uid://x0hp764aoxfp" path="res://scenes/characters/player/player.tscn" id="4_p0uxn"]
+[ext_resource type="Texture2D" uid="uid://boopyqkaoose4" path="res://assets/objects/torch.png" id="6_dyr4y"]
+[ext_resource type="Script" path="res://scenes/objects/torch.gd" id="7_gl4bf"]
+[ext_resource type="Script" path="res://scenes/test_scenes/cpu_particles_2d.gd" id="8_i5gob"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngbdt"]
+atlas = ExtResource("6_dyr4y")
+region = Rect2(0, 0, 8, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfbpi"]
+atlas = ExtResource("6_dyr4y")
+region = Rect2(8, 0, 8, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxllt"]
+atlas = ExtResource("6_dyr4y")
+region = Rect2(16, 0, 8, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uj21u"]
+atlas = ExtResource("6_dyr4y")
+region = Rect2(24, 0, 8, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3fhgk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngbdt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfbpi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxllt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uj21u")
+}],
+"loop": true,
+"name": &"burning",
+"speed": 8.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_fxymn"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.728448)
+colors = PackedColorArray(1, 0.923171, 0.527328, 1, 1, 0.6, 0.2, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_agw7b"]
+gradient = SubResource("Gradient_fxymn")
+width = 200
+height = 200
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="TestLighting" type="Node2D"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.301961, 0.4, 0.6, 1)
+script = ExtResource("1_d1bop")
+cycle_length = 4.0
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="TileManager" parent="Managers" node_paths=PackedStringArray("tile_map") instance=ExtResource("1_hgfxd")]
+tile_map = NodePath("../../GameTileMap")
+
+[node name="PlayerCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_vxtlm")]
+target = NodePath("../Player")
+
+[node name="GameTileMap" parent="." instance=ExtResource("3_gu5lt")]
+
+[node name="Player" parent="." node_paths=PackedStringArray("tile_manager") instance=ExtResource("4_p0uxn")]
+position = Vector2(-41, -19)
+tile_manager = NodePath("../Managers/TileManager")
+
+[node name="Torch" type="AnimatedSprite2D" parent="."]
+position = Vector2(-120, 81)
+sprite_frames = SubResource("SpriteFrames_3fhgk")
+animation = &"burning"
+autoplay = "burning"
+frame_progress = 0.0783177
+script = ExtResource("7_gl4bf")
+
+[node name="FlickerTimer" type="Timer" parent="Torch"]
+wait_time = 0.05
+autostart = true
+
+[node name="PointLight2D" type="PointLight2D" parent="Torch"]
+blend_mode = 2
+texture = SubResource("GradientTexture2D_agw7b")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Torch"]
+script = ExtResource("8_i5gob")
