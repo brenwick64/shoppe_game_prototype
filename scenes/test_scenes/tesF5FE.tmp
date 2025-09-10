@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bmce4hybdi20v"]
+[gd_scene load_steps=18 format=3 uid="uid://bmce4hybdi20v"]
 
 [ext_resource type="Script" path="res://scenes/canvas_modulate.gd" id="1_d1bop"]
 [ext_resource type="PackedScene" uid="uid://cx33pk6ute2hg" path="res://scenes/managers/tile_manager/tile_manager.tscn" id="1_hgfxd"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://boopyqkaoose4" path="res://assets/objects/torch.png" id="6_dyr4y"]
 [ext_resource type="Script" path="res://scenes/characters/firefly/firefly_spawner.gd" id="6_fqiym"]
 [ext_resource type="Script" path="res://scenes/objects/torch.gd" id="7_gl4bf"]
-[ext_resource type="PackedScene" uid="uid://eeg5x8snkfqw" path="res://scenes/characters/firefly/firefly.tscn" id="7_ojd8x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ngbdt"]
 atlas = ExtResource("6_dyr4y")
@@ -107,27 +106,28 @@ cycle_length = 4.0
 [node name="TileManager" parent="Managers" node_paths=PackedStringArray("tile_map") instance=ExtResource("1_hgfxd")]
 tile_map = NodePath("../../GameTileMap")
 
+[node name="DebugCamera" type="Camera2D" parent="."]
+
 [node name="PlayerCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_vxtlm")]
 target = NodePath("../Player")
-
-[node name="CameraSpawner" type="Node2D" parent="PlayerCamera" node_paths=PackedStringArray("camera")]
-position = Vector2(-25, -25)
-script = ExtResource("6_fqiym")
-camera = NodePath("..")
-spawn_area_padding = Vector2(20, 20)
-spawn_time_sec = 3.0
-spawnable_scene = ExtResource("7_ojd8x")
-
-[node name="Spawns" type="Node2D" parent="PlayerCamera/CameraSpawner"]
-
-[node name="SpawnTimer" type="Timer" parent="PlayerCamera/CameraSpawner"]
-autostart = true
 
 [node name="GameTileMap" parent="." instance=ExtResource("3_gu5lt")]
 
 [node name="Player" parent="." node_paths=PackedStringArray("tile_manager") instance=ExtResource("4_p0uxn")]
 position = Vector2(-41, -19)
 tile_manager = NodePath("../Managers/TileManager")
+
+[node name="FireflySpawner" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
+position = Vector2(-25, -25)
+script = ExtResource("6_fqiym")
+spawn_radius = 300
+camera = NodePath("../PlayerCamera")
+
+[node name="Fireflies" type="Node2D" parent="FireflySpawner"]
+
+[node name="SpawnTimer" type="Timer" parent="FireflySpawner"]
+wait_time = 3.0
+autostart = true
 
 [node name="Torch" type="AnimatedSprite2D" parent="."]
 position = Vector2(-120, 81)
@@ -169,4 +169,4 @@ autostart = true
 blend_mode = 2
 texture = SubResource("GradientTexture2D_agw7b")
 
-[connection signal="timeout" from="PlayerCamera/CameraSpawner/SpawnTimer" to="PlayerCamera/CameraSpawner" method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="FireflySpawner/SpawnTimer" to="FireflySpawner" method="_on_spawn_timer_timeout"]
