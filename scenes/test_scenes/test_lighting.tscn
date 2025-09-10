@@ -97,6 +97,8 @@ script/source = "extends CPUParticles2D
 
 [node name="TestLighting" type="Node2D"]
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.301961, 0.4, 0.6, 1)
 script = ExtResource("1_d1bop")
@@ -107,23 +109,23 @@ cycle_length = 4.0
 [node name="TileManager" parent="Managers" node_paths=PackedStringArray("tile_map") instance=ExtResource("1_hgfxd")]
 tile_map = NodePath("../../GameTileMap")
 
+[node name="GameTileMap" parent="." instance=ExtResource("3_gu5lt")]
+
 [node name="PlayerCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_vxtlm")]
 target = NodePath("../Player")
 
-[node name="CameraSpawner" type="Node2D" parent="PlayerCamera" node_paths=PackedStringArray("camera")]
-position = Vector2(-25, -25)
+[node name="CameraSpawner" type="Node2D" parent="PlayerCamera"]
 script = ExtResource("6_fqiym")
-camera = NodePath("..")
-spawn_area_padding = Vector2(20, 20)
-spawn_time_sec = 3.0
+spawn_area_padding = Vector2(200, 200)
+max_spawns = 20
+spawn_time_sec = 2.5
 spawnable_scene = ExtResource("7_ojd8x")
+DEBUG_SHOW_SPAWN_AREA = true
 
 [node name="Spawns" type="Node2D" parent="PlayerCamera/CameraSpawner"]
 
 [node name="SpawnTimer" type="Timer" parent="PlayerCamera/CameraSpawner"]
 autostart = true
-
-[node name="GameTileMap" parent="." instance=ExtResource("3_gu5lt")]
 
 [node name="Player" parent="." node_paths=PackedStringArray("tile_manager") instance=ExtResource("4_p0uxn")]
 position = Vector2(-41, -19)
@@ -167,6 +169,42 @@ autostart = true
 
 [node name="PointLight2D" type="PointLight2D" parent="Torch2"]
 blend_mode = 2
+texture = SubResource("GradientTexture2D_agw7b")
+
+[node name="Torch3" type="AnimatedSprite2D" parent="."]
+position = Vector2(94, -167)
+sprite_frames = SubResource("SpriteFrames_3fhgk")
+animation = &"burning"
+autoplay = "burning"
+frame_progress = 0.0783177
+script = ExtResource("7_gl4bf")
+flicker_energy_variance = 0.35
+
+[node name="FlickerTimer" type="Timer" parent="Torch3"]
+wait_time = 0.05
+autostart = true
+
+[node name="PointLight2D" type="PointLight2D" parent="Torch3"]
+blend_mode = 2
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_agw7b")
+
+[node name="Torch4" type="AnimatedSprite2D" parent="."]
+position = Vector2(-80, -168)
+sprite_frames = SubResource("SpriteFrames_3fhgk")
+animation = &"burning"
+autoplay = "burning"
+frame_progress = 0.0783177
+script = ExtResource("7_gl4bf")
+flicker_energy_variance = 0.35
+
+[node name="FlickerTimer" type="Timer" parent="Torch4"]
+wait_time = 0.05
+autostart = true
+
+[node name="PointLight2D" type="PointLight2D" parent="Torch4"]
+blend_mode = 2
+shadow_enabled = true
 texture = SubResource("GradientTexture2D_agw7b")
 
 [connection signal="timeout" from="PlayerCamera/CameraSpawner/SpawnTimer" to="PlayerCamera/CameraSpawner" method="_on_spawn_timer_timeout"]
