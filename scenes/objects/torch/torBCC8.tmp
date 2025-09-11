@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://c0lngiqw20ls2"]
+
+[ext_resource type="Texture2D" uid="uid://boopyqkaoose4" path="res://assets/objects/torch.png" id="1_gepxk"]
+[ext_resource type="Script" path="res://scenes/objects/torch/torch.gd" id="2_dok6w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngbdt"]
+atlas = ExtResource("1_gepxk")
+region = Rect2(0, 0, 8, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfbpi"]
+atlas = ExtResource("1_gepxk")
+region = Rect2(8, 0, 8, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxllt"]
+atlas = ExtResource("1_gepxk")
+region = Rect2(16, 0, 8, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uj21u"]
+atlas = ExtResource("1_gepxk")
+region = Rect2(24, 0, 8, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3fhgk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngbdt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfbpi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxllt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uj21u")
+}],
+"loop": true,
+"name": &"burning",
+"speed": 8.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_fxymn"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.728448)
+colors = PackedColorArray(1, 0.923171, 0.527328, 1, 1, 0.6, 0.2, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_agw7b"]
+gradient = SubResource("Gradient_fxymn")
+width = 200
+height = 200
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Torch" type="AnimatedSprite2D"]
+position = Vector2(-120, 81)
+sprite_frames = SubResource("SpriteFrames_3fhgk")
+animation = &"burning"
+autoplay = "burning"
+frame_progress = 0.0783177
+script = ExtResource("2_dok6w")
+flicker_energy_variance = 0.35
+
+[node name="FlickerTimer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+blend_mode = 2
+texture = SubResource("GradientTexture2D_agw7b")

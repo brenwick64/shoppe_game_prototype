@@ -1,0 +1,92 @@
+[gd_scene load_steps=13 format=3 uid="uid://c0lngiqw20ls2"]
+
+[ext_resource type="Texture2D" uid="uid://boopyqkaoose4" path="res://assets/objects/torch.png" id="1_gepxk"]
+[ext_resource type="Script" path="res://scenes/objects/torch/torch.gd" id="2_dok6w"]
+[ext_resource type="Texture2D" uid="uid://5fbo7674u7xk" path="res://assets/objects/unlit_torch.png" id="3_8yt0f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5uyvt"]
+atlas = ExtResource("1_gepxk")
+region = Rect2(0, 0, 8, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5775"]
+atlas = ExtResource("1_gepxk")
+region = Rect2(8, 0, 8, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apqkk"]
+atlas = ExtResource("1_gepxk")
+region = Rect2(16, 0, 8, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_df47k"]
+atlas = ExtResource("1_gepxk")
+region = Rect2(24, 0, 8, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_we30q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uyvt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5775")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apqkk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_df47k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ene2k"]
+atlas = ExtResource("3_8yt0f")
+region = Rect2(0, 0, 8, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2irog"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ene2k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_fxymn"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.728448)
+colors = PackedColorArray(1, 0.923171, 0.527328, 1, 1, 0.6, 0.2, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_agw7b"]
+gradient = SubResource("Gradient_fxymn")
+width = 200
+height = 200
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Torch" type="Node2D"]
+position = Vector2(-120, 81)
+script = ExtResource("2_dok6w")
+flicker_energy_variance = 0.35
+
+[node name="LitAnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_we30q")
+autoplay = "default"
+frame_progress = 0.570359
+
+[node name="UnlitAnimatedSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 2)
+sprite_frames = SubResource("SpriteFrames_2irog")
+
+[node name="FlickerTimer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+blend_mode = 2
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_agw7b")

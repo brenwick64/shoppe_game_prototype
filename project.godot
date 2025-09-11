@@ -16,7 +16,8 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
 
-GlobalAudioManager="*res://scripts/globals/GlobalAudioManager.gd"
+GlobalAudioManager="*res://systems/audio_system/scripts/GlobalAudioManager.gd"
+DayAndNightManager="*res://scripts/globals/day_and_night_manager.gd"
 
 [display]
 

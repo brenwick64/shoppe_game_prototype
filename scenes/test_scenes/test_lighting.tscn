@@ -1,108 +1,18 @@
-[gd_scene load_steps=19 format=3 uid="uid://bmce4hybdi20v"]
+[gd_scene load_steps=9 format=3 uid="uid://bmce4hybdi20v"]
 
-[ext_resource type="Script" path="res://scenes/canvas_modulate.gd" id="1_d1bop"]
-[ext_resource type="PackedScene" uid="uid://cx33pk6ute2hg" path="res://scenes/managers/tile_manager/tile_manager.tscn" id="1_hgfxd"]
-[ext_resource type="PackedScene" uid="uid://csogmde7287ni" path="res://scenes/game_objects/camera/player_camera.tscn" id="2_vxtlm"]
+[ext_resource type="PackedScene" uid="uid://cx33pk6ute2hg" path="res://systems/tile_system/tile_manager/tile_manager.tscn" id="1_hgfxd"]
+[ext_resource type="PackedScene" uid="uid://bncnqat234c0r" path="res://systems/lighting_system/day_night_modulate/day_night_modulate.tscn" id="1_yhqi4"]
+[ext_resource type="PackedScene" uid="uid://csogmde7287ni" path="res://scenes/game_objects/player_camera/player_camera.tscn" id="2_vxtlm"]
 [ext_resource type="PackedScene" uid="uid://b3e78tu5wd3qe" path="res://scenes/game_objects/game_tile_map/game_tile_map.tscn" id="3_gu5lt"]
 [ext_resource type="PackedScene" uid="uid://x0hp764aoxfp" path="res://scenes/characters/player/player.tscn" id="4_p0uxn"]
-[ext_resource type="Texture2D" uid="uid://boopyqkaoose4" path="res://assets/objects/torch.png" id="6_dyr4y"]
 [ext_resource type="Script" path="res://scenes/characters/firefly/firefly_spawner.gd" id="6_fqiym"]
-[ext_resource type="Script" path="res://scenes/objects/torch.gd" id="7_gl4bf"]
 [ext_resource type="PackedScene" uid="uid://eeg5x8snkfqw" path="res://scenes/characters/firefly/firefly.tscn" id="7_ojd8x"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ngbdt"]
-atlas = ExtResource("6_dyr4y")
-region = Rect2(0, 0, 8, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pfbpi"]
-atlas = ExtResource("6_dyr4y")
-region = Rect2(8, 0, 8, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sxllt"]
-atlas = ExtResource("6_dyr4y")
-region = Rect2(16, 0, 8, 11)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uj21u"]
-atlas = ExtResource("6_dyr4y")
-region = Rect2(24, 0, 8, 11)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_3fhgk"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ngbdt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pfbpi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sxllt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uj21u")
-}],
-"loop": true,
-"name": &"burning",
-"speed": 8.0
-}]
-
-[sub_resource type="Gradient" id="Gradient_fxymn"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.728448)
-colors = PackedColorArray(1, 0.923171, 0.527328, 1, 1, 0.6, 0.2, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_agw7b"]
-gradient = SubResource("Gradient_fxymn")
-width = 200
-height = 200
-use_hdr = true
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="Gradient" id="Gradient_1uobg"]
-offsets = PackedFloat32Array(0, 0.5, 1)
-colors = PackedColorArray(1, 1, 0, 1, 1, 0.5, 0.2, 0.8, 1, 0.3, 0.1, 0)
-
-[sub_resource type="GDScript" id="GDScript_7f7q6"]
-script/source = "extends CPUParticles2D
-#
-## Base particle properties
-##var lifetime: float = 1.5
-##var amount: int = 50
-##var gravity: Vector2 = Vector2(0, -50) # Negative Y for upward movement
-#var speed: float = 50.0
-##var spread: float = 30 # Degrees of spread
-##var scale: Vector2 = Vector2(0.1, 0.1)
-##var color: Color = Color(1, 0.6, 0.2, 1) # Ember orange
-#
-#func _ready() -> void:
-	##self.lifetime = lifetime
-	##self.amount = amount
-	##self.speed_scale = 1.0
-	##self.one_shot = false
-	##self.explosiveness = 0.0
-	##self.emitting = true
-#
-	## Configure the particle material
-	#var mat = ParticleProcessMaterial.new()
-	##mat.velocity = speed
-	#mat.angle = 0.0
-	#mat.angle_random = spread / 180.0
-	#mat.scale = scale
-	#mat.scale_random = 0.5
-	#mat.color = color
-	#mat.color_ramp = null  # optional later
-	#self.process_material = mat
-"
+[ext_resource type="PackedScene" uid="uid://c0lngiqw20ls2" path="res://scenes/objects/torch/torch.tscn" id="8_n684v"]
 
 [node name="TestLighting" type="Node2D"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.301961, 0.4, 0.6, 1)
-script = ExtResource("1_d1bop")
-cycle_length = 4.0
+[node name="DayNight" parent="." instance=ExtResource("1_yhqi4")]
+night_color = Color(0.186528, 0.260193, 0.408413, 1)
 
 [node name="Managers" type="Node" parent="."]
 
@@ -116,11 +26,10 @@ target = NodePath("../Player")
 
 [node name="CameraSpawner" type="Node2D" parent="PlayerCamera"]
 script = ExtResource("6_fqiym")
-spawn_area_padding = Vector2(200, 200)
+spawn_area_padding = Vector2(50, 50)
 max_spawns = 20
-spawn_time_sec = 2.5
+spawn_time_sec = 2.0
 spawnable_scene = ExtResource("7_ojd8x")
-DEBUG_SHOW_SPAWN_AREA = true
 
 [node name="Spawns" type="Node2D" parent="PlayerCamera/CameraSpawner"]
 
@@ -131,80 +40,21 @@ autostart = true
 position = Vector2(-41, -19)
 tile_manager = NodePath("../Managers/TileManager")
 
-[node name="Torch" type="AnimatedSprite2D" parent="."]
-position = Vector2(-120, 81)
-sprite_frames = SubResource("SpriteFrames_3fhgk")
-animation = &"burning"
-autoplay = "burning"
-frame_progress = 0.0783177
-script = ExtResource("7_gl4bf")
-flicker_energy_variance = 0.35
+[node name="Torch" parent="." instance=ExtResource("8_n684v")]
 
-[node name="FlickerTimer" type="Timer" parent="Torch"]
-wait_time = 0.05
-autostart = true
-
-[node name="PointLight2D" type="PointLight2D" parent="Torch"]
-blend_mode = 2
-texture = SubResource("GradientTexture2D_agw7b")
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Torch"]
-visible = false
-gravity = Vector2(0, -980)
-color_ramp = SubResource("Gradient_1uobg")
-script = SubResource("GDScript_7f7q6")
-
-[node name="Torch2" type="AnimatedSprite2D" parent="."]
+[node name="Torch2" parent="." instance=ExtResource("8_n684v")]
 position = Vector2(-72, 81)
-sprite_frames = SubResource("SpriteFrames_3fhgk")
-animation = &"burning"
-autoplay = "burning"
-frame_progress = 0.0783177
-script = ExtResource("7_gl4bf")
-flicker_energy_variance = 0.35
 
-[node name="FlickerTimer" type="Timer" parent="Torch2"]
-wait_time = 0.05
-autostart = true
+[node name="Torch3" parent="." instance=ExtResource("8_n684v")]
+position = Vector2(-74, -168)
 
-[node name="PointLight2D" type="PointLight2D" parent="Torch2"]
-blend_mode = 2
-texture = SubResource("GradientTexture2D_agw7b")
+[node name="Torch4" parent="." instance=ExtResource("8_n684v")]
+position = Vector2(89, -168)
 
-[node name="Torch3" type="AnimatedSprite2D" parent="."]
-position = Vector2(94, -167)
-sprite_frames = SubResource("SpriteFrames_3fhgk")
-animation = &"burning"
-autoplay = "burning"
-frame_progress = 0.0783177
-script = ExtResource("7_gl4bf")
-flicker_energy_variance = 0.35
+[node name="Torch6" parent="." instance=ExtResource("8_n684v")]
+position = Vector2(9, -168)
 
-[node name="FlickerTimer" type="Timer" parent="Torch3"]
-wait_time = 0.05
-autostart = true
-
-[node name="PointLight2D" type="PointLight2D" parent="Torch3"]
-blend_mode = 2
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_agw7b")
-
-[node name="Torch4" type="AnimatedSprite2D" parent="."]
-position = Vector2(-80, -168)
-sprite_frames = SubResource("SpriteFrames_3fhgk")
-animation = &"burning"
-autoplay = "burning"
-frame_progress = 0.0783177
-script = ExtResource("7_gl4bf")
-flicker_energy_variance = 0.35
-
-[node name="FlickerTimer" type="Timer" parent="Torch4"]
-wait_time = 0.05
-autostart = true
-
-[node name="PointLight2D" type="PointLight2D" parent="Torch4"]
-blend_mode = 2
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_agw7b")
+[node name="Torch5" parent="." instance=ExtResource("8_n684v")]
+position = Vector2(216, 82)
 
 [connection signal="timeout" from="PlayerCamera/CameraSpawner/SpawnTimer" to="PlayerCamera/CameraSpawner" method="_on_spawn_timer_timeout"]

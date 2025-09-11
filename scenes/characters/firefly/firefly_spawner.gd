@@ -1,7 +1,6 @@
 class_name CameraSpawner
 extends Node2D
 
-#@export var camera: Camera2D
 @export var spawn_area_padding: Vector2 = Vector2(0,0)
 @export var max_spawns: int = 10
 @export var spawn_time_sec: float = 1.0
@@ -13,6 +12,8 @@ extends Node2D
 @onready var spawns: Node2D = $Spawns
 @onready var spawn_timer: Timer = $SpawnTimer
 
+var enabled: bool = false
+
 var _viewport_size: Vector2
 var _screen_center: Vector2
 var _camera_center_pos: Vector2
@@ -22,6 +23,7 @@ func _ready() -> void:
 	_viewport_size = camera.get_viewport_rect().size / camera.zoom
 	_screen_center = _viewport_size / 2.0
 	_camera_center_pos = camera.global_position - _screen_center 
+	DayAndNightManager.hour_passed.connect(_on_hour_passed)
 
 func _process(_delta: float) -> void:
 	_camera_center_pos = camera.global_position - global_position
@@ -36,9 +38,15 @@ func _draw() -> void:
 		var adjusted_top_left: Vector2 = top_left - spawn_area_padding / 2
 		draw_rect(Rect2(adjusted_top_left, _viewport_size + spawn_area_padding), Color.BLUE, false, 3.0)
 
-func _should_spawn() -> bool:
+func _at_spawn_limit() -> bool:
 	var spawns_arr: Array[Node] = spawns.get_children()
-	return spawns_arr.size() < max_spawns
+	return spawns_arr.size() >= max_spawns
+
+func _check_time(hour: int) -> void:
+	if hour >= DayAndNightManager.SUNRISE_HOUR and hour < DayAndNightManager.SUNSET_HOUR:
+		enabled = false
+	else:
+		enabled = true
 
 func _get_random_point_in_camera() -> Vector2:
 	var half_width: float = (_viewport_size.x / 2) + (spawn_area_padding.x / 2)
@@ -56,7 +64,10 @@ func _get_random_point_in_camera() -> Vector2:
 	return Vector2(rand_x, rand_y)
 
 func _on_spawn_timer_timeout() -> void:
-	if _should_spawn():
+	if enabled and not _at_spawn_limit():
 		var spawn_ins: PointLight2D = spawnable_scene.instantiate()
 		spawn_ins.global_position = _get_random_point_in_camera()
 		spawns.add_child(spawn_ins)
+
+func _on_hour_passed(hour: int) -> void:
+	_check_time(hour)
