@@ -12,7 +12,16 @@ func _ready() -> void:
 	_tilemap_layers.reverse() # we want end layers to be handled first
 
 ## -- methods --
-# TODO: rework to get any passed-in custom data key
+func get_cust_meta_from_global_pos(global_position: Vector2, meta_key: String) -> String:
+	for layer: TileMapLayer in _tilemap_layers:
+		var tile_coords = _get_tile_from_global_pos(layer, global_position)
+		var tile_data = layer.get_cell_tile_data(tile_coords)
+		if not tile_data: continue # no tile in layer
+		var meta: String = str(tile_data.get_custom_data(meta_key))
+		if not meta: continue # no key in layer
+		return meta
+	return "none"
+
 func get_terrain_type_from_global_pos(global_position: Vector2) -> String:
 	for layer: TileMapLayer in _tilemap_layers:
 		var tile_coords = _get_tile_from_global_pos(layer, global_position)

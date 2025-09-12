@@ -25,7 +25,10 @@ func _on_animation_component_animation_state_changed(state: String) -> void:
 		movement_sound.stop_loop()
 
 func _on_movement_component_moveable_moved(_new_position: Vector2) -> void:
-	var terrain_type:String = tile_manager.get_terrain_type_from_global_pos(global_position)
+	var terrain_type: String = tile_manager.get_cust_meta_from_global_pos(
+		global_position,
+		"terrain_type"
+	)
 	if terrain_type != _current_terrain:
 		var new_track: Array[AudioStream] = GlobalAudioManager.get_audio_track("move_" + terrain_type)
 		movement_sound.switch_tracks(new_track)

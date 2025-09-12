@@ -3,7 +3,7 @@ extends Node
 
 signal hour_passed(hours: int)
 
-@export var day_length: float = 120.0   # real seconds for a full in-game day
+@export var day_length: float = 5.0   # real seconds for a full in-game day
 @export var print_only_on_change: bool = true
 
 const SECONDS_PER_DAY: int = 24 * 60 * 60

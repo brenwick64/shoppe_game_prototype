@@ -72,6 +72,7 @@ fill_from = Vector2(0.5, 0.5)
 position = Vector2(-120, 81)
 script = ExtResource("2_dok6w")
 flicker_energy_variance = 0.35
+on_off_delay_range_sec = Vector2(0.05, 0.25)
 
 [node name="LitAnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_we30q")
@@ -82,11 +83,14 @@ frame_progress = 0.570359
 position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_2irog")
 
-[node name="FlickerTimer" type="Timer" parent="."]
-wait_time = 0.05
-autostart = true
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
 blend_mode = 2
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_agw7b")
+
+[node name="FlickerTimer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[node name="OnOffTimer" type="Timer" parent="."]
+one_shot = true

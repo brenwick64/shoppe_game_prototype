@@ -23,14 +23,14 @@ func _ready() -> void:
 	var fade_in_tween = create_tween()
 	fade_in_tween.tween_property(self, "energy", base_energy, 1.0)  # 1 second fade-in
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Smooth random movement using sin/cos for natural wandering
 	var t = Time.get_ticks_msec() / 1000.0 + time_offset
-	var offset = Vector2(
+	var calc_offset = Vector2(
 		sin(t * frequency * 0.7) * amplitude,
 		cos(t * frequency * 1.3) * amplitude
 	)
-	global_position = origin + offset
+	global_position = origin + calc_offset
 
 	# Flicker on top of base energy
 	energy = base_energy + flicker_strength * sin(t * 3.0 + time_offset)

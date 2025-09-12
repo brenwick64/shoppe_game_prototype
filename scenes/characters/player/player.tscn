@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://x0hp764aoxfp"]
+[gd_scene load_steps=30 format=3 uid="uid://x0hp764aoxfp"]
 
 [ext_resource type="Texture2D" uid="uid://cn53uads4bci0" path="res://assets/characters/Character_001.png" id="1_1m8w0"]
 [ext_resource type="Script" path="res://scenes/components/player_input_component/player_input_component.gd" id="1_bfyut"]
@@ -6,6 +6,10 @@
 [ext_resource type="Script" path="res://scenes/components/movement_component/movement_component.gd" id="2_6reun"]
 [ext_resource type="Script" path="res://scenes/components/animation_component/animation_component.gd" id="3_if003"]
 [ext_resource type="PackedScene" uid="uid://dg64qu0aj0j6h" path="res://systems/audio_system/sound_components/loop_sound_component.tscn" id="6_idayt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vjiwc"]
+radius = 6.0
+height = 20.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nhci1"]
 atlas = ExtResource("1_1m8w0")
@@ -202,6 +206,15 @@ movement_component = NodePath("MovementComponent")
 animation_component = NodePath("AnimationComponent")
 movement_sound = NodePath("MovementSound")
 
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -7)
+shape = SubResource("CapsuleShape2D_vjiwc")
+debug_color = Color(0.547062, 0.424058, 0.952753, 0.42)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -12)
@@ -219,7 +232,7 @@ stop_threshold_sec = 0.1
 [node name="AnimationComponent" type="Node" parent="."]
 script = ExtResource("3_if003")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="MovementCollider" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_8xl6h")
 
