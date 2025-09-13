@@ -1,13 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://bmce4hybdi20v"]
+[gd_scene load_steps=11 format=3 uid="uid://bmce4hybdi20v"]
 
-[ext_resource type="PackedScene" uid="uid://cx33pk6ute2hg" path="res://systems/tile_system/tile_manager/tile_manager.tscn" id="1_hgfxd"]
-[ext_resource type="PackedScene" uid="uid://bncnqat234c0r" path="res://systems/lighting_system/day_night_modulate/day_night_modulate.tscn" id="1_yhqi4"]
+[ext_resource type="PackedScene" uid="uid://cx33pk6ute2hg" path="res://systems/tile_system/scenes/tile_manager/tile_manager.tscn" id="1_hgfxd"]
+[ext_resource type="PackedScene" uid="uid://bncnqat234c0r" path="res://systems/day_night_system/scenes/day_night_modulate/day_night_modulate.tscn" id="1_yhqi4"]
 [ext_resource type="PackedScene" uid="uid://csogmde7287ni" path="res://scenes/game_objects/player_camera/player_camera.tscn" id="2_vxtlm"]
 [ext_resource type="PackedScene" uid="uid://b3e78tu5wd3qe" path="res://scenes/game_objects/game_tile_map/game_tile_map.tscn" id="3_gu5lt"]
 [ext_resource type="PackedScene" uid="uid://x0hp764aoxfp" path="res://scenes/characters/player/player.tscn" id="4_p0uxn"]
 [ext_resource type="Script" path="res://scenes/characters/firefly/firefly_spawner.gd" id="6_fqiym"]
 [ext_resource type="PackedScene" uid="uid://eeg5x8snkfqw" path="res://scenes/characters/firefly/firefly.tscn" id="7_ojd8x"]
 [ext_resource type="PackedScene" uid="uid://c0lngiqw20ls2" path="res://scenes/objects/torch/torch.tscn" id="8_n684v"]
+[ext_resource type="PackedScene" uid="uid://bj616aj7lg3c7" path="res://scenes/ui/settings.tscn" id="9_u8now"]
+[ext_resource type="AudioStream" uid="uid://b41c2m13q2den" path="res://audio/music/time_for_adventure.mp3" id="10_tppac"]
 
 [node name="TestLighting" type="Node2D"]
 
@@ -47,5 +49,14 @@ position = Vector2(-72, 81)
 
 [node name="Torch5" parent="." instance=ExtResource("8_n684v")]
 position = Vector2(216, 82)
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="Settings" parent="UILayer" instance=ExtResource("9_u8now")]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_tppac")
+autoplay = true
+bus = &"music"
 
 [connection signal="timeout" from="PlayerCamera/CameraSpawner/SpawnTimer" to="PlayerCamera/CameraSpawner" method="_on_spawn_timer_timeout"]

@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scenes/characters/player/player.gd" id="1_ym86x"]
 [ext_resource type="Script" path="res://scenes/components/movement_component/movement_component.gd" id="2_6reun"]
 [ext_resource type="Script" path="res://scenes/components/animation_component/animation_component.gd" id="3_if003"]
-[ext_resource type="PackedScene" uid="uid://dg64qu0aj0j6h" path="res://systems/audio_system/sound_components/loop_sound_component.tscn" id="6_idayt"]
+[ext_resource type="PackedScene" uid="uid://dg64qu0aj0j6h" path="res://systems/audio_system/scenes/loop_sound_component/loop_sound_component.tscn" id="6_idayt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vjiwc"]
 radius = 6.0

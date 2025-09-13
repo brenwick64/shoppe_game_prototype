@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bncnqat234c0r"]
+
+[ext_resource type="Script" path="res://systems/day_night_system/scenes/day_night_modulate/day_night_modulate.gd" id="1_o6nsv"]
+[ext_resource type="PackedScene" uid="uid://s87wmmu2k51u" path="res://systems/day_night_system/scenes/day_night_stream_player/day_night_stream_player.tscn" id="2_xtk81"]
+
+[node name="DayNight" type="CanvasModulate"]
+color = Color(0.301961, 0.4, 0.6, 1)
+script = ExtResource("1_o6nsv")
+
+[node name="DayNightStreamPlayer" parent="." instance=ExtResource("2_xtk81")]
+bus = &"ambience"

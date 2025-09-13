@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bncnqat234c0r"]
+
+[ext_resource type="Script" path="res://systems/lighting_system/day_night_modulate/day_night_modulate.gd" id="1_o6nsv"]
+[ext_resource type="Script" path="res://systems/lighting_system/day_night_modulate/day_night_stream_player.gd" id="2_wnofx"]
+
+[node name="DayNight" type="CanvasModulate"]
+color = Color(0.301961, 0.4, 0.6, 1)
+script = ExtResource("1_o6nsv")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+script = ExtResource("2_wnofx")

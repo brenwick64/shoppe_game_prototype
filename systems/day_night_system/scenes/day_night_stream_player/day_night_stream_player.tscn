@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://s87wmmu2k51u"]
+
+[ext_resource type="Script" path="res://systems/day_night_system/scenes/day_night_stream_player/day_night_stream_player.gd" id="1_i25fe"]
+
+[node name="DayNightStreamPlayer" type="AudioStreamPlayer"]
+script = ExtResource("1_i25fe")

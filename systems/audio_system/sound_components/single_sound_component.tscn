@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkty4ssqdtcvx"]
-
-[ext_resource type="Script" path="res://systems/audio_system/sound_components/single_sound_component.gd" id="1_mlqfd"]
-
-[node name="SingleSoundComponent" type="AudioStreamPlayer2D"]
-script = ExtResource("1_mlqfd")
-
-[connection signal="finished" from="." to="." method="_on_finished"]

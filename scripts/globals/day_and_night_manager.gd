@@ -2,8 +2,10 @@
 extends Node
 
 signal hour_passed(hours: int)
+signal day_start()
+signal night_start()
 
-@export var day_length: float = 5.0   # real seconds for a full in-game day
+@export var day_length: float = 10.0   # real seconds for a full in-game day
 @export var print_only_on_change: bool = true
 
 const SECONDS_PER_DAY: int = 24 * 60 * 60
@@ -18,6 +20,13 @@ var seconds: int = 0
 var _accumulated_seconds: float = 0.0
 var _prev_printed_second: int = -1
 var _prev_hours: int = -1
+
+## -- methods --
+func is_day() -> bool:
+	return SUNRISE_HOUR <= hours and hours < SUNSET_HOUR 
+
+func is_night() -> bool:
+	return hours < SUNRISE_HOUR or hours >= SUNSET_HOUR
 
 func _ready() -> void:
 	_accumulated_seconds = 0.0
@@ -45,3 +54,9 @@ func _process(delta: float) -> void:
 	if hours != _prev_hours:
 		hour_passed.emit(hours)
 		_prev_hours = hours
+	
+	# check day/night
+	if hours == SUNRISE_HOUR:
+		day_start.emit()
+	elif hours == SUNSET_HOUR:
+		night_start.emit()

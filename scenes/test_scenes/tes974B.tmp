@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://bmce4hybdi20v"]
+
+[ext_resource type="PackedScene" uid="uid://cx33pk6ute2hg" path="res://systems/tile_system/scenes/tile_manager/tile_manager.tscn" id="1_hgfxd"]
+[ext_resource type="PackedScene" uid="uid://bncnqat234c0r" path="res://systems/day_night_system/scenes/day_night_modulate/day_night_modulate.tscn" id="1_yhqi4"]
+[ext_resource type="PackedScene" uid="uid://csogmde7287ni" path="res://scenes/game_objects/player_camera/player_camera.tscn" id="2_vxtlm"]
+[ext_resource type="PackedScene" uid="uid://b3e78tu5wd3qe" path="res://scenes/game_objects/game_tile_map/game_tile_map.tscn" id="3_gu5lt"]
+[ext_resource type="PackedScene" uid="uid://x0hp764aoxfp" path="res://scenes/characters/player/player.tscn" id="4_p0uxn"]
+[ext_resource type="Script" path="res://scenes/characters/firefly/firefly_spawner.gd" id="6_fqiym"]
+[ext_resource type="PackedScene" uid="uid://eeg5x8snkfqw" path="res://scenes/characters/firefly/firefly.tscn" id="7_ojd8x"]
+[ext_resource type="PackedScene" uid="uid://c0lngiqw20ls2" path="res://scenes/objects/torch/torch.tscn" id="8_n684v"]
+
+[node name="TestLighting" type="Node2D"]
+
+[node name="DayNight" parent="." instance=ExtResource("1_yhqi4")]
+night_color = Color(0.186528, 0.260193, 0.408413, 1)
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="TileManager" parent="Managers" node_paths=PackedStringArray("tile_map") instance=ExtResource("1_hgfxd")]
+tile_map = NodePath("../../GameTileMap")
+
+[node name="GameTileMap" parent="." instance=ExtResource("3_gu5lt")]
+
+[node name="PlayerCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_vxtlm")]
+target = NodePath("../Player")
+
+[node name="CameraSpawner" type="Node2D" parent="PlayerCamera"]
+script = ExtResource("6_fqiym")
+spawn_area_padding = Vector2(50, 50)
+max_spawns = 20
+spawn_time_sec = 2.0
+spawnable_scene = ExtResource("7_ojd8x")
+
+[node name="Spawns" type="Node2D" parent="PlayerCamera/CameraSpawner"]
+
+[node name="SpawnTimer" type="Timer" parent="PlayerCamera/CameraSpawner"]
+autostart = true
+
+[node name="Player" parent="." node_paths=PackedStringArray("tile_manager") instance=ExtResource("4_p0uxn")]
+position = Vector2(-41, -19)
+tile_manager = NodePath("../Managers/TileManager")
+
+[node name="Torch" parent="." instance=ExtResource("8_n684v")]
+
+[node name="Torch2" parent="." instance=ExtResource("8_n684v")]
+position = Vector2(-72, 81)
+
+[node name="Torch5" parent="." instance=ExtResource("8_n684v")]
+position = Vector2(216, 82)
+
+[connection signal="timeout" from="PlayerCamera/CameraSpawner/SpawnTimer" to="PlayerCamera/CameraSpawner" method="_on_spawn_timer_timeout"]

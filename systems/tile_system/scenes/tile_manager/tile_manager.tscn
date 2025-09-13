@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx33pk6ute2hg"]
+
+[ext_resource type="Script" path="res://systems/tile_system/scenes/tile_manager/tile_manager.gd" id="1_h82ui"]
+
+[node name="TileManager" type="Node"]
+script = ExtResource("1_h82ui")

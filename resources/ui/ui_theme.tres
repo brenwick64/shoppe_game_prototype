@@ -1,0 +1,4 @@
+[gd_resource type="Theme" format=3 uid="uid://d3hq7cut50woy"]
+
+[resource]
+UISlider/base_type = &"HSlider"
