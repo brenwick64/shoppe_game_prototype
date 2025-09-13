@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://eeg5x8snkfqw" path="res://scenes/characters/firefly/firefly.tscn" id="7_ojd8x"]
 [ext_resource type="PackedScene" uid="uid://c0lngiqw20ls2" path="res://scenes/objects/torch/torch.tscn" id="8_n684v"]
 [ext_resource type="PackedScene" uid="uid://bj616aj7lg3c7" path="res://scenes/ui/settings.tscn" id="9_u8now"]
-[ext_resource type="AudioStream" uid="uid://b41c2m13q2den" path="res://audio/music/time_for_adventure.mp3" id="10_tppac"]
+[ext_resource type="AudioStream" uid="uid://dxv22jeorx386" path="res://audio/music/the_castle.wav" id="10_wpe11"]
 
 [node name="TestLighting" type="Node2D"]
 
@@ -55,7 +55,7 @@ position = Vector2(216, 82)
 [node name="Settings" parent="UILayer" instance=ExtResource("9_u8now")]
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_tppac")
+stream = ExtResource("10_wpe11")
 autoplay = true
 bus = &"music"
 

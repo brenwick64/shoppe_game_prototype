@@ -2,7 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://by4lxfoec4fm5"
+uid="uid://5g0m12ptsiun"
 path="res://.godot/imported/2_birds_inside.wav-7ce4d5d80024757b4668c4bd08191069.sample"
 
 [deps]
@@ -17,7 +17,7 @@ force/mono=false
 force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
-edit/normalize=true
+edit/normalize=false
 edit/loop_mode=0
 edit/loop_begin=0
 edit/loop_end=-1

@@ -2,7 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dovjts6dji5tl"
+uid="uid://bwoqjfmilmnnc"
 path="res://.godot/imported/night_crickets_layer.wav-8223be133ef6f0bbe6fc2eeecf55f076.sample"
 
 [deps]
@@ -17,8 +17,8 @@ force/mono=false
 force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
-edit/normalize=true
-edit/loop_mode=2
+edit/normalize=false
+edit/loop_mode=0
 edit/loop_begin=0
 edit/loop_end=-1
 compress/mode=0

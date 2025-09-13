@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://bm0pxwjnrrf3g"
-path="res://.godot/imported/12_Step_wood_03.wav-ee8c8cb9275f6eb75a69cd131f1f8c3c.sample"
+uid="uid://cfc485gr8qnja"
+path="res://.godot/imported/12_step_wood_03.wav-a43da3960e2bc9f6c12b408ed092c91e.sample"
 
 [deps]
 
-source_file="res://audio/player_movement/12_Step_wood_03.wav"
-dest_files=["res://.godot/imported/12_Step_wood_03.wav-ee8c8cb9275f6eb75a69cd131f1f8c3c.sample"]
+source_file="res://audio/player_movement/12_step_wood_03.wav"
+dest_files=["res://.godot/imported/12_step_wood_03.wav-a43da3960e2bc9f6c12b408ed092c91e.sample"]
 
 [params]
 
