@@ -14,11 +14,16 @@ config/name="shoppe_game_prototype"
 run/main_scene="res://scenes/test_scenes/test_terrain.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
+[audio]
+
+buses/default_bus_layout="res://audio/default_bus_layout.tres"
+
 [autoload]
 
 GlobalAudioManager="*res://systems/audio_system/scripts/GlobalAudioManager.gd"
-DayAndNightManager="*res://scripts/globals/day_and_night_manager.gd"
+DayAndNightManager="*res://systems/day_night_system/scripts/GlobalDayNightManager.gd"
 Settings="*res://scripts/globals/settings.gd"
+Constants="*res://scripts/globals/constants.gd"
 
 [display]
 

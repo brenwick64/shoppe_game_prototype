@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cehmoaesyncvs"]
+
+[ext_resource type="Script" path="res://systems/audio_system/scenes/global_random_sound_component/global_random_sound_component.gd" id="1_ob55v"]
+
+[node name="GlobalRandomSoundComponent" type="AudioStreamPlayer"]
+script = ExtResource("1_ob55v")
+tracks = Array[AudioStream]([null])
+
+[node name="RandomCooldown" type="Timer" parent="."]
+one_shot = true

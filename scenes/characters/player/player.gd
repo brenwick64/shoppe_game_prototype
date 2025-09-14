@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var player_input_component: PlayerInputComponent
 @export var movement_component: MovementComponent
 @export var animation_component: AnimationComponent
-@export var movement_sound: LoopSoundComponent
+@export var movement_sound: MovementSoundComponent
 
 var _current_terrain: String
 

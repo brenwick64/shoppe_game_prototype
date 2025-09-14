@@ -9,8 +9,18 @@ const wood_walk_3: AudioStream = preload("res://audio/player_movement/12_step_wo
 const music_bias: float = 20.0
 
 func _ready() -> void:
-	print("GlobalAudioManager ready")
+	load_bus_layout()
 
+func save_bus_layout(path: String = "res://audio/default_bus_layout.tres") -> void:
+	var layout: AudioBusLayout = AudioServer.generate_bus_layout()
+	ResourceSaver.save(layout, path)
+
+func load_bus_layout(path: String = "res://audio/default_bus_layout.tres") -> void:
+	var layout: AudioBusLayout = load(path)
+	if layout:
+		AudioServer.set_bus_layout(layout)
+
+# TODO: migrate this to local scene
 func get_audio_track(key: String) -> Array[AudioStream]:
 	match key:
 		"move_grass" : return [grass_walk_1, grass_walk_2]
@@ -33,6 +43,12 @@ func set_bus_db(bus_name: String, value: float) -> void:
 		bus_index,
 		value
 	)
+
+func get_bus_mute(bus_name: String) -> bool:
+	var bus_index: int = AudioServer.get_bus_index(bus_name)
+	if bus_index == -1: return false
+	return AudioServer.is_bus_mute(bus_index)
+
 func set_bus_mute(bus_name: String, is_muted: bool) -> void:
 	var bus_index: int = AudioServer.get_bus_index(bus_name)
 	if bus_index == -1: return

@@ -4,10 +4,10 @@ extends TileMapLayer
 
 var tween: Tween
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
+func _on_area_2d_area_entered(_area: Area2D) -> void:
 	_fade_to(0.0)
 
-func _on_area_2d_area_exited(area: Area2D) -> void:
+func _on_area_2d_area_exited(_area: Area2D) -> void:
 	_fade_to(1.0)
 
 func _fade_to(target_alpha: float) -> void:

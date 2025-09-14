@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dg64qu0aj0j6h"]
+
+[ext_resource type="Script" path="res://systems/audio_system/scenes/global_loop_sound_component/global_loop_sound_component.gd" id="1_70hbq"]
+
+[node name="GlobalLoopSoundComponent" type="AudioStreamPlayer"]
+bus = &"sfx"
+script = ExtResource("1_70hbq")
+
+[node name="PlayCooldown" type="Timer" parent="."]
+one_shot = true

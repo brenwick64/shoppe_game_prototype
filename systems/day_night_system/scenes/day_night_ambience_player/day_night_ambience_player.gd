@@ -7,7 +7,7 @@ var night_loop: AudioStream = preload("res://audio/ambience/night/night_crickets
 
 const MIN_VOLUME_DB: float = -80.0
 
-var max_volume_db: float = Settings.Audio.max_db_ambience
+var max_volume_db: float = GlobalAudioManager.get_bus_db("ambience")
 
 var _tween: Tween
 

@@ -1,4 +1,4 @@
-class_name LoopSoundComponent
+class_name MovementSoundComponent
 extends SoundComponent
 
 @export var tracks: Array[AudioStream]

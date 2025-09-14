@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://csogmde7287ni" path="res://scenes/game_objects/player_camera/player_camera.tscn" id="3_4da2v"]
 [ext_resource type="PackedScene" uid="uid://x0hp764aoxfp" path="res://scenes/characters/player/player.tscn" id="4_qgqi1"]
 [ext_resource type="Texture2D" uid="uid://70jdhwork83t" path="res://assets/enemies/Enemy08_03.png" id="5_j82uj"]
-[ext_resource type="PackedScene" uid="uid://dg64qu0aj0j6h" path="res://systems/audio_system/scenes/loop_sound_component/loop_sound_component.tscn" id="6_j1fte"]
-[ext_resource type="AudioStream" uid="uid://l0u3abr2jd2k" path="res://audio/crafting_and_gathering/Gathering_Professions/Bug_Catching/Bugs_Loop_2.wav" id="7_q7kki"]
+[ext_resource type="PackedScene" uid="uid://dg64qu0aj0j6h" path="res://systems/audio_system/scenes/global_loop_sound_component/global_loop_sound_component.tscn" id="6_j1fte"]
+[ext_resource type="AudioStream" path="res://audio/crafting_and_gathering/Gathering_Professions/Bug_Catching/Bugs_Loop_2.wav" id="7_q7kki"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7aqpy"]
 atlas = ExtResource("5_j82uj")
