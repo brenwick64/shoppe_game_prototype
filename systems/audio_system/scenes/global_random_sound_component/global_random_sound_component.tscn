@@ -6,5 +6,8 @@
 script = ExtResource("1_ob55v")
 tracks = Array[AudioStream]([null])
 
+[node name="InitialDelay" type="Timer" parent="."]
+one_shot = true
+
 [node name="RandomCooldown" type="Timer" parent="."]
 one_shot = true

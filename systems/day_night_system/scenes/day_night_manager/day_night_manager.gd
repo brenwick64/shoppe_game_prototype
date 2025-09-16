@@ -1,25 +1,41 @@
 extends Node
 
-@onready var night_sounds: GlobalLoopSoundComponent = $GlobalLoopSoundComponent
-@onready var day_sounds: GlobalRandomSoundComponent = $GlobalRandomSoundComponent
+@onready var day_birds_random: GlobalRandomSoundComponent = $DayBirdsRandom
+@onready var night_crickets_loop: GlobalLoopSoundComponent = $NightCricketsLoop
+@onready var night_owl_random: GlobalRandomSoundComponent = $NightOwlRandom
 @onready var sound_transition: Timer = $SoundTransition
 
 func _ready() -> void:
 	if DayAndNightManager.is_day():
-		day_sounds.fade_in()
+		_fade_in_day()
 	else:
-		night_sounds.fade_in()
+		_fade_in_night()
 	DayAndNightManager.day_start.connect(_on_day_start)
 	DayAndNightManager.night_start.connect(_on_night_start)
 
+func _fade_in_day() -> void:
+	day_birds_random.fade_in()
+	
+func _fade_out_day() -> void:
+	day_birds_random.fade_out()
+
+func _fade_in_night() -> void:
+	night_crickets_loop.fade_in()
+	night_owl_random.fade_in()
+	
+func _fade_out_night() -> void:
+	night_crickets_loop.fade_out()
+	night_owl_random.fade_out()
+
+## -- signals --
 func _on_day_start() -> void:
-	night_sounds.fade_out()
+	_fade_out_night()
 	sound_transition.start()
 	await sound_transition.timeout
-	day_sounds.fade_in()
+	_fade_in_day()
 
 func _on_night_start() -> void:
-	day_sounds.fade_out()
+	_fade_out_day()
 	sound_transition.start()
 	await sound_transition.timeout
-	night_sounds.fade_in()
+	_fade_in_night()

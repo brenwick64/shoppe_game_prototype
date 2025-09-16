@@ -1,26 +1,37 @@
-[gd_scene load_steps=7 format=3 uid="uid://d05xg5vjtcvs1"]
+[gd_scene load_steps=12 format=3 uid="uid://d05xg5vjtcvs1"]
 
 [ext_resource type="PackedScene" uid="uid://bncnqat234c0r" path="res://systems/day_night_system/scenes/day_night_modulate/day_night_modulate.tscn" id="1_ck73m"]
 [ext_resource type="Script" path="res://systems/day_night_system/scenes/day_night_manager/day_night_manager.gd" id="1_vpm26"]
 [ext_resource type="PackedScene" uid="uid://dg64qu0aj0j6h" path="res://systems/audio_system/scenes/global_loop_sound_component/global_loop_sound_component.tscn" id="2_gukxd"]
 [ext_resource type="AudioStream" uid="uid://bwoqjfmilmnnc" path="res://audio/ambience/night/night_crickets_layer.wav" id="4_lmmxa"]
 [ext_resource type="PackedScene" uid="uid://cehmoaesyncvs" path="res://systems/audio_system/scenes/global_random_sound_component/global_random_sound_component.tscn" id="5_8tb1i"]
-[ext_resource type="AudioStream" uid="uid://bhbj8x041lw3o" path="res://audio/ambience/day/1_birds_outside.wav" id="6_n7m6u"]
+[ext_resource type="AudioStream" uid="uid://c51paypl5lciq" path="res://audio/ambience/day/morning_birds_1/birdsong_common_linnet,_song_06_sarm_eb2.wav" id="6_3dom7"]
+[ext_resource type="AudioStream" uid="uid://c5siykxxtyqjm" path="res://audio/ambience/birds/owl/owl_hoot_1.wav" id="6_orxe2"]
+[ext_resource type="AudioStream" uid="uid://b8pbd7354hxic" path="res://audio/ambience/birds/owl/owl_hoot_2.wav" id="7_eqstt"]
+[ext_resource type="AudioStream" uid="uid://bc57yx27oonn4" path="res://audio/ambience/day/morning_birds_1/birdsong_common_reed_bunting,_call_01_sarm_eb2.wav" id="7_scq21"]
+[ext_resource type="AudioStream" uid="uid://bgoa7hhux2207" path="res://audio/ambience/day/morning_birds_1/birdsong_dunnock,_song_01_sarm_eb2.wav" id="8_3wsl8"]
+[ext_resource type="AudioStream" uid="uid://buyuxgej8qco2" path="res://audio/ambience/birds/owl/owl_hoot_3.wav" id="8_nr6vf"]
 
 [node name="DayNightManager" type="Node"]
 script = ExtResource("1_vpm26")
 
 [node name="DayNightModulate" parent="." instance=ExtResource("1_ck73m")]
 
-[node name="GlobalLoopSoundComponent" parent="." instance=ExtResource("2_gukxd")]
+[node name="NightCricketsLoop" parent="." instance=ExtResource("2_gukxd")]
 bus = &"ambience"
 track = ExtResource("4_lmmxa")
 
-[node name="GlobalRandomSoundComponent" parent="." instance=ExtResource("5_8tb1i")]
+[node name="NightOwlRandom" parent="." instance=ExtResource("5_8tb1i")]
+audio_bus_name = "ambience"
+tracks = Array[AudioStream]([ExtResource("6_orxe2"), ExtResource("7_eqstt"), ExtResource("8_nr6vf")])
+initial_delay_sec = 2.0
+track_variance_sec = Vector2(2, 4)
+
+[node name="DayBirdsRandom" parent="." instance=ExtResource("5_8tb1i")]
 bus = &"ambience"
 audio_bus_name = "ambience"
-tracks = Array[AudioStream]([ExtResource("6_n7m6u")])
-track_variance_sec = Vector2(0.5, 2)
+tracks = Array[AudioStream]([ExtResource("6_3dom7"), ExtResource("7_scq21"), ExtResource("8_3wsl8")])
+track_variance_sec = Vector2(2, 5)
 
 [node name="SoundTransition" type="Timer" parent="."]
 wait_time = 0.5

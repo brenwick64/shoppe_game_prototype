@@ -3,10 +3,12 @@ extends AudioStreamPlayer
 
 @export var audio_bus_name: String
 @export var tracks: Array[AudioStream]
+@export var initial_delay_sec: float = 0.0
 @export var track_variance_sec: Vector2 = Vector2(5.0, 5.0)
 @export var play_cooldown_sec: float = 0.9  # prevents rapid spamming
 @export var fade_time_sec: float = 0.5
 
+@onready var initial_delay: Timer = $InitialDelay
 @onready var random_cooldown: Timer = $RandomCooldown
 
 var disabled: bool = false
@@ -24,6 +26,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if not is_looping: return
+	if initial_delay.time_left > 0.0: return
 	if random_cooldown.time_left > 0.0: return
 	_set_random_track()
 	play()
@@ -36,6 +39,8 @@ func fade_in() -> void:
 	_current_tween = _new_fade_tween(GlobalAudioManager.get_bus_db(audio_bus_name))
 	
 	is_looping = true
+	if initial_delay_sec:
+		initial_delay.start(initial_delay_sec)
 
 func fade_out() -> void:
 	if disabled: return
