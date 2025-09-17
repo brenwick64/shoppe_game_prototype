@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bmce4hybdi20v"]
+[gd_scene load_steps=14 format=3 uid="uid://bmce4hybdi20v"]
 
 [ext_resource type="PackedScene" uid="uid://d05xg5vjtcvs1" path="res://systems/day_night_system/scenes/day_night_manager/day_night_manager.tscn" id="1_0imsq"]
 [ext_resource type="PackedScene" uid="uid://cx33pk6ute2hg" path="res://systems/tile_system/scenes/tile_manager/tile_manager.tscn" id="1_hgfxd"]
@@ -10,6 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://c0lngiqw20ls2" path="res://scenes/objects/torch/torch.tscn" id="8_n684v"]
 [ext_resource type="PackedScene" uid="uid://bj616aj7lg3c7" path="res://scenes/ui/settings.tscn" id="9_u8now"]
 [ext_resource type="AudioStream" uid="uid://dxv22jeorx386" path="res://audio/music/the_castle.wav" id="10_wpe11"]
+[ext_resource type="PackedScene" uid="uid://ca2qah1oypf1d" path="res://scenes/characters/bird/crow/crow.tscn" id="11_yhiv0"]
+[ext_resource type="Script" path="res://scenes/game_objects/bird_perch/perch.gd" id="24_x5geg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_37ysk"]
+radius = 179.137
 
 [node name="TestLighting" type="Node2D"]
 
@@ -59,4 +64,38 @@ position = Vector2(216, 82)
 [node name="Settings" parent="UILayer" instance=ExtResource("9_u8now")]
 visible = false
 
+[node name="Crow" parent="." instance=ExtResource("11_yhiv0")]
+position = Vector2(690, -229)
+additional_chirp_chance_percent = 0.65
+
+[node name="Perch" type="Node2D" parent="."]
+position = Vector2(122, -192)
+script = ExtResource("24_x5geg")
+
+[node name="PerchArea" type="Area2D" parent="Perch"]
+collision_layer = 1024
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Perch/PerchArea"]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_37ysk")
+debug_color = Color(1, 1, 1, 0.156863)
+
+[node name="Perch2" type="Node2D" parent="."]
+position = Vector2(168, 82)
+script = ExtResource("24_x5geg")
+
+[node name="PerchArea" type="Area2D" parent="Perch2"]
+collision_layer = 1024
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Perch2/PerchArea"]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_37ysk")
+debug_color = Color(1, 1, 1, 0.156863)
+
 [connection signal="timeout" from="PlayerCamera/CameraSpawner/SpawnTimer" to="PlayerCamera/CameraSpawner" method="_on_spawn_timer_timeout"]
+[connection signal="area_entered" from="Perch/PerchArea" to="Perch" method="_on_perch_area_area_entered"]
+[connection signal="area_exited" from="Perch/PerchArea" to="Perch" method="_on_perch_area_area_exited"]
+[connection signal="area_entered" from="Perch2/PerchArea" to="Perch2" method="_on_perch_area_area_entered"]
+[connection signal="area_exited" from="Perch2/PerchArea" to="Perch2" method="_on_perch_area_area_exited"]

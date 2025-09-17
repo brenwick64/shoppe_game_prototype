@@ -1,0 +1,364 @@
+[gd_scene load_steps=55 format=3 uid="uid://bmce4hybdi20v"]
+
+[ext_resource type="PackedScene" uid="uid://d05xg5vjtcvs1" path="res://systems/day_night_system/scenes/day_night_manager/day_night_manager.tscn" id="1_0imsq"]
+[ext_resource type="PackedScene" uid="uid://cx33pk6ute2hg" path="res://systems/tile_system/scenes/tile_manager/tile_manager.tscn" id="1_hgfxd"]
+[ext_resource type="PackedScene" uid="uid://csogmde7287ni" path="res://scenes/game_objects/player_camera/player_camera.tscn" id="2_vxtlm"]
+[ext_resource type="PackedScene" uid="uid://b3e78tu5wd3qe" path="res://scenes/game_objects/game_tile_map/game_tile_map.tscn" id="3_gu5lt"]
+[ext_resource type="PackedScene" uid="uid://x0hp764aoxfp" path="res://scenes/characters/player/player.tscn" id="4_p0uxn"]
+[ext_resource type="Script" path="res://scenes/characters/firefly/firefly_spawner.gd" id="6_fqiym"]
+[ext_resource type="PackedScene" uid="uid://eeg5x8snkfqw" path="res://scenes/characters/firefly/firefly.tscn" id="7_ojd8x"]
+[ext_resource type="PackedScene" uid="uid://c0lngiqw20ls2" path="res://scenes/objects/torch/torch.tscn" id="8_n684v"]
+[ext_resource type="PackedScene" uid="uid://bj616aj7lg3c7" path="res://scenes/ui/settings.tscn" id="9_u8now"]
+[ext_resource type="AudioStream" uid="uid://dxv22jeorx386" path="res://audio/music/the_castle.wav" id="10_wpe11"]
+[ext_resource type="Texture2D" uid="uid://d1yxd8wi8qm1i" path="res://assets/crow/crow_fly_left.png" id="11_po4kh"]
+[ext_resource type="Texture2D" uid="uid://bbqskvqe3c1ip" path="res://assets/crow/crow_idle_left.png" id="11_vvu0p"]
+[ext_resource type="Texture2D" uid="uid://7ee8t6r5g04b" path="res://assets/crow/crow_fly_right.png" id="12_2ckrn"]
+[ext_resource type="Texture2D" uid="uid://cney1sgamxqxm" path="res://assets/crow/crow_idle_right.png" id="12_u5l7b"]
+[ext_resource type="Script" path="res://scenes/components/bird_movement_component/bird_movement_component.gd" id="12_w2rtd"]
+[ext_resource type="Script" path="res://scenes/components/bird_animation_component/bird_animation_component.gd" id="13_1n2ia"]
+[ext_resource type="Script" path="res://scenes/characters/bird/bird.gd" id="13_ko1dh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vloy8"]
+atlas = ExtResource("11_po4kh")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_od42n"]
+atlas = ExtResource("11_po4kh")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xan10"]
+atlas = ExtResource("11_po4kh")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vahat"]
+atlas = ExtResource("11_po4kh")
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwttb"]
+atlas = ExtResource("11_po4kh")
+region = Rect2(160, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdwap"]
+atlas = ExtResource("11_po4kh")
+region = Rect2(200, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sw8v"]
+atlas = ExtResource("12_2ckrn")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vnqx"]
+atlas = ExtResource("12_2ckrn")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1kgp"]
+atlas = ExtResource("12_2ckrn")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgtto"]
+atlas = ExtResource("12_2ckrn")
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgi5s"]
+atlas = ExtResource("12_2ckrn")
+region = Rect2(160, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7yud"]
+atlas = ExtResource("12_2ckrn")
+region = Rect2(200, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8dgq"]
+atlas = ExtResource("11_vvu0p")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scsxb"]
+atlas = ExtResource("11_vvu0p")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_croy1"]
+atlas = ExtResource("11_vvu0p")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwqxw"]
+atlas = ExtResource("11_vvu0p")
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmat4"]
+atlas = ExtResource("11_vvu0p")
+region = Rect2(160, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icljq"]
+atlas = ExtResource("11_vvu0p")
+region = Rect2(200, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w60dp"]
+atlas = ExtResource("11_vvu0p")
+region = Rect2(240, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oi8im"]
+atlas = ExtResource("11_vvu0p")
+region = Rect2(280, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnx4o"]
+atlas = ExtResource("11_vvu0p")
+region = Rect2(320, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1h7wi"]
+atlas = ExtResource("11_vvu0p")
+region = Rect2(360, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0x41d"]
+atlas = ExtResource("11_vvu0p")
+region = Rect2(400, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_387nn"]
+atlas = ExtResource("11_vvu0p")
+region = Rect2(440, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nsq7"]
+atlas = ExtResource("12_u5l7b")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5pgbi"]
+atlas = ExtResource("12_u5l7b")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24te5"]
+atlas = ExtResource("12_u5l7b")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hu1mu"]
+atlas = ExtResource("12_u5l7b")
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ki13u"]
+atlas = ExtResource("12_u5l7b")
+region = Rect2(160, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23t0j"]
+atlas = ExtResource("12_u5l7b")
+region = Rect2(200, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02vjv"]
+atlas = ExtResource("12_u5l7b")
+region = Rect2(240, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76hv7"]
+atlas = ExtResource("12_u5l7b")
+region = Rect2(280, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v7c3"]
+atlas = ExtResource("12_u5l7b")
+region = Rect2(320, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkp21"]
+atlas = ExtResource("12_u5l7b")
+region = Rect2(360, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24dkv"]
+atlas = ExtResource("12_u5l7b")
+region = Rect2(400, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbeyo"]
+atlas = ExtResource("12_u5l7b")
+region = Rect2(440, 0, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t32rw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vloy8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_od42n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xan10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vahat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwttb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdwap")
+}],
+"loop": true,
+"name": &"fly_left",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5sw8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vnqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1kgp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgtto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgi5s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7yud")
+}],
+"loop": true,
+"name": &"fly_right",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8dgq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scsxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_croy1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwqxw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmat4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icljq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w60dp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oi8im")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnx4o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1h7wi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0x41d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_387nn")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8nsq7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5pgbi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24te5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hu1mu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ki13u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23t0j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02vjv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76hv7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3v7c3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkp21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24dkv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sbeyo")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}]
+
+[node name="TestLighting" type="Node2D"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_wpe11")
+autoplay = true
+bus = &"music"
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="DayNightManager" parent="Managers" instance=ExtResource("1_0imsq")]
+
+[node name="TileManager" parent="Managers" node_paths=PackedStringArray("tile_map") instance=ExtResource("1_hgfxd")]
+tile_map = NodePath("../../GameTileMap")
+
+[node name="GameTileMap" parent="." instance=ExtResource("3_gu5lt")]
+
+[node name="PlayerCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_vxtlm")]
+target = NodePath("../Player")
+
+[node name="CameraSpawner" type="Node2D" parent="PlayerCamera"]
+script = ExtResource("6_fqiym")
+spawn_area_padding = Vector2(50, 50)
+max_spawns = 20
+spawn_time_sec = 2.0
+spawnable_scene = ExtResource("7_ojd8x")
+
+[node name="Spawns" type="Node2D" parent="PlayerCamera/CameraSpawner"]
+
+[node name="SpawnTimer" type="Timer" parent="PlayerCamera/CameraSpawner"]
+autostart = true
+
+[node name="Player" parent="." node_paths=PackedStringArray("tile_manager") instance=ExtResource("4_p0uxn")]
+position = Vector2(-41, -19)
+tile_manager = NodePath("../Managers/TileManager")
+
+[node name="Torch" parent="." instance=ExtResource("8_n684v")]
+
+[node name="Torch2" parent="." instance=ExtResource("8_n684v")]
+position = Vector2(-72, 81)
+
+[node name="Torch5" parent="." instance=ExtResource("8_n684v")]
+position = Vector2(216, 82)
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="Settings" parent="UILayer" instance=ExtResource("9_u8now")]
+visible = false
+
+[node name="Crow" type="AnimatedSprite2D" parent="."]
+position = Vector2(125, -196)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_t32rw")
+animation = &"fly_left"
+autoplay = "idle_left"
+script = ExtResource("13_ko1dh")
+
+[node name="BirdMovementComponent" type="Node" parent="Crow"]
+script = ExtResource("12_w2rtd")
+
+[node name="BirdAnimationComponent" type="Node" parent="Crow" node_paths=PackedStringArray("animated_sprite")]
+script = ExtResource("13_1n2ia")
+animated_sprite = NodePath("..")
+
+[node name="Timer" type="Timer" parent="Crow"]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="PlayerCamera/CameraSpawner/SpawnTimer" to="PlayerCamera/CameraSpawner" method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="Crow/Timer" to="Crow" method="_on_timer_timeout"]

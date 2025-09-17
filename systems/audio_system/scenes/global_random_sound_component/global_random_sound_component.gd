@@ -24,7 +24,7 @@ func _ready() -> void:
 		disabled = true
 		return
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not is_looping: return
 	if initial_delay.time_left > 0.0: return
 	if random_cooldown.time_left > 0.0: return

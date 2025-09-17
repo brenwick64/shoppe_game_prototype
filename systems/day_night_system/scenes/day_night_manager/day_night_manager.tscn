@@ -22,6 +22,7 @@ bus = &"ambience"
 track = ExtResource("4_lmmxa")
 
 [node name="NightOwlRandom" parent="." instance=ExtResource("5_8tb1i")]
+bus = &"ambience"
 audio_bus_name = "ambience"
 tracks = Array[AudioStream]([ExtResource("6_orxe2"), ExtResource("7_eqstt"), ExtResource("8_nr6vf")])
 initial_delay_sec = 2.0

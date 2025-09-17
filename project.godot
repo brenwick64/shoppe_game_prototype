@@ -69,6 +69,11 @@ exit={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_10="bird_area"
+2d_physics/layer_11="perch_area"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
