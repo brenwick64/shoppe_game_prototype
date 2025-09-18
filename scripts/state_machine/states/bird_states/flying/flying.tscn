@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://vjxtoccpe81v"]
+
+[ext_resource type="Script" path="res://scripts/state_machine/states/bird_states/flying/flying_state.gd" id="1_om1ko"]
+
+[node name="Flying" type="Node" node_paths=PackedStringArray("parent", "animated_sprite_2d")]
+script = ExtResource("1_om1ko")
+parent = NodePath("")
+animated_sprite_2d = NodePath("")

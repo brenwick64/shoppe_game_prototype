@@ -1,0 +1,156 @@
+[gd_scene load_steps=24 format=3 uid="uid://bmce4hybdi20v"]
+
+[ext_resource type="PackedScene" uid="uid://d05xg5vjtcvs1" path="res://systems/day_night_system/scenes/day_night_manager/day_night_manager.tscn" id="1_0imsq"]
+[ext_resource type="PackedScene" uid="uid://cx33pk6ute2hg" path="res://systems/tile_system/scenes/tile_manager/tile_manager.tscn" id="1_hgfxd"]
+[ext_resource type="PackedScene" uid="uid://csogmde7287ni" path="res://scenes/game_objects/player_camera/player_camera.tscn" id="2_vxtlm"]
+[ext_resource type="PackedScene" uid="uid://b3e78tu5wd3qe" path="res://scenes/game_objects/game_tile_map/game_tile_map.tscn" id="3_gu5lt"]
+[ext_resource type="PackedScene" uid="uid://x0hp764aoxfp" path="res://scenes/characters/player/player.tscn" id="4_p0uxn"]
+[ext_resource type="Script" path="res://scenes/characters/firefly/firefly_spawner.gd" id="6_fqiym"]
+[ext_resource type="PackedScene" uid="uid://eeg5x8snkfqw" path="res://scenes/characters/firefly/firefly.tscn" id="7_ojd8x"]
+[ext_resource type="PackedScene" uid="uid://c0lngiqw20ls2" path="res://scenes/objects/torch/torch.tscn" id="8_n684v"]
+[ext_resource type="PackedScene" uid="uid://bj616aj7lg3c7" path="res://scenes/ui/settings.tscn" id="9_u8now"]
+[ext_resource type="AudioStream" uid="uid://dxv22jeorx386" path="res://audio/music/the_castle.wav" id="10_wpe11"]
+[ext_resource type="Script" path="res://scenes/characters/bird/bird_area.gd" id="12_012cf"]
+[ext_resource type="Script" path="res://scenes/characters/bird/crane/crane.gd" id="12_c646d"]
+[ext_resource type="Script" path="res://scripts/state_machine/states/idle_state.gd" id="13_4eweg"]
+[ext_resource type="SpriteFrames" uid="uid://dvy18wsnnrct6" path="res://resources/animated_spriteframes/crane_spriteframes.tres" id="13_nfu2f"]
+[ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="14_dnjvb"]
+[ext_resource type="Script" path="res://scripts/state_machine/states/flying_state.gd" id="16_fre23"]
+[ext_resource type="Script" path="res://scripts/state_machine/states/landing_state.gd" id="17_oj8oq"]
+[ext_resource type="Script" path="res://scripts/state_machine/states/roaming_state.gd" id="18_vxh0k"]
+[ext_resource type="Script" path="res://scripts/state_machine/states/roam_walking_state.gd" id="20_3ikyg"]
+[ext_resource type="Script" path="res://scripts/state_machine/states/emoting.gd" id="20_8bcxh"]
+[ext_resource type="Script" path="res://scenes/game_objects/bird_perch/perch.gd" id="24_x5geg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_37ysk"]
+radius = 179.137
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wbbwi"]
+radius = 21.095
+
+[node name="TestLighting" type="Node2D"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_wpe11")
+autoplay = true
+bus = &"music"
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="DayNightManager" parent="Managers" instance=ExtResource("1_0imsq")]
+
+[node name="TileManager" parent="Managers" node_paths=PackedStringArray("tile_map") instance=ExtResource("1_hgfxd")]
+tile_map = NodePath("../../GameTileMap")
+
+[node name="GameTileMap" parent="." instance=ExtResource("3_gu5lt")]
+
+[node name="PlayerCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_vxtlm")]
+target = NodePath("../Player")
+
+[node name="CameraSpawner" type="Node2D" parent="PlayerCamera"]
+script = ExtResource("6_fqiym")
+spawn_area_padding = Vector2(50, 50)
+max_spawns = 20
+spawn_time_sec = 2.0
+spawnable_scene = ExtResource("7_ojd8x")
+
+[node name="Spawns" type="Node2D" parent="PlayerCamera/CameraSpawner"]
+
+[node name="SpawnTimer" type="Timer" parent="PlayerCamera/CameraSpawner"]
+autostart = true
+
+[node name="Player" parent="." node_paths=PackedStringArray("tile_manager") instance=ExtResource("4_p0uxn")]
+position = Vector2(-41, -19)
+tile_manager = NodePath("../Managers/TileManager")
+
+[node name="Torch" parent="." instance=ExtResource("8_n684v")]
+
+[node name="Torch2" parent="." instance=ExtResource("8_n684v")]
+position = Vector2(-72, 81)
+
+[node name="Torch5" parent="." instance=ExtResource("8_n684v")]
+position = Vector2(216, 82)
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="Settings" parent="UILayer" instance=ExtResource("9_u8now")]
+visible = false
+
+[node name="BirdArea" type="Area2D" parent="."]
+position = Vector2(15, 89)
+collision_layer = 1024
+collision_mask = 512
+script = ExtResource("12_012cf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BirdArea"]
+shape = SubResource("CircleShape2D_37ysk")
+debug_color = Color(1, 1, 1, 0.156863)
+
+[node name="Perch" type="Node2D" parent="."]
+position = Vector2(15, 89)
+script = ExtResource("24_x5geg")
+
+[node name="Crane" type="Node2D" parent="."]
+position = Vector2(-178, 15)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("12_c646d")
+
+[node name="Area2D" type="Area2D" parent="Crane"]
+collision_layer = 512
+collision_mask = 1026
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crane/Area2D"]
+position = Vector2(-4, -12)
+shape = SubResource("CircleShape2D_wbbwi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Crane"]
+position = Vector2(-2, -18)
+sprite_frames = ExtResource("13_nfu2f")
+animation = &"walk_right"
+
+[node name="StateMachine" type="Node" parent="Crane/AnimatedSprite2D" node_paths=PackedStringArray("initial_node_state")]
+script = ExtResource("14_dnjvb")
+initial_node_state = NodePath("Flying")
+
+[node name="Idle" type="Node" parent="Crane/AnimatedSprite2D/StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d")]
+script = ExtResource("13_4eweg")
+parent = NodePath("../../..")
+animated_sprite_2d = NodePath("../..")
+
+[node name="Flying" type="Node" parent="Crane/AnimatedSprite2D/StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d")]
+script = ExtResource("16_fre23")
+parent = NodePath("../../..")
+animated_sprite_2d = NodePath("../..")
+
+[node name="Landing" type="Node" parent="Crane/AnimatedSprite2D/StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d")]
+script = ExtResource("17_oj8oq")
+parent = NodePath("../../..")
+animated_sprite_2d = NodePath("../..")
+
+[node name="Roaming" type="Node" parent="Crane/AnimatedSprite2D/StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d")]
+script = ExtResource("18_vxh0k")
+parent = NodePath("../../..")
+animated_sprite_2d = NodePath("../..")
+
+[node name="RoamingActionTimer" type="Timer" parent="Crane/AnimatedSprite2D/StateMachine/Roaming"]
+one_shot = true
+
+[node name="RoamWalking" type="Node" parent="Crane/AnimatedSprite2D/StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d")]
+script = ExtResource("20_3ikyg")
+parent = NodePath("../../..")
+animated_sprite_2d = NodePath("../..")
+
+[node name="RoamWalkTimer" type="Timer" parent="Crane/AnimatedSprite2D/StateMachine/RoamWalking"]
+one_shot = true
+
+[node name="Emoting" type="Node" parent="Crane/AnimatedSprite2D/StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d")]
+script = ExtResource("20_8bcxh")
+parent = NodePath("../../..")
+animated_sprite_2d = NodePath("../..")
+
+[connection signal="timeout" from="PlayerCamera/CameraSpawner/SpawnTimer" to="PlayerCamera/CameraSpawner" method="_on_spawn_timer_timeout"]
+[connection signal="area_entered" from="BirdArea" to="Perch" method="_on_perch_area_area_entered"]
+[connection signal="area_exited" from="BirdArea" to="Perch" method="_on_perch_area_area_exited"]
+[connection signal="area_entered" from="Crane/Area2D" to="Crane/AnimatedSprite2D/StateMachine/Flying" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Crane/Area2D" to="Crane/AnimatedSprite2D/StateMachine/Roaming" method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Crane/AnimatedSprite2D/StateMachine/RoamWalking/RoamWalkTimer" to="Crane/AnimatedSprite2D/StateMachine/RoamWalking" method="_on_roam_walk_timer_timeout"]

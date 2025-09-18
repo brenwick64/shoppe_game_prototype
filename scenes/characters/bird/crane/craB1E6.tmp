@@ -1,0 +1,94 @@
+[gd_scene load_steps=17 format=3 uid="uid://pu5sg2sp8sv"]
+
+[ext_resource type="Script" path="res://scenes/characters/bird/bird.gd" id="1_p03h7"]
+[ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="2_27nvl"]
+[ext_resource type="PackedScene" uid="uid://dl873s53iqi1r" path="res://scripts/state_machine/states/bird_states/idle.tscn" id="3_tvf66"]
+[ext_resource type="PackedScene" uid="uid://vjxtoccpe81v" path="res://scripts/state_machine/states/bird_states/flying.tscn" id="4_pelxj"]
+[ext_resource type="PackedScene" uid="uid://dq36rqfby3kqy" path="res://scripts/state_machine/states/bird_states/landing.tscn" id="5_2f5be"]
+[ext_resource type="PackedScene" uid="uid://r37qxmbq8ed" path="res://scripts/state_machine/states/bird_states/roaming.tscn" id="6_gho6q"]
+[ext_resource type="PackedScene" uid="uid://byn2qixwy5kqh" path="res://scripts/state_machine/states/bird_states/roam_walking.tscn" id="7_pukod"]
+[ext_resource type="PackedScene" uid="uid://bqigwm5m08lwe" path="res://scripts/state_machine/states/bird_states/emoting.tscn" id="8_r44py"]
+[ext_resource type="PackedScene" uid="uid://dyht2bgp1t14x" path="res://scripts/state_machine/states/bird_states/takeoff.tscn" id="9_kc2fe"]
+[ext_resource type="Script" path="res://scripts/resource_definitions/REmote.gd" id="9_uavbj"]
+[ext_resource type="PackedScene" uid="uid://dkgiu5xo5ydyv" path="res://scripts/state_machine/states/bird_states/despawning.tscn" id="10_0iwf5"]
+[ext_resource type="SpriteFrames" uid="uid://dvy18wsnnrct6" path="res://resources/animated_spriteframes/crane_spriteframes.tres" id="10_2q6jn"]
+[ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="11_v0gxv"]
+[ext_resource type="AudioStream" uid="uid://bc5cdliutx5i" path="res://audio/ambience/birds/crane/sandhill_crane_call_2.wav" id="12_c3knu"]
+
+[sub_resource type="Resource" id="Resource_6ecwm"]
+script = ExtResource("9_uavbj")
+emote_name = "bird_call"
+animation_name = ""
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wbbwi"]
+radius = 21.095
+
+[node name="Crane" type="Node2D"]
+z_index = 1
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_p03h7")
+bird_area_tags = Array[String](["water"])
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_node_state")]
+script = ExtResource("2_27nvl")
+initial_node_state = NodePath("Flying")
+
+[node name="Idle" parent="StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d") instance=ExtResource("3_tvf66")]
+parent = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+
+[node name="Flying" parent="StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d", "area_2d") instance=ExtResource("4_pelxj")]
+parent = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+area_2d = NodePath("../../Area2D")
+
+[node name="Landing" parent="StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d") instance=ExtResource("5_2f5be")]
+parent = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+next_state_name = "roaming"
+
+[node name="Roaming" parent="StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d", "area_2d") instance=ExtResource("6_gho6q")]
+parent = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+area_2d = NodePath("../../Area2D")
+
+[node name="RoamWalking" parent="StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d", "area_2d") instance=ExtResource("7_pukod")]
+parent = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+area_2d = NodePath("../../Area2D")
+
+[node name="Emoting" parent="StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d", "area_2d", "bird_call_audio") instance=ExtResource("8_r44py")]
+parent = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+area_2d = NodePath("../../Area2D")
+bird_call_audio = NodePath("../../BirdCall")
+emotes = Array[ExtResource("9_uavbj")]([SubResource("Resource_6ecwm")])
+
+[node name="Takeoff" parent="StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d") instance=ExtResource("9_kc2fe")]
+parent = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+
+[node name="Despawning" parent="StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d") instance=ExtResource("10_0iwf5")]
+parent = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 514
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-4, -12)
+shape = SubResource("CircleShape2D_wbbwi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -18)
+sprite_frames = ExtResource("10_2q6jn")
+animation = &"emote_forage_right"
+
+[node name="BirdCall" parent="." instance=ExtResource("11_v0gxv")]
+bus = &"sfx"
+sound = ExtResource("12_c3knu")
+initial_delay_sec = null
+DEBUG_MAX_RANGE = null
+pitch_variance_range = Vector2(0.9, 1.1)
+volume_variance_range = null

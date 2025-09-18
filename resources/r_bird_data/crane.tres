@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RBirdData" load_steps=3 format=3 uid="uid://ivr3wtsj2twe"]
+
+[ext_resource type="PackedScene" uid="uid://pu5sg2sp8sv" path="res://scenes/characters/bird/crane/crane.tscn" id="1_k0g62"]
+[ext_resource type="Script" path="res://scripts/resource_definitions/RBirdData.gd" id="1_su8em"]
+
+[resource]
+script = ExtResource("1_su8em")
+bird_scene = ExtResource("1_k0g62")
+spawn_hour = 6
+spawn_chance = 0.1

@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://x0hp764aoxfp"]
+[gd_scene load_steps=31 format=3 uid="uid://x0hp764aoxfp"]
 
 [ext_resource type="Texture2D" uid="uid://cn53uads4bci0" path="res://assets/characters/Character_001.png" id="1_1m8w0"]
 [ext_resource type="Script" path="res://scenes/components/player_input_component/player_input_component.gd" id="1_bfyut"]
 [ext_resource type="Script" path="res://scenes/characters/player/player.gd" id="1_ym86x"]
 [ext_resource type="Script" path="res://scenes/components/movement_component/movement_component.gd" id="2_6reun"]
+[ext_resource type="Script" path="res://scenes/components/hitbox/hitbox.gd" id="2_k1gv2"]
 [ext_resource type="Script" path="res://scenes/components/animation_component/animation_component.gd" id="3_if003"]
 [ext_resource type="PackedScene" uid="uid://b70c2uctc5fc0" path="res://systems/audio_system/scenes/movement_sound_component/movement_sound_component.tscn" id="6_673vk"]
 
@@ -209,6 +210,7 @@ movement_sound = NodePath("MovementSoundComponent")
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 0
+script = ExtResource("2_k1gv2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, -7)

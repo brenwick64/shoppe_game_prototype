@@ -24,6 +24,7 @@ GlobalAudioManager="*res://systems/audio_system/scripts/GlobalAudioManager.gd"
 DayAndNightManager="*res://systems/day_night_system/scripts/GlobalDayNightManager.gd"
 Settings="*res://scripts/globals/settings.gd"
 Constants="*res://scripts/globals/constants.gd"
+Utils="*res://scripts/globals/utils.gd"
 
 [display]
 
@@ -71,8 +72,9 @@ exit={
 
 [layer_names]
 
+2d_physics/layer_2="player_hitbox"
 2d_physics/layer_10="bird_area"
-2d_physics/layer_11="perch_area"
+2d_physics/layer_11="bird"
 
 [rendering]
 
