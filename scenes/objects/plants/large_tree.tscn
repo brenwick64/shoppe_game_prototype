@@ -1,15 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://dkugvqm4g032y"]
+[gd_scene load_steps=14 format=3 uid="uid://dkugvqm4g032y"]
 
 [ext_resource type="Script" path="res://scenes/objects/plants/tree.gd" id="1_cj765"]
-[ext_resource type="Script" path="res://scenes/components/interactable/interactable.gd" id="2_f5tr4"]
 [ext_resource type="Shader" path="res://shaders/tree_shake.gdshader" id="2_np3t6"]
+[ext_resource type="PackedScene" uid="uid://bvbq04va7bwnw" path="res://scenes/components/interactable/interactable.tscn" id="2_v8c7g"]
 [ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="3_44dpx"]
 [ext_resource type="Texture2D" uid="uid://enn3407yt6jb" path="res://assets/objects/large_tree.png" id="4_3kqt2"]
 [ext_resource type="AudioStream" uid="uid://is774anw6y5p" path="res://audio/actions/chop_wood/wood_chop_1.wav" id="4_ggvt3"]
+[ext_resource type="PackedScene" uid="uid://dcm4u45j52yfi" path="res://scenes/ui/resource_icon/resource_icon.tscn" id="7_8qovx"]
+[ext_resource type="Texture2D" uid="uid://brcl7l06edlw4" path="res://resources/textures/icons/chop_tree.tres" id="8_7v3qx"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0ro6i"]
-radius = 15.0
-height = 36.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kgj21"]
+radius = 17.0
+height = 42.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vnoe0"]
 resource_local_to_scene = true
@@ -31,18 +33,14 @@ size = Vector2(4.5, 7.5)
 [node name="LargeTree" type="StaticBody2D"]
 z_index = 1
 y_sort_enabled = true
-input_pickable = true
 script = ExtResource("1_cj765")
 
-[node name="Interactable" type="Area2D" parent="."]
-collision_layer = 128
-collision_mask = 64
-script = ExtResource("2_f5tr4")
+[node name="Interactable" parent="." instance=ExtResource("2_v8c7g")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
-position = Vector2(0, -14)
-shape = SubResource("CapsuleShape2D_0ro6i")
-debug_color = Color(0.829785, 0.372044, 0.854567, 0.42)
+position = Vector2(0, -16)
+shape = SubResource("CapsuleShape2D_kgj21")
+debug_color = Color(0.795058, 0.295458, 0.768682, 0.42)
 
 [node name="TreeSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_vnoe0")
@@ -68,12 +66,21 @@ bus = &"sfx"
 sound = ExtResource("4_ggvt3")
 pitch_variance_range = Vector2(0.5, 1.5)
 
+[node name="ResourceIcon" parent="." instance=ExtResource("7_8qovx")]
+visible = false
+offset_left = -8.0
+offset_top = -49.0
+offset_right = 7.0
+offset_bottom = -34.0
+resource_texture = ExtResource("8_7v3qx")
+
 [node name="ChopCooldown" type="Timer" parent="."]
 one_shot = true
 
 [node name="Respawn" type="Timer" parent="."]
 one_shot = true
 
+[connection signal="focus_changed" from="Interactable" to="." method="_on_interactable_focus_changed"]
 [connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
 [connection signal="timeout" from="ChopCooldown" to="." method="_on_chop_cooldown_timeout"]
 [connection signal="timeout" from="Respawn" to="." method="_on_respawn_timeout"]

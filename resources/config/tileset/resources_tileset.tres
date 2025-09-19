@@ -1,12 +1,16 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://dqh2qee7t4mme"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://dqh2qee7t4mme"]
 
 [ext_resource type="PackedScene" uid="uid://dkugvqm4g032y" path="res://scenes/objects/plants/large_tree.tscn" id="1_dlvg7"]
+[ext_resource type="PackedScene" uid="uid://sn2yhfto3y44" path="res://scenes/objects/rocks/ore_vein.tscn" id="1_srxly"]
 [ext_resource type="PackedScene" uid="uid://hwi7w78s88sr" path="res://scenes/objects/plants/bush.tscn" id="2_e0oqf"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_cikqm"]
+resource_name = "ore_vein"
+scenes/1/scene = ExtResource("1_srxly")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_b5r2k"]
 resource_name = "large_tree"
 scenes/2/scene = ExtResource("1_dlvg7")
-scenes/2/display_placeholder = ExtResource("1_dlvg7")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_c6mv4"]
 resource_name = "bush"
@@ -15,3 +19,4 @@ scenes/1/scene = ExtResource("2_e0oqf")
 [resource]
 sources/1 = SubResource("TileSetScenesCollectionSource_b5r2k")
 sources/2 = SubResource("TileSetScenesCollectionSource_c6mv4")
+sources/0 = SubResource("TileSetScenesCollectionSource_cikqm")

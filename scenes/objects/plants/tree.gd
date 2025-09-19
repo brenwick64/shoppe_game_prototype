@@ -8,9 +8,11 @@ extends StaticBody2D
 @onready var tree_sprite: Sprite2D = $TreeSprite
 @onready var stump_sprite: Sprite2D = $StumpSprite
 @onready var chop_sound: SingleSoundComponent = $ChopSound
+@onready var resource_icon: Panel = $ResourceIcon
 @onready var chop_cooldown: Timer = $ChopCooldown
 @onready var respawn: Timer = $Respawn
 
+var _is_focused: bool = false
 var _is_chop_cooldown: bool = false
 var _is_chopped_down: bool = false
 var _current_chops: int = 0
@@ -31,6 +33,7 @@ func _check_tree() -> void:
 		_show_stump()
 		_is_chopped_down = true
 		respawn.start(respawn_time_sec)
+		_update_resource_icon()
 
 func _show_tree() -> void:
 	tree_sprite.visible = true
@@ -39,6 +42,12 @@ func _show_tree() -> void:
 func _show_stump() -> void:
 	tree_sprite.visible = false
 	stump_sprite.visible = true
+
+func _update_resource_icon() -> void:
+	if _is_focused and not _is_chopped_down:
+		resource_icon.visible = true
+	else:
+		resource_icon.visible = false
 
 func _shake_tree() -> void:
 	tree_sprite.material.set_shader_parameter("shake_intensity", 1)
@@ -56,3 +65,8 @@ func _on_respawn_timeout() -> void:
 	_current_chops = 0
 	_is_chopped_down = false
 	_show_tree()
+	_update_resource_icon()
+
+func _on_interactable_focus_changed(is_focused: bool) -> void:
+	_is_focused = is_focused
+	_update_resource_icon()

@@ -1,0 +1,74 @@
+[gd_scene load_steps=14 format=3 uid="uid://sn2yhfto3y44"]
+
+[ext_resource type="Texture2D" uid="uid://b333mb8j7sp5p" path="res://assets/tilesets/CuteRPG_Caves.png" id="1_7xt18"]
+[ext_resource type="Script" path="res://scenes/objects/rocks/ore_vein.gd" id="1_bqus1"]
+[ext_resource type="PackedScene" uid="uid://bvbq04va7bwnw" path="res://scenes/components/interactable/interactable.tscn" id="1_gehq8"]
+[ext_resource type="Shader" path="res://shaders/tree_shake.gdshader" id="3_r86eu"]
+[ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="4_4pltn"]
+[ext_resource type="AudioStream" uid="uid://me8gr5gwfqhx" path="res://audio/actions/mine_rock/mining_rock_2.wav" id="5_bpnn6"]
+[ext_resource type="PackedScene" uid="uid://dcm4u45j52yfi" path="res://scenes/ui/resource_icon/resource_icon.tscn" id="6_itq03"]
+[ext_resource type="Texture2D" uid="uid://c1ooach6tk1jc" path="res://resources/textures/icons/mine_rock.tres" id="7_2ytpq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aomom"]
+radius = 18.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yw6gs"]
+resource_local_to_scene = true
+shader = ExtResource("3_r86eu")
+shader_parameter/shake_intensity = 0.0
+shader_parameter/shake_speed = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcjmw"]
+atlas = ExtResource("1_7xt18")
+region = Rect2(176, 369, 16, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbn8u"]
+atlas = ExtResource("1_7xt18")
+region = Rect2(240, 257, 16, 15)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_atjvl"]
+radius = 6.0
+
+[node name="OreVein" type="StaticBody2D"]
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("1_bqus1")
+
+[node name="Interactable" parent="." instance=ExtResource("1_gehq8")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+shape = SubResource("CircleShape2D_aomom")
+debug_color = Color(0.724876, 0.345643, 0.831207, 0.42)
+
+[node name="FullSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_yw6gs")
+texture = SubResource("AtlasTexture_gcjmw")
+
+[node name="DepletedSprite" type="Sprite2D" parent="."]
+visible = false
+texture = SubResource("AtlasTexture_tbn8u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_atjvl")
+
+[node name="MineSound" parent="." instance=ExtResource("4_4pltn")]
+sound = ExtResource("5_bpnn6")
+
+[node name="ResourceIcon" parent="." instance=ExtResource("6_itq03")]
+visible = false
+offset_left = -8.0
+offset_top = -26.0
+offset_right = 7.0
+offset_bottom = -11.0
+resource_texture = ExtResource("7_2ytpq")
+
+[node name="HarvestCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="RespawnTimer" type="Timer" parent="."]
+
+[connection signal="focus_changed" from="Interactable" to="." method="_on_interactable_focus_changed"]
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
+[connection signal="timeout" from="HarvestCooldown" to="." method="_on_harvest_cooldown_timeout"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]

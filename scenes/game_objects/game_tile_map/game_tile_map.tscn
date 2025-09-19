@@ -25,7 +25,7 @@ tile_set = ExtResource("2_odgld")
 
 [node name="Resources" type="TileMapLayer" parent="."]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AADw//r/AQAAAAAAAgDu//v/AQAAAAAAAgDw//v/AQAAAAAAAgDx//r/AQAAAAAAAgDv//z/AQAAAAAAAgDt//z/AQAAAAAAAgDr/wEAAQAAAAAAAgDs/wEAAQAAAAAAAgDt/wIAAQAAAAAAAgDz/wMAAgAAAAAAAQD2/wIAAgAAAAAAAQDz/wAAAgAAAAAAAQAMAPz/AgAAAAAAAQANAPr/AgAAAAAAAQA=")
+tile_map_data = PackedByteArray("AADw//r/AQAAAAAAAgDu//v/AQAAAAAAAgDw//v/AQAAAAAAAgDx//r/AQAAAAAAAgDv//z/AQAAAAAAAgDt//z/AQAAAAAAAgDr/wEAAQAAAAAAAgDs/wEAAQAAAAAAAgDt/wIAAQAAAAAAAgDz/wMAAgAAAAAAAQD2/wIAAgAAAAAAAQDz/wAAAgAAAAAAAQAQAAEAAAAAAAAAAQAPAAIAAAAAAAAAAQAPAPr/AAAAAAAAAQA=")
 tile_set = ExtResource("2_ebt25")
 
 [node name="ShoppeFloor" type="TileMapLayer" parent="."]

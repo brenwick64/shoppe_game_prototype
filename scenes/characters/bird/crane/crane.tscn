@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://pu5sg2sp8sv"]
+[gd_scene load_steps=19 format=3 uid="uid://pu5sg2sp8sv"]
 
 [ext_resource type="Script" path="res://scenes/characters/bird/bird.gd" id="1_p03h7"]
 [ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="2_27nvl"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://scripts/resource_definitions/REmote.gd" id="9_uavbj"]
 [ext_resource type="PackedScene" uid="uid://dkgiu5xo5ydyv" path="res://scripts/state_machine/states/generic_states/despawning/despawning.tscn" id="10_0iwf5"]
 [ext_resource type="SpriteFrames" uid="uid://dvy18wsnnrct6" path="res://resources/config/animated_spriteframes/crane_spriteframes.tres" id="10_2q6jn"]
+[ext_resource type="AudioStream" uid="uid://1xio8osumiq7" path="res://audio/actions/water/splash_1.wav" id="11_o05qs"]
 [ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="11_v0gxv"]
 [ext_resource type="AudioStream" uid="uid://bc5cdliutx5i" path="res://audio/ambience/birds/crane/sandhill_crane_call_2.wav" id="12_c3knu"]
 
@@ -26,6 +27,7 @@ audio_delay = 0.0
 script = ExtResource("9_uavbj")
 emote_name = "bird_forage"
 animation_name = "emote_forage"
+audio_stream = ExtResource("11_o05qs")
 audio_delay = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wbbwi"]

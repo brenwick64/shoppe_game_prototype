@@ -7,5 +7,5 @@
 script = ExtResource("1_su8em")
 bird_scene = ExtResource("1_k0g62")
 spawn_hour = 6
-spawn_chance = 0.2
+spawn_chance = 1.0
 bird_area_tags = Array[String](["water", "marsh"])

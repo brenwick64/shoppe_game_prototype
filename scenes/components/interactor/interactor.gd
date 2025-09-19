@@ -30,7 +30,7 @@ func _on_area_entered(area: Area2D) -> void:
 func _on_area_exited(area: Area2D) -> void:
 	if area is not Interactable: return
 	if area in nearby_interactables:
-		#area.get_parent().hide_outline()
+		area.unset_focus()
 		nearby_interactables = nearby_interactables.filter(func(i: Interactable): return i != area)
 	interactables_updated.emit(nearby_interactables)
 	_update_closest_interactable()
@@ -39,6 +39,11 @@ func _on_area_exited(area: Area2D) -> void:
 func _update_closest_interactable() -> void:
 	closest_interactable = _get_closest_interactable()
 	closest_interactable_updated.emit(closest_interactable)
+	for interactable: Interactable in nearby_interactables:
+		if interactable == closest_interactable:
+			interactable.set_focus()
+		else:
+			interactable.unset_focus()
 
 func _get_player_distance_to_area(area: Area2D) -> float:
 	var player_gp: Vector2 = get_parent().global_position

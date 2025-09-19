@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://d2cy4l0sjifq2"]
+
+[ext_resource type="Texture2D" uid="uid://bq667qj4wdees" path="res://assets/ui/base_ui/basic_view/button&frame/frame_10.png" id="1_lo7rh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_762wx"]
+atlas = ExtResource("1_lo7rh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0crck"]
+texture = SubResource("AtlasTexture_762wx")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[resource]
+CirclePanel/base_type = &"Panel"
+CirclePanel/styles/panel = SubResource("StyleBoxTexture_0crck")
