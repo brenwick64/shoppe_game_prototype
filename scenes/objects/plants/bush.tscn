@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://hwi7w78s88sr"]
+
+[ext_resource type="Texture2D" uid="uid://bda06ia8rwa6o" path="res://assets/tilesets/CuteRPG_Forest.png" id="1_f082k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yhto"]
+atlas = ExtResource("1_f082k")
+region = Rect2(272, 32, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mnh1s"]
+radius = 5.0
+
+[node name="Bush" type="StaticBody2D"]
+z_index = 1
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_6yhto")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+shape = SubResource("CircleShape2D_mnh1s")

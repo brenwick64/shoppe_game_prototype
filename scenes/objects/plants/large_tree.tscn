@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://dkugvqm4g032y"]
+
+[ext_resource type="Script" path="res://scenes/objects/plants/tree.gd" id="1_cj765"]
+[ext_resource type="Script" path="res://scenes/components/interactable/interactable.gd" id="2_f5tr4"]
+[ext_resource type="Shader" path="res://shaders/tree_shake.gdshader" id="2_np3t6"]
+[ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="3_44dpx"]
+[ext_resource type="Texture2D" uid="uid://enn3407yt6jb" path="res://assets/objects/large_tree.png" id="4_3kqt2"]
+[ext_resource type="AudioStream" uid="uid://is774anw6y5p" path="res://audio/actions/chop_wood/wood_chop_1.wav" id="4_ggvt3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0ro6i"]
+radius = 15.0
+height = 36.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vnoe0"]
+resource_local_to_scene = true
+shader = ExtResource("2_np3t6")
+shader_parameter/shake_intensity = 0.0
+shader_parameter/shake_speed = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nxvb"]
+atlas = ExtResource("4_3kqt2")
+region = Rect2(2, 0, 25, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ulo4"]
+atlas = ExtResource("4_3kqt2")
+region = Rect2(31, 21, 10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cygtp"]
+size = Vector2(4.5, 7.5)
+
+[node name="LargeTree" type="StaticBody2D"]
+z_index = 1
+y_sort_enabled = true
+input_pickable = true
+script = ExtResource("1_cj765")
+
+[node name="Interactable" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 64
+script = ExtResource("2_f5tr4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(0, -14)
+shape = SubResource("CapsuleShape2D_0ro6i")
+debug_color = Color(0.829785, 0.372044, 0.854567, 0.42)
+
+[node name="TreeSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_vnoe0")
+position = Vector2(0, -11)
+texture = SubResource("AtlasTexture_6nxvb")
+offset = Vector2(-1, -4)
+
+[node name="StumpSprite" type="Sprite2D" parent="."]
+visible = false
+y_sort_enabled = true
+position = Vector2(0, -11)
+texture = SubResource("AtlasTexture_2ulo4")
+offset = Vector2(0, 7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4.25)
+shape = SubResource("RectangleShape2D_cygtp")
+
+[node name="ChopSound" parent="." instance=ExtResource("3_44dpx")]
+max_distance = 250.0
+attenuation = 2.92817
+bus = &"sfx"
+sound = ExtResource("4_ggvt3")
+pitch_variance_range = Vector2(0.5, 1.5)
+
+[node name="ChopCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="Respawn" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
+[connection signal="timeout" from="ChopCooldown" to="." method="_on_chop_cooldown_timeout"]
+[connection signal="timeout" from="Respawn" to="." method="_on_respawn_timeout"]

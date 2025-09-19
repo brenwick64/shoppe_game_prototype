@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dyht2bgp1t14x" path="res://scripts/state_machine/states/bird_states/takeoff/takeoff.tscn" id="9_kc2fe"]
 [ext_resource type="Script" path="res://scripts/resource_definitions/REmote.gd" id="9_uavbj"]
 [ext_resource type="PackedScene" uid="uid://dkgiu5xo5ydyv" path="res://scripts/state_machine/states/generic_states/despawning/despawning.tscn" id="10_0iwf5"]
-[ext_resource type="SpriteFrames" uid="uid://dvy18wsnnrct6" path="res://resources/animated_spriteframes/crane_spriteframes.tres" id="10_2q6jn"]
+[ext_resource type="SpriteFrames" uid="uid://dvy18wsnnrct6" path="res://resources/config/animated_spriteframes/crane_spriteframes.tres" id="10_2q6jn"]
 [ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="11_v0gxv"]
 [ext_resource type="AudioStream" uid="uid://bc5cdliutx5i" path="res://audio/ambience/birds/crane/sandhill_crane_call_2.wav" id="12_c3knu"]
 

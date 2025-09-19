@@ -1,0 +1,20 @@
+[gd_scene load_steps=7 format=3 uid="uid://7i1a777bhd6c"]
+
+[ext_resource type="Script" path="res://scenes/game_objects/bird_spawner/bird_spawner.gd" id="1_wky3s"]
+[ext_resource type="Script" path="res://scripts/resource_definitions/RBirdData.gd" id="2_0imp5"]
+[ext_resource type="Resource" uid="uid://k4v03p78pdga" path="res://resources/r_bird_data/crow.tres" id="3_xsqyp"]
+[ext_resource type="Resource" uid="uid://ivr3wtsj2twe" path="res://resources/r_bird_data/crane.tres" id="4_s3m3e"]
+[ext_resource type="Script" path="res://scenes/game_objects/bird_spawner/bird_selector/bird_selector.gd" id="5_5ujre"]
+[ext_resource type="Script" path="res://scenes/game_objects/bird_spawner/bird_area_selector/bird_area_selector.gd" id="6_fe3sg"]
+
+[node name="BirdSpawner" type="Node2D" node_paths=PackedStringArray("bird_area_locator")]
+script = ExtResource("1_wky3s")
+birds = Array[ExtResource("2_0imp5")]([ExtResource("3_xsqyp"), ExtResource("4_s3m3e")])
+max_spawned = 1
+bird_area_locator = NodePath("BirdAreaSelector")
+
+[node name="BirdSelector" type="Node" parent="."]
+script = ExtResource("5_5ujre")
+
+[node name="BirdAreaSelector" type="Node" parent="."]
+script = ExtResource("6_fe3sg")

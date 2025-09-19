@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://dfhfk1ob6xje5"]
+
+[ext_resource type="Script" path="res://addons/godot_resource_groups/resource_group.gd" id="1_d6ttj"]
+
+[resource]
+script = ExtResource("1_d6ttj")
+base_folder = "res://resources/r_bird_data"
+includes = Array[String]([])
+excludes = Array[String]([])
+paths = Array[String](["res://resources/r_bird_data/crane.tres", "res://resources/r_bird_data/crow.tres"])

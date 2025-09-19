@@ -32,7 +32,7 @@ func _randomize_volume() -> void:
 ## -- debug --
 func _draw_debug_max_range() -> void:
 	var radius = self.max_distance
-	draw_circle(Vector2.ZERO, radius, Color(0, 0.5, 1, 0.3))
+	draw_circle(Vector2.ZERO, radius, Color(0, 0.5, 1, 0.1))
 
 func _draw() -> void:
 	if DEBUG_MAX_RANGE: _draw_debug_max_range()
