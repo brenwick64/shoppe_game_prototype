@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://sn2yhfto3y44"]
+[gd_scene load_steps=15 format=3 uid="uid://sn2yhfto3y44"]
 
 [ext_resource type="Texture2D" uid="uid://b333mb8j7sp5p" path="res://assets/tilesets/CuteRPG_Caves.png" id="1_7xt18"]
-[ext_resource type="Script" path="res://scenes/objects/rocks/ore_vein.gd" id="1_bqus1"]
+[ext_resource type="Script" path="res://scripts/classes/Harvestable.gd" id="1_cn3qr"]
 [ext_resource type="PackedScene" uid="uid://bvbq04va7bwnw" path="res://scenes/components/interactable/interactable.tscn" id="1_gehq8"]
+[ext_resource type="PackedScene" uid="uid://b7fwl3qqy6fwj" path="res://scenes/components/health_component/health_component.tscn" id="2_w5j8p"]
 [ext_resource type="Shader" path="res://shaders/tree_shake.gdshader" id="3_r86eu"]
 [ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="4_4pltn"]
 [ext_resource type="AudioStream" uid="uid://me8gr5gwfqhx" path="res://audio/actions/mine_rock/mining_rock_2.wav" id="5_bpnn6"]
@@ -29,10 +30,21 @@ region = Rect2(240, 257, 16, 15)
 [sub_resource type="CircleShape2D" id="CircleShape2D_atjvl"]
 radius = 6.0
 
-[node name="OreVein" type="StaticBody2D"]
+[node name="OreVein" type="StaticBody2D" node_paths=PackedStringArray("full_sprite", "depleted_sprite", "health_component", "interactable", "harvest_sound", "resource_icon", "harvest_cooldown", "respawn_timer")]
 z_index = 1
 y_sort_enabled = true
-script = ExtResource("1_bqus1")
+script = ExtResource("1_cn3qr")
+full_sprite = NodePath("FullSprite")
+depleted_sprite = NodePath("DepletedSprite")
+health_component = NodePath("HealthComponent")
+interactable = NodePath("Interactable")
+harvest_sound = NodePath("MineSound")
+resource_icon = NodePath("ResourceIcon")
+harvest_cooldown = NodePath("HarvestCooldown")
+respawn_timer = NodePath("RespawnTimer")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_w5j8p")]
+max_health = 3
 
 [node name="Interactable" parent="." instance=ExtResource("1_gehq8")]
 
@@ -67,8 +79,3 @@ resource_texture = ExtResource("7_2ytpq")
 one_shot = true
 
 [node name="RespawnTimer" type="Timer" parent="."]
-
-[connection signal="focus_changed" from="Interactable" to="." method="_on_interactable_focus_changed"]
-[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
-[connection signal="timeout" from="HarvestCooldown" to="." method="_on_harvest_cooldown_timeout"]
-[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://dkugvqm4g032y"]
+[gd_scene load_steps=15 format=3 uid="uid://dkugvqm4g032y"]
 
-[ext_resource type="Script" path="res://scenes/objects/plants/tree.gd" id="1_cj765"]
+[ext_resource type="Script" path="res://scripts/classes/Harvestable.gd" id="1_q2swm"]
+[ext_resource type="PackedScene" uid="uid://b7fwl3qqy6fwj" path="res://scenes/components/health_component/health_component.tscn" id="2_murj8"]
 [ext_resource type="Shader" path="res://shaders/tree_shake.gdshader" id="2_np3t6"]
 [ext_resource type="PackedScene" uid="uid://bvbq04va7bwnw" path="res://scenes/components/interactable/interactable.tscn" id="2_v8c7g"]
 [ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="3_44dpx"]
@@ -30,10 +31,22 @@ region = Rect2(31, 21, 10, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cygtp"]
 size = Vector2(4.5, 7.5)
 
-[node name="LargeTree" type="StaticBody2D"]
+[node name="LargeTree" type="StaticBody2D" node_paths=PackedStringArray("full_sprite", "depleted_sprite", "health_component", "interactable", "harvest_sound", "resource_icon", "harvest_cooldown", "respawn_timer")]
 z_index = 1
 y_sort_enabled = true
-script = ExtResource("1_cj765")
+script = ExtResource("1_q2swm")
+shake_time_range = Vector2(0.5, 0.75)
+full_sprite = NodePath("TreeSprite")
+depleted_sprite = NodePath("StumpSprite")
+health_component = NodePath("HealthComponent")
+interactable = NodePath("Interactable")
+harvest_sound = NodePath("ChopSound")
+resource_icon = NodePath("ResourceIcon")
+harvest_cooldown = NodePath("ChopCooldown")
+respawn_timer = NodePath("Respawn")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_murj8")]
+max_health = 3
 
 [node name="Interactable" parent="." instance=ExtResource("2_v8c7g")]
 
@@ -80,7 +93,5 @@ one_shot = true
 [node name="Respawn" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="focus_changed" from="Interactable" to="." method="_on_interactable_focus_changed"]
-[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
 [connection signal="timeout" from="ChopCooldown" to="." method="_on_chop_cooldown_timeout"]
 [connection signal="timeout" from="Respawn" to="." method="_on_respawn_timeout"]
