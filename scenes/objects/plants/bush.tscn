@@ -10,7 +10,7 @@ region = Rect2(272, 32, 16, 16)
 radius = 5.0
 
 [node name="Bush" type="StaticBody2D"]
-z_index = 1
+z_index = 2
 y_sort_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

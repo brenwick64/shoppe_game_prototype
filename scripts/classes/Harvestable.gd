@@ -1,6 +1,9 @@
 class_name Harvestable
 extends StaticBody2D
 
+@export_category("Configuration")
+@export var pickup_item_id: int = -1
+
 @export_category("Tuning Parameters")
 @export var shake_time_range: Vector2 = Vector2(0.1, 0.25)
 @export var swing_cooldown_sec: float = 1.0
@@ -34,7 +37,7 @@ func harvest()-> void:
 	if _is_depleted: return
 	if _is_harvest_cooldown: return
 	
-	harvest_sound.play()
+	harvest_sound.play_sound()
 	_is_harvest_cooldown = true
 	harvest_cooldown.start()
 	_shake_sprite()
@@ -59,6 +62,12 @@ func _shake_sprite() -> void:
 	await get_tree().create_timer(shake_time).timeout
 	full_sprite.material.set_shader_parameter("shake_intensity", 0.0)
 
+func _spawn_pickup() -> void:
+	var spawn_positions: Array[Vector2] = GlobalTileManager.get_nearby_navigatable_tile_positions_from_gp(global_position)
+	if spawn_positions:
+		var chosen_pos: Vector2i = spawn_positions[0]
+		GlobalItemSpawner.spawn_item_pickup(pickup_item_id, chosen_pos)
+
 
 ## -- signal handlers --
 func _on_harvest_cooldown_timeout() -> void:
@@ -78,6 +87,7 @@ func _on_health_component_health_depleted() -> void:
 	
 	_show_depleted_sprite()
 	_update_resource_icon()
+	_spawn_pickup()
 
 func _on_respawn_timer_timeout() -> void:
 	health_component.reset_health()

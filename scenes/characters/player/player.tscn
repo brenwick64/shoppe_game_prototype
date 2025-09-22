@@ -202,7 +202,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_input_component", "movement_component", "animation_component", "movement_sound") groups=["player"]]
-z_index = 1
+z_index = 2
 texture_filter = 1
 motion_mode = 1
 script = ExtResource("1_ym86x")

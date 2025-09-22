@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://csogmde7287ni" path="res://scenes/game_objects/player_camera/player_camera.tscn" id="2_vxtlm"]
 [ext_resource type="PackedScene" uid="uid://b3e78tu5wd3qe" path="res://scenes/game_objects/game_tile_map/game_tile_map.tscn" id="3_gu5lt"]
 [ext_resource type="PackedScene" uid="uid://x0hp764aoxfp" path="res://scenes/characters/player/player.tscn" id="4_p0uxn"]
-[ext_resource type="Script" path="res://scenes/game_objects/game_tilemap/game_tile_map.gd" id="5_0snrh"]
 [ext_resource type="PackedScene" uid="uid://7i1a777bhd6c" path="res://scenes/game_objects/bird_spawner/bird_spawner.tscn" id="5_hyxup"]
 [ext_resource type="Script" path="res://scenes/characters/firefly/firefly_spawner.gd" id="6_fqiym"]
 [ext_resource type="PackedScene" uid="uid://eeg5x8snkfqw" path="res://scenes/characters/firefly/firefly.tscn" id="7_ojd8x"]
+[ext_resource type="PackedScene" uid="uid://c0lngiqw20ls2" path="res://scenes/objects/torch/torch.tscn" id="8_n684v"]
 [ext_resource type="PackedScene" uid="uid://bj616aj7lg3c7" path="res://scenes/ui/settings.tscn" id="9_u8now"]
 [ext_resource type="AudioStream" uid="uid://dxv22jeorx386" path="res://audio/music/the_castle.wav" id="10_wpe11"]
 [ext_resource type="PackedScene" uid="uid://8hkhsmiruadb" path="res://scenes/objects/bird_area/bird_area.tscn" id="11_xlv5u"]
@@ -22,21 +22,6 @@ radius = 94.6414
 [node name="TestLighting" type="Node2D"]
 y_sort_enabled = true
 
-[node name="PlayerCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_vxtlm")]
-target = NodePath("../Player")
-
-[node name="CameraSpawner" type="Node2D" parent="PlayerCamera"]
-script = ExtResource("6_fqiym")
-spawn_area_padding = Vector2(50, 50)
-max_spawns = 20
-spawn_time_sec = 2.0
-spawnable_scene = ExtResource("7_ojd8x")
-
-[node name="Spawns" type="Node2D" parent="PlayerCamera/CameraSpawner"]
-
-[node name="SpawnTimer" type="Timer" parent="PlayerCamera/CameraSpawner"]
-autostart = true
-
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_wpe11")
 autoplay = true
@@ -49,9 +34,9 @@ bus = &"music"
 [node name="TileManager" parent="Managers" node_paths=PackedStringArray("tile_map") instance=ExtResource("1_hgfxd")]
 tile_map = NodePath("../../GameTileMap")
 
-[node name="GameTileMap" parent="." node_paths=PackedStringArray("tile_manager") groups=["tile_map"] instance=ExtResource("3_gu5lt")]
-script = ExtResource("5_0snrh")
-tile_manager = NodePath("../Managers/TileManager")
+[node name="GameTileMap" parent="." instance=ExtResource("3_gu5lt")]
+
+[node name="BirdSpawner" parent="." instance=ExtResource("5_hyxup")]
 
 [node name="BirdAreas" type="Node2D" parent="."]
 
@@ -95,18 +80,37 @@ tags = Array[String](["perch"])
 shape = SubResource("CircleShape2D_5iy8r")
 debug_color = Color(1, 1, 1, 0.42)
 
-[node name="BirdSpawner" parent="." instance=ExtResource("5_hyxup")]
+[node name="PlayerCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_vxtlm")]
+target = NodePath("../Player")
 
-[node name="SpawnedItems" type="Node2D" parent="." groups=["spawned_items"]]
+[node name="CameraSpawner" type="Node2D" parent="PlayerCamera"]
+script = ExtResource("6_fqiym")
+spawn_area_padding = Vector2(50, 50)
+max_spawns = 20
+spawn_time_sec = 2.0
+spawnable_scene = ExtResource("7_ojd8x")
+
+[node name="Spawns" type="Node2D" parent="PlayerCamera/CameraSpawner"]
+
+[node name="SpawnTimer" type="Timer" parent="PlayerCamera/CameraSpawner"]
+autostart = true
 
 [node name="Player" parent="." node_paths=PackedStringArray("tile_manager") instance=ExtResource("4_p0uxn")]
 y_sort_enabled = true
 position = Vector2(-41, -19)
 tile_manager = NodePath("../Managers/TileManager")
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="Torch" parent="." instance=ExtResource("8_n684v")]
 
-[node name="Settings" parent="UI" instance=ExtResource("9_u8now")]
+[node name="Torch2" parent="." instance=ExtResource("8_n684v")]
+position = Vector2(-72, 81)
+
+[node name="Torch5" parent="." instance=ExtResource("8_n684v")]
+position = Vector2(216, 82)
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="Settings" parent="UILayer" instance=ExtResource("9_u8now")]
 visible = false
 
 [connection signal="timeout" from="PlayerCamera/CameraSpawner/SpawnTimer" to="PlayerCamera/CameraSpawner" method="_on_spawn_timer_timeout"]

@@ -69,6 +69,7 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="Torch" type="Node2D"]
+z_index = 1
 position = Vector2(-120, 81)
 script = ExtResource("2_dok6w")
 flicker_energy_variance = 0.35

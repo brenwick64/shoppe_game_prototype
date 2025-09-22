@@ -1,0 +1,16 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dh1o53sj1yfmd"]
+
+[ext_resource type="Texture2D" uid="uid://6xa1nf8vqnq2" path="res://assets/tilesets/Water.png" id="1_kr48e"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m3hs2"]
+resource_name = "water"
+texture = ExtResource("1_kr48e")
+0:0/animation_columns = 4
+0:0/animation_frame_0/duration = 0.25
+0:0/animation_frame_1/duration = 0.25
+0:0/animation_frame_2/duration = 0.25
+0:0/animation_frame_3/duration = 0.25
+0:0/0 = 0
+
+[resource]
+sources/1 = SubResource("TileSetAtlasSource_m3hs2")

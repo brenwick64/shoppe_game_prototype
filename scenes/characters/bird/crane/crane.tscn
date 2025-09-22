@@ -34,7 +34,7 @@ audio_delay = 0.0
 radius = 21.095
 
 [node name="Crane" type="Node2D"]
-z_index = 2
+z_index = 3
 scale = Vector2(0.75, 0.75)
 script = ExtResource("1_p03h7")
 bird_area_tags = Array[String](["water"])

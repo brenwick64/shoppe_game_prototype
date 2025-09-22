@@ -31,7 +31,7 @@ region = Rect2(240, 257, 16, 15)
 radius = 6.0
 
 [node name="OreVein" type="StaticBody2D" node_paths=PackedStringArray("full_sprite", "depleted_sprite", "health_component", "interactable", "harvest_sound", "resource_icon", "harvest_cooldown", "respawn_timer")]
-z_index = 1
+z_index = 2
 y_sort_enabled = true
 script = ExtResource("1_cn3qr")
 full_sprite = NodePath("FullSprite")
@@ -66,6 +66,7 @@ shape = SubResource("CircleShape2D_atjvl")
 
 [node name="MineSound" parent="." instance=ExtResource("4_4pltn")]
 sound = ExtResource("5_bpnn6")
+pitch_variance_range = Vector2(0.75, 1.25)
 
 [node name="ResourceIcon" parent="." instance=ExtResource("6_itq03")]
 visible = false

@@ -17,7 +17,7 @@ func _random_emote() -> void:
 	bird_call_audio.initial_delay_sec = emote.audio_delay
 	animated_sprite_2d.play(emote.animation_name + "_" + parent.direction_name)
 	if emote.audio_stream:
-		bird_call_audio.play_sound(emote.audio_stream)
+		bird_call_audio.play_custom_sound(emote.audio_stream)
 
 ## -- overrides
 func _on_enter() -> void:

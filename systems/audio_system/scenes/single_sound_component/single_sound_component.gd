@@ -17,13 +17,16 @@ func _ready() -> void:
 	self.stream = sound
 	delay_timer.timeout.connect(_on_delay_timer_timeout)
 
-func _play_stream() -> void:
-	_randomize_pitch()
-	_randomize_volume()
-	self.play()
 
 ## -- methods --
-func play_sound(audio_stream: AudioStream) -> void:
+func play_sound() -> void:
+	if _is_delay and initial_delay_sec:
+		delay_timer.wait_time = initial_delay_sec
+		delay_timer.start()
+	else:
+		_play_stream()
+
+func play_custom_sound(audio_stream: AudioStream) -> void:
 	stream = audio_stream
 	if _is_delay and initial_delay_sec:
 		delay_timer.wait_time = initial_delay_sec
@@ -33,6 +36,12 @@ func play_sound(audio_stream: AudioStream) -> void:
 
 func stop_sound() -> void:
 	self.stop()
+
+## -- helper functions --
+func _play_stream() -> void:
+	_randomize_pitch()
+	_randomize_volume()
+	self.play()
 
 ## -- signals --
 func _on_finished() -> void:

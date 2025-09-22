@@ -25,6 +25,9 @@ DayAndNightManager="*res://systems/day_night_system/scripts/GlobalDayNightManage
 Settings="*res://scripts/globals/settings.gd"
 Constants="*res://scripts/globals/constants.gd"
 Utils="*res://scripts/globals/utils.gd"
+GlobalItemDb="*res://systems/item_system/scripts/GlobalItemDB.gd"
+GlobalItemSpawner="*res://systems/item_system/scripts/GlobalItemSpawner.gd"
+GlobalTileManager="*res://systems/tile_system/scripts/GlobalTileManager.gd"
 
 [display]
 
