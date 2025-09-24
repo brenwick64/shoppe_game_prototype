@@ -48,63 +48,84 @@ columns = 7
 
 [node name="InventorySlot" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
 layout_mode = 2
+index = 1
 
 [node name="InventorySlot2" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
 layout_mode = 2
+index = 2
 
 [node name="InventorySlot3" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
 layout_mode = 2
+index = 3
 
 [node name="InventorySlot4" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
 layout_mode = 2
+index = 4
 
 [node name="InventorySlot5" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
 layout_mode = 2
+index = 5
 
 [node name="InventorySlot6" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
 layout_mode = 2
+index = 6
 
 [node name="InventorySlot7" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
 layout_mode = 2
+index = 7
 
 [node name="InventorySlot8" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
 layout_mode = 2
+index = 8
 
 [node name="InventorySlot9" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
 layout_mode = 2
+index = 9
 
 [node name="InventorySlot10" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
 layout_mode = 2
+index = 10
 
 [node name="InventorySlot11" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
 layout_mode = 2
+index = 11
 
 [node name="InventorySlot12" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
 layout_mode = 2
+index = 12
 
 [node name="InventorySlot13" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
 layout_mode = 2
+index = 13
 
 [node name="InventorySlot14" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
 layout_mode = 2
+index = 14
 
 [node name="InventorySlot15" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
 layout_mode = 2
+index = 15
 
 [node name="InventorySlot16" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
 layout_mode = 2
+index = 16
 
 [node name="InventorySlot17" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
 layout_mode = 2
+index = 17
 
 [node name="InventorySlot18" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
 layout_mode = 2
+index = 18
 
 [node name="InventorySlot19" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
 layout_mode = 2
+index = 19
 
 [node name="InventorySlot20" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
 layout_mode = 2
+index = 20
 
 [node name="InventorySlot21" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
 layout_mode = 2
+index = 21

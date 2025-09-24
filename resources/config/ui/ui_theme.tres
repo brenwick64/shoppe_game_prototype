@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://d3hq7cut50woy"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://d3hq7cut50woy"]
 
 [ext_resource type="Texture2D" uid="uid://dpawbul7jnh8f" path="res://assets/ui/base_ui/skill/board/board_02.png" id="1_7qf6k"]
 [ext_resource type="Texture2D" uid="uid://cipa7cuklb1la" path="res://assets/ui/base_ui/skill/frame/frame_06.png" id="1_i43un"]
@@ -17,9 +17,21 @@ texture_margin_top = 6.0
 texture_margin_right = 6.0
 texture_margin_bottom = 7.0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sigx2"]
+load_path = "res://.godot/imported/frame_06.png-61627f503bfe50228e60e1347b52f604.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ey28p"]
+texture = SubResource("CompressedTexture2D_sigx2")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
 [resource]
 InventorySlot/base_type = &"Panel"
 InventorySlot/styles/panel = SubResource("StyleBoxTexture_j5vn8")
 MainPanel/base_type = &"Panel"
 MainPanel/styles/panel = SubResource("StyleBoxTexture_sslmu")
+Slot/base_type = &"Panel"
+Slot/styles/panel = SubResource("StyleBoxTexture_ey28p")
 UISlider/base_type = &"HSlider"

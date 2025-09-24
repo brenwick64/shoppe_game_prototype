@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://dx8fctcgp1stc"]
+
+[ext_resource type="Theme" uid="uid://d3hq7cut50woy" path="res://resources/config/ui/ui_theme.tres" id="1_i5wd4"]
+[ext_resource type="Script" path="res://scenes/ui/action_bar/ui_action_bar.gd" id="1_srgu8"]
+[ext_resource type="PackedScene" uid="uid://vayujw0a8tl6" path="res://scenes/ui/action_bar/ui_action_bar_slot.tscn" id="1_v580u"]
+
+[node name="UIActionBar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 581.0
+offset_bottom = 106.0
+script = ExtResource("1_srgu8")
+
+[node name="MainPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 582.0
+offset_bottom = 107.0
+theme = ExtResource("1_i5wd4")
+theme_type_variation = &"MainPanel"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -274.5
+offset_top = -37.5
+offset_right = 274.5
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="UIActionBarSlot" parent="MainPanel/HBoxContainer" instance=ExtResource("1_v580u")]
+layout_mode = 2
+index = 1
+
+[node name="UIActionBarSlot2" parent="MainPanel/HBoxContainer" instance=ExtResource("1_v580u")]
+layout_mode = 2
+index = 2
+
+[node name="UIActionBarSlot3" parent="MainPanel/HBoxContainer" instance=ExtResource("1_v580u")]
+layout_mode = 2
+index = 3
+
+[node name="UIActionBarSlot4" parent="MainPanel/HBoxContainer" instance=ExtResource("1_v580u")]
+layout_mode = 2
+index = 4
+
+[node name="UIActionBarSlot5" parent="MainPanel/HBoxContainer" instance=ExtResource("1_v580u")]
+layout_mode = 2
+index = 5
+
+[node name="UIActionBarSlot6" parent="MainPanel/HBoxContainer" instance=ExtResource("1_v580u")]
+layout_mode = 2
+index = 6
+
+[node name="UIActionBarSlot7" parent="MainPanel/HBoxContainer" instance=ExtResource("1_v580u")]
+layout_mode = 2
+index = 7
