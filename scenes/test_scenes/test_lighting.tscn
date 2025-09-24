@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://bmce4hybdi20v"]
+[gd_scene load_steps=17 format=3 uid="uid://bmce4hybdi20v"]
 
 [ext_resource type="PackedScene" uid="uid://d05xg5vjtcvs1" path="res://systems/day_night_system/scenes/day_night_manager/day_night_manager.tscn" id="1_0imsq"]
-[ext_resource type="PackedScene" uid="uid://cx33pk6ute2hg" path="res://systems/tile_system/scenes/tile_manager/tile_manager.tscn" id="1_hgfxd"]
 [ext_resource type="PackedScene" uid="uid://csogmde7287ni" path="res://scenes/game_objects/player_camera/player_camera.tscn" id="2_vxtlm"]
 [ext_resource type="PackedScene" uid="uid://b3e78tu5wd3qe" path="res://scenes/game_objects/game_tile_map/game_tile_map.tscn" id="3_gu5lt"]
 [ext_resource type="PackedScene" uid="uid://x0hp764aoxfp" path="res://scenes/characters/player/player.tscn" id="4_p0uxn"]
@@ -9,9 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://7i1a777bhd6c" path="res://scenes/game_objects/bird_spawner/bird_spawner.tscn" id="5_hyxup"]
 [ext_resource type="Script" path="res://scenes/characters/firefly/firefly_spawner.gd" id="6_fqiym"]
 [ext_resource type="PackedScene" uid="uid://eeg5x8snkfqw" path="res://scenes/characters/firefly/firefly.tscn" id="7_ojd8x"]
-[ext_resource type="PackedScene" uid="uid://bj616aj7lg3c7" path="res://scenes/ui/settings.tscn" id="9_u8now"]
+[ext_resource type="PackedScene" uid="uid://bj616aj7lg3c7" path="res://scenes/ui/settings/settings.tscn" id="9_u8now"]
+[ext_resource type="PackedScene" uid="uid://b52lyvwpigah1" path="res://systems/item_system/scenes/item_pickup/item_pickup.tscn" id="10_rq0t2"]
 [ext_resource type="AudioStream" uid="uid://dxv22jeorx386" path="res://audio/music/the_castle.wav" id="10_wpe11"]
+[ext_resource type="Texture2D" uid="uid://w4qtqvcafkc8" path="res://resources/textures/icons/wood.tres" id="11_npjxk"]
 [ext_resource type="PackedScene" uid="uid://8hkhsmiruadb" path="res://scenes/objects/bird_area/bird_area.tscn" id="11_xlv5u"]
+[ext_resource type="PackedScene" uid="uid://mq3r2wcoavar" path="res://scenes/ui/inventory/ui_inventory.tscn" id="12_p10iw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yikv7"]
 radius = 103.121
@@ -46,12 +48,8 @@ bus = &"music"
 
 [node name="DayNightManager" parent="Managers" instance=ExtResource("1_0imsq")]
 
-[node name="TileManager" parent="Managers" node_paths=PackedStringArray("tile_map") instance=ExtResource("1_hgfxd")]
-tile_map = NodePath("../../GameTileMap")
-
-[node name="GameTileMap" parent="." node_paths=PackedStringArray("tile_manager") groups=["tile_map"] instance=ExtResource("3_gu5lt")]
+[node name="GameTileMap" parent="." groups=["tile_map"] instance=ExtResource("3_gu5lt")]
 script = ExtResource("5_0snrh")
-tile_manager = NodePath("../Managers/TileManager")
 
 [node name="BirdAreas" type="Node2D" parent="."]
 
@@ -99,14 +97,27 @@ debug_color = Color(1, 1, 1, 0.42)
 
 [node name="SpawnedItems" type="Node2D" parent="." groups=["spawned_items"]]
 
-[node name="Player" parent="." node_paths=PackedStringArray("tile_manager") instance=ExtResource("4_p0uxn")]
+[node name="ItemPickup" parent="SpawnedItems" instance=ExtResource("10_rq0t2")]
+position = Vector2(19, -1)
+pickup_texture = ExtResource("11_npjxk")
+
+[node name="Player" parent="." instance=ExtResource("4_p0uxn")]
 y_sort_enabled = true
 position = Vector2(-41, -19)
-tile_manager = NodePath("../Managers/TileManager")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Settings" parent="UI" instance=ExtResource("9_u8now")]
 visible = false
+
+[node name="PlayerInventory" parent="UI" groups=["ui_player_inventory"] instance=ExtResource("12_p10iw")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = -322.0
+offset_right = 538.0
+offset_bottom = -14.0
+grow_vertical = 0
 
 [connection signal="timeout" from="PlayerCamera/CameraSpawner/SpawnTimer" to="PlayerCamera/CameraSpawner" method="_on_spawn_timer_timeout"]

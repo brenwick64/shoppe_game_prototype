@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnib5xa846xpu"]
+
+[ext_resource type="Theme" uid="uid://d3hq7cut50woy" path="res://resources/config/ui/ui_theme.tres" id="1_cr12a"]
+[ext_resource type="Script" path="res://scenes/ui/inventory/inventory_slot.gd" id="2_gi2w0"]
+[ext_resource type="Script" path="res://centered_texture_rect.gd" id="2_s7nj4"]
+[ext_resource type="Script" path="res://scenes/ui/inventory/count_label.gd" id="4_2jx5w"]
+
+[node name="InventorySlot" type="Panel"]
+custom_minimum_size = Vector2(65, 65)
+offset_right = 65.0
+offset_bottom = 65.0
+theme = ExtResource("1_cr12a")
+theme_type_variation = &"InventorySlot"
+script = ExtResource("2_gi2w0")
+
+[node name="CenteredTextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("2_s7nj4")
+
+[node name="CountLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -41.0
+offset_top = -26.0
+offset_right = -6.0
+offset_bottom = -3.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "0"
+horizontal_alignment = 2
+script = ExtResource("4_2jx5w")

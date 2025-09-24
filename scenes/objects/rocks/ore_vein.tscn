@@ -34,6 +34,7 @@ radius = 6.0
 z_index = 2
 y_sort_enabled = true
 script = ExtResource("1_cn3qr")
+pickup_item_id = 1
 full_sprite = NodePath("FullSprite")
 depleted_sprite = NodePath("DepletedSprite")
 health_component = NodePath("HealthComponent")
@@ -44,7 +45,7 @@ harvest_cooldown = NodePath("HarvestCooldown")
 respawn_timer = NodePath("RespawnTimer")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_w5j8p")]
-max_health = 3
+max_health = 1
 
 [node name="Interactable" parent="." instance=ExtResource("1_gehq8")]
 

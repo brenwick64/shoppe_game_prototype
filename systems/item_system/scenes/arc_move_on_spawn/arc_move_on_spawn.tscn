@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://8wgjua0eaeg7"]
+
+[node name="ArcMoveOnSpawn" type="Node2D"]

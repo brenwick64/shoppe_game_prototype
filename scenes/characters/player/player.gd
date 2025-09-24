@@ -1,19 +1,25 @@
 class_name Player
 extends CharacterBody2D
 
-@export var tile_manager: TileManager
-
 @export var player_input_component: PlayerInputComponent
 @export var movement_component: MovementComponent
 @export var animation_component: AnimationComponent
 @export var movement_sound: MovementSoundComponent
 
+@onready var pickup_sound: SingleSoundComponent = $PickupSound
 @onready var interactor: Interactor = $Interactor
+@onready var inventory_manager: InventoryManager = $InventoryManager
 
 var _current_terrain: String
 
 func _ready() -> void:
 	physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
+
+## -- public methods --
+func pickup(item_id: int, count) -> void:
+	pickup_sound.play_sound()
+	inventory_manager.inventory.add_item(item_id, count)
+
 
 ## -- overrides --
 func _physics_process(delta: float) -> void:
@@ -25,9 +31,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("click"):
 		interactor.interact()
 
+
 ## -- helper functions --
 func _check_tile_audio() -> void:
-	var terrain_type: String = tile_manager.get_cust_meta_from_global_pos(
+	var terrain_type: String = GlobalTileManager.get_cust_meta_from_global_pos(
 	global_position,
 	"terrain_type"
 	)
@@ -35,6 +42,7 @@ func _check_tile_audio() -> void:
 		var new_track: Array[AudioStream] = GlobalAudioManager.get_audio_track("move_" + terrain_type)
 		movement_sound.switch_tracks(new_track)
 		_current_terrain = terrain_type
+
 
 ## -- signals --
 func _on_animation_component_animation_state_changed(state: String) -> void:

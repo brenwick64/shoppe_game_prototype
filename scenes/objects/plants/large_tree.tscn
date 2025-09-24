@@ -47,7 +47,7 @@ harvest_cooldown = NodePath("ChopCooldown")
 respawn_timer = NodePath("Respawn")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_murj8")]
-max_health = 3
+max_health = 1
 
 [node name="Interactable" parent="." instance=ExtResource("2_v8c7g")]
 

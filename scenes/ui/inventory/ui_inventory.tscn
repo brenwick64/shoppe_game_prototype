@@ -1,0 +1,110 @@
+[gd_scene load_steps=4 format=3 uid="uid://mq3r2wcoavar"]
+
+[ext_resource type="Theme" uid="uid://d3hq7cut50woy" path="res://resources/config/ui/ui_theme.tres" id="1_2smnn"]
+[ext_resource type="Script" path="res://scenes/ui/inventory/ui_inventory.gd" id="1_rtt0d"]
+[ext_resource type="PackedScene" uid="uid://dnib5xa846xpu" path="res://scenes/ui/inventory/inventory_slot.tscn" id="2_j844i"]
+
+[node name="UIInventory" type="Control"]
+custom_minimum_size = Vector2(520, 308)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 520.0
+offset_bottom = 308.0
+size_flags_vertical = 0
+script = ExtResource("1_rtt0d")
+
+[node name="MainPanel" type="Panel" parent="."]
+layout_mode = 2
+offset_right = 520.0
+offset_bottom = 308.0
+size_flags_vertical = 3
+theme = ExtResource("1_2smnn")
+theme_type_variation = &"MainPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -239.5
+offset_top = -115.0
+offset_right = 239.5
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="InventoryLabel" type="Label" parent="MainPanel/VBoxContainer"]
+layout_mode = 2
+text = "Inventory"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="MainPanel/VBoxContainer"]
+layout_mode = 2
+columns = 7
+
+[node name="InventorySlot" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
+layout_mode = 2
+
+[node name="InventorySlot3" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
+layout_mode = 2
+
+[node name="InventorySlot4" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
+layout_mode = 2
+
+[node name="InventorySlot5" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
+layout_mode = 2
+
+[node name="InventorySlot6" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
+layout_mode = 2
+
+[node name="InventorySlot7" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
+layout_mode = 2
+
+[node name="InventorySlot8" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
+layout_mode = 2
+
+[node name="InventorySlot9" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
+layout_mode = 2
+
+[node name="InventorySlot10" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
+layout_mode = 2
+
+[node name="InventorySlot11" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
+layout_mode = 2
+
+[node name="InventorySlot12" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
+layout_mode = 2
+
+[node name="InventorySlot13" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
+layout_mode = 2
+
+[node name="InventorySlot14" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
+layout_mode = 2
+
+[node name="InventorySlot15" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
+layout_mode = 2
+
+[node name="InventorySlot16" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
+layout_mode = 2
+
+[node name="InventorySlot17" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
+layout_mode = 2
+
+[node name="InventorySlot18" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
+layout_mode = 2
+
+[node name="InventorySlot19" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
+layout_mode = 2
+
+[node name="InventorySlot20" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
+layout_mode = 2
+
+[node name="InventorySlot21" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
+layout_mode = 2

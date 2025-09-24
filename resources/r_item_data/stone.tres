@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RItemData" load_steps=3 format=3 uid="uid://c73mtdxncld6t"]
+
+[ext_resource type="Texture2D" uid="uid://cd57e0i3ay66o" path="res://resources/textures/icons/stone.tres" id="1_idj5b"]
+[ext_resource type="Script" path="res://systems/item_system/scripts/RItemData.gd" id="1_rgkea"]
+
+[resource]
+script = ExtResource("1_rgkea")
+item_id = 1
+item_name = "Stone"
+icon_texture = ExtResource("1_idj5b")
+pickup_texture = ExtResource("1_idj5b")
+pickup_scale = Vector2(0.7, 0.7)
