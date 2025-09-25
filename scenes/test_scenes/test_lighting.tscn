@@ -112,7 +112,6 @@ position = Vector2(-41, -19)
 visible = false
 
 [node name="UIInventory" parent="UI" groups=["ui_player_inventory"] instance=ExtResource("12_p10iw")]
-visible = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -136,4 +135,5 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [connection signal="timeout" from="PlayerCamera/CameraSpawner/SpawnTimer" to="PlayerCamera/CameraSpawner" method="_on_spawn_timer_timeout"]
+[connection signal="inventory_slot_depleted" from="UI/UIInventory" to="UI/UIActionBar" method="_on_ui_inventory_inventory_slot_depleted"]
 [connection signal="inventory_slot_updated" from="UI/UIInventory" to="UI/UIActionBar" method="_on_ui_inventory_inventory_slot_updated"]

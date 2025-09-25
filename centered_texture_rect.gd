@@ -7,6 +7,12 @@ func add_texture(texture: AtlasTexture) -> void:
 	self.texture = texture
 	_align_texture()
 
+func hide_texture() -> void:
+	self.visible = false
+
+func show_texture() -> void:
+	self.visible = true
+
 func reset_texture() -> void:
 	self.texture = null
 
