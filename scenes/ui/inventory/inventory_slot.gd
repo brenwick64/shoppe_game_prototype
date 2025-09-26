@@ -50,9 +50,9 @@ func set_focus(focused: bool) -> void:
 	queue_redraw()
 
 ## -- helper functions --
-func _create_new_inv_item(item_id: int, count: int) -> RInventoryItem:
+func _create_new_inv_item(p_item_id: int, count: int) -> RInventoryItem:
 	var inv_item: RInventoryItem = RInventoryItem.new()
-	inv_item.item_id = item_id
+	inv_item.item_id = p_item_id
 	inv_item.count = count
 	return inv_item
 
@@ -64,14 +64,14 @@ func _get_drag_preview(p_item_id: int, p_count: int) -> InventorySlotDragPreview
 
 
 ## -- drag and drop --
-func _get_drag_data(at_position: Vector2) -> Variant:
+func _get_drag_data(_at_position: Vector2) -> Variant:
 	var data: UIInventorySlot = self
 	_is_dragged = true
 	var preview: InventorySlotDragPreview = _get_drag_preview(data.item_id, data.count_label.get_count())
 	set_drag_preview(preview)
 	return data
 
-func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	var starting_slot: UIInventorySlot = data
 	var hovered: Control = get_viewport().gui_get_hovered_control()
 	var hovered_inv_slot: UIInventorySlot = hovered as UIInventorySlot
@@ -81,7 +81,7 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 		hovered_inv_slot.slot_hovered.emit(hovered_inv_slot)
 	return can_drop
 
-func _drop_data(at_position: Vector2, data: Variant) -> void:
+func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	var source_inv_slot: UIInventorySlot = data
 	# remember to show the source slot (from drag)
 	source_inv_slot.show_slot_content()
@@ -115,7 +115,7 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	else:
 		source_inv_slot.clear_item()
 		source_inv_slot.slot_depleted.emit(source_inv_slot)
-		
+	
 	slot_dropped.emit()
 
 
@@ -124,6 +124,7 @@ func _input(event: InputEvent) -> void:
 	# global drop - if needed
 	if _is_dragged and event.is_action_released("click"):
 		_is_dragged = false
+		slot_dropped.emit()
 
 func _draw() -> void:
 	if is_focused:

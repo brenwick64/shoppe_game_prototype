@@ -28,6 +28,8 @@ Utils="*res://scripts/globals/utils.gd"
 GlobalItemDb="*res://systems/item_system/scripts/GlobalItemDB.gd"
 GlobalItemSpawner="*res://systems/item_system/scripts/GlobalItemSpawner.gd"
 GlobalTileManager="*res://systems/tile_system/scripts/GlobalTileManager.gd"
+GlobalSaveLoadManager="*res://systems/save_and_load_system/scripts/GlobalSaveLoadManager.gd"
+uuid="*res://addons/uuid/uuid.gd"
 
 [display]
 
@@ -37,7 +39,7 @@ window/stretch/scale_mode="integer"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_resource_groups/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot_resource_groups/plugin.cfg", "res://addons/uuid/plugin.cfg")
 
 [file_customization]
 

@@ -1,21 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://c518h4ddxjnx7"]
+[gd_scene load_steps=4 format=3 uid="uid://c518h4ddxjnx7"]
 
 [ext_resource type="PackedScene" uid="uid://csogmde7287ni" path="res://scenes/game_objects/player_camera/player_camera.tscn" id="1_o0kcu"]
 [ext_resource type="PackedScene" uid="uid://x0hp764aoxfp" path="res://scenes/characters/player/player.tscn" id="2_2hste"]
 [ext_resource type="PackedScene" uid="uid://b3e78tu5wd3qe" path="res://scenes/game_objects/game_tile_map/game_tile_map.tscn" id="2_a8t78"]
-[ext_resource type="PackedScene" uid="uid://cx33pk6ute2hg" path="res://systems/tile_system/scenes/tile_manager/tile_manager.tscn" id="6_dw08q"]
 
 [node name="TestTerrain" type="Node2D"]
 
 [node name="Managers" type="Node" parent="."]
-
-[node name="TileManager" parent="Managers" node_paths=PackedStringArray("tile_map") instance=ExtResource("6_dw08q")]
-tile_map = NodePath("../../GameTileMap")
 
 [node name="PlayerCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("1_o0kcu")]
 target = NodePath("../Player")
 
 [node name="GameTileMap" parent="." instance=ExtResource("2_a8t78")]
 
-[node name="Player" parent="." node_paths=PackedStringArray("tile_manager") instance=ExtResource("2_2hste")]
-tile_manager = NodePath("../Managers/TileManager")
+[node name="Player" parent="." instance=ExtResource("2_2hste")]

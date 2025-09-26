@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://mq3r2wcoavar"]
+[gd_scene load_steps=7 format=3 uid="uid://mq3r2wcoavar"]
 
 [ext_resource type="Theme" uid="uid://d3hq7cut50woy" path="res://resources/config/ui/ui_theme.tres" id="1_2smnn"]
 [ext_resource type="Script" path="res://scenes/ui/inventory/ui_inventory.gd" id="1_rtt0d"]
 [ext_resource type="PackedScene" uid="uid://dnib5xa846xpu" path="res://scenes/ui/inventory/inventory_slot.tscn" id="2_j844i"]
+[ext_resource type="PackedScene" uid="uid://cxtu01o27robl" path="res://systems/save_and_load_system/scenes/save_load_component.tscn" id="4_qk7d6"]
+[ext_resource type="Script" path="res://systems/save_and_load_system/scripts/RInventorySlotMappingSaveData.gd" id="5_h2vtk"]
+
+[sub_resource type="Resource" id="Resource_l28s2"]
+script = ExtResource("5_h2vtk")
+index = 0
+item_id = 0
 
 [node name="UIInventory" type="Control"]
 custom_minimum_size = Vector2(520, 308)
@@ -129,3 +136,7 @@ index = 20
 [node name="InventorySlot21" parent="MainPanel/VBoxContainer/GridContainer" instance=ExtResource("2_j844i")]
 layout_mode = 2
 index = 21
+
+[node name="SaveLoadComponent" parent="." instance=ExtResource("4_qk7d6")]
+save_filename = "inventory_slot_mappings"
+save_data_type = SubResource("Resource_l28s2")

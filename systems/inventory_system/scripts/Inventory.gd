@@ -5,6 +5,7 @@ signal item_added(inv_item: RInventoryItem)
 signal item_updated(inv_item: RInventoryItem)
 signal item_depleted(item_id: int)
 
+var uuid: String
 var inventory_items: Array[RInventoryItem] = []
 
 ##  -- public methods --
