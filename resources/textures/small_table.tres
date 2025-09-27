@@ -1,7 +1,7 @@
 [gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://blmwn4j6f81mv"]
 
-[ext_resource type="Texture2D" uid="uid://cxxuqw2iu0d5o" path="res://assets/objects/redwood-tables.png" id="1_rsbfw"]
+[ext_resource type="Texture2D" uid="uid://bm1mdn88lfs7c" path="res://assets/objects/tables.png" id="1_xiddf"]
 
 [resource]
-atlas = ExtResource("1_rsbfw")
-region = Rect2(35, 1, 16, 14)
+atlas = ExtResource("1_xiddf")
+region = Rect2(17, 33, 14, 14)

@@ -1,6 +1,8 @@
 class_name PlaceablePreview
 extends Node2D
 
+@export var placement_pivot: Marker2D
+
 @onready var block_placement_area: Area2D = $BlockPlacement
 @onready var sprite: Sprite2D = $Sprite
 

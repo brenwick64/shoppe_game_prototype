@@ -7,7 +7,7 @@ var player_inventory_manager: InventoryManager
 var _current_item_data: RItemData
 
 ## -- public methods --
-func set_item(item_data: RPlaceableItemData) -> void:
+func set_item(item_data: RItemData) -> void:
 	_current_item_data = item_data
 
 func clear_item() -> void:

@@ -1,8 +1,4 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://d0b8wmgn81vfr"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h74st"]
-load_path = "res://.godot/imported/redwood_tables.png-666115f8ce7ce311fbe318bc0ce653e6.ctex"
+[gd_resource type="AtlasTexture" format=3 uid="uid://d0b8wmgn81vfr"]
 
 [resource]
-atlas = SubResource("CompressedTexture2D_h74st")
 region = Rect2(1, 17, 17, 32)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxxuqw2iu0d5o"
-path="res://.godot/imported/redwood-tables.png-9fa20d1e522f895c9414902d30e875ff.ctex"
+uid="uid://bm1mdn88lfs7c"
+path="res://.godot/imported/tables.png-ff10071d23042e7acce0be166b8bb437.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/objects/redwood-tables.png"
-dest_files=["res://.godot/imported/redwood-tables.png-9fa20d1e522f895c9414902d30e875ff.ctex"]
+source_file="res://assets/objects/tables.png"
+dest_files=["res://.godot/imported/tables.png-ff10071d23042e7acce0be166b8bb437.ctex"]
 
 [params]
 

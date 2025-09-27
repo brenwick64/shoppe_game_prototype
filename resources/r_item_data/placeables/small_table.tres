@@ -1,18 +1,18 @@
 [gd_resource type="Resource" script_class="RPlaceableItemData" load_steps=5 format=3 uid="uid://dioq77jhdohqj"]
 
 [ext_resource type="Texture2D" uid="uid://blmwn4j6f81mv" path="res://resources/textures/small_table.tres" id="1_gl78s"]
-[ext_resource type="PackedScene" uid="uid://c1ms150mrdjvv" path="res://scenes/items/placeables/small_table.tscn" id="2_1tc7g"]
-[ext_resource type="PackedScene" uid="uid://c3lde8kqumr11" path="res://scenes/items/placeables/small_table_preview.tscn" id="3_ltrh2"]
+[ext_resource type="PackedScene" uid="uid://c1ms150mrdjvv" path="res://scenes/items/placeables/small_table/small_table.tscn" id="2_1tc7g"]
+[ext_resource type="PackedScene" uid="uid://c3lde8kqumr11" path="res://scenes/items/placeables/small_table/small_table_preview.tscn" id="3_ltrh2"]
 [ext_resource type="Script" path="res://systems/item_system/scripts/RPlaceableItemData.gd" id="4_848lp"]
 
 [resource]
 script = ExtResource("4_848lp")
 placeable_scene = ExtResource("2_1tc7g")
 preview_scene = ExtResource("3_ltrh2")
-scale_value = Vector2(0.85, 0.85)
+scale_value = Vector2(1, 1)
 item_id = 99
 item_name = "Small Table"
 item_type = 2
 icon_texture = ExtResource("1_gl78s")
 pickup_texture = ExtResource("1_gl78s")
-pickup_scale = Vector2(1, 1)
+pickup_scale = Vector2(0.5, 0.5)

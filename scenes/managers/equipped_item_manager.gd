@@ -29,12 +29,9 @@ func _update_item_handlers(main_scene: Node2D, player_inv_manager: InventoryMana
 		handler.player_inventory_manager = player_inv_manager
 
 func _handle_equipped_item(item_data: RItemData) -> void:
-	# TODO: scale this to other types
-	# maybe clear all items and set the new one?
+	placeable_item_handler.clear_item()
 	if item_data is RPlaceableItemData:
 		placeable_item_handler.set_item(item_data)
-	else:
-		placeable_item_handler.clear_item()
 
 
 ## -- signals --

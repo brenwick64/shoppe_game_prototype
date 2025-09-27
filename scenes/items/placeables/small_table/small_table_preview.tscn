@@ -4,12 +4,15 @@
 [ext_resource type="Script" path="res://scripts/classes/PlaceablePreview.gd" id="1_wly8m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_71la1"]
-size = Vector2(16, 14)
+size = Vector2(14, 14)
 
-[node name="SmallTablePreview" type="Node2D"]
+[node name="SmallTablePreview" type="Node2D" node_paths=PackedStringArray("placement_pivot")]
 z_index = 2
 y_sort_enabled = true
 script = ExtResource("1_wly8m")
+placement_pivot = NodePath("PlacementPivot")
+
+[node name="PlacementPivot" type="Marker2D" parent="."]
 
 [node name="BlockPlacement" type="Area2D" parent="."]
 collision_layer = 0

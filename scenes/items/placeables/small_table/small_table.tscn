@@ -1,9 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1ms150mrdjvv"]
+[gd_scene load_steps=7 format=3 uid="uid://c1ms150mrdjvv"]
 
+[ext_resource type="Script" path="res://scripts/classes/Placeable.gd" id="1_5urts"]
 [ext_resource type="Texture2D" uid="uid://blmwn4j6f81mv" path="res://resources/textures/small_table.tres" id="1_kh4w3"]
+[ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="2_f65ly"]
+[ext_resource type="AudioStream" uid="uid://bv02g04vkgdar" path="res://audio/actions/place_object/place_object_1.wav" id="4_7yakg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1lof1"]
-size = Vector2(18, 15)
+size = Vector2(14, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b7a5n"]
 size = Vector2(13.5, 11.5)
@@ -11,13 +14,13 @@ size = Vector2(13.5, 11.5)
 [node name="SmallTable" type="StaticBody2D"]
 z_index = 2
 y_sort_enabled = true
+script = ExtResource("1_5urts")
 
 [node name="BlockPlacement" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BlockPlacement"]
-position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_1lof1")
 debug_color = Color(0.876, 0.274, 0.531, 0.216)
 
@@ -29,3 +32,8 @@ offset = Vector2(0, 10)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.25)
 shape = SubResource("RectangleShape2D_b7a5n")
+
+[node name="PlacedSound" parent="." instance=ExtResource("2_f65ly")]
+bus = &"sfx"
+sound = ExtResource("4_7yakg")
+pitch_variance_range = Vector2(0.75, 1.25)

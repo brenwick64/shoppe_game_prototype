@@ -23,7 +23,8 @@ func _handle_changed_tile() -> void:
 
 func _spawn_preview() -> void:
 	var tile_gp: Vector2 = GlobalTileManager.get_tile_gp_shoppe_floor(_current_hovered_tile_coords)
-	var preview_scene: Node2D = _current_item_data.new_preview(tile_gp)
+	var preview_scene: Node2D = _current_item_data.new_preview()
+	preview_scene.global_position = tile_gp - preview_scene.placement_pivot.global_position
 	_current_preview = preview_scene
 	main_scene.add_child(preview_scene)
 
@@ -34,8 +35,9 @@ func _clear_preview() -> void:
 
 func _spawn_placeable() -> void:
 	if not _current_preview: return
+	var placeable_ins: Node2D = _current_item_data.new_placeable()
 	var global_pos: Vector2 = _current_preview.global_position
-	var placeable_ins: Node2D = _current_item_data.new_placeable(global_pos)
+	placeable_ins.global_position = global_pos
 	main_scene.add_child(placeable_ins)
 	_clear_preview()
 	_remove_item_from_inv()
