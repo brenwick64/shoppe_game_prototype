@@ -17,6 +17,10 @@ resource_name = "bush"
 scenes/1/scene = ExtResource("2_e0oqf")
 
 [resource]
+custom_data_layer_0/name = "terrain_type"
+custom_data_layer_0/type = 4
+custom_data_layer_1/name = "is_placeable"
+custom_data_layer_1/type = 1
 sources/1 = SubResource("TileSetScenesCollectionSource_b5r2k")
 sources/2 = SubResource("TileSetScenesCollectionSource_c6mv4")
 sources/0 = SubResource("TileSetScenesCollectionSource_cikqm")

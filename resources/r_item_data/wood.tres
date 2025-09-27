@@ -7,6 +7,7 @@
 script = ExtResource("2_1yihj")
 item_id = 0
 item_name = "Wood"
+item_type = 1
 icon_texture = ExtResource("1_6qifh")
 pickup_texture = ExtResource("1_6qifh")
 pickup_scale = Vector2(0.65, 0.65)

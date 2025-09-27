@@ -1,4 +1,4 @@
-extends TileMapLayer
+extends GenericLayer
 
 @export var fade_duration_sec: float = 0.5 
 

@@ -3,6 +3,7 @@ extends Resource
 
 @export var item_id: int
 @export var item_name: String
+@export var item_type: Constants.ItemTypes = Constants.ItemTypes.NONE
 @export var icon_texture: AtlasTexture
 @export var pickup_texture: AtlasTexture
 @export var pickup_scale: Vector2 = Vector2.ONE
@@ -10,6 +11,7 @@ extends Resource
 var _pickup_scene: PackedScene = preload("res://systems/item_system/scenes/item_pickup/item_pickup.tscn")
 
 ## -- constructors --
+#TODO: add scalable icon constructor
 func new_icon() -> void:
 	pass
 

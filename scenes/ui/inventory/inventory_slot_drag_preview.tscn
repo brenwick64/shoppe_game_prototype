@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dqg5vfhgvrht0"]
 
 [ext_resource type="Script" path="res://scenes/ui/inventory/inventory_slot_drag_preview.gd" id="2_2mdvm"]
-[ext_resource type="Script" path="res://centered_texture_rect.gd" id="3_l3hpe"]
+[ext_resource type="Script" path="res://scenes/ui/centered_texture_rect/centered_texture_rect.gd" id="3_l3hpe"]
 [ext_resource type="Script" path="res://scenes/ui/inventory/count_label.gd" id="4_01ths"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pwifn"]

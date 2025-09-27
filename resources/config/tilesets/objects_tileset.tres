@@ -11,4 +11,8 @@ texture = ExtResource("1_bwkdy")
 
 [resource]
 physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "terrain_type"
+custom_data_layer_0/type = 4
+custom_data_layer_1/name = "is_placeable"
+custom_data_layer_1/type = 1
 sources/2 = SubResource("TileSetAtlasSource_ciqjc")

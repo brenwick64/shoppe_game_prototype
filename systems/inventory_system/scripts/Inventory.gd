@@ -38,9 +38,15 @@ func remove_item(item_id: int, count: int) -> void:
 	if updated_item.count > 0:
 		item_updated.emit(updated_item)
 	else:
+		_prune_depleted_items()
 		item_depleted.emit(updated_item.item_id)
 
 ## -- helper functions --
+func _prune_depleted_items() -> void:
+	inventory_items = inventory_items.filter(
+		func(item: RInventoryItem): return item.count > 0)
+
+
 func _get_item_index(item_id: int) -> int:
 	for i: int in inventory_items.size():
 		var inv_item: RInventoryItem = inventory_items[i]

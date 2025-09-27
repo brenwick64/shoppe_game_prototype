@@ -133,6 +133,7 @@ action_bar_7={
 [layer_names]
 
 2d_physics/layer_2="player_hitbox"
+2d_physics/layer_5="placeable_block_placement"
 2d_physics/layer_7="interactor"
 2d_physics/layer_8="interactable"
 2d_physics/layer_10="bird_area"

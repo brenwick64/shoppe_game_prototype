@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1ms150mrdjvv"]
+
+[ext_resource type="Texture2D" uid="uid://blmwn4j6f81mv" path="res://resources/textures/small_table.tres" id="1_kh4w3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1lof1"]
+size = Vector2(18, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b7a5n"]
+size = Vector2(13.5, 11.5)
+
+[node name="SmallTable" type="StaticBody2D"]
+z_index = 2
+y_sort_enabled = true
+
+[node name="BlockPlacement" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlockPlacement"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_1lof1")
+debug_color = Color(0.876, 0.274, 0.531, 0.216)
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+texture = ExtResource("1_kh4w3")
+offset = Vector2(0, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.25)
+shape = SubResource("RectangleShape2D_b7a5n")

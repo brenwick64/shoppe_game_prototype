@@ -1,5 +1,5 @@
 class_name NavigatableLayer
-extends TileMapLayer
+extends GenericLayer
 
 @export var intersecting_layers: Array[TileMapLayer]
 

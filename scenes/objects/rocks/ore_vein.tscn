@@ -66,6 +66,7 @@ position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_atjvl")
 
 [node name="MineSound" parent="." instance=ExtResource("4_4pltn")]
+bus = &"sfx"
 sound = ExtResource("5_bpnn6")
 pitch_variance_range = Vector2(0.75, 1.25)
 

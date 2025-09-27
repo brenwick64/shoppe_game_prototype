@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://d3hq7cut50woy" path="res://resources/config/ui/ui_theme.tres" id="1_f6h2s"]
 [ext_resource type="Script" path="res://scenes/ui/action_bar/ui_action_bar_slot.gd" id="2_slk4j"]
-[ext_resource type="Script" path="res://centered_texture_rect.gd" id="2_xhv8p"]
+[ext_resource type="PackedScene" uid="uid://bfdoq5u0xisrw" path="res://scenes/ui/centered_texture_rect/centered_texture_rect.tscn" id="3_vdvl4"]
 [ext_resource type="Script" path="res://scenes/ui/inventory/count_label.gd" id="3_x8da3"]
 
 [node name="UIActionBarSlot" type="Panel"]
@@ -11,12 +11,8 @@ theme = ExtResource("1_f6h2s")
 theme_type_variation = &"Slot"
 script = ExtResource("2_slk4j")
 
-[node name="CenteredTextureRect" type="TextureRect" parent="."]
+[node name="CenteredTextureRect" parent="." instance=ExtResource("3_vdvl4")]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-script = ExtResource("2_xhv8p")
 
 [node name="CountLabel" type="Label" parent="."]
 layout_mode = 1

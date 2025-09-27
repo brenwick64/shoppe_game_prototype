@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfdoq5u0xisrw"]
+
+[ext_resource type="Script" path="res://scenes/ui/centered_texture_rect/centered_texture_rect.gd" id="1_gplvf"]
+
+[node name="CenteredTextureRect" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("1_gplvf")

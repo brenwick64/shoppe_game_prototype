@@ -11,6 +11,11 @@ texture = ExtResource("1_kr48e")
 0:0/animation_frame_2/duration = 0.25
 0:0/animation_frame_3/duration = 0.25
 0:0/0 = 0
+0:0/0/custom_data_0 = "water"
 
 [resource]
+custom_data_layer_0/name = "terrain_type"
+custom_data_layer_0/type = 4
+custom_data_layer_1/name = "is_placeable"
+custom_data_layer_1/type = 1
 sources/1 = SubResource("TileSetAtlasSource_m3hs2")

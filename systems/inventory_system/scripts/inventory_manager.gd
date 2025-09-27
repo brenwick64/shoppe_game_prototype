@@ -1,6 +1,8 @@
 class_name InventoryManager
 extends Node
 
+signal item_depleted(item_id: int)
+
 @export var save_load_component: SaveLoadComponent
 
 var inventory: Inventory
@@ -12,11 +14,10 @@ func _ready() -> void:
 		push_error("InventoryManager error: no UI for player inventory found.")
 	inventory_ui = player_inv_ui
 	
+	# load inventory (if applicable)
 	var inventory_exists: bool = save_load_component.check_save_data()
-	if not inventory_exists:
-		_create_new_inventory()
-	else:
-		_load_inventory()
+	if not inventory_exists: _create_new_inventory()
+	else: _load_inventory()
 		
 	# connect signals
 	inventory.item_added.connect(_on_item_added)
@@ -62,5 +63,6 @@ func _on_item_updated(item: RInventoryItem) -> void:
 	_save_inventory()
 
 func _on_item_depleted(item_id: int) -> void:
+	item_depleted.emit(item_id)
 	inventory_ui.handle_item_depleted(item_id)
 	_save_inventory()

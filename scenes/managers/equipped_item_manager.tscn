@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://chtm7kcr0w04x"]
+
+[ext_resource type="Script" path="res://scenes/managers/placeable_item_handler.gd" id="1_lbura"]
+[ext_resource type="Script" path="res://scenes/managers/equipped_item_manager.gd" id="1_sgwao"]
+
+[node name="EquippedItemManager" type="Node" node_paths=PackedStringArray("placeable_item_handler")]
+script = ExtResource("1_sgwao")
+placeable_item_handler = NodePath("PlaceableItemHandler")
+
+[node name="PlaceableItemHandler" type="Node" parent="."]
+script = ExtResource("1_lbura")

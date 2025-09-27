@@ -542,6 +542,7 @@ texture = ExtResource("3_hs4a1")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n6d6r"]
 texture = ExtResource("5_8jdbl")
 1:1/0 = 0
+1:1/0/custom_data_1 = true
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3k285"]
 polygon = PackedVector2Array(3.96875, 8, 3.03125, 8, 3, -6, 4.94975, -8, 8, -8, 8, -6.98268, 4.99394, -6.96058, 4.94975, -5.98831, 4, -6, 3.96875, -5.09375)

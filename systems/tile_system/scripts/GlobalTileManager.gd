@@ -14,6 +14,25 @@ func _ready() -> void:
 
 
 ## -- public methods --
+## FIXME: temporary
+func get_tile_gp_shoppe_floor(tile_coords: Vector2i) -> Vector2:
+	for layer: TileMapLayer in _tilemap_layers:
+		if layer.name == "ShoppeFloor":
+			return get_global_pos_from_tile(layer, tile_coords)
+	return Vector2.ZERO
+
+func get_placeable_tile_from_gp(global_pos: Vector2) -> Variant:
+	var ground_layers: Array[TileMapLayer] = _tilemap_layers.filter(
+		func(l: TileMapLayer): return "ground" in l.tags)
+	for layer: TileMapLayer in ground_layers:
+		var tile_coords = get_tile_from_global_pos(layer, global_pos)
+		var tile_data = layer.get_cell_tile_data(tile_coords)
+		if not tile_data: continue # no tile in layer
+		var is_placeable_str: String = str(tile_data.get_custom_data("is_placeable"))
+		if (is_placeable_str.to_lower()) == "true":
+			return tile_coords
+	return null
+
 func get_tile_from_global_pos(tilemap_layer: TileMapLayer, global_position: Vector2) -> Vector2i:
 	var local_pos: Vector2 = tilemap_layer.to_local(global_position)
 	var tile_coords: Vector2i = tilemap_layer.local_to_map(local_pos)
@@ -37,7 +56,9 @@ func get_nearby_navigatable_tile_positions_from_gp(global_position: Vector2) -> 
 	return navigatable_tile_gps
 
 func get_cust_meta_from_global_pos(global_position: Vector2, meta_key: String) -> String:
-	for layer: TileMapLayer in _tilemap_layers:
+	var ground_layers: Array[TileMapLayer] = _tilemap_layers.filter(
+		func(l: TileMapLayer): return "ground" in l.tags)
+	for layer: TileMapLayer in ground_layers:
 		var tile_coords = get_tile_from_global_pos(layer, global_position)
 		var tile_data = layer.get_cell_tile_data(tile_coords)
 		if not tile_data: continue # no tile in layer
@@ -45,7 +66,6 @@ func get_cust_meta_from_global_pos(global_position: Vector2, meta_key: String) -
 		if not meta: continue # no key in layer
 		return meta
 	return "none"
-
 
 ## -- helper functions --
 func _load_tilemap_layers(tile_map: Node2D) -> void:
