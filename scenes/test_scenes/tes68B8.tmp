@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bj616aj7lg3c7" path="res://scenes/ui/settings/settings.tscn" id="9_u8now"]
 [ext_resource type="PackedScene" uid="uid://b52lyvwpigah1" path="res://systems/item_system/scenes/item_pickup/item_pickup.tscn" id="10_rq0t2"]
 [ext_resource type="AudioStream" uid="uid://dxv22jeorx386" path="res://audio/music/the_castle.wav" id="10_wpe11"]
-[ext_resource type="PackedScene" uid="uid://ck0xc31d7h62r" path="res://scenes/game_objects/shoppe_furniture/shoppe_furniture.tscn" id="11_g6s6c"]
+[ext_resource type="PackedScene" uid="uid://ck0xc31d7h62r" path="res://scenes/game_objects/placeable_items/placeable_items.tscn" id="11_g6s6c"]
 [ext_resource type="PackedScene" uid="uid://8hkhsmiruadb" path="res://scenes/objects/bird_area/bird_area.tscn" id="11_xlv5u"]
 [ext_resource type="PackedScene" uid="uid://mq3r2wcoavar" path="res://scenes/ui/inventory/ui_inventory.tscn" id="12_p10iw"]
 [ext_resource type="Texture2D" uid="uid://dl3sgfx16pco7" path="res://resources/textures/med_table_horizontal.tres" id="13_1l3md"]
@@ -104,7 +104,7 @@ tags = Array[String](["perch"])
 shape = SubResource("CircleShape2D_5iy8r")
 debug_color = Color(1, 1, 1, 0.42)
 
-[node name="ShoppeFurniture" parent="GameObjects" groups=["shoppe_furniture"] instance=ExtResource("11_g6s6c")]
+[node name="PlaceableItems" parent="GameObjects" instance=ExtResource("11_g6s6c")]
 
 [node name="SpawnedItems" type="Node2D" parent="GameObjects" groups=["spawned_items"]]
 

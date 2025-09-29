@@ -1,4 +1,4 @@
-class_name RPlaceableItemData
+class_name RShoppeFurnitureData
 extends RItemData
 
 @export var placeable_scene: PackedScene

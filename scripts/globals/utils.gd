@@ -20,3 +20,12 @@ func closest_distance_gp(node: Node2D, targets: Array[Node2D]) -> float:
 		if dist < min_dist:
 			min_dist = dist
 	return min_dist
+
+## matrix operations
+func create_transformation_matrix(dimensions: Vector2i)  -> Array[Vector2i]:
+	var transformation_matrix: Array[Vector2i] = [Vector2i(0, 0)]
+	for i: int in range(dimensions.x - 1):
+		transformation_matrix.append(Vector2i(i + 1,0))
+	for j: int in range(dimensions.y - 1):
+		transformation_matrix.append(Vector2i(0, j + 1))
+	return transformation_matrix

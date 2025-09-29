@@ -11,7 +11,9 @@ const BLOCKED_MODULATE: Color = Color(1, 0, 0, 0.75)
 
 var item_id: int
 var dimensions: Vector2i
+var is_placeable: bool = true
 var blocking_areas: Array[Area2D] = []
+
 
 func _ready() -> void:
 	sprite.modulate = REGULAR_MODULATE
@@ -20,8 +22,13 @@ func _ready() -> void:
 	
 
 ## -- public methods --
+func set_is_placeable(is_placeable_val: bool) -> void:
+	is_placeable = is_placeable_val
+	_update_sprite_modulate()
+
 func is_placement_blocked() -> bool:
-	return blocking_areas.size() > 0
+	var placement_blocked: bool = blocking_areas.size() > 0 or (not is_placeable)
+	return placement_blocked
 
 
 ## -- helper functions --

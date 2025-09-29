@@ -34,10 +34,20 @@ func _unhandled_input(event: InputEvent) -> void:
 
 ## -- helper functions --
 func _check_tile_audio() -> void:
-	var terrain_type: String = GlobalTileManager.get_cust_meta_from_global_pos(
-	global_position,
-	"terrain_type"
-	)
+	# get all ground layers
+	var layers: Array[TileMapLayer] = GlobalTileManager.get_tilemap_layers_by_tag("ground")
+	if not layers: return
+	# iterate through each layer, replacing the type until the highest terrain is selected
+	var terrain_type: String = ""
+	for layer: TileMapLayer in layers:
+		var terrain: String = GlobalTileManager.get_tile_custom_metadata(
+			layer, 
+			global_position, 
+			"terrain_type"
+		)
+		if terrain != "":
+			terrain_type = terrain
+	# if the type changes, switch track, and re-loop
 	if terrain_type != _current_terrain:
 		var new_track: Array[AudioStream] = GlobalAudioManager.get_audio_track("move_" + terrain_type)
 		movement_sound.switch_tracks(new_track)

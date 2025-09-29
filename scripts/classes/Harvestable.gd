@@ -63,10 +63,16 @@ func _shake_sprite() -> void:
 	full_sprite.material.set_shader_parameter("shake_intensity", 0.0)
 
 func _spawn_pickup() -> void:
-	var spawn_positions: Array[Vector2] = GlobalTileManager.get_nearby_navigatable_tile_positions_from_gp(global_position)
+	var spawn_positions: Array[Vector2] = GlobalTileManager.get_adjacent_ground_tiles_gp(
+		global_position,
+		"Grass",
+		["navigatable", "unobstructed"]
+	)
 	if spawn_positions:
-		var chosen_pos: Vector2i = spawn_positions[0]
+		var chosen_pos: Vector2 = spawn_positions.pick_random()
 		GlobalItemSpawner.spawn_item_pickup(pickup_item_id, global_position, chosen_pos)
+	else:
+		GlobalItemSpawner.spawn_item_pickup(pickup_item_id, global_position, global_position)
 
 
 ## -- signal handlers --
