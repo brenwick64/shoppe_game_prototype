@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck0xc31d7h62r"]
+
+[ext_resource type="Script" path="res://scenes/game_objects/placeable_items/placeable_items.gd" id="1_m2y5n"]
+[ext_resource type="PackedScene" uid="uid://cxtu01o27robl" path="res://systems/save_and_load_system/scenes/save_load_component.tscn" id="2_yc2us"]
+
+[node name="PlaceableItems" type="Node2D" groups=["placeable_items"]]
+y_sort_enabled = true
+script = ExtResource("1_m2y5n")
+
+[node name="SaveLoadComponent" parent="." instance=ExtResource("2_yc2us")]
+save_filename = "placed_items"

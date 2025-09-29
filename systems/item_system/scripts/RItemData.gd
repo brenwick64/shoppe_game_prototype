@@ -3,7 +3,7 @@ extends Resource
 
 @export var item_id: int
 @export var item_name: String
-@export var item_type: Constants.ItemTypes = Constants.ItemTypes.NONE
+#@export var item_type: Constants.ItemTypes = Constants.ItemTypes.NONE
 @export var icon_texture: AtlasTexture
 @export var pickup_texture: AtlasTexture
 @export var pickup_scale: Vector2 = Vector2.ONE

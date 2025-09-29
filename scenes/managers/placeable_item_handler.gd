@@ -1,6 +1,8 @@
 class_name PlaceableItemHandler
 extends ItemHandler
 
+var placeable_items: Node2D
+
 var _current_hovered_tile_coords: Variant
 var _current_preview: Node2D
 
@@ -35,10 +37,15 @@ func _clear_preview() -> void:
 
 func _spawn_placeable() -> void:
 	if not _current_preview: return
+	var placeable_items: PlaceableItems = get_tree().get_first_node_in_group("placeable_items")
+	if not placeable_items:
+		push_error("PlaceableItemHandler PlaceableItems game object node not found in tree.")
+		return
 	var placeable_ins: Node2D = _current_item_data.new_placeable()
 	var global_pos: Vector2 = _current_preview.global_position
 	placeable_ins.global_position = global_pos
-	main_scene.add_child(placeable_ins)
+	placeable_ins.origin_tile_coords = _current_hovered_tile_coords
+	placeable_items.add_placeable_item(placeable_ins)
 	_clear_preview()
 	_remove_item_from_inv()
 
@@ -47,10 +54,18 @@ func _remove_item_from_inv() -> void:
 
 
 ## -- overrides --
+func _ready() -> void:
+	var placeable_items_node: PlaceableItems = get_tree().get_first_node_in_group("placeable_items")
+	if not placeable_items_node:
+		push_error("PlaceableItemHandler error: no placeable items node found.")
+	placeable_items = placeable_items_node
+	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("click"):
 		if not _current_preview: return
 		if _current_preview.is_placement_blocked(): return
+		if placeable_items.check_collision(_current_hovered_tile_coords, _current_preview.dimensions): return
+		
 		_spawn_placeable()
 
 func _physics_process(_delta: float) -> void:

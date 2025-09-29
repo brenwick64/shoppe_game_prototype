@@ -7,4 +7,4 @@ script = ExtResource("1_yktnv")
 base_folder = "res://resources/r_item_data"
 includes = Array[String]([])
 excludes = Array[String]([])
-paths = Array[String](["res://resources/r_item_data/stone.tres", "res://resources/r_item_data/wood.tres", "res://resources/r_item_data/placeables/medium_table.tres", "res://resources/r_item_data/placeables/small_table.tres"])
+paths = Array[String](["res://resources/r_item_data/stone.tres", "res://resources/r_item_data/wood.tres", "res://resources/r_item_data/placeables/medium_table_horizontal.tres", "res://resources/r_item_data/placeables/small_table.tres"])
