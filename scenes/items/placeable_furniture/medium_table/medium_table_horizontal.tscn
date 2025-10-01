@@ -1,21 +1,32 @@
-[gd_scene load_steps=7 format=3 uid="uid://fepru02c0sv5"]
+[gd_scene load_steps=8 format=3 uid="uid://fepru02c0sv5"]
 
 [ext_resource type="Texture2D" uid="uid://dl3sgfx16pco7" path="res://resources/textures/shoppe_furniture/med_table_horizontal.tres" id="1_enyj0"]
 [ext_resource type="Script" path="res://scripts/classes/PlaceableFurniture.gd" id="1_kunly"]
 [ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="3_ptffd"]
 [ext_resource type="AudioStream" uid="uid://bv02g04vkgdar" path="res://audio/actions/place_object/place_object_1.wav" id="4_umjes"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2ljr"]
-size = Vector2(29, 11)
+[ext_resource type="PackedScene" uid="uid://cj3lu0kp1ucot" path="res://placeable_item_slot.tscn" id="5_goedh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jjcgv"]
 size = Vector2(29, 14)
 
-[node name="MediumTableHorizontal" type="StaticBody2D" node_paths=PackedStringArray("place_sound")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2ljr"]
+size = Vector2(29, 11)
+
+[node name="MediumTableHorizontal" type="StaticBody2D" node_paths=PackedStringArray("item_slots_node", "place_sound")]
 z_index = 2
 y_sort_enabled = true
 script = ExtResource("1_kunly")
+item_slots_node = NodePath("ItemSlots")
 place_sound = NodePath("PlacedSound")
+
+[node name="BlockPlacement" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlockPlacement"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_jjcgv")
+debug_color = Color(0.876, 0.274, 0.531, 0.216)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -5)
@@ -26,17 +37,25 @@ offset = Vector2(0, 5)
 position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_t2ljr")
 
-[node name="BlockPlacement" type="Area2D" parent="."]
-visible = false
-collision_layer = 16
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BlockPlacement"]
-position = Vector2(-0.5, 0)
-shape = SubResource("RectangleShape2D_jjcgv")
-debug_color = Color(0.876, 0.274, 0.531, 0.216)
-
 [node name="PlacedSound" parent="." instance=ExtResource("3_ptffd")]
 bus = &"sfx"
 sound = ExtResource("4_umjes")
 pitch_variance_range = Vector2(0.75, 1.25)
+
+[node name="ItemSlots" type="Node2D" parent="."]
+
+[node name="1x1Slot" parent="ItemSlots" node_paths=PackedStringArray("parent_furniture") instance=ExtResource("5_goedh")]
+position = Vector2(-6, -2)
+parent_furniture = NodePath("../..")
+
+[node name="1x1Slot2" parent="ItemSlots" node_paths=PackedStringArray("parent_furniture") instance=ExtResource("5_goedh")]
+position = Vector2(6, -2)
+parent_furniture = NodePath("../..")
+slot_index = 1
+distance_from_origin = Vector2i(1, 0)
+
+[node name="2x1Slot" parent="ItemSlots" node_paths=PackedStringArray("parent_furniture") instance=ExtResource("5_goedh")]
+position = Vector2(0, -2)
+parent_furniture = NodePath("../..")
+slot_index = 2
+dimensions = Vector2i(2, 1)

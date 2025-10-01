@@ -1,11 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://bl37qoflgadm4"]
 
 [ext_resource type="Script" path="res://scripts/classes/PlaceableItemPreview.gd" id="1_boj4g"]
-[ext_resource type="Texture2D" uid="uid://dyv0duku6ree3" path="res://resources/textures/shoppe_items/health_potion/health_potion_small.tres" id="1_dxogv"]
+[ext_resource type="Texture2D" uid="uid://dyv0duku6ree3" path="res://resources/textures/shoppe_items/health_potion_small.tres" id="1_dxogv"]
 
 [node name="HealthPotionSmallPreview" type="Node2D" node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_boj4g")
 sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
 texture = ExtResource("1_dxogv")

@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://ciwr1gc3w5xer"]
+
+[ext_resource type="Script" path="res://scripts/classes/PlaceableItem.gd" id="1_pq38f"]
+[ext_resource type="Texture2D" uid="uid://jrkkk66ogdiu" path="res://resources/textures/shoppe_items/sword.tres" id="2_q4s07"]
+[ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="3_3vpxs"]
+[ext_resource type="AudioStream" uid="uid://dxlkymo3h6qjg" path="res://audio/actions/place_object/place_object_3.wav" id="4_rs4kv"]
+
+[node name="Sword" type="Node2D" node_paths=PackedStringArray("place_sound")]
+script = ExtResource("1_pq38f")
+place_sound = NodePath("SingleSoundComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("2_q4s07")
+
+[node name="SingleSoundComponent" parent="." instance=ExtResource("3_3vpxs")]
+sound = ExtResource("4_rs4kv")

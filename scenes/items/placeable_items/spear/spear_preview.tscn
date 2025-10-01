@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dx17btnjt3ks3"]
+
+[ext_resource type="Script" path="res://scripts/classes/PlaceableItemPreview.gd" id="1_fsgbd"]
+[ext_resource type="Texture2D" uid="uid://yd0i42v0ua1y" path="res://resources/textures/shoppe_items/spear.tres" id="2_wdhxj"]
+
+[node name="Spear" type="Node2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_fsgbd")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("2_wdhxj")

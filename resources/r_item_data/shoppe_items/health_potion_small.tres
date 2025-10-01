@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="RShoppeItemData" load_steps=5 format=3 uid="uid://cvyajmbd2o8kx"]
 
-[ext_resource type="Texture2D" uid="uid://dyv0duku6ree3" path="res://resources/textures/shoppe_items/health_potion/health_potion_small.tres" id="1_0eckd"]
+[ext_resource type="Texture2D" uid="uid://dyv0duku6ree3" path="res://resources/textures/shoppe_items/health_potion_small.tres" id="1_0eckd"]
 [ext_resource type="Script" path="res://systems/item_system/scripts/RShoppeItemData.gd" id="1_j1807"]
 [ext_resource type="PackedScene" uid="uid://da6of7tcgp3c7" path="res://scenes/items/placeable_items/health_potion_small/health_potion_small.tscn" id="2_mekp0"]
 [ext_resource type="PackedScene" uid="uid://bl37qoflgadm4" path="res://scenes/items/placeable_items/health_potion_small/health_potion_small_preview.tscn" id="2_xknul"]

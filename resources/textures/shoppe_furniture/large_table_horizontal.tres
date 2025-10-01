@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://bwpsy33chrv8k"]
+
+[ext_resource type="Texture2D" uid="uid://dn8y4mjnnvyfy" path="res://assets/objects/tables-redwood.png" id="1_2hktn"]
+
+[resource]
+atlas = ExtResource("1_2hktn")
+region = Rect2(1, 17, 46, 14)

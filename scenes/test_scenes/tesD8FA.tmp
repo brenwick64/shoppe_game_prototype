@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://1w3dnrty1m8p" path="res://scenes/game_objects/shoppe_items/shoppe_items.tscn" id="12_p0erb"]
 [ext_resource type="PackedScene" uid="uid://mq3r2wcoavar" path="res://scenes/ui/inventory/ui_inventory.tscn" id="12_p10iw"]
 [ext_resource type="PackedScene" uid="uid://b52lyvwpigah1" path="res://systems/item_system/scenes/item_pickup/item_pickup.tscn" id="12_u6b35"]
-[ext_resource type="Texture2D" uid="uid://bwpsy33chrv8k" path="res://resources/textures/shoppe_furniture/large_table_horizontal.tres" id="14_eeh7m"]
+[ext_resource type="Texture2D" uid="uid://blmwn4j6f81mv" path="res://resources/textures/shoppe_furniture/small_table.tres" id="13_s3fjv"]
 [ext_resource type="PackedScene" uid="uid://dx8fctcgp1stc" path="res://scenes/ui/action_bar/ui_action_bar.tscn" id="15_h53hr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yikv7"]
@@ -115,8 +115,8 @@ shoppe_furniture = NodePath("../ShoppeFurniture")
 [node name="SpawnedItems" type="Node2D" parent="TemporaryGameObjects" groups=["spawned_items"]]
 
 [node name="ItemPickup" parent="TemporaryGameObjects/SpawnedItems" instance=ExtResource("12_u6b35")]
-pickup_texture = ExtResource("14_eeh7m")
-item_id = 55
+pickup_texture = ExtResource("13_s3fjv")
+item_id = 99
 count = 5
 
 [node name="Player" parent="." instance=ExtResource("4_p0uxn")]

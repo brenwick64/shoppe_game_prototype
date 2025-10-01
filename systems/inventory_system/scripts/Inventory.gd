@@ -24,7 +24,7 @@ func add_item(item_id: int, count: int) -> void:
 		var added_item: RInventoryItem = _insert_item(item_id, count)
 		item_added.emit(added_item)
 	else: # existing item
-		var updated_item: RInventoryItem = _update_item(item_id, count, item_index)
+		var updated_item: RInventoryItem = _update_item(count, item_index)
 		if updated_item.count > 0:
 			item_updated.emit(updated_item)
 		else:
@@ -34,7 +34,7 @@ func remove_item(item_id: int, count: int) -> void:
 	var item_index: int = _get_item_index(item_id)
 	if not item_index:
 		push_error("Inventory error: attempted to remove non existing item.")
-	var updated_item: RInventoryItem = _update_item(item_id, (count * -1), item_index)
+	var updated_item: RInventoryItem = _update_item((count * -1), item_index)
 	if updated_item.count > 0:
 		item_updated.emit(updated_item)
 	else:
@@ -61,7 +61,7 @@ func _insert_item(item_id: int, count: int) -> RInventoryItem:
 	inventory_items.append(new_inv_item)
 	return new_inv_item
 
-func _update_item(item_id: int, count: int, index: int) -> RInventoryItem:
+func _update_item(count: int, index: int) -> RInventoryItem:
 	if inventory_items.size() < index:
 		push_error("Inventory error: out of bounds index check for _update_item")
 		return

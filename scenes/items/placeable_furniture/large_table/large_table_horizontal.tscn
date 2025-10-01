@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=3 uid="uid://cyjrlpji3uxwo"]
+
+[ext_resource type="Script" path="res://scripts/classes/PlaceableFurniture.gd" id="1_m023r"]
+[ext_resource type="Texture2D" uid="uid://bwpsy33chrv8k" path="res://resources/textures/shoppe_furniture/large_table_horizontal.tres" id="2_3kvqj"]
+[ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="3_v888b"]
+[ext_resource type="AudioStream" uid="uid://bv02g04vkgdar" path="res://audio/actions/place_object/place_object_1.wav" id="4_3fie6"]
+[ext_resource type="PackedScene" uid="uid://cj3lu0kp1ucot" path="res://placeable_item_slot.tscn" id="5_5un2y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jjcgv"]
+size = Vector2(46, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2ljr"]
+size = Vector2(46, 11)
+
+[node name="LargeaTableHorizontal" type="StaticBody2D" node_paths=PackedStringArray("item_slots_node", "place_sound")]
+z_index = 2
+y_sort_enabled = true
+script = ExtResource("1_m023r")
+item_slots_node = NodePath("ItemSlots")
+place_sound = NodePath("PlacedSound")
+
+[node name="BlockPlacement" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlockPlacement"]
+shape = SubResource("RectangleShape2D_jjcgv")
+debug_color = Color(0.876, 0.274, 0.531, 0.216)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = ExtResource("2_3kvqj")
+offset = Vector2(0, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_t2ljr")
+
+[node name="PlacedSound" parent="." instance=ExtResource("3_v888b")]
+bus = &"sfx"
+sound = ExtResource("4_3fie6")
+pitch_variance_range = Vector2(0.75, 1.25)
+
+[node name="ItemSlots" type="Node2D" parent="."]
+
+[node name="1x1Slot" parent="ItemSlots" node_paths=PackedStringArray("parent_furniture") instance=ExtResource("5_5un2y")]
+position = Vector2(-15, -2)
+parent_furniture = NodePath("../..")
+
+[node name="1x1Slot2" parent="ItemSlots" node_paths=PackedStringArray("parent_furniture") instance=ExtResource("5_5un2y")]
+position = Vector2(0, -2)
+parent_furniture = NodePath("../..")
+slot_index = 1
+distance_from_origin = Vector2i(1, 0)
+
+[node name="1x1Slot3" parent="ItemSlots" node_paths=PackedStringArray("parent_furniture") instance=ExtResource("5_5un2y")]
+position = Vector2(14, -2)
+parent_furniture = NodePath("../..")
+slot_index = 2
+distance_from_origin = Vector2i(2, 0)
+
+[node name="2x1Slot1" parent="ItemSlots" node_paths=PackedStringArray("parent_furniture") instance=ExtResource("5_5un2y")]
+position = Vector2(-9, -2)
+parent_furniture = NodePath("../..")
+slot_index = 3
+dimensions = Vector2i(2, 1)
+
+[node name="2x1Slot2" parent="ItemSlots" node_paths=PackedStringArray("parent_furniture") instance=ExtResource("5_5un2y")]
+position = Vector2(7, -2)
+parent_furniture = NodePath("../..")
+slot_index = 4
+dimensions = Vector2i(2, 1)
+distance_from_origin = Vector2i(1, 0)
+
+[node name="3x1Slot1" parent="ItemSlots" node_paths=PackedStringArray("parent_furniture") instance=ExtResource("5_5un2y")]
+position = Vector2(0, -2)
+parent_furniture = NodePath("../..")
+slot_index = 5
+dimensions = Vector2i(3, 1)

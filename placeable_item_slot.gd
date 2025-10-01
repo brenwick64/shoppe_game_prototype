@@ -1,9 +1,13 @@
 class_name PlaceableItemSlot
 extends Node2D
 
+signal item_added(item_slot: PlaceableItemSlot, placed_item: PlaceableItem)
+signal item_removed(item_slot: PlaceableItemSlot, placed_item: PlaceableItem)
+
 @export var parent_furniture: PlaceableFurniture
 @export var slot_index: int
 @export var dimensions: Vector2i = Vector2i.ONE
+@export var distance_from_origin: Vector2i = Vector2i.ZERO
 
 var shoppe_items: ShoppeItems
 
@@ -26,8 +30,10 @@ func add_item(placeable_item: PlaceableItem) -> void:
 	placed_item = placeable_item
 	add_child(placeable_item)
 	shoppe_items.handle_item_added(placeable_item)
+	item_added.emit(self, placeable_item)
 
 func remove_item() -> void:
+	item_removed.emit(self, placed_item)
 	shoppe_items.handle_item_removed(placed_item)
 	placed_item.queue_free()
 	_reset_item_slot()

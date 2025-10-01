@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://wddd88hve6ba"]
+
+[ext_resource type="Script" path="res://scripts/classes/PlaceableItemPreview.gd" id="1_lmffw"]
+[ext_resource type="Texture2D" uid="uid://jrkkk66ogdiu" path="res://resources/textures/shoppe_items/sword.tres" id="2_0ghgq"]
+
+[node name="SwordPreview" type="Node2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_lmffw")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("2_0ghgq")

@@ -96,7 +96,6 @@ func _load_tilemap_layers(tile_map: Node2D) -> void:
 		_tilemap_layers.append(node)
 
 func _is_tile_naviagatable(layer: TileMapLayer, tile_coords: Vector2i) -> bool:
-	var tile_gp: Vector2 = get_global_position_from_tile(layer, tile_coords)
 	var tile_data: TileData = layer.get_cell_tile_data(tile_coords)
 	if not tile_data: return false # not in navigatable layer
 	var naviagtion: NavigationPolygon = tile_data.get_navigation_polygon(0)

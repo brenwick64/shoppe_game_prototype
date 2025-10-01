@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="RShoppeItemData" load_steps=5 format=3 uid="uid://c58qh551c8b1d"]
+
+[ext_resource type="Script" path="res://systems/item_system/scripts/RShoppeItemData.gd" id="1_6baas"]
+[ext_resource type="PackedScene" uid="uid://cdtkl68yy7y7p" path="res://scenes/items/placeable_items/spear/spear.tscn" id="1_hveem"]
+[ext_resource type="Texture2D" uid="uid://yd0i42v0ua1y" path="res://resources/textures/shoppe_items/spear.tres" id="1_o2tku"]
+[ext_resource type="PackedScene" uid="uid://dx17btnjt3ks3" path="res://scenes/items/placeable_items/spear/spear_preview.tscn" id="2_cdlwt"]
+
+[resource]
+script = ExtResource("1_6baas")
+placeable_scene = ExtResource("1_hveem")
+preview_scene = ExtResource("2_cdlwt")
+scale_value = Vector2(0.85, 0.85)
+dimensions = Vector2i(3, 1)
+item_id = 55
+item_name = "Test Spear"
+icon_texture = ExtResource("1_o2tku")
+pickup_texture = ExtResource("1_o2tku")
+pickup_scale = Vector2(1, 1)

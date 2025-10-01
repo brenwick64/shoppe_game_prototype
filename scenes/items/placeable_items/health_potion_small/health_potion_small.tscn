@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://da6of7tcgp3c7"]
 
 [ext_resource type="Script" path="res://scripts/classes/PlaceableItem.gd" id="1_572j7"]
-[ext_resource type="Texture2D" uid="uid://dyv0duku6ree3" path="res://resources/textures/shoppe_items/health_potion/health_potion_small.tres" id="2_huuhu"]
+[ext_resource type="Texture2D" uid="uid://dyv0duku6ree3" path="res://resources/textures/shoppe_items/health_potion_small.tres" id="2_huuhu"]
 [ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="3_glsfe"]
 [ext_resource type="AudioStream" uid="uid://dxlkymo3h6qjg" path="res://audio/actions/place_object/place_object_3.wav" id="4_3t3lv"]
 
@@ -10,6 +10,7 @@ script = ExtResource("1_572j7")
 place_sound = NodePath("SingleSoundComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
 texture = ExtResource("2_huuhu")
 
 [node name="SingleSoundComponent" parent="." instance=ExtResource("3_glsfe")]

@@ -12,11 +12,11 @@ size = Vector2(14, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b7a5n"]
 size = Vector2(13.5, 11.5)
 
-[node name="SmallTable" type="StaticBody2D" node_paths=PackedStringArray("item_slots", "place_sound")]
+[node name="SmallTable" type="StaticBody2D" node_paths=PackedStringArray("item_slots_node", "place_sound")]
 z_index = 2
 y_sort_enabled = true
 script = ExtResource("1_v3kir")
-item_slots = NodePath("ItemSlots")
+item_slots_node = NodePath("ItemSlots")
 place_sound = NodePath("PlacedSound")
 
 [node name="BlockPlacement" type="Area2D" parent="."]
@@ -44,4 +44,5 @@ pitch_variance_range = Vector2(0.75, 1.25)
 [node name="ItemSlots" type="Node2D" parent="."]
 
 [node name="1x1Slot" parent="ItemSlots" node_paths=PackedStringArray("parent_furniture") instance=ExtResource("5_l5t0n")]
+position = Vector2(0, -2)
 parent_furniture = NodePath("../..")

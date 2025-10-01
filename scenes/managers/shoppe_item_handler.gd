@@ -13,10 +13,24 @@ func handle_changed_tile() -> void:
 	if _current_hovered_placeable_tile_coords:
 		var free_slots: Array[PlaceableItemSlot] = _get_free_slots()
 		if not free_slots: return
-		# TODO: organize slots
-		print(free_slots)
-		# spawn preview in slot
-		_spawn_preview(free_slots[0])
+		var closest_item_slot: PlaceableItemSlot = _get_closest_item_slot(free_slots)
+		_spawn_preview(closest_item_slot)
+
+func _get_closest_item_slot(free_slots: Array[PlaceableItemSlot]) -> PlaceableItemSlot:
+	var layer: TileMapLayer = GlobalTileManager.get_tilemap_layer_by_name("ShoppeFloor")
+	if not layer: return null
+	if not _current_hovered_placeable_tile_coords: return
+	var current_gp: Vector2 = GlobalTileManager.get_global_position_from_tile(layer, _current_hovered_placeable_tile_coords)
+	
+	var closest_slot: PlaceableItemSlot
+	var closest_distance: float = INF
+	for slot: PlaceableItemSlot in free_slots:
+		var distance: float = current_gp.distance_to(slot.global_position)
+		if distance < closest_distance:
+			closest_distance = distance
+			closest_slot = slot
+	
+	return closest_slot
 
 
 ## -- overrides --
