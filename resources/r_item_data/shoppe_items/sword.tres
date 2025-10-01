@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="RShoppeItemData" load_steps=5 format=3 uid="uid://bc3vn0te4baww"]
 
-[ext_resource type="Script" path="res://systems/item_system/scripts/RShoppeItemData.gd" id="1_haxpt"]
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RShoppeItemData.gd" id="1_haxpt"]
 [ext_resource type="Texture2D" uid="uid://jrkkk66ogdiu" path="res://resources/textures/shoppe_items/sword.tres" id="1_kar12"]
 [ext_resource type="PackedScene" uid="uid://ciwr1gc3w5xer" path="res://scenes/items/placeable_items/sword/sword.tscn" id="2_ls27y"]
 [ext_resource type="PackedScene" uid="uid://wddd88hve6ba" path="res://scenes/items/placeable_items/sword/sword_preview.tscn" id="3_277bx"]

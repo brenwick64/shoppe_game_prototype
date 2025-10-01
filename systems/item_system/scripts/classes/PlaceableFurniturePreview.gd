@@ -5,7 +5,6 @@ extends PlaceablePreview
 
 @onready var block_placement_area: Area2D = $BlockPlacement
 
-
 var blocking_areas: Array[Area2D] = []
 
 func _ready() -> void:

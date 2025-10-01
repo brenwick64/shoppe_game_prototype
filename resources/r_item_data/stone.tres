@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RItemData" load_steps=3 format=3 uid="uid://c73mtdxncld6t"]
 
 [ext_resource type="Texture2D" uid="uid://cd57e0i3ay66o" path="res://resources/textures/harvestables/stone.tres" id="1_idj5b"]
-[ext_resource type="Script" path="res://systems/item_system/scripts/RItemData.gd" id="1_rgkea"]
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="1_rgkea"]
 
 [resource]
 script = ExtResource("1_rgkea")

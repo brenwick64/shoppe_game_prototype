@@ -26,6 +26,7 @@ func add_item(inv_item: RInventoryItem) -> void:
 	if not item_data:
 		push_error("InventorySlot error: no item found for id: " + str(inv_item.item_id))
 	item_id = inv_item.item_id
+	centered_texture_rect.icon_scale_multiplier = item_data.icon_scale_multiplier
 	centered_texture_rect.add_texture(item_data.icon_texture)
 	count_label.add_count(inv_item.count)
 

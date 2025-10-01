@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="RShoppeFurnitureData" load_steps=5 format=3 uid="uid://cacyed8ej6x88"]
 
-[ext_resource type="Script" path="res://systems/item_system/scripts/RShoppeFurnitureData.gd" id="1_4xdel"]
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RShoppeFurnitureData.gd" id="1_4xdel"]
 [ext_resource type="Texture2D" uid="uid://bwpsy33chrv8k" path="res://resources/textures/shoppe_furniture/large_table_horizontal.tres" id="1_pkms2"]
 [ext_resource type="PackedScene" uid="uid://cyjrlpji3uxwo" path="res://scenes/items/placeable_furniture/large_table/large_table_horizontal.tscn" id="2_gnnno"]
 [ext_resource type="PackedScene" uid="uid://cp4n4sp5un7kn" path="res://scenes/items/placeable_furniture/large_table/large_table_horizontal_preview.tscn" id="3_4w8lf"]
@@ -14,5 +14,6 @@ dimensions = Vector2i(3, 1)
 item_id = 42
 item_name = "Large Redwood Table"
 icon_texture = ExtResource("1_pkms2")
+icon_scale_multiplier = 1.0
 pickup_texture = ExtResource("1_pkms2")
 pickup_scale = Vector2(0.5, 0.5)

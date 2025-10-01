@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cj3lu0kp1ucot"]
 
-[ext_resource type="Script" path="res://placeable_item_slot.gd" id="1_bl4m6"]
+[ext_resource type="Script" path="res://systems/item_system/scenes/placeable_item_slot/placeable_item_slot.gd" id="1_bl4m6"]
 
 [node name="PlaceableItemSlot" type="Node2D"]
 position = Vector2(0, -3)

@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://fepru02c0sv5"]
 
 [ext_resource type="Texture2D" uid="uid://dl3sgfx16pco7" path="res://resources/textures/shoppe_furniture/med_table_horizontal.tres" id="1_enyj0"]
-[ext_resource type="Script" path="res://scripts/classes/PlaceableFurniture.gd" id="1_kunly"]
+[ext_resource type="Script" path="res://systems/item_system/scripts/classes/PlaceableFurniture.gd" id="1_kunly"]
 [ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="3_ptffd"]
 [ext_resource type="AudioStream" uid="uid://bv02g04vkgdar" path="res://audio/actions/place_object/place_object_1.wav" id="4_umjes"]
-[ext_resource type="PackedScene" uid="uid://cj3lu0kp1ucot" path="res://placeable_item_slot.tscn" id="5_goedh"]
+[ext_resource type="PackedScene" uid="uid://cj3lu0kp1ucot" path="res://systems/item_system/scenes/placeable_item_slot/placeable_item_slot.tscn" id="5_goedh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jjcgv"]
 size = Vector2(29, 14)

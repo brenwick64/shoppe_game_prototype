@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/ui/settings/settings.gd" id="1_y0yir"]
 [ext_resource type="PackedScene" uid="uid://ij1mxcnlp011" path="res://scenes/ui/audio_slider/audio_slider.tscn" id="2_s2473"]
 
-[node name="Settings" type="Control"]
+[node name="AudioSettings" type="Control"]
 custom_minimum_size = Vector2(400, 180)
 layout_mode = 3
 anchors_preset = 0

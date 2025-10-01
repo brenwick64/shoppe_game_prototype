@@ -14,11 +14,19 @@ var _current_terrain: String
 
 func _ready() -> void:
 	physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
+	GlobalMessageManager.add_message("INFO", "player has entered the game")
+
 
 ## -- public methods --
-func pickup(item_id: int, count) -> void:
+func pickup(item_id: int, count: int) -> void:
 	pickup_sound.play_sound()
 	inventory_manager.inventory.add_item(item_id, count)
+	
+	var item_data: RItemData = GlobalItemDb.get_item_by_id(item_id)
+	GlobalMessageManager.add_message(
+		"DEBUG",
+		"picked up " + str(count) + " x " + item_data.item_name
+	)
 
 
 ## -- overrides --

@@ -25,11 +25,12 @@ DayAndNightManager="*res://systems/day_night_system/scripts/GlobalDayNightManage
 Settings="*res://scripts/globals/settings.gd"
 Constants="*res://scripts/globals/constants.gd"
 Utils="*res://scripts/globals/utils.gd"
-GlobalItemDb="*res://systems/item_system/scripts/GlobalItemDB.gd"
-GlobalItemSpawner="*res://systems/item_system/scripts/GlobalItemSpawner.gd"
+GlobalItemDb="*res://systems/item_system/scripts/globals/GlobalItemDB.gd"
+GlobalItemSpawner="*res://systems/item_system/scripts/globals/GlobalItemSpawner.gd"
 GlobalTileManager="*res://systems/tile_system/scripts/GlobalTileManager.gd"
 GlobalSaveLoadManager="*res://systems/save_and_load_system/scripts/GlobalSaveLoadManager.gd"
 uuid="*res://addons/uuid/uuid.gd"
+GlobalMessageManager="*res://systems/chat_and_message_system/scripts/GlobalMessageManager.gd"
 
 [display]
 

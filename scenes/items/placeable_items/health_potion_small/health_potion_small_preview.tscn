@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bl37qoflgadm4"]
 
-[ext_resource type="Script" path="res://scripts/classes/PlaceableItemPreview.gd" id="1_boj4g"]
+[ext_resource type="Script" path="res://systems/item_system/scripts/classes/PlaceableItemPreview.gd" id="1_boj4g"]
 [ext_resource type="Texture2D" uid="uid://dyv0duku6ree3" path="res://resources/textures/shoppe_items/health_potion_small.tres" id="1_dxogv"]
 
 [node name="HealthPotionSmallPreview" type="Node2D" node_paths=PackedStringArray("sprite")]
