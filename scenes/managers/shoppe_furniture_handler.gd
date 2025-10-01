@@ -1,7 +1,7 @@
 class_name ShoppeFurnitureHandler
 extends ItemHandler
 
-var shoppe_furniture: Node2D
+var shoppe_furniture: ShoppeFurniture
 
 var _current_hovered_placeable_tile_coords: Variant
 var _current_preview: PlaceablePreview

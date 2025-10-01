@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bmce4hybdi20v"]
+[gd_scene load_steps=20 format=3 uid="uid://bmce4hybdi20v"]
 
 [ext_resource type="PackedScene" uid="uid://d05xg5vjtcvs1" path="res://systems/day_night_system/scenes/day_night_manager/day_night_manager.tscn" id="1_0imsq"]
 [ext_resource type="PackedScene" uid="uid://csogmde7287ni" path="res://scenes/game_objects/player_camera/player_camera.tscn" id="2_vxtlm"]
@@ -13,10 +13,9 @@
 [ext_resource type="AudioStream" uid="uid://dxv22jeorx386" path="res://audio/music/the_castle.wav" id="10_wpe11"]
 [ext_resource type="PackedScene" uid="uid://ck0xc31d7h62r" path="res://scenes/game_objects/shoppe_furniture/shoppe_furniture.tscn" id="11_g6s6c"]
 [ext_resource type="PackedScene" uid="uid://8hkhsmiruadb" path="res://scenes/objects/bird_area/bird_area.tscn" id="11_xlv5u"]
-[ext_resource type="PackedScene" uid="uid://1w3dnrty1m8p" path="res://scenes/game_objects/shoppe_items/shoppe_items.tscn" id="12_p0erb"]
 [ext_resource type="PackedScene" uid="uid://mq3r2wcoavar" path="res://scenes/ui/inventory/ui_inventory.tscn" id="12_p10iw"]
 [ext_resource type="PackedScene" uid="uid://b52lyvwpigah1" path="res://systems/item_system/scenes/item_pickup/item_pickup.tscn" id="12_u6b35"]
-[ext_resource type="Texture2D" uid="uid://blmwn4j6f81mv" path="res://resources/textures/shoppe_furniture/small_table.tres" id="13_s3fjv"]
+[ext_resource type="Texture2D" uid="uid://dyv0duku6ree3" path="res://resources/textures/shoppe_items/health_potion/health_potion_small.tres" id="13_p2vxu"]
 [ext_resource type="PackedScene" uid="uid://dx8fctcgp1stc" path="res://scenes/ui/action_bar/ui_action_bar.tscn" id="15_h53hr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yikv7"]
@@ -109,15 +108,14 @@ y_sort_enabled = true
 
 [node name="ShoppeFurniture" parent="TemporaryGameObjects" groups=["shoppe_furniture"] instance=ExtResource("11_g6s6c")]
 
-[node name="ShoppeItems" parent="TemporaryGameObjects" node_paths=PackedStringArray("shoppe_furniture") instance=ExtResource("12_p0erb")]
-shoppe_furniture = NodePath("../ShoppeFurniture")
+[node name="ShoppeItems" type="Node2D" parent="TemporaryGameObjects"]
 
 [node name="SpawnedItems" type="Node2D" parent="TemporaryGameObjects" groups=["spawned_items"]]
 
 [node name="ItemPickup" parent="TemporaryGameObjects/SpawnedItems" instance=ExtResource("12_u6b35")]
-pickup_texture = ExtResource("13_s3fjv")
-item_id = 99
-count = 10
+pickup_texture = ExtResource("13_p2vxu")
+item_id = 80
+count = 5
 
 [node name="Player" parent="." instance=ExtResource("4_p0uxn")]
 y_sort_enabled = true

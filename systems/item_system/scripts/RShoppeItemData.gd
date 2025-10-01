@@ -1,4 +1,4 @@
-class_name RShoppeFurnitureData
+class_name RShoppeItemData
 extends RItemData
 
 @export var placeable_scene: PackedScene
@@ -6,8 +6,8 @@ extends RItemData
 @export var scale_value: Vector2 = Vector2.ONE
 @export var dimensions: Vector2i = Vector2i.ONE
 
-func new_placeable() -> PlaceableFurniture:
-	var placeable_ins: PlaceableFurniture = placeable_scene.instantiate()
+func new_placeable() -> Placeable:
+	var placeable_ins: Placeable = placeable_scene.instantiate()
 	placeable_ins.item_id = item_id
 	placeable_ins.dimensions = dimensions
 	placeable_ins.scale = scale_value

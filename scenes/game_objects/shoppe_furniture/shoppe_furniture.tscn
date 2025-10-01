@@ -1,7 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://ck0xc31d7h62r"]
+[gd_scene load_steps=5 format=3 uid="uid://ck0xc31d7h62r"]
 
 [ext_resource type="Script" path="res://scenes/game_objects/shoppe_furniture/shoppe_furniture.gd" id="1_m2y5n"]
 [ext_resource type="PackedScene" uid="uid://cxtu01o27robl" path="res://systems/save_and_load_system/scenes/save_load_component.tscn" id="2_yc2us"]
+[ext_resource type="Script" path="res://systems/save_and_load_system/scripts/RShoppeFurnitureSaveData.gd" id="3_lfrt0"]
+
+[sub_resource type="Resource" id="Resource_rf27h"]
+script = ExtResource("3_lfrt0")
+furniture_unique_id = ""
+item_id = 0
+global_position = Vector2(0, 0)
+scale_value = Vector2(0, 0)
+dimensions = Vector2i(0, 0)
+origin_tile_coords = Vector2i(0, 0)
+occupied_tiles = Array[Vector2i]([])
+item_slot_item_ids = Array[int]([])
 
 [node name="ShoppeFurniture" type="Node2D"]
 y_sort_enabled = true
@@ -9,3 +21,4 @@ script = ExtResource("1_m2y5n")
 
 [node name="SaveLoadComponent" parent="." instance=ExtResource("2_yc2us")]
 save_filename = "shoppe_furniture"
+save_data_type = SubResource("Resource_rf27h")

@@ -1,16 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://bbr88h3vpigui"]
 
-[ext_resource type="Script" path="res://scripts/classes/PlaceablePreview.gd" id="1_ykead"]
-[ext_resource type="Texture2D" uid="uid://dl3sgfx16pco7" path="res://resources/textures/med_table_horizontal.tres" id="2_riknx"]
+[ext_resource type="Script" path="res://scripts/classes/PlaceableFurniturePreview.gd" id="1_yhpyp"]
+[ext_resource type="Texture2D" uid="uid://dl3sgfx16pco7" path="res://resources/textures/shoppe_furniture/med_table_horizontal.tres" id="2_riknx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_71la1"]
 size = Vector2(29, 14)
 
-[node name="MediumTableHorizontalPreview" type="Node2D" node_paths=PackedStringArray("placement_pivot")]
+[node name="MediumTableHorizontalPreview" type="Node2D" node_paths=PackedStringArray("placement_pivot", "sprite")]
 z_index = 2
 y_sort_enabled = true
-script = ExtResource("1_ykead")
+script = ExtResource("1_yhpyp")
 placement_pivot = NodePath("PlacementPivot")
+sprite = NodePath("Sprite")
 
 [node name="PlacementPivot" type="Marker2D" parent="."]
 position = Vector2(-7, 0)

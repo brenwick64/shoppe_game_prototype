@@ -1,11 +1,14 @@
 class_name Placeable
-extends StaticBody2D
+extends Node2D
 
-@onready var placed_sound: SingleSoundComponent = $PlacedSound
+@export var place_sound: SingleSoundComponent
 
 var item_id: int
 var dimensions: Vector2i
-var origin_tile_coords: Vector2i
+var is_loaded_in: bool = false
 
 func _ready() -> void:
-	placed_sound.play_sound()
+	# avoids playing the placed sound each time objects are loaded
+	if is_loaded_in: return
+	
+	place_sound.play_sound()

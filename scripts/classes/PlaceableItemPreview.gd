@@ -1,0 +1,4 @@
+class_name PlaceableItemPreview
+extends PlaceablePreview
+
+var placeable_item_slot: PlaceableItemSlot

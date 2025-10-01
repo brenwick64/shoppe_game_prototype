@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="RItemData" load_steps=3 format=3 uid="uid://doshf568ito4c"]
 
-[ext_resource type="Texture2D" uid="uid://w4qtqvcafkc8" path="res://resources/textures/icons/wood.tres" id="1_6qifh"]
+[ext_resource type="Texture2D" uid="uid://w4qtqvcafkc8" path="res://resources/textures/harvestables/wood.tres" id="1_6qifh"]
 [ext_resource type="Script" path="res://systems/item_system/scripts/RItemData.gd" id="2_1yihj"]
 
 [resource]

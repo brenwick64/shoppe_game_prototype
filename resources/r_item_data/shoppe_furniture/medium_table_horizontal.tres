@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="RPlaceableItemData" load_steps=5 format=3 uid="uid://gw6yyegede0p"]
 
-[ext_resource type="Texture2D" uid="uid://dl3sgfx16pco7" path="res://resources/textures/med_table_horizontal.tres" id="1_h0taq"]
-[ext_resource type="PackedScene" uid="uid://fepru02c0sv5" path="res://scenes/items/placeables/medium_table/medium_table_horizontal.tscn" id="2_5uxbb"]
-[ext_resource type="PackedScene" uid="uid://bbr88h3vpigui" path="res://scenes/items/placeables/medium_table/medium_table_horizontal_preview.tscn" id="3_j5fge"]
+[ext_resource type="Texture2D" uid="uid://dl3sgfx16pco7" path="res://resources/textures/shoppe_furniture/med_table_horizontal.tres" id="1_h0taq"]
+[ext_resource type="PackedScene" uid="uid://fepru02c0sv5" path="res://scenes/items/placeable_furniture/medium_table/medium_table_horizontal.tscn" id="2_5uxbb"]
+[ext_resource type="PackedScene" uid="uid://bbr88h3vpigui" path="res://scenes/items/placeable_furniture/medium_table/medium_table_horizontal_preview.tscn" id="3_j5fge"]
 [ext_resource type="Script" path="res://systems/item_system/scripts/RShoppeFurnitureData.gd" id="4_yktfk"]
 
 [resource]

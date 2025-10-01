@@ -2,9 +2,11 @@ class_name EquippedItemManager
 extends Node
 
 @export var shoppe_furniture_handler: ShoppeFurnitureHandler
+@export var shoppe_item_handler: ShoppeItemHandler
 
 @onready var item_handlers: Array = [
-	shoppe_furniture_handler
+	shoppe_furniture_handler,
+	shoppe_item_handler
 ]
 
 var _current_held_item: RItemData
@@ -29,9 +31,12 @@ func _update_item_handlers(main_scene: Node2D, player_inv_manager: InventoryMana
 		handler.player_inventory_manager = player_inv_manager
 
 func _handle_equipped_item(item_data: RItemData) -> void:
-	shoppe_furniture_handler.clear_item()
+	for handler: ItemHandler in item_handlers:
+		handler.clear_item()
 	if item_data is RShoppeFurnitureData:
 		shoppe_furniture_handler.set_item(item_data)
+	elif item_data is RShoppeItemData:
+		shoppe_item_handler.set_item(item_data)
 
 
 ## -- signals --
