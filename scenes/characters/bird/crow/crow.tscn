@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="1_dhtp8"]
 [ext_resource type="SpriteFrames" uid="uid://lbnsj522s1iv" path="res://resources/config/animated_spriteframes/crow_spriteframes.tres" id="1_lus1e"]
-[ext_resource type="PackedScene" uid="uid://dl873s53iqi1r" path="res://scripts/state_machine/states/generic_states/idle/idle.tscn" id="1_nnv5t"]
+[ext_resource type="PackedScene" uid="uid://dl873s53iqi1r" path="res://scripts/state_machine/states/bird_states/bird_idle/bird_idle.tscn" id="1_nnv5t"]
 [ext_resource type="PackedScene" uid="uid://vjxtoccpe81v" path="res://scripts/state_machine/states/bird_states/flying/flying.tscn" id="4_70mph"]
 [ext_resource type="PackedScene" uid="uid://dq36rqfby3kqy" path="res://scripts/state_machine/states/bird_states/landing/landing.tscn" id="5_do7of"]
 [ext_resource type="PackedScene" uid="uid://bnpjl7gejkjfn" path="res://scripts/state_machine/states/bird_states/perching/perching.tscn" id="6_eom5n"]

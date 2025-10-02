@@ -1,6 +1,6 @@
 [gd_scene load_steps=40 format=3 uid="uid://x0hp764aoxfp"]
 
-[ext_resource type="Texture2D" uid="uid://cn53uads4bci0" path="res://assets/characters/Character_001.png" id="1_1m8w0"]
+[ext_resource type="Texture2D" uid="uid://cn53uads4bci0" path="res://resources/textures/adventurer_spritesheets/character_001.png" id="1_1m8w0"]
 [ext_resource type="Script" path="res://scenes/components/player_input_component/player_input_component.gd" id="1_bfyut"]
 [ext_resource type="Script" path="res://scenes/characters/player/player.gd" id="1_ym86x"]
 [ext_resource type="Script" path="res://scenes/components/movement_component/movement_component.gd" id="2_6reun"]

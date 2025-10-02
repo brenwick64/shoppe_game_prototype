@@ -1,6 +1,8 @@
 class_name NodeStateMachine
 extends Node
 
+signal state_changed(state: String)
+
 @export var initial_node_state : State
 
 var node_states : Dictionary = {}
@@ -14,9 +16,10 @@ func _ready() -> void:
 			child.transition.connect(transition_to)
 
 	if initial_node_state:
-		initial_node_state._on_enter()
+		initial_node_state._on_enter()	
 		current_node_state = initial_node_state
 		current_node_state_name = current_node_state.name.to_lower()
+		state_changed.emit(current_node_state.name.to_lower())
 
 func _process(delta : float) -> void:
 	if current_node_state:
@@ -44,3 +47,5 @@ func transition_to(node_state_name : String) -> void:
 	
 	current_node_state = new_node_state
 	current_node_state_name = current_node_state.name.to_lower()
+	# send signal
+	state_changed.emit(current_node_state.name.to_lower())

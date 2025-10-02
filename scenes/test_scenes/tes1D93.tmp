@@ -1,0 +1,186 @@
+[gd_scene load_steps=25 format=3 uid="uid://bmce4hybdi20v"]
+
+[ext_resource type="PackedScene" uid="uid://d05xg5vjtcvs1" path="res://systems/day_night_system/scenes/day_night_manager/day_night_manager.tscn" id="1_0imsq"]
+[ext_resource type="PackedScene" uid="uid://csogmde7287ni" path="res://scenes/game_objects/player_camera/player_camera.tscn" id="2_vxtlm"]
+[ext_resource type="PackedScene" uid="uid://b3e78tu5wd3qe" path="res://scenes/game_objects/game_tile_map/game_tile_map.tscn" id="3_gu5lt"]
+[ext_resource type="PackedScene" uid="uid://x0hp764aoxfp" path="res://scenes/characters/player/player.tscn" id="4_p0uxn"]
+[ext_resource type="Script" path="res://scenes/game_objects/game_tilemap/game_tile_map.gd" id="5_0snrh"]
+[ext_resource type="PackedScene" uid="uid://7i1a777bhd6c" path="res://scenes/game_objects/bird_spawner/bird_spawner.tscn" id="5_hyxup"]
+[ext_resource type="Script" path="res://scenes/characters/firefly/firefly_spawner.gd" id="6_fqiym"]
+[ext_resource type="PackedScene" uid="uid://chtm7kcr0w04x" path="res://scenes/managers/equipped_item_manager/equipped_item_manager.tscn" id="6_wd38v"]
+[ext_resource type="PackedScene" uid="uid://eeg5x8snkfqw" path="res://scenes/characters/firefly/firefly.tscn" id="7_ojd8x"]
+[ext_resource type="PackedScene" uid="uid://bj616aj7lg3c7" path="res://scenes/ui/settings/settings.tscn" id="9_u8now"]
+[ext_resource type="AudioStream" uid="uid://dxv22jeorx386" path="res://audio/music/the_castle.wav" id="10_wpe11"]
+[ext_resource type="PackedScene" uid="uid://ck0xc31d7h62r" path="res://scenes/game_objects/shoppe_furniture/shoppe_furniture.tscn" id="11_g6s6c"]
+[ext_resource type="PackedScene" uid="uid://8hkhsmiruadb" path="res://scenes/objects/bird_area/bird_area.tscn" id="11_xlv5u"]
+[ext_resource type="PackedScene" uid="uid://1w3dnrty1m8p" path="res://scenes/game_objects/shoppe_items/shoppe_items.tscn" id="12_p0erb"]
+[ext_resource type="PackedScene" uid="uid://mq3r2wcoavar" path="res://scenes/ui/inventory/ui_inventory.tscn" id="12_p10iw"]
+[ext_resource type="PackedScene" uid="uid://b52lyvwpigah1" path="res://systems/item_system/scenes/item_pickup/item_pickup.tscn" id="12_u6b35"]
+[ext_resource type="Texture2D" uid="uid://bwpsy33chrv8k" path="res://resources/textures/shoppe_furniture/large_table_horizontal.tres" id="14_eeh7m"]
+[ext_resource type="PackedScene" uid="uid://dx8fctcgp1stc" path="res://scenes/ui/action_bar/ui_action_bar.tscn" id="15_h53hr"]
+[ext_resource type="PackedScene" uid="uid://ttyaryp0n5ea" path="res://scenes/ui/console/ui_console.tscn" id="19_wvxil"]
+[ext_resource type="Texture2D" uid="uid://cn53uads4bci0" path="res://resources/textures/adventurer_spritesheets/character_001.png" id="21_0usg6"]
+[ext_resource type="Script" path="res://animated_sprite_2d.gd" id="21_vthqd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yikv7"]
+radius = 103.121
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5iy8r"]
+radius = 94.6414
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yqt4t"]
+
+[node name="TestLighting" type="Node2D" groups=["main_scene"]]
+y_sort_enabled = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="AudioSettings" parent="UI" instance=ExtResource("9_u8now")]
+visible = false
+
+[node name="UIInventory" parent="UI" groups=["ui_player_inventory"] instance=ExtResource("12_p10iw")]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = -322.0
+offset_right = 538.0
+offset_bottom = -14.0
+grow_vertical = 0
+
+[node name="UIActionBar" parent="UI" instance=ExtResource("15_h53hr")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -290.5
+offset_top = -123.0
+offset_right = 290.5
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="UIConsole" parent="UI" instance=ExtResource("19_wvxil")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -267.0
+offset_right = 524.0
+offset_bottom = -17.0
+grow_vertical = 0
+
+[node name="PlayerCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_vxtlm")]
+target = NodePath("../Player")
+
+[node name="CameraSpawner" type="Node2D" parent="PlayerCamera"]
+script = ExtResource("6_fqiym")
+spawn_area_padding = Vector2(50, 50)
+max_spawns = 20
+spawn_time_sec = 2.0
+spawnable_scene = ExtResource("7_ojd8x")
+
+[node name="Spawns" type="Node2D" parent="PlayerCamera/CameraSpawner"]
+
+[node name="SpawnTimer" type="Timer" parent="PlayerCamera/CameraSpawner"]
+autostart = true
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_wpe11")
+autoplay = true
+bus = &"music"
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="DayNightManager" parent="Managers" instance=ExtResource("1_0imsq")]
+
+[node name="EquippedItemManager" parent="Managers" instance=ExtResource("6_wd38v")]
+
+[node name="GameTileMap" parent="." groups=["tile_map"] instance=ExtResource("3_gu5lt")]
+script = ExtResource("5_0snrh")
+
+[node name="PermanentGameObjects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="BirdSpawner" parent="PermanentGameObjects" instance=ExtResource("5_hyxup")]
+
+[node name="BirdAreas" type="Node2D" parent="PermanentGameObjects"]
+
+[node name="BirdAreaWater" parent="PermanentGameObjects/BirdAreas" instance=ExtResource("11_xlv5u")]
+position = Vector2(7, 85)
+tags = Array[String](["water"])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PermanentGameObjects/BirdAreas/BirdAreaWater"]
+shape = SubResource("CircleShape2D_yikv7")
+debug_color = Color(1, 1, 1, 0.42)
+
+[node name="BirdAreaWater2" parent="PermanentGameObjects/BirdAreas" instance=ExtResource("11_xlv5u")]
+position = Vector2(179, -133)
+tags = Array[String](["water"])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PermanentGameObjects/BirdAreas/BirdAreaWater2"]
+shape = SubResource("CircleShape2D_yikv7")
+debug_color = Color(1, 1, 1, 0.42)
+
+[node name="BirdAreaWater3" parent="PermanentGameObjects/BirdAreas" instance=ExtResource("11_xlv5u")]
+position = Vector2(256, 282)
+tags = Array[String](["water"])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PermanentGameObjects/BirdAreas/BirdAreaWater3"]
+shape = SubResource("CircleShape2D_yikv7")
+debug_color = Color(1, 1, 1, 0.42)
+
+[node name="BirdAreaPerch" parent="PermanentGameObjects/BirdAreas" instance=ExtResource("11_xlv5u")]
+position = Vector2(216, 85)
+tags = Array[String](["perch"])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PermanentGameObjects/BirdAreas/BirdAreaPerch"]
+shape = SubResource("CircleShape2D_5iy8r")
+debug_color = Color(1, 1, 1, 0.42)
+
+[node name="BirdAreaPerch2" parent="PermanentGameObjects/BirdAreas" instance=ExtResource("11_xlv5u")]
+position = Vector2(-120, 229)
+tags = Array[String](["perch"])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PermanentGameObjects/BirdAreas/BirdAreaPerch2"]
+shape = SubResource("CircleShape2D_5iy8r")
+debug_color = Color(1, 1, 1, 0.42)
+
+[node name="TemporaryGameObjects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="ShoppeFurniture" parent="TemporaryGameObjects" groups=["shoppe_furniture"] instance=ExtResource("11_g6s6c")]
+
+[node name="ShoppeItems" parent="TemporaryGameObjects" node_paths=PackedStringArray("shoppe_furniture") instance=ExtResource("12_p0erb")]
+shoppe_furniture = NodePath("../ShoppeFurniture")
+
+[node name="SpawnedItems" type="Node2D" parent="TemporaryGameObjects" groups=["spawned_items"]]
+
+[node name="ItemPickup" parent="TemporaryGameObjects/SpawnedItems" instance=ExtResource("12_u6b35")]
+pickup_texture = ExtResource("14_eeh7m")
+item_id = 55
+count = 5
+
+[node name="Player" parent="." instance=ExtResource("4_p0uxn")]
+y_sort_enabled = true
+position = Vector2(-41, -19)
+
+[node name="Adventurer" type="CharacterBody2D" parent="."]
+z_index = 2
+y_sort_enabled = true
+position = Vector2(-108, -53)
+motion_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Adventurer"]
+shape = SubResource("CircleShape2D_yqt4t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Adventurer"]
+script = ExtResource("21_vthqd")
+character_spritesheet_texture = ExtResource("21_0usg6")
+
+[connection signal="inventory_slot_depleted" from="UI/UIInventory" to="UI/UIActionBar" method="_on_ui_inventory_inventory_slot_depleted"]
+[connection signal="inventory_slot_updated" from="UI/UIInventory" to="UI/UIActionBar" method="_on_ui_inventory_inventory_slot_updated"]
+[connection signal="item_focused" from="UI/UIActionBar" to="Managers/EquippedItemManager" method="_on_ui_action_bar_item_focused"]
+[connection signal="timeout" from="PlayerCamera/CameraSpawner/SpawnTimer" to="PlayerCamera/CameraSpawner" method="_on_spawn_timer_timeout"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://r37qxmbq8ed"]
+
+[ext_resource type="Script" path="res://scripts/state_machine/states/bird_states/bird_roaming/bird_roaming_state.gd" id="1_ifa6p"]
+
+[node name="Roaming" type="Node"]
+script = ExtResource("1_ifa6p")
+
+[node name="RoamingActionTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="RoamingActionTimer" to="." method="_on_roaming_action_timer_timeout"]

@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://scenes/characters/bird/bird.gd" id="1_p03h7"]
 [ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="2_27nvl"]
-[ext_resource type="PackedScene" uid="uid://dl873s53iqi1r" path="res://scripts/state_machine/states/generic_states/idle/idle.tscn" id="3_tvf66"]
+[ext_resource type="PackedScene" uid="uid://dl873s53iqi1r" path="res://scripts/state_machine/states/bird_states/bird_idle/bird_idle.tscn" id="3_tvf66"]
 [ext_resource type="PackedScene" uid="uid://vjxtoccpe81v" path="res://scripts/state_machine/states/bird_states/flying/flying.tscn" id="4_pelxj"]
 [ext_resource type="PackedScene" uid="uid://dq36rqfby3kqy" path="res://scripts/state_machine/states/bird_states/landing/landing.tscn" id="5_2f5be"]
-[ext_resource type="PackedScene" uid="uid://r37qxmbq8ed" path="res://scripts/state_machine/states/generic_states/roaming/roaming.tscn" id="6_gho6q"]
+[ext_resource type="PackedScene" uid="uid://r37qxmbq8ed" path="res://scripts/state_machine/states/bird_states/bird_roaming/bird_roaming.tscn" id="6_gho6q"]
 [ext_resource type="PackedScene" uid="uid://byn2qixwy5kqh" path="res://scripts/state_machine/states/generic_states/roam_walking/roam_walking.tscn" id="7_pukod"]
 [ext_resource type="PackedScene" uid="uid://bqigwm5m08lwe" path="res://scripts/state_machine/states/generic_states/emoting/emoting.tscn" id="8_r44py"]
 [ext_resource type="PackedScene" uid="uid://dyht2bgp1t14x" path="res://scripts/state_machine/states/bird_states/takeoff/takeoff.tscn" id="9_kc2fe"]

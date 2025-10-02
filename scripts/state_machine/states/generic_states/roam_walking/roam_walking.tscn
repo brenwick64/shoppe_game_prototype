@@ -2,10 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/state_machine/states/generic_states/roam_walking/roam_walking_state.gd" id="1_h3p0p"]
 
-[node name="RoamWalking" type="Node" node_paths=PackedStringArray("parent", "animated_sprite_2d")]
+[node name="RoamWalking" type="Node"]
 script = ExtResource("1_h3p0p")
-parent = NodePath("")
-animated_sprite_2d = NodePath("")
 
 [node name="RoamWalkTimer" type="Timer" parent="."]
 one_shot = true
