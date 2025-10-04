@@ -30,11 +30,12 @@ region = Rect2(240, 257, 16, 15)
 [sub_resource type="CircleShape2D" id="CircleShape2D_atjvl"]
 radius = 6.0
 
-[node name="OreVein" type="StaticBody2D" node_paths=PackedStringArray("full_sprite", "depleted_sprite", "health_component", "interactable", "harvest_sound", "resource_icon", "harvest_cooldown", "respawn_timer")]
+[node name="OreVein" type="StaticBody2D" node_paths=PackedStringArray("full_sprite", "depleted_sprite", "health_component", "interactable", "harvest_sound", "resource_icon", "harvest_cooldown", "respawn_timer") groups=["harvestable"]]
 z_index = 2
 y_sort_enabled = true
 script = ExtResource("1_cn3qr")
 pickup_item_id = 1
+harvestable_type = "rock"
 full_sprite = NodePath("FullSprite")
 depleted_sprite = NodePath("DepletedSprite")
 health_component = NodePath("HealthComponent")

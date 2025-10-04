@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RAdventurerPersona" load_steps=9 format=3 uid="uid://bbcri1phwm0kq"]
+
+[ext_resource type="Script" path="res://systems/adventurer_system/scripts/RAdventurerPersona.gd" id="1_r5yo5"]
+[ext_resource type="Texture2D" uid="uid://dk3ud7yfayme7" path="res://resources/textures/adventurer_spritesheets/egirl/Character_023.png" id="2_5nd2l"]
+[ext_resource type="Texture2D" uid="uid://dom0bmgr6gudp" path="res://resources/textures/adventurer_spritesheets/egirl/Character_027.png" id="3_tayhm"]
+[ext_resource type="Texture2D" uid="uid://byey3c3eekmvt" path="res://resources/textures/adventurer_spritesheets/egirl/Character_032.png" id="4_iwvkd"]
+[ext_resource type="Texture2D" uid="uid://cmtr1to6ahejk" path="res://resources/textures/adventurer_spritesheets/egirl/Character_034.png" id="5_bpd2b"]
+[ext_resource type="Texture2D" uid="uid://co7fffv30ohkf" path="res://resources/textures/adventurer_spritesheets/egirl/Character_037.png" id="6_s1gcw"]
+[ext_resource type="Texture2D" uid="uid://fcsqyp7b53ub" path="res://resources/textures/adventurer_spritesheets/egirl/Character_038.png" id="7_8qyu2"]
+[ext_resource type="Texture2D" uid="uid://vnds43acnind" path="res://resources/textures/adventurer_spritesheets/egirl/Character_039.png" id="8_7pll6"]
+
+[resource]
+script = ExtResource("1_r5yo5")
+name_options = Array[String](["AriaUwU", "xxLunaBabyxx", "PastelPixie", "KittenOfDoom", "BunniBoo", "GothGFIRL", "AngelBitez", "Nyxie", "VoidKitten", "HexxieHeart", "DreamDoll", "MommyMilkers", "SlayBabe", "NaughtyNyx", "BabyDollX", "VenomVixen", "UwUMistress", "PrincessPuff", "DreamyFawn", "QueenBee"])
+spritesheets = Array[Texture]([ExtResource("2_5nd2l"), ExtResource("3_tayhm"), ExtResource("4_iwvkd"), ExtResource("5_bpd2b"), ExtResource("6_s1gcw"), ExtResource("7_8qyu2"), ExtResource("8_7pll6")])
+chat_options = Array[String](["omg stop letting me die first it’s literally so rude.", "ok who’s buying me my mount? like be serious, if you’re broke just say that", "yeah my dps is low but look how cute my transmog is", "lmao all the boys in guild keep mailing me potions I’m basically sponsored", "lmao I didn’t heal you cuz you didn’t whisper me first, maybe next time", "’ll roll Need on everything just so the boys keep begging me for trades teehee", "omg tysm for the loot!! I don’t even know what it does but it’s soooo pretty", "I’m just a smol healer trying my best, pls don’t yell at me if we wipe uwu", "like honestly, I could carry but I’m too emotionally drained", "yes, this outfit cost more than your entire set, and? stay pressed", "I only parse gold, darling. Anything less is peasant behavior.", "sorry babe, I don’t raid for loot, I raid for the screenshots.", "oops I pulled aggro again, looks like someone has to come save me", "I don’t need guild repairs, I have boys funding me one potion at a time", "tank, pull slower pls, I need time to sort through all my whispers rn.", "anyway if no one buys me the mount after this raid I’m logging off cuz what’s even the point"])

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="RAdventurerPersona" load_steps=8 format=3 uid="uid://ba3ncp1ntqrwt"]
+
+[ext_resource type="Script" path="res://systems/adventurer_system/scripts/RAdventurerPersona.gd" id="1_7suxg"]
+[ext_resource type="Texture2D" uid="uid://blqxyi45mg5vg" path="res://resources/textures/adventurer_spritesheets/sweat/Character_003.png" id="2_55533"]
+[ext_resource type="Texture2D" uid="uid://n18f187d3ok8" path="res://resources/textures/adventurer_spritesheets/sweat/Character_004.png" id="3_w77qq"]
+[ext_resource type="Texture2D" uid="uid://en544xnhfkvt" path="res://resources/textures/adventurer_spritesheets/sweat/Character_006.png" id="4_vyll7"]
+[ext_resource type="Texture2D" uid="uid://bjn45ii8vvk32" path="res://resources/textures/adventurer_spritesheets/sweat/Character_019.png" id="5_dujfc"]
+[ext_resource type="Texture2D" uid="uid://bm8jej3kw4b7o" path="res://resources/textures/adventurer_spritesheets/sweat/Character_020.png" id="6_qooj8"]
+[ext_resource type="Texture2D" uid="uid://b2217ui58oyn1" path="res://resources/textures/adventurer_spritesheets/sweat/Character_053.png" id="7_txhd7"]
+
+[resource]
+script = ExtResource("1_7suxg")
+name_options = Array[String](["ParseDaddy", "BiSOrBust", "MinMaxMatt", "ChartTopperCharles", "GearScoreGary", "PrePotPete", "ZeroMistakes", "WorldFirst", "HardcoreHank", "TryhardTrevor", "StephenTheSweatlord"])
+spritesheets = Array[Texture]([ExtResource("2_55533"), ExtResource("3_w77qq"), ExtResource("4_vyll7"), ExtResource("5_dujfc"), ExtResource("6_qooj8"), ExtResource("7_txhd7")])
+chat_options = Array[String](["CLEAR COMMS!!!", "stop tunneling meters and focus priority adds, I don’t care about your parse", "bro we just lost 3 seconds on that pull reset it’s literally wasted", "if you can’t hold rotation flawlessly just uninstall", "who didn’t pre-pot? I’m looking at the logs and if you’re not flasked you’re kicked", "you want loot? earn it with orange parses, not green", "dude I simmed it already, my build IS optimal", "that was a parse run and you literally ruined it by pulling early", "if your uptime isn’t above 95% don’t even bother signing up for the next raid"])

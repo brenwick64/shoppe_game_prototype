@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="RAdventurerPersona" load_steps=8 format=3 uid="uid://bhr18ct6wymcs"]
+
+[ext_resource type="Script" path="res://systems/adventurer_system/scripts/RAdventurerPersona.gd" id="1_x18mf"]
+[ext_resource type="Texture2D" uid="uid://cb41uoxg7cbro" path="res://resources/textures/adventurer_spritesheets/ttv/Character_002.png" id="2_f443l"]
+[ext_resource type="Texture2D" uid="uid://tnav82fm84pp" path="res://resources/textures/adventurer_spritesheets/ttv/Character_018.png" id="3_q153l"]
+[ext_resource type="Texture2D" uid="uid://0woj8wwg1egr" path="res://resources/textures/adventurer_spritesheets/ttv/Character_047.png" id="4_8jyh8"]
+[ext_resource type="Texture2D" uid="uid://bnlq6cajyqbvi" path="res://resources/textures/adventurer_spritesheets/ttv/Character_049.png" id="5_qwmj8"]
+[ext_resource type="Texture2D" uid="uid://dcbd63onia1dj" path="res://resources/textures/adventurer_spritesheets/ttv/Character_050.png" id="6_t5m4t"]
+[ext_resource type="Texture2D" uid="uid://cynwhy2go1n4f" path="res://resources/textures/adventurer_spritesheets/ttv/Character_052.png" id="7_0f3cj"]
+
+[resource]
+script = ExtResource("1_x18mf")
+name_options = Array[String](["LootLordTV", "PatchNotePeteTV", "TradeChatTonyTV", "WipeChampTV", "CooldownCarlTV", "RageQuitRandyTV", "ClutchOrKickTV", "ScuffedPullsTV", "SubModeOnlyTV", "WorldFirstWannabeTV", "SendMeGoldPlsTV", "Anything4ContentTV", "OnlyPullForDonosTV", "MomBoughtMyMountTV", "WipeForContentTV", "ChatCarryMeTV", "GiftSubsPlzTV"])
+spritesheets = Array[Texture]([ExtResource("2_f443l"), ExtResource("3_q153l"), ExtResource("4_8jyh8"), ExtResource("5_qwmj8"), ExtResource("6_t5m4t"), ExtResource("7_0f3cj")])
+chat_options = Array[String](["chat spam pog we literally just out-dps’d that entire guild", "hey chat, what am I supposed to do?", "Dude, I play this game 12 hours every day and it has NO CONTENT!", "yo chat! someone clip that!", "Lets goooooooooo!", "Poggers!", "stop saying I’m padding meters chat, I’m literally top DPS which means I’m carrying this raid", "ok mods ban anyone who says I was standing in fire, it was literally a graphical bug", "can we reset? that pull was scuffed, the vibes were off, the chat energy wasn’t pog enough", "yo chat watch me fake afk this boss until someone notices, ez content", "game is actually dead, like no one plays this anymore except bots and me…", "yo they better buff my class next patch or I’m rerolling off-stream, I can’t keep embarrassing myself like this", "yo I swear once I get this legendary I’m quitting and going full-time Fortnite, I’m done with this trash.", "lmao imagine me wasting 8 hours on this boss when I could be making TikTok clips on Valorant.", "bro why am I even raiding in this dead game when I could be pulling 1k viewers on Fortnite right now.", "yoooo thanks for the 9 months. pog"])

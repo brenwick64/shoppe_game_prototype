@@ -8,14 +8,15 @@ extends State
 
 ## -- overrides --
 func _ready() -> void:
-	var random_time: float = randf_range(idle_time_range_sec.x, idle_time_range_sec.y)
 	idle_timer.timeout.connect(_on_idle_timer_timeout)
-	idle_timer.start(random_time)
 
 func _on_enter() -> void:
-	animated_sprite_2d.play("idle_" + parent.direction_name)
+	parent.current_direction = Vector2.ZERO
+	var random_time: float = randf_range(idle_time_range_sec.x, idle_time_range_sec.y)
+	idle_timer.start(random_time)
 
 func _on_exit() -> void:
+	idle_timer.stop()
 	animated_sprite_2d.stop()
 
 

@@ -16,7 +16,7 @@ func _ready() -> void:
 			child.transition.connect(transition_to)
 
 	if initial_node_state:
-		initial_node_state._on_enter()	
+		initial_node_state._on_enter()
 		current_node_state = initial_node_state
 		current_node_state_name = current_node_state.name.to_lower()
 		state_changed.emit(current_node_state.name.to_lower())

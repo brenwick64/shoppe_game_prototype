@@ -17,9 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://mq3r2wcoavar" path="res://scenes/ui/inventory/ui_inventory.tscn" id="12_p10iw"]
 [ext_resource type="PackedScene" uid="uid://dx8fctcgp1stc" path="res://scenes/ui/action_bar/ui_action_bar.tscn" id="15_h53hr"]
 [ext_resource type="PackedScene" uid="uid://ttyaryp0n5ea" path="res://scenes/ui/console/ui_console.tscn" id="19_wvxil"]
-[ext_resource type="Script" path="res://adventurer_spawner.gd" id="20_bowqb"]
+[ext_resource type="Script" path="res://systems/adventurer_system/scenes/adventurer_spawner.gd" id="20_bowqb"]
 [ext_resource type="PackedScene" uid="uid://q1jxj01w08oq" path="res://scenes/characters/adventurer/adventurer.tscn" id="21_soude"]
-[ext_resource type="Script" path="res://creation_data.gd" id="22_ao8b3"]
+[ext_resource type="Script" path="res://systems/adventurer_system/creation_data.gd" id="22_ao8b3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yikv7"]
 radius = 103.121
@@ -37,13 +37,16 @@ visible = false
 
 [node name="UIInventory" parent="UI" groups=["ui_player_inventory"] instance=ExtResource("12_p10iw")]
 visible = false
-anchors_preset = 2
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 18.0
-offset_top = -322.0
-offset_right = 538.0
-offset_bottom = -14.0
+offset_left = -556.0
+offset_top = -324.0
+offset_right = -36.0
+offset_bottom = -16.0
+grow_horizontal = 0
 grow_vertical = 0
 
 [node name="UIActionBar" parent="UI" instance=ExtResource("15_h53hr")]
@@ -63,9 +66,9 @@ grow_vertical = 0
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 24.0
+offset_left = 10.0
 offset_top = -267.0
-offset_right = 524.0
+offset_right = 660.0
 offset_bottom = -17.0
 grow_vertical = 0
 
@@ -147,6 +150,17 @@ tags = Array[String](["perch"])
 shape = SubResource("CircleShape2D_5iy8r")
 debug_color = Color(1, 1, 1, 0.42)
 
+[node name="AdventurerSpawner" type="Node2D" parent="PermanentGameObjects"]
+script = ExtResource("20_bowqb")
+adventurer_scene = ExtResource("21_soude")
+
+[node name="CreationData" type="Node" parent="PermanentGameObjects/AdventurerSpawner"]
+script = ExtResource("22_ao8b3")
+
+[node name="Timer" type="Timer" parent="PermanentGameObjects/AdventurerSpawner"]
+wait_time = 2.0
+autostart = true
+
 [node name="TemporaryGameObjects" type="Node2D" parent="."]
 y_sort_enabled = true
 
@@ -164,19 +178,8 @@ y_sort_enabled = true
 y_sort_enabled = true
 position = Vector2(-41, -19)
 
-[node name="AdventurerSpawner" type="Node2D" parent="."]
-script = ExtResource("20_bowqb")
-adventurer_scene = ExtResource("21_soude")
-
-[node name="CreationData" type="Node" parent="AdventurerSpawner"]
-script = ExtResource("22_ao8b3")
-
-[node name="Timer" type="Timer" parent="AdventurerSpawner"]
-wait_time = 2.0
-autostart = true
-
 [connection signal="inventory_slot_depleted" from="UI/UIInventory" to="UI/UIActionBar" method="_on_ui_inventory_inventory_slot_depleted"]
 [connection signal="inventory_slot_updated" from="UI/UIInventory" to="UI/UIActionBar" method="_on_ui_inventory_inventory_slot_updated"]
 [connection signal="item_focused" from="UI/UIActionBar" to="Managers/EquippedItemManager" method="_on_ui_action_bar_item_focused"]
 [connection signal="timeout" from="PlayerCamera/CameraSpawner/SpawnTimer" to="PlayerCamera/CameraSpawner" method="_on_spawn_timer_timeout"]
-[connection signal="timeout" from="AdventurerSpawner/Timer" to="AdventurerSpawner" method="_on_timer_timeout"]
+[connection signal="timeout" from="PermanentGameObjects/AdventurerSpawner/Timer" to="PermanentGameObjects/AdventurerSpawner" method="_on_timer_timeout"]

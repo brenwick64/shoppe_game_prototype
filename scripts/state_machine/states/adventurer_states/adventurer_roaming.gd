@@ -3,11 +3,12 @@ extends State
 @export var parent: Node2D
 @export var animated_sprite_2d: AnimatedSprite2D
 
-@export var roam_time_sec: float = 1.0
+@export var roam_time_sec: float = 2.0
 @onready var roaming_timer: Timer = $RoamingTimer
 
 var _is_walking: bool = false
 
+var next_states: Array[String] = ["testchat"]
 
 ## -- overrides -- 
 func _ready() -> void:
@@ -21,8 +22,7 @@ func _on_exit() -> void:
 	animated_sprite_2d.stop()
 
 func _on_physics_process(delta: float) -> void:
-	if _is_walking: 
-		_walk(delta)
+	if _is_walking: return # keep walking
 	else:
 		_is_walking = true
 		_set_parent_walk_direction()
@@ -30,24 +30,12 @@ func _on_physics_process(delta: float) -> void:
 
 
 ## -- helper functions --
-func _walk(delta: float) -> void:
-	var direction_vector: Vector2
-	match parent.direction_name:
-		"up": direction_vector = Vector2.UP
-		"down": direction_vector = Vector2.DOWN
-		"left": direction_vector = Vector2.LEFT
-		"right": direction_vector = Vector2.RIGHT
-	animated_sprite_2d.play("walk_" + parent.direction_name)
-	
-	var velocity: Vector2 = direction_vector.normalized() * parent.walk_speed
-	parent.velocity = velocity
-	parent.move_and_slide()
-
 func _set_parent_walk_direction() -> void:
-	var direction_names: Array[String] = ["down", "up", "left", "right"]
-	parent.direction_name = direction_names.pick_random()
+	var directions: Array[Vector2] = [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]
+	parent.current_direction = directions.pick_random()
 
 
 ## -- signals --
 func _on_roam_walk_timer_timeout() -> void:
-	transition.emit("idle")
+	var next_state: String = next_states.pick_random()
+	transition.emit(next_state)

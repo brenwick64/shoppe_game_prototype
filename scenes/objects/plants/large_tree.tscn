@@ -31,11 +31,12 @@ region = Rect2(31, 21, 10, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cygtp"]
 size = Vector2(4.5, 7.5)
 
-[node name="LargeTree" type="StaticBody2D" node_paths=PackedStringArray("full_sprite", "depleted_sprite", "health_component", "interactable", "harvest_sound", "resource_icon", "harvest_cooldown", "respawn_timer")]
+[node name="LargeTree" type="StaticBody2D" node_paths=PackedStringArray("full_sprite", "depleted_sprite", "health_component", "interactable", "harvest_sound", "resource_icon", "harvest_cooldown", "respawn_timer") groups=["harvestable"]]
 z_index = 2
 y_sort_enabled = true
 script = ExtResource("1_q2swm")
 pickup_item_id = 0
+harvestable_type = "tree"
 shake_time_range = Vector2(0.5, 0.75)
 full_sprite = NodePath("TreeSprite")
 depleted_sprite = NodePath("StumpSprite")
@@ -47,7 +48,7 @@ harvest_cooldown = NodePath("ChopCooldown")
 respawn_timer = NodePath("Respawn")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_murj8")]
-max_health = 1
+max_health = 5
 
 [node name="Interactable" parent="." instance=ExtResource("2_v8c7g")]
 

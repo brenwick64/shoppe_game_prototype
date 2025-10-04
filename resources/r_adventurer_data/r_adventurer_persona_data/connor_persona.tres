@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RAdventurerPersona" load_steps=3 format=3 uid="uid://boheelbosm5nn"]
+
+[ext_resource type="Script" path="res://systems/adventurer_system/scripts/RAdventurerPersona.gd" id="1_f3jdm"]
+[ext_resource type="Texture2D" uid="uid://dxiih2f6xkedi" path="res://resources/textures/adventurer_spritesheets/connor/Character_009.png" id="2_sx3n7"]
+
+[resource]
+script = ExtResource("1_f3jdm")
+name_options = Array[String](["Connor"])
+spritesheets = Array[Texture]([ExtResource("2_sx3n7")])
+chat_options = Array[String](["Haha! ESH GETIT! ", "wow that's a good joke", "you're actually autistic", "eat my ass", "dude in the past 4 years my Diablo 2 bot made 20 cents!", "ATLAS NOOOO!!!!"])

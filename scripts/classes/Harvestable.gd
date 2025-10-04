@@ -3,6 +3,7 @@ extends StaticBody2D
 
 @export_category("Configuration")
 @export var pickup_item_id: int = -1
+@export var harvestable_type: String
 
 @export_category("Tuning Parameters")
 @export var shake_time_range: Vector2 = Vector2(0.1, 0.25)

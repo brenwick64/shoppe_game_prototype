@@ -1,0 +1,152 @@
+[gd_scene load_steps=23 format=3 uid="uid://q1jxj01w08oq"]
+
+[ext_resource type="Script" path="res://systems/adventurer_system/animated_sprite_2d.gd" id="1_imomm"]
+[ext_resource type="Script" path="res://scenes/characters/adventurer/adventurer.gd" id="1_k3kjk"]
+[ext_resource type="Texture2D" uid="uid://cn53uads4bci0" path="res://resources/textures/adventurer_spritesheets/character_001.png" id="2_a67wa"]
+[ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="2_ltfms"]
+[ext_resource type="Script" path="res://systems/task_system/current_tasks.gd" id="4_5x25t"]
+[ext_resource type="PackedScene" uid="uid://calcpqgx4m6pj" path="res://scenes/components/npc_movement/npc_movement_component.tscn" id="4_ebekr"]
+[ext_resource type="FontFile" uid="uid://5dmksnqi7msu" path="res://assets/fonts/Abaddon Light.ttf" id="4_ty7al"]
+[ext_resource type="Script" path="res://scenes/components/npc_movement/npc_movement_component.gd" id="5_5gn7x"]
+[ext_resource type="Script" path="res://systems/task_system/tasks/harvest_resource.gd" id="5_hn3wl"]
+[ext_resource type="Script" path="res://scripts/state_machine/states/adventurer_states/adventurer_idle.gd" id="5_q5pqt"]
+[ext_resource type="Script" path="res://scripts/state_machine/states/adventurer_states/adventurer_roaming.gd" id="6_6b8hr"]
+[ext_resource type="Script" path="res://systems/task_system/subtasks/target_harvestable.gd" id="6_u043i"]
+[ext_resource type="Script" path="res://scripts/state_machine/states/adventurer_states/perform_task.gd" id="7_1omw2"]
+[ext_resource type="Script" path="res://systems/task_system/subtasks/get_adjacent_tile.gd" id="7_dn1ua"]
+[ext_resource type="Script" path="res://scenes/characters/adventurer/chat_label.gd" id="8_5ktfj"]
+[ext_resource type="Script" path="res://systems/task_system/subtasks/get_path_to_target_gp.gd" id="8_57flp"]
+[ext_resource type="FontFile" uid="uid://btms2kimeagl3" path="res://assets/fonts/Abaddon Bold.ttf" id="8_ymgy1"]
+[ext_resource type="Script" path="res://scripts/state_machine/states/adventurer_states/aquire_task.gd" id="9_8j8a2"]
+[ext_resource type="Script" path="res://systems/task_system/subtasks/traverse_path.gd" id="9_72na1"]
+[ext_resource type="Script" path="res://scripts/state_machine/states/adventurer_states/afk.gd" id="9_be1el"]
+[ext_resource type="Script" path="res://systems/task_system/subtasks/harvest_node.gd" id="10_dcr6w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yqt4t"]
+radius = 5.0
+
+[node name="Adventurer" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite")]
+z_index = 2
+y_sort_enabled = true
+position = Vector2(-108, -53)
+motion_mode = 1
+script = ExtResource("1_k3kjk")
+animated_sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+script = ExtResource("1_imomm")
+character_spritesheet_texture = ExtResource("2_a67wa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("CircleShape2D_yqt4t")
+
+[node name="NPCMovementComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("4_ebekr")]
+script = ExtResource("5_5gn7x")
+parent = NodePath("..")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="CurrentTasks" type="Node" parent="."]
+script = ExtResource("4_5x25t")
+
+[node name="HarvestResource" type="Node" parent="CurrentTasks"]
+script = ExtResource("5_hn3wl")
+
+[node name="GetHarvestableNode" type="Node" parent="CurrentTasks/HarvestResource"]
+script = ExtResource("6_u043i")
+
+[node name="GetAdjacentTileGP" type="Node" parent="CurrentTasks/HarvestResource"]
+script = ExtResource("7_dn1ua")
+
+[node name="GetPathToTargetGP" type="Node" parent="CurrentTasks/HarvestResource"]
+script = ExtResource("8_57flp")
+
+[node name="TraversePath" type="Node" parent="CurrentTasks/HarvestResource"]
+script = ExtResource("9_72na1")
+
+[node name="HarvestNode" type="Node" parent="CurrentTasks/HarvestResource"]
+script = ExtResource("10_dcr6w")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_node_state")]
+script = ExtResource("2_ltfms")
+initial_node_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d")]
+script = ExtResource("5_q5pqt")
+idle_time_range_sec = Vector2(1, 5)
+parent = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+
+[node name="IdleTimer" type="Timer" parent="StateMachine/Idle"]
+one_shot = true
+
+[node name="Roaming" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d")]
+script = ExtResource("6_6b8hr")
+parent = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+
+[node name="RoamingTimer" type="Timer" parent="StateMachine/Roaming"]
+one_shot = true
+
+[node name="PerformTask" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d", "current_tasks")]
+script = ExtResource("7_1omw2")
+parent = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+current_tasks = NodePath("../../CurrentTasks")
+
+[node name="AquireTask" type="Node" parent="StateMachine"]
+script = ExtResource("9_8j8a2")
+
+[node name="AFK" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d", "name_label")]
+script = ExtResource("9_be1el")
+parent = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+name_label = NodePath("../../NameLabel")
+
+[node name="AFKTimer" type="Timer" parent="StateMachine/AFK"]
+one_shot = true
+
+[node name="NameLabel" type="Label" parent="."]
+offset_left = -64.0
+offset_top = 13.0
+offset_right = 65.0
+offset_bottom = 27.0
+theme_override_colors/font_color = Color(0.150118, 0.492927, 0.831924, 1)
+theme_override_fonts/font = ExtResource("4_ty7al")
+theme_override_font_sizes/font_size = 8
+text = "
+"
+horizontal_alignment = 1
+
+[node name="DebugCurrentState" type="Label" parent="."]
+offset_left = -64.0
+offset_top = -14.0
+offset_right = 65.0
+theme_override_colors/font_color = Color(0.150118, 0.492927, 0.831924, 1)
+theme_override_fonts/font = ExtResource("4_ty7al")
+theme_override_font_sizes/font_size = 8
+text = "STATE"
+horizontal_alignment = 1
+
+[node name="ChatLabel" type="Label" parent="." node_paths=PackedStringArray("parent")]
+z_index = 1
+offset_left = -228.0
+offset_top = -15.0
+offset_right = 230.0
+offset_bottom = -1.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("8_ymgy1")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+script = ExtResource("8_5ktfj")
+parent = NodePath("..")
+
+[node name="ChatTimer" type="Timer" parent="ChatLabel"]
+wait_time = 5.0
+one_shot = true

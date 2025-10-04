@@ -10,8 +10,10 @@ extends Control
 
 
 ## -- public methods --
-func add_message(text: String) -> void:
-	var console_message: Label = console_message_scene.instantiate()
+func add_message(text: String, optional_color: Color = Color.WHITE) -> void:
+	var console_message: RichTextLabel = console_message_scene.instantiate()
+	if optional_color != Color.WHITE:
+		console_message.add_theme_color_override("default_color", optional_color)
 	console_message.text = text
 	v_box_container.add_child(console_message)
 	

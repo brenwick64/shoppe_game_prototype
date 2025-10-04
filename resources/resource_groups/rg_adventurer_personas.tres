@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://deyimu1cs6r0t"]
+
+[ext_resource type="Script" path="res://addons/godot_resource_groups/resource_group.gd" id="1_ni268"]
+
+[resource]
+script = ExtResource("1_ni268")
+base_folder = "res://resources/r_adventurer_data/r_adventurer_persona_data"
+includes = Array[String]([])
+excludes = Array[String]([])
+paths = Array[String](["res://resources/r_adventurer_data/r_adventurer_persona_data/connor_persona.tres", "res://resources/r_adventurer_data/r_adventurer_persona_data/e_girl_persona.tres", "res://resources/r_adventurer_data/r_adventurer_persona_data/sweat_persona.tres", "res://resources/r_adventurer_data/r_adventurer_persona_data/ttv_persona.tres"])

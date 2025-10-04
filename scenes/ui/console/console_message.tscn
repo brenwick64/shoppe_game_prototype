@@ -2,13 +2,16 @@
 
 [ext_resource type="Theme" uid="uid://d3hq7cut50woy" path="res://resources/config/ui/ui_theme.tres" id="1_tg3lq"]
 
-[node name="ConsoleMessage" type="Label"]
+[node name="ConsoleMessage" type="RichTextLabel"]
 custom_minimum_size = Vector2(450, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -65.0
+offset_right = 65.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_tg3lq")
 theme_type_variation = &"ConsoleMessage"
-autowrap_mode = 3
+bbcode_enabled = true
+fit_content = true
