@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dppekferca52p"]
+
+[ext_resource type="Script" path="res://systems/task_system/subtasks/face_target_node.gd" id="1_5gi80"]
+
+[node name="FaceTargetNode" type="Node"]
+script = ExtResource("1_5gi80")
+input_var_name = "harvestable_node"

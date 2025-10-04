@@ -2,7 +2,7 @@ class_name NPCMovementComponent
 extends Node
 
 @export var parent: CharacterBody2D
-@export var max_speed: int = 25.0
+@export var max_speed: float = 25.0
 
 var acceleration:float = 0.0
 

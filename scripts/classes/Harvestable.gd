@@ -1,6 +1,8 @@
 class_name Harvestable
 extends StaticBody2D
 
+signal harvested(pickup: ItemPickup)
+
 @export_category("Configuration")
 @export var pickup_item_id: int = -1
 @export var harvestable_type: String
@@ -28,13 +30,12 @@ var _is_depleted: bool = false
 func _ready() -> void:
 	interactable.interacted.connect(_on_interactable_interacted)
 	interactable.focus_changed.connect(_on_interactable_focus_changed)
-	health_component.health_depleted.connect(_on_health_component_health_depleted)
 	harvest_cooldown.timeout.connect(_on_harvest_cooldown_timeout)
 	respawn_timer.timeout.connect(_on_respawn_timer_timeout)
 
 
 ## -- public methods --
-func harvest()-> void:
+func harvest(harvester: Node2D)-> void:
 	if _is_depleted: return
 	if _is_harvest_cooldown: return
 	
@@ -43,6 +44,10 @@ func harvest()-> void:
 	harvest_cooldown.start()
 	_shake_sprite()
 	health_component.remove_health(1)
+	_check_health_component(harvester)
+
+func is_depleted() -> bool:
+	return _is_depleted
 
 
 ### -- helper functions --
@@ -63,17 +68,31 @@ func _shake_sprite() -> void:
 	await get_tree().create_timer(shake_time).timeout
 	full_sprite.material.set_shader_parameter("shake_intensity", 0.0)
 
-func _spawn_pickup() -> void:
+func _deplete_node(harvestor: Node2D):
+	_is_depleted = true
+	interactable.disable_collision()
+	respawn_timer.start(respawn_time_sec)
+	
+	_show_depleted_sprite()
+	_update_resource_icon()
+	var pickup_spawned: ItemPickup = _spawn_pickup(harvestor)
+	harvested.emit(pickup_spawned)
+
+func _spawn_pickup(harvestor: Node2D) -> ItemPickup:
+	var pickup_node: ItemPickup
 	var spawn_positions: Array[Vector2] = GlobalTileManager.get_adjacent_ground_tiles_gp(
 		global_position,
 		"Grass",
 		["navigatable", "unobstructed"]
 	)
-	if spawn_positions:
-		var chosen_pos: Vector2 = spawn_positions.pick_random()
-		GlobalItemSpawner.spawn_item_pickup(pickup_item_id, global_position, chosen_pos)
-	else:
-		GlobalItemSpawner.spawn_item_pickup(pickup_item_id, global_position, global_position)
+	var target_gp: Vector2 = spawn_positions.pick_random() if spawn_positions else global_position
+	pickup_node = GlobalItemSpawner.spawn_item_pickup(
+		pickup_item_id, 
+		global_position, 
+		target_gp,
+		harvestor
+	)
+	return pickup_node
 
 
 ## -- signal handlers --
@@ -84,17 +103,12 @@ func _on_interactable_focus_changed(focused: bool) -> void:
 	_is_focused = focused
 	_update_resource_icon()
 
-func _on_interactable_interacted() -> void:
-	harvest()
+func _on_interactable_interacted(interactor: Interactor) -> void:
+	harvest(interactor.parent)
 
-func _on_health_component_health_depleted() -> void:
-	_is_depleted = true
-	interactable.disable_collision()
-	respawn_timer.start(respawn_time_sec)
-	
-	_show_depleted_sprite()
-	_update_resource_icon()
-	_spawn_pickup()
+func _check_health_component(harvestor: Node2D) -> void:
+	if health_component._current_health <= 0:
+		_deplete_node(harvestor)
 
 func _on_respawn_timer_timeout() -> void:
 	health_component.reset_health()

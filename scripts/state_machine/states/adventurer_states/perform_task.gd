@@ -19,8 +19,21 @@ func _on_physics_process(delta: float) -> void:
 	if not task_list: 
 		transition.emit("aquiretask")
 	else:
+		#TODO: this should be connected ONCE to current tasks (Renamed to task manager)
 		_current_task = task_list[0]
+		_current_task.completed.connect(_on_task_completed)
+		_current_task.failed.connect(_on_task_failed)
 		_current_task.init(parent)
 
 func _on_exit() -> void:
 	pass
+
+func _on_task_completed(task: Task) -> void:
+	task.queue_free()
+	_current_task = null
+	transition.emit("idle")
+
+func _on_task_failed(task: Task) -> void:
+	task.queue_free()
+	_current_task = null
+	transition.emit("idle")	

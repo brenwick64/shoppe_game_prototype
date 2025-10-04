@@ -14,7 +14,7 @@ var _current_terrain: String
 
 func _ready() -> void:
 	physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
-	#GlobalMessageManager.add_message("INFO", "player has entered the game")
+	GlobalMessageManager.add_message("INFO", "player has entered the game")
 
 
 ## -- public methods --

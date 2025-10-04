@@ -135,7 +135,8 @@ action_bar_7={
 
 2d_physics/layer_1="world"
 2d_physics/layer_2="player_hitbox"
-2d_physics/layer_3="npc"
+2d_physics/layer_3="npc_collision"
+2d_physics/layer_4="npc_hitbox"
 2d_physics/layer_5="placeable_block_placement"
 2d_physics/layer_7="interactor"
 2d_physics/layer_8="interactable"

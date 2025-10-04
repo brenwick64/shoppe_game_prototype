@@ -1,5 +1,7 @@
 extends SubTask
 
+@export var input_var_name: String
+
 func on_physics_process(delta: float) -> void:
 	super.on_physics_process(delta)
 	_face_target()
@@ -8,7 +10,7 @@ func on_physics_process(delta: float) -> void:
 
 ## -- main function --
 func _face_target() -> void:
-	var target_node: Node2D = payload["target_node"]
+	var target_node: Node2D = payload[input_var_name]
 	parent_task.adventurer.npc_animation_component.last_direction_name = _get_direction_facing_target(
 		parent_task.adventurer,
 		target_node

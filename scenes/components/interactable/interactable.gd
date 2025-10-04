@@ -1,14 +1,14 @@
 class_name Interactable
 extends Area2D
 
-signal interacted()
+signal interacted(interactor: Node2D)
 signal focus_changed(is_focused: bool)
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 ## -- public methods --
-func interact() -> void:
-	interacted.emit()
+func interact(interactor: Interactor) -> void:
+	interacted.emit(interactor)
 
 func set_focus() -> void:
 	focus_changed.emit(true)

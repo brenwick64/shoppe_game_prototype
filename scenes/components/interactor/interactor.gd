@@ -1,6 +1,8 @@
 class_name Interactor
 extends Area2D
 
+@export var parent: CharacterBody2D
+
 signal interactables_updated(interactables: Array[Interactable])
 signal closest_interactable_updated(interactable: Interactable)
 
@@ -14,7 +16,7 @@ func _ready() -> void:
 ## -- methods --
 func interact() -> void:
 	if closest_interactable:
-		closest_interactable.interact()
+		closest_interactable.interact(self)
 
 func handle_parent_movement() -> void:
 	_update_closest_interactable()

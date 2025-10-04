@@ -16,6 +16,13 @@ var direction_name: String = "down"
 var current_direction: Vector2 = Vector2.ZERO
 
 
+## -- public methods --
+func pickup(item_id: int, count: int) -> void:
+	var item_data: RItemData = GlobalItemDb.get_item_by_id(item_id)
+	# TODO: add to inventory
+	print(adventurer_name + " picked up " + str(count) + " x " + str(item_data.item_name))
+
+
 func _ready() -> void:
 	state_machine.state_changed.connect(_on_state_changed)
 	name_label.text = "<" + adventurer_name + ">"

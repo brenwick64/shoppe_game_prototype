@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3mvx55gh5nm6"]
+
+[ext_resource type="Script" path="res://systems/task_system/subtasks/set_path_to_pickup.gd" id="1_jjpki"]
+
+[node name="SetPathToPickup" type="Node"]
+script = ExtResource("1_jjpki")

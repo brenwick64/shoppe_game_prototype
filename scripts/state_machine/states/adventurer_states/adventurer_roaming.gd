@@ -8,7 +8,7 @@ extends State
 
 var _is_walking: bool = false
 
-var next_states: Array[String] = ["testchat"]
+var next_states: Array[String] = ["performtask"]
 
 ## -- overrides -- 
 func _ready() -> void:
@@ -21,7 +21,7 @@ func _on_exit() -> void:
 	roaming_timer.stop() # prevents asynchronous state switching via timeout
 	animated_sprite_2d.stop()
 
-func _on_physics_process(delta: float) -> void:
+func _on_physics_process(_delta: float) -> void:
 	if _is_walking: return # keep walking
 	else:
 		_is_walking = true

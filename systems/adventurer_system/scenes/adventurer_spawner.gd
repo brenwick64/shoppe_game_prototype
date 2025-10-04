@@ -28,12 +28,11 @@ func _spawn_adventurer(global_pos: Vector2) -> void:
 
 func _on_timer_timeout() -> void:
 	var random_gp: Vector2 = global_position + Vector2(randi_range(-150, 150), randi_range(-65, 65))
-	var ground_layers = GlobalTileManager.get_tilemap_layers_by_tag("ground")
 	var spawn_point = GlobalTileManager.get_adjacent_ground_tiles_gp(
 		random_gp, 
 		"Grass",
 		["navigatable"])
 	if not spawn_point: return
-	if debug_spawn_count > 10: return
+	if debug_spawn_count >= 1: return
 	_spawn_adventurer(spawn_point[0])
 	debug_spawn_count += 1

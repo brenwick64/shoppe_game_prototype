@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://br74naia5kk5n"]
+
+[ext_resource type="Script" path="res://systems/task_system/subtasks/harvest_node.gd" id="1_q4kkj"]
+
+[node name="HarvestNode" type="Node"]
+script = ExtResource("1_q4kkj")
+input_var_name = "harvestable_node"
+output_var_name = "pickup_node"

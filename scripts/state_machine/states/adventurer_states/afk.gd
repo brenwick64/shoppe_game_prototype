@@ -27,9 +27,6 @@ func _on_exit() -> void:
 	animated_sprite_2d.stop()
 	back()
 
-func _on_physics_process(delta: float) -> void:
-	pass
-
 ## -- signals --
 func _on_afk_timer_timeout() -> void:
 	transition.emit("idle")

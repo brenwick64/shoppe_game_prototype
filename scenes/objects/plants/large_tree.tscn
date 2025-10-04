@@ -29,7 +29,7 @@ atlas = ExtResource("4_3kqt2")
 region = Rect2(31, 21, 10, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cygtp"]
-size = Vector2(4.5, 7.5)
+size = Vector2(4.5, 5.5)
 
 [node name="LargeTree" type="StaticBody2D" node_paths=PackedStringArray("full_sprite", "depleted_sprite", "health_component", "interactable", "harvest_sound", "resource_icon", "harvest_cooldown", "respawn_timer") groups=["harvestable"]]
 z_index = 2
@@ -48,7 +48,7 @@ harvest_cooldown = NodePath("ChopCooldown")
 respawn_timer = NodePath("Respawn")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_murj8")]
-max_health = 5
+max_health = 3
 
 [node name="Interactable" parent="." instance=ExtResource("2_v8c7g")]
 
@@ -71,11 +71,11 @@ texture = SubResource("AtlasTexture_2ulo4")
 offset = Vector2(0, 7)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4.25)
+position = Vector2(0, -3.25)
 shape = SubResource("RectangleShape2D_cygtp")
 
 [node name="ChopSound" parent="." instance=ExtResource("3_44dpx")]
-max_distance = 250.0
+max_distance = 550.0
 attenuation = 2.92817
 bus = &"sfx"
 sound = ExtResource("4_ggvt3")

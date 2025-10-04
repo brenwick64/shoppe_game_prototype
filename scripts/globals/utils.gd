@@ -7,13 +7,15 @@ func roll_percentage(chance: float) -> bool:
 	var rng: float = randf_range(0, 1)
 	return chance >= rng
 
-func closest_distance_gp(node: Node2D, targets: Array[Node2D]) -> float:
+func get_closest_target_node(source_node: Node2D, target_nodes: Array[Node2D]) -> Node2D:
+	var closest_target: Node2D = null
 	var min_dist: float = INF
-	for t in targets:
-		var dist: float = node.global_position.distance_to(t.global_position)
+	for t: Node2D in target_nodes:
+		var dist: float = source_node.global_position.distance_to(t.global_position)
 		if dist < min_dist:
 			min_dist = dist
-	return min_dist
+			closest_target = t
+	return closest_target
 
 ## array operations
 func arrays_overlap(a: Array, b:Array) -> bool:

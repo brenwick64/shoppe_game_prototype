@@ -215,6 +215,7 @@ animations = [{
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_input_component", "movement_component", "animation_component", "movement_sound") groups=["player"]]
 z_index = 2
 texture_filter = 1
+collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_ym86x")
 player_input_component = NodePath("PlayerInputComponent")
@@ -230,10 +231,11 @@ save_load_component = NodePath("SaveLoadComponent")
 save_filename = "player_inventory"
 save_data_type = SubResource("Resource_kpg3b")
 
-[node name="Interactor" type="Area2D" parent="."]
+[node name="Interactor" type="Area2D" parent="." node_paths=PackedStringArray("parent")]
 collision_layer = 64
 collision_mask = 128
 script = ExtResource("2_25yar")
+parent = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactor"]
 position = Vector2(0, -7)

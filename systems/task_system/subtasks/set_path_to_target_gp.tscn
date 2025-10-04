@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2iewrw2hcm4n"]
+
+[ext_resource type="Script" path="res://systems/task_system/subtasks/set_path_to_target_gp.gd" id="1_rjb68"]
+
+[node name="SetPathToTargetGP" type="Node"]
+script = ExtResource("1_rjb68")
+input_var_name = "harvestable_node_gp"

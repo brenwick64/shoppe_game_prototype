@@ -1,6 +1,8 @@
 class_name ItemPickup
 extends Node2D
 
+signal picked_up
+
 @export var pickup_texture: AtlasTexture
 @export var item_id: int
 @export var count: int = 1
@@ -9,6 +11,7 @@ extends Node2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var arc_move_on_spawn: Node2D = $ArcMoveOnSpawn
 
+var owner_id: int
 var start_pos: Vector2
 var end_pos: Vector2
 
@@ -24,6 +27,8 @@ func _on_arc_move_on_spawn_arc_motion_finished() -> void:
 
 func _on_pickup_area_area_entered(area: Area2D) -> void:
 	var area_parent: Node2D = area.get_parent()
-	if area_parent is Player:
+	if area_parent.get_instance_id() != owner_id: return
+	if area_parent is Player or area_parent is Adventurer:
 		area_parent.pickup(item_id, count)
-	queue_free()
+		picked_up.emit()
+		queue_free()

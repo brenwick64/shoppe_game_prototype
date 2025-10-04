@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://u7xi1nkbk70c"]
+
+[ext_resource type="Script" path="res://systems/task_system/subtasks/traverse_path.gd" id="1_1mjuj"]
+
+[node name="TraversePath" type="Node"]
+script = ExtResource("1_1mjuj")

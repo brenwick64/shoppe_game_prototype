@@ -1,13 +1,18 @@
 extends SubTask
 
+## state variables
 var _path_traversed: bool = false
 
+## -- overrides --
 func on_physics_process(delta: float) -> void:
 	super.on_physics_process(delta)
 	if not _path_traversed:
 		_traverse_path()
 	else:
-		super.complete(payload)
+		super.complete(payload, reset_state)
+
+func reset_state() -> void:
+	_path_traversed = false
 
 
 ## -- main function --

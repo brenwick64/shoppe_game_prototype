@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bmce4hybdi20v"]
+[gd_scene load_steps=23 format=3 uid="uid://bmce4hybdi20v"]
 
 [ext_resource type="PackedScene" uid="uid://d05xg5vjtcvs1" path="res://systems/day_night_system/scenes/day_night_manager/day_night_manager.tscn" id="1_0imsq"]
 [ext_resource type="PackedScene" uid="uid://csogmde7287ni" path="res://scenes/game_objects/player_camera/player_camera.tscn" id="2_vxtlm"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://ttyaryp0n5ea" path="res://scenes/ui/console/ui_console.tscn" id="19_wvxil"]
 [ext_resource type="Script" path="res://systems/adventurer_system/scenes/adventurer_spawner.gd" id="20_bowqb"]
 [ext_resource type="PackedScene" uid="uid://q1jxj01w08oq" path="res://scenes/characters/adventurer/adventurer.tscn" id="21_soude"]
+[ext_resource type="Script" path="res://systems/adventurer_system/creation_data.gd" id="22_ao8b3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yikv7"]
 radius = 103.121
@@ -152,6 +153,9 @@ debug_color = Color(1, 1, 1, 0.42)
 [node name="AdventurerSpawner" type="Node2D" parent="PermanentGameObjects"]
 script = ExtResource("20_bowqb")
 adventurer_scene = ExtResource("21_soude")
+
+[node name="CreationData" type="Node" parent="PermanentGameObjects/AdventurerSpawner"]
+script = ExtResource("22_ao8b3")
 
 [node name="Timer" type="Timer" parent="PermanentGameObjects/AdventurerSpawner"]
 wait_time = 2.0

@@ -2,7 +2,13 @@
 extends Node
 
 ## -- public methods --
-func spawn_item_pickup(item_id: int, start_pos: Vector2, end_pos: Vector2) -> void:
+func spawn_item_pickup(
+	item_id: int, 
+	start_pos: Vector2, 
+	end_pos: Vector2,
+	pickup_owner: Node2D = null
+	) -> ItemPickup:
+		
 	var spawned_items: Node2D = _get_spawned_items()
 	if not spawned_items: return
 	var item_data: RItemData = _get_item_data(item_id)
@@ -12,7 +18,10 @@ func spawn_item_pickup(item_id: int, start_pos: Vector2, end_pos: Vector2) -> vo
 	pickup_ins.global_position = start_pos
 	pickup_ins.start_pos = start_pos
 	pickup_ins.end_pos = end_pos
+	if pickup_owner:
+		pickup_ins.owner_id = pickup_owner.get_instance_id()
 	spawned_items.add_child(pickup_ins)
+	return pickup_ins
 
 
 ## -- helper functions
