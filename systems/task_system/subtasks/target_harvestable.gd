@@ -7,7 +7,7 @@ func on_physics_process(delta: float) -> void:
 	super.on_physics_process(delta)
 	var target_harvestable: Harvestable = _get_target_harvestable()
 	if not target_harvestable:
-		failed.emit(self, payload, "retry")
+		super.fail(self, payload, "retry_subtask")
 	else:
 		payload.merge({ output_var_name: target_harvestable })
 		super.complete(payload)
@@ -22,8 +22,9 @@ func _get_target_harvestable() -> Harvestable:
 			harvestables.append(node)
 	harvestables = _filter_harvestables_by_type(harvestables, parent_task.harvestable_type)
 	harvestables = _filter_harvestables_by_depleted(harvestables)
-	var closest_harvestable: Harvestable = _get_closest_harvestable(harvestables)
-	return closest_harvestable
+	#var closest_harvestable: Harvestable = _get_closest_harvestable(harvestables)
+	var random_harvestable: Harvestable = harvestables.pick_random()
+	return random_harvestable
 	
 
 ## -- helper functions --

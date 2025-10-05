@@ -2,6 +2,7 @@ extends SubTask
 
 @export var input_var_name: String
 
+
 func on_physics_process(delta: float) -> void:
 	super.on_physics_process(delta)
 	_face_target()

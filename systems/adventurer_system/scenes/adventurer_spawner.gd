@@ -33,6 +33,6 @@ func _on_timer_timeout() -> void:
 		"Grass",
 		["navigatable"])
 	if not spawn_point: return
-	if debug_spawn_count >= 1: return
+	if debug_spawn_count >= 5	: return
 	_spawn_adventurer(spawn_point[0])
 	debug_spawn_count += 1

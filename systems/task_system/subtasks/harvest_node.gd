@@ -7,6 +7,7 @@ extends SubTask
 var _target_harvestable: Harvestable
 var _harvestable_pickup: ItemPickup
 var _harvested: bool = false
+var _harvestable_depleted: bool = false
 
 
 ## -- overrides --
@@ -19,7 +20,11 @@ func init(p_parent_task: Task, p_payload: Dictionary) -> void:
 
 func on_physics_process(delta: float) -> void:
 	super.on_physics_process(delta)
-	if not _harvested:
+	if _harvestable_depleted:
+		print("node depleted before i could farm it, getting new node")
+		_target_harvestable.harvested.disconnect(_on_harvestable_harvested)
+		super.fail(self, payload, "retry_task")
+	elif not _harvested:
 		_harvest_node()
 	else:
 		payload.merge({ output_var_name: _harvestable_pickup })
@@ -29,14 +34,16 @@ func on_physics_process(delta: float) -> void:
 func reset_state() -> void:
 	_target_harvestable = null
 	_harvestable_pickup = null
+	_harvestable_depleted = false
 	_harvested = false
 
 
 ## - main function --
 func _harvest_node() -> void:
-	# TODO: fail
-	if not _target_harvestable: return
-	_target_harvestable.harvest(parent_task.adventurer)
+	if _target_harvestable.is_depleted():
+		_harvestable_depleted = true
+	else:
+		_target_harvestable.harvest(parent_task.adventurer)
 
 
 ## --signals --

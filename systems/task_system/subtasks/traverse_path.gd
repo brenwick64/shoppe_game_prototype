@@ -1,9 +1,19 @@
 extends SubTask
 
+@export var stuck_time_threshold_sec: float = 60.0
+@export var stuck_timer: Timer
+
 ## state variables
 var _path_traversed: bool = false
 
 ## -- overrides --
+func _ready() -> void:
+	stuck_timer.timeout.connect(_on_stuck_timer_timeout)
+
+func init(p_parent_task: Task, p_payload: Dictionary) -> void:
+	super.init(p_parent_task, p_payload)
+	stuck_timer.start(stuck_time_threshold_sec)
+
 func on_physics_process(delta: float) -> void:
 	super.on_physics_process(delta)
 	if not _path_traversed:
@@ -25,3 +35,8 @@ func _traverse_path() -> void:
 	else:
 		parent_task.adventurer.current_direction = Vector2.ZERO
 		_path_traversed = true
+
+
+## -- signals --
+func _on_stuck_timer_timeout() -> void:
+	super.fail(self, payload, "retry_task")

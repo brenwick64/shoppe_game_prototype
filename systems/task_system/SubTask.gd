@@ -27,8 +27,9 @@ func complete(p_payload, p_reset_state: Callable = func(): return) -> void:
 	if p_reset_state:
 		p_reset_state.call()
 
-func fail() -> void:
+func fail(subtask: SubTask, payload: Dictionary, strategy: String) -> void:
 	is_active = false
+	failed.emit(subtask, payload, strategy)
 
 func on_physics_process(_delta: float) -> void:
 	if not is_active: return

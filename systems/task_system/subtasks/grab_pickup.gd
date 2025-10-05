@@ -20,16 +20,14 @@ func on_physics_process(delta: float) -> void:
 		_traverse_path()
 	# case 2 - no pickup, path traversed.
 	elif _path_traversed and not _pickup_aquired:
-		#TODO: retry
-		pass
+		super.fail(self, payload, "retry_task")
 	# case 3 - pickup and path traversed
 	elif _pickup_aquired and _path_traversed:
 		parent_task.adventurer.current_direction = Vector2.ZERO
 		super.complete(payload, reset_state)
 	# case 4 - unexpected behavior
 	else:
-		#TODO: push error and kill task
-		pass
+		super.fail(self, payload, "kill_task")
 
 func reset_state() -> void:
 	_target_pickup = null

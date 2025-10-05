@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://q1jxj01w08oq"]
+[gd_scene load_steps=28 format=3 uid="uid://q1jxj01w08oq"]
 
 [ext_resource type="Script" path="res://systems/adventurer_system/animated_sprite_2d.gd" id="1_imomm"]
 [ext_resource type="Script" path="res://scenes/characters/adventurer/adventurer.gd" id="1_k3kjk"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://calcpqgx4m6pj" path="res://scenes/components/npc_movement/npc_movement_component.tscn" id="4_ebekr"]
 [ext_resource type="FontFile" uid="uid://5dmksnqi7msu" path="res://assets/fonts/Abaddon Light.ttf" id="4_ty7al"]
 [ext_resource type="Script" path="res://scenes/components/npc_movement/npc_movement_component.gd" id="5_5gn7x"]
-[ext_resource type="Script" path="res://systems/task_system/tasks/harvest_resource.gd" id="5_hn3wl"]
 [ext_resource type="Script" path="res://scripts/state_machine/states/adventurer_states/adventurer_idle.gd" id="5_q5pqt"]
 [ext_resource type="Script" path="res://scripts/state_machine/states/adventurer_states/adventurer_roaming.gd" id="6_6b8hr"]
 [ext_resource type="PackedScene" uid="uid://ckklowqcnd3tm" path="res://scenes/components/npc_animation/npc_animation_component.tscn" id="6_fw7qb"]
@@ -19,14 +18,7 @@
 [ext_resource type="FontFile" uid="uid://btms2kimeagl3" path="res://assets/fonts/Abaddon Bold.ttf" id="8_ymgy1"]
 [ext_resource type="Script" path="res://scripts/state_machine/states/adventurer_states/aquire_task.gd" id="9_8j8a2"]
 [ext_resource type="Script" path="res://scripts/state_machine/states/adventurer_states/afk.gd" id="9_be1el"]
-[ext_resource type="PackedScene" uid="uid://bl71s24qqb7u2" path="res://systems/task_system/subtasks/get_harvestable_node.tscn" id="11_c8nm3"]
-[ext_resource type="PackedScene" uid="uid://bcmif43w5l480" path="res://systems/task_system/subtasks/get_adjacent_tile_gp.tscn" id="12_n8usv"]
-[ext_resource type="PackedScene" uid="uid://d2iewrw2hcm4n" path="res://systems/task_system/subtasks/set_path_to_target_gp.tscn" id="13_m8vlf"]
-[ext_resource type="PackedScene" uid="uid://u7xi1nkbk70c" path="res://systems/task_system/subtasks/traverse_path.tscn" id="14_e1kjb"]
-[ext_resource type="PackedScene" uid="uid://dppekferca52p" path="res://systems/task_system/subtasks/face_target_node.tscn" id="15_ljhnc"]
-[ext_resource type="PackedScene" uid="uid://br74naia5kk5n" path="res://systems/task_system/subtasks/harvest_node.tscn" id="16_ed86t"]
-[ext_resource type="PackedScene" uid="uid://d3mvx55gh5nm6" path="res://systems/task_system/subtasks/set_path_to_pickup.tscn" id="17_xfatm"]
-[ext_resource type="PackedScene" uid="uid://dhh1v7oxrkcsf" path="res://systems/task_system/subtasks/grab_pickup.tscn" id="18_hlroi"]
+[ext_resource type="PackedScene" uid="uid://bf7qaitvv6rri" path="res://systems/task_system/tasks/harvest_resource.tscn" id="10_oe17w"]
 [ext_resource type="Script" path="res://testchat.gd" id="23_rgxd1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_njwo6"]
@@ -101,7 +93,6 @@ shape = SubResource("CircleShape2D_yqt4t")
 [node name="NPCMovementComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("4_ebekr")]
 script = ExtResource("5_5gn7x")
 parent = NodePath("..")
-max_speed = 120.0
 
 [node name="NPCAnimationComponent" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("6_fw7qb")]
 script = ExtResource("7_7ybgr")
@@ -111,100 +102,11 @@ animated_sprite = NodePath("../AnimatedSprite2D")
 path_desired_distance = 5.0
 target_desired_distance = 3.0
 path_postprocessing = 1
-debug_enabled = true
 
 [node name="CurrentTasks" type="Node" parent="."]
 script = ExtResource("4_5x25t")
 
-[node name="HarvestResource" type="Node" parent="CurrentTasks"]
-script = ExtResource("5_hn3wl")
-harvestable_type = "tree"
-iterations = 5
-
-[node name="SubtaskTimer" type="Timer" parent="CurrentTasks/HarvestResource"]
-one_shot = true
-
-[node name="RetryTimer" type="Timer" parent="CurrentTasks/HarvestResource"]
-one_shot = true
-
-[node name="GetHarvestableNode" parent="CurrentTasks/HarvestResource" instance=ExtResource("11_c8nm3")]
-max_retries = 5
-
-[node name="GetAdjacentTileGP" parent="CurrentTasks/HarvestResource" instance=ExtResource("12_n8usv")]
-
-[node name="SetPathToTargetGP" parent="CurrentTasks/HarvestResource" instance=ExtResource("13_m8vlf")]
-
-[node name="TraversePath" parent="CurrentTasks/HarvestResource" instance=ExtResource("14_e1kjb")]
-
-[node name="FaceTargetNode" parent="CurrentTasks/HarvestResource" instance=ExtResource("15_ljhnc")]
-
-[node name="HarvestNode" parent="CurrentTasks/HarvestResource" instance=ExtResource("16_ed86t")]
-
-[node name="SetPathToPickup" parent="CurrentTasks/HarvestResource" instance=ExtResource("17_xfatm")]
-input_var_name = "pickup_node"
-
-[node name="GrabPickup" parent="CurrentTasks/HarvestResource" instance=ExtResource("18_hlroi")]
-input_var_name = "pickup_node"
-
-[node name="HarvestResource2" type="Node" parent="CurrentTasks"]
-script = ExtResource("5_hn3wl")
-harvestable_type = "rock"
-iterations = 5
-
-[node name="SubtaskTimer" type="Timer" parent="CurrentTasks/HarvestResource2"]
-one_shot = true
-
-[node name="RetryTimer" type="Timer" parent="CurrentTasks/HarvestResource2"]
-one_shot = true
-
-[node name="GetHarvestableNode" parent="CurrentTasks/HarvestResource2" instance=ExtResource("11_c8nm3")]
-max_retries = 5
-
-[node name="GetAdjacentTileGP" parent="CurrentTasks/HarvestResource2" instance=ExtResource("12_n8usv")]
-
-[node name="SetPathToTargetGP" parent="CurrentTasks/HarvestResource2" instance=ExtResource("13_m8vlf")]
-
-[node name="TraversePath" parent="CurrentTasks/HarvestResource2" instance=ExtResource("14_e1kjb")]
-
-[node name="FaceTargetNode" parent="CurrentTasks/HarvestResource2" instance=ExtResource("15_ljhnc")]
-
-[node name="HarvestNode" parent="CurrentTasks/HarvestResource2" instance=ExtResource("16_ed86t")]
-
-[node name="SetPathToPickup" parent="CurrentTasks/HarvestResource2" instance=ExtResource("17_xfatm")]
-input_var_name = "pickup_node"
-
-[node name="GrabPickup" parent="CurrentTasks/HarvestResource2" instance=ExtResource("18_hlroi")]
-input_var_name = "pickup_node"
-
-[node name="HarvestResource3" type="Node" parent="CurrentTasks"]
-script = ExtResource("5_hn3wl")
-harvestable_type = "tree"
-iterations = 5
-
-[node name="SubtaskTimer" type="Timer" parent="CurrentTasks/HarvestResource3"]
-one_shot = true
-
-[node name="RetryTimer" type="Timer" parent="CurrentTasks/HarvestResource3"]
-one_shot = true
-
-[node name="GetHarvestableNode" parent="CurrentTasks/HarvestResource3" instance=ExtResource("11_c8nm3")]
-max_retries = 5
-
-[node name="GetAdjacentTileGP" parent="CurrentTasks/HarvestResource3" instance=ExtResource("12_n8usv")]
-
-[node name="SetPathToTargetGP" parent="CurrentTasks/HarvestResource3" instance=ExtResource("13_m8vlf")]
-
-[node name="TraversePath" parent="CurrentTasks/HarvestResource3" instance=ExtResource("14_e1kjb")]
-
-[node name="FaceTargetNode" parent="CurrentTasks/HarvestResource3" instance=ExtResource("15_ljhnc")]
-
-[node name="HarvestNode" parent="CurrentTasks/HarvestResource3" instance=ExtResource("16_ed86t")]
-
-[node name="SetPathToPickup" parent="CurrentTasks/HarvestResource3" instance=ExtResource("17_xfatm")]
-input_var_name = "pickup_node"
-
-[node name="GrabPickup" parent="CurrentTasks/HarvestResource3" instance=ExtResource("18_hlroi")]
-input_var_name = "pickup_node"
+[node name="HarvestResource" parent="CurrentTasks" instance=ExtResource("10_oe17w")]
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_node_state")]
 script = ExtResource("2_ltfms")
