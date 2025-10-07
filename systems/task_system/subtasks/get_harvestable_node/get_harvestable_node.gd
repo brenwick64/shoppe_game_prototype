@@ -23,8 +23,8 @@ func _get_target_harvestable() -> Harvestable:
 	harvestables = _filter_harvestables_by_type(harvestables, parent_task.harvestable_type)
 	harvestables = _filter_harvestables_by_depleted(harvestables)
 	#var closest_harvestable: Harvestable = _get_closest_harvestable(harvestables)
-	var random_harvestable: Harvestable = harvestables.pick_random()
-	return random_harvestable
+	if not harvestables: return null
+	return harvestables.pick_random()
 	
 
 ## -- helper functions --

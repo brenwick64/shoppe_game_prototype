@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dhh1v7oxrkcsf"]
 
-[ext_resource type="Script" path="res://systems/task_system/subtasks/grab_pickup.gd" id="1_sc4uy"]
+[ext_resource type="Script" path="res://systems/task_system/subtasks/grab_pickup/grab_pickup.gd" id="1_sc4uy"]
 
 [node name="GrabPickup" type="Node"]
 script = ExtResource("1_sc4uy")

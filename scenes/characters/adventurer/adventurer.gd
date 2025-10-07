@@ -2,6 +2,7 @@ class_name Adventurer
 extends CharacterBody2D
 
 @export var animated_sprite: AnimatedSprite2D
+@export var chat_manager: ChatManager
 @export var adventurer_name: String
 @export var adventurer_persona: RAdventurerPersona
 
@@ -26,7 +27,7 @@ func pickup(item_id: int, count: int) -> void:
 func _ready() -> void:
 	state_machine.state_changed.connect(_on_state_changed)
 	name_label.text = "<" + adventurer_name + ">"
-	GlobalMessageManager.add_message("INFO", adventurer_name + " has entered the game")
+	GlobalMessageManager.add_console_message("INFO", adventurer_name + " has entered the game")
 	
 func _physics_process(_delta: float) -> void:
 	npc_movement_component.handle_movement(current_direction, 1)

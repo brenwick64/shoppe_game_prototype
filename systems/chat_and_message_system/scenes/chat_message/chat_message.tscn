@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c786teef12prw"]
+
+[ext_resource type="Script" path="res://systems/chat_and_message_system/scenes/chat_message/chat_message.gd" id="1_6p7ih"]
+
+[node name="ChatMessage" type="Label"]
+offset_right = 358.0
+offset_bottom = 23.0
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 12
+text = "the quick brown fox jumped over the lazy dog."
+horizontal_alignment = 1
+script = ExtResource("1_6p7ih")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+one_shot = true

@@ -8,3 +8,4 @@ func _on_exit() -> void:
 
 func _on_physics_process(_delta: float) -> void:
 	transition.emit("idle")
+	

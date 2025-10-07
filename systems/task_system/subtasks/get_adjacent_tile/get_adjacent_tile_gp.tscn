@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bcmif43w5l480"]
 
-[ext_resource type="Script" path="res://systems/task_system/subtasks/get_adjacent_tile.gd" id="1_lk72g"]
+[ext_resource type="Script" path="res://systems/task_system/subtasks/get_adjacent_tile/get_adjacent_tile.gd" id="1_lk72g"]
 
 [node name="GetAdjacentTileGP" type="Node"]
 script = ExtResource("1_lk72g")

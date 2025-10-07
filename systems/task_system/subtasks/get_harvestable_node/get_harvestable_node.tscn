@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bl71s24qqb7u2"]
 
-[ext_resource type="Script" path="res://systems/task_system/subtasks/target_harvestable.gd" id="1_fvs7t"]
+[ext_resource type="Script" path="res://systems/task_system/subtasks/get_harvestable_node/get_harvestable_node.gd" id="1_fvs7t"]
 
 [node name="GetHarvestableNode" type="Node"]
 script = ExtResource("1_fvs7t")

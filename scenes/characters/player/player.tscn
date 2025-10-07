@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://x0hp764aoxfp"]
+[gd_scene load_steps=41 format=3 uid="uid://x0hp764aoxfp"]
 
 [ext_resource type="Texture2D" uid="uid://cn53uads4bci0" path="res://resources/textures/adventurer_spritesheets/character_001.png" id="1_1m8w0"]
 [ext_resource type="Script" path="res://scenes/components/player_input_component/player_input_component.gd" id="1_bfyut"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://systems/save_and_load_system/scripts/RInventorySaveData.gd" id="5_j57la"]
 [ext_resource type="PackedScene" uid="uid://b70c2uctc5fc0" path="res://systems/audio_system/scenes/movement_sound_component/movement_sound_component.tscn" id="6_673vk"]
 [ext_resource type="AudioStream" uid="uid://dtrm12scpa0bh" path="res://audio/actions/pickup/pickup_1.wav" id="6_uu587"]
+[ext_resource type="FontFile" uid="uid://5dmksnqi7msu" path="res://assets/fonts/Abaddon Light.ttf" id="15_8m6wb"]
 
 [sub_resource type="Resource" id="Resource_kpg3b"]
 script = ExtResource("5_j57la")
@@ -218,6 +219,7 @@ texture_filter = 1
 collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_ym86x")
+player_name = "PlayerName"
 player_input_component = NodePath("PlayerInputComponent")
 movement_component = NodePath("MovementComponent")
 animation_component = NodePath("AnimationComponent")
@@ -279,6 +281,16 @@ stop_threshold_sec = 0.1
 
 [node name="AnimationComponent" type="Node" parent="."]
 script = ExtResource("3_if003")
+
+[node name="NameLabel" type="Label" parent="."]
+offset_left = -64.0
+offset_top = 1.0
+offset_right = 65.0
+offset_bottom = 15.0
+theme_override_colors/font_color = Color(0, 0.379202, 0.12832, 1)
+theme_override_fonts/font = ExtResource("15_8m6wb")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
 
 [connection signal="moveable_moved" from="MovementComponent" to="." method="_on_movement_component_moveable_moved"]
 [connection signal="animation_state_changed" from="AnimationComponent" to="." method="_on_animation_component_animation_state_changed"]

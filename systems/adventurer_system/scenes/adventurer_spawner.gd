@@ -2,6 +2,7 @@ extends Node2D
 
 var adventurer_personas_rg: ResourceGroup = preload("res://resources/resource_groups/rg_adventurer_personas.tres")
 
+@export var max_adventurers: int = 2
 @export var adventurer_scene: PackedScene
 
 var adventurers: Node2D
@@ -23,7 +24,7 @@ func _spawn_adventurer(global_pos: Vector2) -> void:
 	adventurer_template.animated_sprite.character_spritesheet_texture = spritesheet
 	adventurer_template.adventurer_persona = persona
 	adventurer_template.adventurer_name = persona.get_random_name()
-	adventurer_template.global_position = global_pos
+	adventurer_template.global_position = global_pos	
 	adventurers.add_child(adventurer_template)
 
 func _on_timer_timeout() -> void:
@@ -33,6 +34,6 @@ func _on_timer_timeout() -> void:
 		"Grass",
 		["navigatable"])
 	if not spawn_point: return
-	if debug_spawn_count >= 5	: return
+	if debug_spawn_count >= max_adventurers: return
 	_spawn_adventurer(spawn_point[0])
 	debug_spawn_count += 1

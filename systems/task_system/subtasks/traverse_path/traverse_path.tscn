@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://u7xi1nkbk70c"]
 
-[ext_resource type="Script" path="res://systems/task_system/subtasks/traverse_path.gd" id="1_1mjuj"]
+[ext_resource type="Script" path="res://systems/task_system/subtasks/traverse_path/traverse_path.gd" id="1_1mjuj"]
 
 [node name="TraversePath" type="Node" node_paths=PackedStringArray("stuck_timer")]
 script = ExtResource("1_1mjuj")

@@ -4,6 +4,7 @@ extends Resource
 @export var name_options: Array[String]
 @export var spritesheets: Array[Texture]
 @export var chat_options: Array[String]
+@export var dialogue_data: RDialogueData
 
 func get_random_spritesheet() -> Texture:
 	return spritesheets.pick_random()

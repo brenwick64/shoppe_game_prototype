@@ -2,7 +2,7 @@ class_name State
 extends Node
 
 @warning_ignore("unused_signal")
-signal transition 
+signal transition
 
 func _on_process(_delta : float) -> void:
 	pass

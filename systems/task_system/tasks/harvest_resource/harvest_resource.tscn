@@ -1,0 +1,42 @@
+[gd_scene load_steps=10 format=3 uid="uid://bf7qaitvv6rri"]
+
+[ext_resource type="Script" path="res://systems/task_system/tasks/harvest_resource/harvest_resource.gd" id="1_i2nb8"]
+[ext_resource type="PackedScene" uid="uid://bl71s24qqb7u2" path="res://systems/task_system/subtasks/get_harvestable_node/get_harvestable_node.tscn" id="2_v2atv"]
+[ext_resource type="PackedScene" uid="uid://bcmif43w5l480" path="res://systems/task_system/subtasks/get_adjacent_tile/get_adjacent_tile_gp.tscn" id="3_uvw7a"]
+[ext_resource type="PackedScene" uid="uid://d2iewrw2hcm4n" path="res://systems/task_system/subtasks/set_path_to_target_gp/set_path_to_target_gp.tscn" id="4_mt45g"]
+[ext_resource type="PackedScene" uid="uid://u7xi1nkbk70c" path="res://systems/task_system/subtasks/traverse_path/traverse_path.tscn" id="5_d4kno"]
+[ext_resource type="PackedScene" uid="uid://dppekferca52p" path="res://systems/task_system/subtasks/face_target_node/face_target_node.tscn" id="6_yga0b"]
+[ext_resource type="PackedScene" uid="uid://br74naia5kk5n" path="res://systems/task_system/subtasks/harvest_node/harvest_node.tscn" id="7_fl7uc"]
+[ext_resource type="PackedScene" uid="uid://d3mvx55gh5nm6" path="res://systems/task_system/subtasks/set_path_to_pickup/set_path_to_pickup.tscn" id="8_xn4su"]
+[ext_resource type="PackedScene" uid="uid://dhh1v7oxrkcsf" path="res://systems/task_system/subtasks/grab_pickup/grab_pickup.tscn" id="9_2hfp5"]
+
+[node name="HarvestResource" type="Node"]
+script = ExtResource("1_i2nb8")
+harvestable_type = "tree"
+iterations = 5
+
+[node name="SubtaskTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="RetryTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="GetHarvestableNode" parent="." instance=ExtResource("2_v2atv")]
+max_retries = 10
+
+[node name="GetAdjacentTileGP" parent="." instance=ExtResource("3_uvw7a")]
+max_retries = 3
+
+[node name="SetPathToTargetGP" parent="." instance=ExtResource("4_mt45g")]
+
+[node name="TraversePath" parent="." instance=ExtResource("5_d4kno")]
+
+[node name="FaceTargetNode" parent="." instance=ExtResource("6_yga0b")]
+
+[node name="HarvestNode" parent="." instance=ExtResource("7_fl7uc")]
+
+[node name="SetPathToPickup" parent="." instance=ExtResource("8_xn4su")]
+input_var_name = "pickup_node"
+
+[node name="GrabPickup" parent="." instance=ExtResource("9_2hfp5")]
+input_var_name = "pickup_node"

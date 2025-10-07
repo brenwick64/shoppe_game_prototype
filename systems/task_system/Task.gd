@@ -65,7 +65,7 @@ func _next_subtask(parent_task: Task, payload: Dictionary) -> void:
 	# invoke delay before subtask
 	_next_subtask_lock = true
 	subtask_timer.start(time_between_subtasks_sec)
-	print("running subtask: " + _current_subtask.name)
+	#print("running subtask: " + _current_subtask.name)
 
 func _check_finished() -> void:
 	if _current_iterations >= iterations:
@@ -87,22 +87,22 @@ func _handle_retry_subtask(subtask: SubTask, payload: Dictionary) -> void:
 	_current_subtask = null
 	_retry_timer_lock = true
 	subtask.current_retries += 1
-	print("retrying subtask: " + subtask.name + " retries: " + str(subtask.current_retries))
+	#print("retrying subtask: " + subtask.name + " retries: " + str(subtask.current_retries))
 	_next_subtask(self, payload)
 
 func _handle_retry_task() -> void:
-	print("retrying task: " + self.name)
+	#print("retrying task: " + self.name)
 	for subtask: SubTask in subtasks:
 		subtask.reset_state()
 	_current_subtask_index = 0
 	_current_subtask = null
 
 func _handle_kill_task() -> void:
-	print("task failed.")
+	#print("task failed.")
 	_fail_task()
 
 func _fail_subtask() -> void:
-	print("too many retries, scrapping task!")
+	#print("too many retries, scrapping task!")
 	_fail_task()
 
 func _complete_task() -> void:

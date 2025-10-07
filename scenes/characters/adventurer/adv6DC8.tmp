@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://q1jxj01w08oq"]
+[gd_scene load_steps=29 format=3 uid="uid://q1jxj01w08oq"]
 
 [ext_resource type="Script" path="res://systems/adventurer_system/animated_sprite_2d.gd" id="1_imomm"]
 [ext_resource type="Script" path="res://scenes/characters/adventurer/adventurer.gd" id="1_k3kjk"]
@@ -14,10 +14,13 @@
 [ext_resource type="PackedScene" uid="uid://ckklowqcnd3tm" path="res://scenes/components/npc_animation/npc_animation_component.tscn" id="6_fw7qb"]
 [ext_resource type="Script" path="res://scripts/state_machine/states/adventurer_states/perform_task.gd" id="7_1omw2"]
 [ext_resource type="Script" path="res://scenes/components/npc_animation/npc_animation_component.gd" id="7_7ybgr"]
+[ext_resource type="Script" path="res://scenes/characters/adventurer/chat_label.gd" id="8_5ktfj"]
+[ext_resource type="FontFile" uid="uid://btms2kimeagl3" path="res://assets/fonts/Abaddon Bold.ttf" id="8_ymgy1"]
 [ext_resource type="Script" path="res://scripts/state_machine/states/adventurer_states/aquire_task.gd" id="9_8j8a2"]
-[ext_resource type="Script" path="res://systems/chat_and_message_system/scenes/chat_manager/chat_manager.gd" id="9_48k2g"]
+[ext_resource type="Script" path="res://chat_manager.gd" id="9_48k2g"]
 [ext_resource type="Script" path="res://scripts/state_machine/states/adventurer_states/afk.gd" id="9_be1el"]
 [ext_resource type="PackedScene" uid="uid://bf7qaitvv6rri" path="res://systems/task_system/tasks/harvest_resource/harvest_resource.tscn" id="10_oe17w"]
+[ext_resource type="Script" path="res://testchat.gd" id="23_rgxd1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_njwo6"]
 radius = 5.0
@@ -62,17 +65,13 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_yqt4t"]
 radius = 3.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cfkh8"]
-radius = 198.003
-
-[node name="Adventurer" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "chat_manager")]
+[node name="Adventurer" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite")]
 z_index = 2
 y_sort_enabled = true
 collision_layer = 4
 motion_mode = 1
 script = ExtResource("1_k3kjk")
 animated_sprite = NodePath("AnimatedSprite2D")
-chat_manager = NodePath("ChatManager")
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2(0, -4)
@@ -95,7 +94,6 @@ shape = SubResource("CircleShape2D_yqt4t")
 [node name="NPCMovementComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("4_ebekr")]
 script = ExtResource("5_5gn7x")
 parent = NodePath("..")
-max_speed = 120.0
 
 [node name="NPCAnimationComponent" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("6_fw7qb")]
 script = ExtResource("7_7ybgr")
@@ -106,35 +104,19 @@ path_desired_distance = 5.0
 target_desired_distance = 3.0
 path_postprocessing = 1
 
-[node name="ChatManager" type="Node2D" parent="." node_paths=PackedStringArray("parent_adventurer", "chat_area")]
+[node name="ChatManager" type="Node" parent="." node_paths=PackedStringArray("parent_adventurer")]
 script = ExtResource("9_48k2g")
 parent_adventurer = NodePath("..")
-chat_area = NodePath("ChatArea")
 
-[node name="ChatArea" type="Area2D" parent="ChatManager"]
-collision_layer = 0
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ChatManager/ChatArea"]
-shape = SubResource("CircleShape2D_cfkh8")
-debug_color = Color(0.939, 0.471, 1, 0.178)
-
-[node name="ConversationCooldown" type="Timer" parent="ChatManager"]
-one_shot = true
-
-[node name="ChatCooldown" type="Timer" parent="ChatManager"]
-wait_time = 5.0
-one_shot = true
-
-[node name="MessageTimer" type="Timer" parent="ChatManager"]
-wait_time = 2.5
-one_shot = true
+[node name="DEBUGTESTCHAT" type="Timer" parent="ChatManager"]
+wait_time = 4.0
+autostart = true
 
 [node name="CurrentTasks" type="Node" parent="."]
 script = ExtResource("4_5x25t")
 
 [node name="HarvestResource" parent="CurrentTasks" instance=ExtResource("10_oe17w")]
-iterations = 100
+iterations = 1
 
 [node name="HarvestResource2" parent="CurrentTasks" instance=ExtResource("10_oe17w")]
 harvestable_type = "rock"
@@ -179,11 +161,20 @@ name_label = NodePath("../../NameLabel")
 [node name="AFKTimer" type="Timer" parent="StateMachine/AFK"]
 one_shot = true
 
+[node name="TESTCHAT" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d", "chat_label")]
+script = ExtResource("23_rgxd1")
+parent = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+chat_label = NodePath("../../ChatLabel")
+
+[node name="ChatCooldown" type="Timer" parent="StateMachine/TESTCHAT"]
+one_shot = true
+
 [node name="NameLabel" type="Label" parent="."]
-offset_left = -65.0
-offset_top = 5.0
-offset_right = 64.0
-offset_bottom = 19.0
+offset_left = -64.0
+offset_top = 3.0
+offset_right = 65.0
+offset_bottom = 17.0
 theme_override_colors/font_color = Color(0.150118, 0.492927, 0.831924, 1)
 theme_override_fonts/font = ExtResource("4_ty7al")
 theme_override_font_sizes/font_size = 8
@@ -201,3 +192,24 @@ theme_override_fonts/font = ExtResource("4_ty7al")
 theme_override_font_sizes/font_size = 8
 text = "STATE"
 horizontal_alignment = 1
+
+[node name="ChatLabel" type="Label" parent="." node_paths=PackedStringArray("parent")]
+z_index = 1
+offset_left = -228.0
+offset_top = -27.0
+offset_right = 230.0
+offset_bottom = -13.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("8_ymgy1")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+script = ExtResource("8_5ktfj")
+parent = NodePath("..")
+
+[node name="ChatTimer" type="Timer" parent="ChatLabel"]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="ChatManager/DEBUGTESTCHAT" to="ChatManager" method="_on_debugtestchat_timeout"]

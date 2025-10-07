@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
+@export var player_name: String
+
 @export var player_input_component: PlayerInputComponent
 @export var movement_component: MovementComponent
 @export var animation_component: AnimationComponent
@@ -9,12 +11,15 @@ extends CharacterBody2D
 @onready var pickup_sound: SingleSoundComponent = $PickupSound
 @onready var interactor: Interactor = $Interactor
 @onready var inventory_manager: InventoryManager = $InventoryManager
+@onready var name_label: Label = $NameLabel
+
 
 var _current_terrain: String
 
 func _ready() -> void:
 	physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
-	GlobalMessageManager.add_message("INFO", "player has entered the game")
+	GlobalMessageManager.add_console_message("INFO", player_name + " has entered the game")
+	name_label.text = "<" + player_name + ">"
 
 
 ## -- public methods --
@@ -23,7 +28,7 @@ func pickup(item_id: int, count: int) -> void:
 	inventory_manager.inventory.add_item(item_id, count)
 	
 	var item_data: RItemData = GlobalItemDb.get_item_by_id(item_id)
-	GlobalMessageManager.add_message(
+	GlobalMessageManager.add_console_message(
 		"DEBUG",
 		"picked up " + str(count) + " x " + item_data.item_name
 	)

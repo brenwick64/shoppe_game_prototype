@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4efr5peovme"]
+
+[ext_resource type="Script" path="res://systems/chat_and_message_system/scenes/chat_messages_ui/chat_messages_ui.gd" id="1_t8ydi"]
+
+[node name="ChatMessagesUI" type="CanvasLayer" groups=["chat_messages_ui"]]
+script = ExtResource("1_t8ydi")

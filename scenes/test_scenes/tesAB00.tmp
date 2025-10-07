@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://b3e78tu5wd3qe" path="res://scenes/game_objects/game_tile_map/game_tile_map.tscn" id="3_gu5lt"]
 [ext_resource type="PackedScene" uid="uid://x0hp764aoxfp" path="res://scenes/characters/player/player.tscn" id="4_p0uxn"]
 [ext_resource type="Script" path="res://scenes/game_objects/game_tilemap/game_tile_map.gd" id="5_0snrh"]
-[ext_resource type="PackedScene" uid="uid://b4efr5peovme" path="res://systems/chat_and_message_system/scenes/chat_messages_ui/chat_messages_ui.tscn" id="5_76mqh"]
 [ext_resource type="PackedScene" uid="uid://7i1a777bhd6c" path="res://scenes/game_objects/bird_spawner/bird_spawner.tscn" id="5_hyxup"]
+[ext_resource type="Script" path="res://chat_message.gd" id="5_rsxiy"]
 [ext_resource type="Script" path="res://scenes/characters/firefly/firefly_spawner.gd" id="6_fqiym"]
 [ext_resource type="PackedScene" uid="uid://chtm7kcr0w04x" path="res://scenes/managers/equipped_item_manager/equipped_item_manager.tscn" id="6_wd38v"]
 [ext_resource type="PackedScene" uid="uid://eeg5x8snkfqw" path="res://scenes/characters/firefly/firefly.tscn" id="7_ojd8x"]
@@ -73,7 +73,14 @@ offset_right = 660.0
 offset_bottom = -17.0
 grow_vertical = 0
 
-[node name="ChatMessagesUI" parent="." instance=ExtResource("5_76mqh")]
+[node name="ChatMessages" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Label" type="Label" parent="ChatMessages"]
+offset_right = 358.0
+offset_bottom = 23.0
+text = "the quick brown fox jumped over the lazy dog."
+script = ExtResource("5_rsxiy")
 
 [node name="PlayerCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_vxtlm")]
 zoom = Vector2(2, 2)
@@ -155,7 +162,6 @@ debug_color = Color(1, 1, 1, 0.42)
 
 [node name="AdventurerSpawner" type="Node2D" parent="PermanentGameObjects"]
 script = ExtResource("20_bowqb")
-max_adventurers = 5
 adventurer_scene = ExtResource("21_soude")
 
 [node name="Timer" type="Timer" parent="PermanentGameObjects/AdventurerSpawner"]
