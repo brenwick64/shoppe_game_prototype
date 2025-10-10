@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="RShoppeItemData" load_steps=5 format=3 uid="uid://cvyajmbd2o8kx"]
+[gd_resource type="Resource" script_class="RShoppeItemData" load_steps=6 format=3 uid="uid://cvyajmbd2o8kx"]
 
 [ext_resource type="Texture2D" uid="uid://dyv0duku6ree3" path="res://resources/textures/shoppe_items/health_potion_small.tres" id="1_0eckd"]
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RShoppeItemData.gd" id="1_j1807"]
 [ext_resource type="PackedScene" uid="uid://da6of7tcgp3c7" path="res://scenes/items/placeable_items/health_potion_small/health_potion_small.tscn" id="2_mekp0"]
 [ext_resource type="PackedScene" uid="uid://bl37qoflgadm4" path="res://scenes/items/placeable_items/health_potion_small/health_potion_small_preview.tscn" id="2_xknul"]
+[ext_resource type="Resource" uid="uid://wrusmomu676p" path="res://resources/r_shoppe_item_stats/health_potion_small_stats.tres" id="5_afrfj"]
 
 [resource]
 script = ExtResource("1_j1807")
@@ -11,8 +12,10 @@ placeable_scene = ExtResource("2_mekp0")
 preview_scene = ExtResource("2_xknul")
 scale_value = Vector2(0.5, 0.5)
 dimensions = Vector2i(1, 1)
+shoppe_item_stats = ExtResource("5_afrfj")
 item_id = 80
 item_name = "Small Health Potion"
 icon_texture = ExtResource("1_0eckd")
+icon_scale_multiplier = 2.0
 pickup_texture = ExtResource("1_0eckd")
 pickup_scale = Vector2(1, 1)

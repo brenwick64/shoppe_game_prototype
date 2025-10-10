@@ -1,11 +1,10 @@
 class_name ChatManager
 extends Node2D
 
-#signal new_chat_message(sender: Node2D, message: String, context: Dictionary)
+@export var conversation_cooldown_sec: float = 60.0
 
-@export var parent_adventurer: Adventurer
-@export var chat_area: Area2D
-
+@onready var parent_adventurer: Adventurer = $".."
+@onready var chat_area: Area2D = $ChatArea
 @onready var conversation_cooldown: Timer = $ConversationCooldown
 @onready var chat_cooldown: Timer = $ChatCooldown
 @onready var message_timer: Timer = $MessageTimer
@@ -25,13 +24,20 @@ func _ready() -> void:
 
 ## -- public methods --
 func invoke_conversation_cooldown() -> void:
-	conversation_cooldown.start(10)
+	conversation_cooldown.start(60)
 
-func start_conversation(context: RMessageContext) -> void:
+func start_conversation(
+	context: RMessageContext, 
+	message_chance: float = Constants.GLOBAL_CHAT_CONVERSATION_CHANCE
+	) -> void:
+	# checks to start conversation
+	if not Utils.roll_percentage(message_chance): return 
 	if conversation_cooldown.time_left > 0.0: return
-	# TODO: roll odds for starting conversation
+	if nearby_adventurers.is_empty(): return # nobody to chat to
+	# get message from context
 	var message_data: RMessageData = parent_adventurer.adventurer_persona.dialogue_data.get_conversation_starter(context)
 	if not message_data: return
+	# add data and send
 	message_data.sender_name = parent_adventurer.adventurer_name
 	message_data.recipient_names = nearby_adventurer_names
 	GlobalMessageManager.add_chat_message(parent_adventurer, message_data)
@@ -41,7 +47,13 @@ func start_conversation(context: RMessageContext) -> void:
 	for adventurer: Adventurer in nearby_adventurers:
 		adventurer.chat_manager.invoke_conversation_cooldown()
 
-func reply(replying_to: Adventurer, message_context: RMessageContext) -> void:
+func reply(
+	replying_to: Adventurer, 
+	message_context: RMessageContext, 
+	message_chance: float = Constants.GLOBAL_CHAT_REPLY_CHANCE
+	) -> void:
+		
+	if not Utils.roll_percentage(message_chance): return
 	var message_data: RMessageData = parent_adventurer.adventurer_persona.dialogue_data.get_reply(message_context)
 	if not message_data:
 		return
@@ -51,7 +63,29 @@ func reply(replying_to: Adventurer, message_context: RMessageContext) -> void:
 	message_timer.start(randf_range(2.5, 4.0))
 	await message_timer.timeout
 	GlobalMessageManager.add_chat_message(parent_adventurer, message_data)
-	
+
+func statement(
+	message_context: RMessageContext,
+	message_chance: float = Constants.GLOBAL_CHAT_STATEMENT_CHANCE
+	) -> void:
+		
+	if not Utils.roll_percentage(message_chance): return
+	var message_data: RMessageData = parent_adventurer.adventurer_persona.dialogue_data.get_statement(message_context)
+	if not message_data:
+		return
+	message_data.sender_name = parent_adventurer.adventurer_name
+	message_data.recipient_names = []
+	#FIXME: magic numbers
+	message_timer.start(randf_range(2.5, 4.0))
+	await message_timer.timeout
+	GlobalMessageManager.add_chat_message(parent_adventurer, message_data)
+
+
+## -- helper functions
+func _roll_message_chance(message_context: RMessageContext) -> bool:
+	var message_chance: float = message_context.base_message_chance
+	return Utils.roll_percentage(message_chance)
+
 
 ## -- signals --
 func _on_global_new_chat_message(sender: Node2D, message_data: RMessageData) -> void:

@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b52lyvwpigah1"]
+[gd_scene load_steps=4 format=3 uid="uid://b52lyvwpigah1"]
 
 [ext_resource type="Script" path="res://systems/item_system/scenes/item_pickup/item_pickup.gd" id="1_efsof"]
 [ext_resource type="PackedScene" uid="uid://8wgjua0eaeg7" path="res://systems/item_system/scenes/arc_move_on_spawn/arc_move_on_spawn.tscn" id="2_08fpj"]
-[ext_resource type="Script" path="res://systems/item_system/scenes/arc_move_on_spawn/arc_move_on_spawn.gd" id="3_qxbmx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p78f7"]
 radius = 9.05539
@@ -20,7 +19,6 @@ disabled = true
 debug_color = Color(0.288481, 0.616858, 0.374258, 0.42)
 
 [node name="ArcMoveOnSpawn" parent="." node_paths=PackedStringArray("pickup") instance=ExtResource("2_08fpj")]
-script = ExtResource("3_qxbmx")
 pickup = NodePath("..")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

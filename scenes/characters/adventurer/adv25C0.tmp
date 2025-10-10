@@ -1,0 +1,191 @@
+[gd_scene load_steps=26 format=3 uid="uid://q1jxj01w08oq"]
+
+[ext_resource type="Script" path="res://systems/adventurer_system/animated_sprite_2d.gd" id="1_imomm"]
+[ext_resource type="Script" path="res://scenes/characters/adventurer/adventurer.gd" id="1_k3kjk"]
+[ext_resource type="Texture2D" uid="uid://cn53uads4bci0" path="res://resources/textures/adventurer_spritesheets/character_001.png" id="2_a67wa"]
+[ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="2_ltfms"]
+[ext_resource type="Script" path="res://systems/task_system/current_tasks.gd" id="4_5x25t"]
+[ext_resource type="Texture2D" uid="uid://bm4qwa2l1e5n2" path="res://resources/textures/adventurer_spritesheets/Character_011.png" id="4_26ufd"]
+[ext_resource type="PackedScene" uid="uid://calcpqgx4m6pj" path="res://scenes/components/npc_movement/npc_movement_component.tscn" id="4_ebekr"]
+[ext_resource type="FontFile" uid="uid://5dmksnqi7msu" path="res://assets/fonts/Abaddon Light.ttf" id="4_ty7al"]
+[ext_resource type="Script" path="res://scenes/components/npc_movement/npc_movement_component.gd" id="5_5gn7x"]
+[ext_resource type="Script" path="res://scripts/state_machine/states/adventurer_states/adventurer_idle.gd" id="5_q5pqt"]
+[ext_resource type="Script" path="res://scripts/state_machine/states/adventurer_states/adventurer_roaming.gd" id="6_6b8hr"]
+[ext_resource type="PackedScene" uid="uid://ckklowqcnd3tm" path="res://scenes/components/npc_animation/npc_animation_component.tscn" id="6_fw7qb"]
+[ext_resource type="Script" path="res://scripts/state_machine/states/adventurer_states/perform_task.gd" id="7_1omw2"]
+[ext_resource type="Script" path="res://scenes/components/npc_animation/npc_animation_component.gd" id="7_7ybgr"]
+[ext_resource type="Script" path="res://scripts/state_machine/states/adventurer_states/aquire_task.gd" id="9_8j8a2"]
+[ext_resource type="Script" path="res://systems/chat_and_message_system/scenes/chat_manager/chat_manager.gd" id="9_48k2g"]
+[ext_resource type="Script" path="res://scripts/state_machine/states/adventurer_states/afk.gd" id="9_be1el"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_njwo6"]
+radius = 5.0
+height = 14.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqsj0"]
+atlas = ExtResource("2_a67wa")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v172m"]
+atlas = ExtResource("2_a67wa")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnbvi"]
+atlas = ExtResource("2_a67wa")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4avp"]
+atlas = ExtResource("2_a67wa")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w2g47"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqsj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v172m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnbvi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4avp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yqt4t"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cfkh8"]
+radius = 198.003
+
+[node name="Adventurer" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "chat_manager")]
+z_index = 2
+y_sort_enabled = true
+collision_layer = 4
+motion_mode = 1
+script = ExtResource("1_k3kjk")
+animated_sprite = NodePath("AnimatedSprite2D")
+chat_manager = NodePath("ChatManager")
+
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(0, -4)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CapsuleShape2D_njwo6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_w2g47")
+script = ExtResource("1_imomm")
+character_spritesheet_texture = ExtResource("4_26ufd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_yqt4t")
+
+[node name="NPCMovementComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("4_ebekr")]
+script = ExtResource("5_5gn7x")
+parent = NodePath("..")
+
+[node name="NPCAnimationComponent" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("6_fw7qb")]
+script = ExtResource("7_7ybgr")
+animated_sprite = NodePath("../AnimatedSprite2D")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 5.0
+target_desired_distance = 3.0
+path_postprocessing = 1
+
+[node name="ChatManager" type="Node2D" parent="."]
+script = ExtResource("9_48k2g")
+
+[node name="ChatArea" type="Area2D" parent="ChatManager"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChatManager/ChatArea"]
+shape = SubResource("CircleShape2D_cfkh8")
+debug_color = Color(0.939, 0.471, 1, 0.178)
+
+[node name="ConversationCooldown" type="Timer" parent="ChatManager"]
+one_shot = true
+
+[node name="ChatCooldown" type="Timer" parent="ChatManager"]
+wait_time = 5.0
+one_shot = true
+
+[node name="MessageTimer" type="Timer" parent="ChatManager"]
+wait_time = 2.5
+one_shot = true
+
+[node name="TaskManager" type="Node" parent="."]
+script = ExtResource("4_5x25t")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_node_state")]
+script = ExtResource("2_ltfms")
+initial_node_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d")]
+script = ExtResource("5_q5pqt")
+idle_time_range_sec = Vector2(1, 5)
+parent = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+
+[node name="IdleTimer" type="Timer" parent="StateMachine/Idle"]
+one_shot = true
+
+[node name="Roaming" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d")]
+script = ExtResource("6_6b8hr")
+parent = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+
+[node name="RoamingTimer" type="Timer" parent="StateMachine/Roaming"]
+one_shot = true
+
+[node name="PerformTask" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d")]
+script = ExtResource("7_1omw2")
+parent = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+
+[node name="AquireTask" type="Node" parent="StateMachine"]
+script = ExtResource("9_8j8a2")
+
+[node name="AFK" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d", "name_label")]
+script = ExtResource("9_be1el")
+parent = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+name_label = NodePath("../../NameLabel")
+
+[node name="AFKTimer" type="Timer" parent="StateMachine/AFK"]
+one_shot = true
+
+[node name="NameLabel" type="Label" parent="."]
+offset_left = -65.0
+offset_top = 5.0
+offset_right = 64.0
+offset_bottom = 19.0
+theme_override_colors/font_color = Color(0.150118, 0.492927, 0.831924, 1)
+theme_override_fonts/font = ExtResource("4_ty7al")
+theme_override_font_sizes/font_size = 8
+text = "<xXSepirophxX420>"
+horizontal_alignment = 1
+
+[node name="DebugCurrentState" type="Label" parent="."]
+visible = false
+offset_left = -64.0
+offset_top = -27.0
+offset_right = 65.0
+offset_bottom = -13.0
+theme_override_colors/font_color = Color(0.150118, 0.492927, 0.831924, 1)
+theme_override_fonts/font = ExtResource("4_ty7al")
+theme_override_font_sizes/font_size = 8
+text = "STATE"
+horizontal_alignment = 1

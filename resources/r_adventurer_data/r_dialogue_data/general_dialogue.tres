@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="RDialogueData" load_steps=24 format=3 uid="uid://kxpjqppswcpx"]
+[gd_resource type="Resource" script_class="RDialogueData" load_steps=30 format=3 uid="uid://kxpjqppswcpx"]
 
-[ext_resource type="Script" path="res://RDialogueData.gd" id="1_63sm7"]
-[ext_resource type="Script" path="res://RMessageData.gd" id="1_igc5e"]
-[ext_resource type="Script" path="res://RMessageContext.gd" id="2_xjfi5"]
+[ext_resource type="Script" path="res://systems/chat_and_message_system/scripts/RDialogueData.gd" id="1_63sm7"]
+[ext_resource type="Script" path="res://systems/chat_and_message_system/scripts/RMessageData.gd" id="1_igc5e"]
+[ext_resource type="Script" path="res://systems/chat_and_message_system/scripts/RMessageContext.gd" id="2_xjfi5"]
 
 [sub_resource type="Resource" id="Resource_cs4rb"]
 script = ExtResource("2_xjfi5")
 can_reply = true
 type = 0
 subject_tags = Array[String](["woodcutting", "level_inquiry", "tree"])
+base_message_chance = 0.0
 
 [sub_resource type="Resource" id="Resource_s758u"]
 script = ExtResource("1_igc5e")
@@ -22,6 +23,7 @@ script = ExtResource("2_xjfi5")
 can_reply = true
 type = 1
 subject_tags = Array[String](["level_inquiry"])
+base_message_chance = 0.0
 
 [sub_resource type="Resource" id="Resource_qpcap"]
 script = ExtResource("1_igc5e")
@@ -35,6 +37,7 @@ script = ExtResource("2_xjfi5")
 can_reply = true
 type = 1
 subject_tags = Array[String](["level_inquiry"])
+base_message_chance = 0.0
 
 [sub_resource type="Resource" id="Resource_h68s1"]
 script = ExtResource("1_igc5e")
@@ -48,6 +51,7 @@ script = ExtResource("2_xjfi5")
 can_reply = true
 type = 1
 subject_tags = Array[String](["level_inquiry"])
+base_message_chance = 0.0
 
 [sub_resource type="Resource" id="Resource_sakux"]
 script = ExtResource("1_igc5e")
@@ -61,6 +65,7 @@ script = ExtResource("2_xjfi5")
 can_reply = true
 type = 1
 subject_tags = Array[String](["level_inquiry"])
+base_message_chance = 0.0
 
 [sub_resource type="Resource" id="Resource_qj01r"]
 script = ExtResource("1_igc5e")
@@ -74,6 +79,7 @@ script = ExtResource("2_xjfi5")
 can_reply = true
 type = 1
 subject_tags = Array[String](["level_inquiry"])
+base_message_chance = 0.0
 
 [sub_resource type="Resource" id="Resource_6n6db"]
 script = ExtResource("1_igc5e")
@@ -87,6 +93,7 @@ script = ExtResource("2_xjfi5")
 can_reply = false
 type = 2
 subject_tags = Array[String]([])
+base_message_chance = 0.0
 
 [sub_resource type="Resource" id="Resource_w4k54"]
 script = ExtResource("1_igc5e")
@@ -100,6 +107,7 @@ script = ExtResource("2_xjfi5")
 can_reply = false
 type = 2
 subject_tags = Array[String]([])
+base_message_chance = 0.0
 
 [sub_resource type="Resource" id="Resource_212yp"]
 script = ExtResource("1_igc5e")
@@ -113,6 +121,7 @@ script = ExtResource("2_xjfi5")
 can_reply = false
 type = 2
 subject_tags = Array[String]([])
+base_message_chance = 0.0
 
 [sub_resource type="Resource" id="Resource_cqk8l"]
 script = ExtResource("1_igc5e")
@@ -126,6 +135,7 @@ script = ExtResource("2_xjfi5")
 can_reply = false
 type = 2
 subject_tags = Array[String]([])
+base_message_chance = 0.0
 
 [sub_resource type="Resource" id="Resource_45dfw"]
 script = ExtResource("1_igc5e")
@@ -134,7 +144,50 @@ message = "hell ya"
 recipient_names = Array[String]([])
 context = SubResource("Resource_mesdi")
 
+[sub_resource type="Resource" id="Resource_0l62m"]
+script = ExtResource("2_xjfi5")
+can_reply = false
+type = 3
+subject_tags = Array[String](["stolen_node"])
+base_message_chance = 0.0
+
+[sub_resource type="Resource" id="Resource_boo6k"]
+script = ExtResource("1_igc5e")
+sender_name = ""
+message = "stop taking my node!"
+recipient_names = Array[String]([])
+context = SubResource("Resource_0l62m")
+
+[sub_resource type="Resource" id="Resource_ao3iq"]
+script = ExtResource("2_xjfi5")
+can_reply = false
+type = 3
+subject_tags = Array[String](["stolen_node"])
+base_message_chance = 0.0
+
+[sub_resource type="Resource" id="Resource_phgxx"]
+script = ExtResource("1_igc5e")
+sender_name = ""
+message = "can you hop?"
+recipient_names = Array[String]([])
+context = SubResource("Resource_ao3iq")
+
+[sub_resource type="Resource" id="Resource_kfgjv"]
+script = ExtResource("2_xjfi5")
+can_reply = false
+type = 3
+subject_tags = Array[String](["stolen_node"])
+base_message_chance = 0.0
+
+[sub_resource type="Resource" id="Resource_nw6yk"]
+script = ExtResource("1_igc5e")
+sender_name = ""
+message = "ffs"
+recipient_names = Array[String]([])
+context = SubResource("Resource_kfgjv")
+
 [resource]
 script = ExtResource("1_63sm7")
 conversation_starters = Array[ExtResource("1_igc5e")]([SubResource("Resource_s758u")])
 replies = Array[ExtResource("1_igc5e")]([SubResource("Resource_qpcap"), SubResource("Resource_h68s1"), SubResource("Resource_sakux"), SubResource("Resource_qj01r"), SubResource("Resource_6n6db"), SubResource("Resource_w4k54"), SubResource("Resource_212yp"), SubResource("Resource_cqk8l"), SubResource("Resource_45dfw")])
+statements = Array[ExtResource("1_igc5e")]([SubResource("Resource_boo6k"), SubResource("Resource_phgxx"), SubResource("Resource_nw6yk")])

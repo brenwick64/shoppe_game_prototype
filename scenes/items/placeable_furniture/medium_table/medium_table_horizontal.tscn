@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://fepru02c0sv5"]
+[gd_scene load_steps=9 format=3 uid="uid://fepru02c0sv5"]
 
-[ext_resource type="Texture2D" uid="uid://dl3sgfx16pco7" path="res://resources/textures/shoppe_furniture/med_table_horizontal.tres" id="1_enyj0"]
 [ext_resource type="Script" path="res://systems/item_system/scripts/classes/PlaceableFurniture.gd" id="1_kunly"]
+[ext_resource type="Texture2D" uid="uid://bm1mdn88lfs7c" path="res://assets/objects/tables.png" id="2_w8k6u"]
 [ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="3_ptffd"]
 [ext_resource type="AudioStream" uid="uid://bv02g04vkgdar" path="res://audio/actions/place_object/place_object_1.wav" id="4_umjes"]
 [ext_resource type="PackedScene" uid="uid://cj3lu0kp1ucot" path="res://systems/item_system/scenes/placeable_item_slot/placeable_item_slot.tscn" id="5_goedh"]
@@ -9,15 +9,20 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jjcgv"]
 size = Vector2(29, 14)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_31m4n"]
+atlas = ExtResource("2_w8k6u")
+region = Rect2(17, 17, 31, 16)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t2ljr"]
 size = Vector2(29, 11)
 
-[node name="MediumTableHorizontal" type="StaticBody2D" node_paths=PackedStringArray("item_slots_node", "place_sound")]
+[node name="MediumTableHorizontal" type="StaticBody2D" node_paths=PackedStringArray("item_slots_node", "place_sound", "sprite")]
 z_index = 2
 y_sort_enabled = true
 script = ExtResource("1_kunly")
 item_slots_node = NodePath("ItemSlots")
 place_sound = NodePath("PlacedSound")
+sprite = NodePath("Sprite2D")
 
 [node name="BlockPlacement" type="Area2D" parent="."]
 collision_layer = 16
@@ -30,7 +35,7 @@ debug_color = Color(0.876, 0.274, 0.531, 0.216)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -5)
-texture = ExtResource("1_enyj0")
+texture = SubResource("AtlasTexture_31m4n")
 offset = Vector2(0, 5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgas7a3ix2k3e"]
+
+[ext_resource type="Script" path="res://scenes/ui/gold_count/ui_gold_count.gd" id="1_noclx"]
+[ext_resource type="Texture2D" uid="uid://dand3ribr45d5" path="res://assets/objects/Coin_Four.png" id="3_1quc4"]
+[ext_resource type="PackedScene" uid="uid://cwt0f0n0x8dbv" path="res://scenes/ui/counting_label/ui_counting_label.tscn" id="3_3h5k1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5vgs"]
+atlas = ExtResource("3_1quc4")
+region = Rect2(0, 0, 16, 16)
+
+[node name="UIGoldCount" type="Control" groups=["ui_gold_count"]]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_noclx")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+
+[node name="CoinTexture" type="TextureRect" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_i5vgs")
+stretch_mode = 3
+
+[node name="xLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "x"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 10
+
+[node name="UICountingLabel" parent="HBoxContainer/MarginContainer2" instance=ExtResource("3_3h5k1")]
+layout_mode = 2

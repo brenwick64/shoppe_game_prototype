@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvmmfnstuhkud"]
+
+[ext_resource type="Script" path="res://systems/task_system/subtasks/get_item_to_buy/get_item_to_buy.gd" id="1_af2hu"]
+
+[node name="GetItemToBuy" type="Node"]
+script = ExtResource("1_af2hu")
+output_var_name = "target_item_node"
+max_retries = 2

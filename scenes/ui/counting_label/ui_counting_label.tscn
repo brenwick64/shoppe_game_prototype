@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwt0f0n0x8dbv"]
+
+[ext_resource type="Script" path="res://scenes/ui/counting_label/ui_counting_label.gd" id="1_ns6l0"]
+
+[node name="UICountingLabel" type="Label"]
+script = ExtResource("1_ns6l0")

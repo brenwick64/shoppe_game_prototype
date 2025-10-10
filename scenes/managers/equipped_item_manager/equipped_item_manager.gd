@@ -1,15 +1,25 @@
 class_name EquippedItemManager
 extends Node
 
+signal item_deselected
+signal tool_deselected
+
 @export var shoppe_furniture_handler: ShoppeFurnitureHandler
 @export var shoppe_item_handler: ShoppeItemHandler
+@export var shoppe_remover_handler: ShoppeRemoverHandler
 
 @onready var item_handlers: Array = [
 	shoppe_furniture_handler,
 	shoppe_item_handler
 ]
 
+@onready var tool_handlers: Array = [
+	shoppe_remover_handler
+]
+
+var _current_selected_tool: RToolItemData
 var _current_held_item: RItemData
+
 
 func _ready() -> void:
 	var main_scene: Node2D = get_tree().get_first_node_in_group("main_scene")
@@ -22,6 +32,7 @@ func _ready() -> void:
 		return
 	player_inv_manager.item_depleted.connect(_on_player_inv_item_depleted)
 	_update_item_handlers(main_scene, player_inv_manager)
+	_update_tool_handlers(main_scene)
 
 
 ## -- helper functions --
@@ -30,13 +41,27 @@ func _update_item_handlers(main_scene: Node2D, player_inv_manager: InventoryMana
 		handler.main_scene = main_scene
 		handler.player_inventory_manager = player_inv_manager
 
-func _handle_equipped_item(item_data: RItemData) -> void:
+func _update_tool_handlers(main_scene: Node2D) -> void:
+	for handler: ItemHandler in tool_handlers:
+		handler.main_scene = main_scene
+
+func _clear_item_handlers() -> void:
 	for handler: ItemHandler in item_handlers:
 		handler.clear_item()
+
+func _clear_tool_handlers() -> void:
+	for handler: ItemHandler in tool_handlers:
+		handler.clear_item()
+
+func _handle_equipped_item(item_data: RItemData) -> void:
 	if item_data is RShoppeFurnitureData:
 		shoppe_furniture_handler.set_item(item_data)
 	elif item_data is RShoppeItemData:
 		shoppe_item_handler.set_item(item_data)
+
+func _handle_equipped_tool(tool: RToolItemData) -> void:
+	if tool.tool_name == "shoppe_item_remover":
+		shoppe_remover_handler.set_item(tool)
 
 
 ## -- signals --
@@ -45,10 +70,24 @@ func _on_ui_action_bar_item_focused(item_id: int) -> void:
 	if not item_data:
 		push_error("EquippedItemManager error: no item found for equipped item id: " + str(item_id))
 		return
+	# clear other handlers
+	_current_selected_tool = null
+	_clear_tool_handlers()
+	# enable item handler
 	_current_held_item = item_data
 	_handle_equipped_item(item_data)
+	tool_deselected.emit()
 
 func _on_player_inv_item_depleted(item_id: int) -> void:
 	if item_id == _current_held_item.item_id:
 		for handler: ItemHandler in item_handlers:
 			handler.clear_item()
+
+func _on_temp_ui_game_utils_tool_focused(tool: RToolItemData) -> void:
+	# clear other handlers
+	_current_held_item = null
+	_clear_item_handlers()
+	# enable tool handler
+	_current_selected_tool = tool
+	_handle_equipped_tool(tool)
+	item_deselected.emit()

@@ -1,12 +1,14 @@
-[gd_scene load_steps=41 format=3 uid="uid://x0hp764aoxfp"]
+[gd_scene load_steps=43 format=3 uid="uid://x0hp764aoxfp"]
 
 [ext_resource type="Texture2D" uid="uid://cn53uads4bci0" path="res://resources/textures/adventurer_spritesheets/character_001.png" id="1_1m8w0"]
 [ext_resource type="Script" path="res://scenes/components/player_input_component/player_input_component.gd" id="1_bfyut"]
 [ext_resource type="Script" path="res://scenes/characters/player/player.gd" id="1_ym86x"]
 [ext_resource type="Script" path="res://scenes/components/movement_component/movement_component.gd" id="2_6reun"]
 [ext_resource type="Script" path="res://scenes/components/interactor/interactor.gd" id="2_25yar"]
+[ext_resource type="PackedScene" uid="uid://bcuw2a3mfjchs" path="res://scenes/managers/currency_manager/currency_manager.tscn" id="2_ap7fr"]
 [ext_resource type="Script" path="res://scenes/components/hitbox/hitbox.gd" id="2_k1gv2"]
 [ext_resource type="Script" path="res://systems/inventory_system/scripts/inventory_manager.gd" id="2_pdmjj"]
+[ext_resource type="Script" path="res://scenes/managers/currency_manager/currency_manager.gd" id="3_4yxmo"]
 [ext_resource type="PackedScene" uid="uid://cxtu01o27robl" path="res://systems/save_and_load_system/scenes/save_load_component.tscn" id="3_43mp2"]
 [ext_resource type="Script" path="res://scenes/components/animation_component/animation_component.gd" id="3_if003"]
 [ext_resource type="Script" path="res://systems/inventory_system/scripts/RInventoryItem.gd" id="4_ys0pp"]
@@ -224,6 +226,9 @@ player_input_component = NodePath("PlayerInputComponent")
 movement_component = NodePath("MovementComponent")
 animation_component = NodePath("AnimationComponent")
 movement_sound = NodePath("MovementSoundComponent")
+
+[node name="CurrencyManager" parent="." instance=ExtResource("2_ap7fr")]
+script = ExtResource("3_4yxmo")
 
 [node name="InventoryManager" type="Node" parent="." node_paths=PackedStringArray("save_load_component") groups=["player_inventory"]]
 script = ExtResource("2_pdmjj")

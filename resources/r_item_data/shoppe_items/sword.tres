@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="RShoppeItemData" load_steps=5 format=3 uid="uid://bc3vn0te4baww"]
+[gd_resource type="Resource" script_class="RShoppeItemData" load_steps=6 format=3 uid="uid://bc3vn0te4baww"]
 
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RShoppeItemData.gd" id="1_haxpt"]
 [ext_resource type="Texture2D" uid="uid://jrkkk66ogdiu" path="res://resources/textures/shoppe_items/sword.tres" id="1_kar12"]
 [ext_resource type="PackedScene" uid="uid://ciwr1gc3w5xer" path="res://scenes/items/placeable_items/sword/sword.tscn" id="2_ls27y"]
 [ext_resource type="PackedScene" uid="uid://wddd88hve6ba" path="res://scenes/items/placeable_items/sword/sword_preview.tscn" id="3_277bx"]
+[ext_resource type="Resource" uid="uid://drgtb1ljdn481" path="res://resources/r_shoppe_item_stats/sword_stats.tres" id="5_vosmm"]
 
 [resource]
 script = ExtResource("1_haxpt")
@@ -11,8 +12,10 @@ placeable_scene = ExtResource("2_ls27y")
 preview_scene = ExtResource("3_277bx")
 scale_value = Vector2(0.75, 0.75)
 dimensions = Vector2i(2, 1)
+shoppe_item_stats = ExtResource("5_vosmm")
 item_id = 69
 item_name = "Test Sword"
 icon_texture = ExtResource("1_kar12")
+icon_scale_multiplier = 2.0
 pickup_texture = ExtResource("1_kar12")
 pickup_scale = Vector2(0.5, 0.5)

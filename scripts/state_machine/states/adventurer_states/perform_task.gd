@@ -3,7 +3,7 @@ extends State
 @export var parent: Adventurer
 @export var animated_sprite_2d: AnimatedSprite2D
 
-@export var current_tasks: CurrentTasks
+@export var task_manager: TaskManager
 
 var _current_task: Task
 
@@ -15,7 +15,7 @@ func _on_physics_process(delta: float) -> void:
 		_current_task.on_physics_process(delta)
 		return
 	# pull next task
-	var next_task: Task = current_tasks.get_next_task()
+	var next_task: Task = task_manager.get_next_task()
 	if not next_task: 
 		transition.emit("aquiretask")
 	else:

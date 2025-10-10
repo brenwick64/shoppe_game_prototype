@@ -1,6 +1,6 @@
 extends Control
 
-var icon_scale_multiplier: float = 2.0
+@export var icon_scale_multiplier: float = 2.0
 
 ## -- public methods --
 func add_texture(texture: AtlasTexture) -> void:

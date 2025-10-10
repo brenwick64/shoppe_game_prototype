@@ -12,12 +12,13 @@ size = Vector2(46, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t2ljr"]
 size = Vector2(46, 11)
 
-[node name="LargeaTableHorizontal" type="StaticBody2D" node_paths=PackedStringArray("item_slots_node", "place_sound")]
+[node name="LargeaTableHorizontal" type="StaticBody2D" node_paths=PackedStringArray("item_slots_node", "place_sound", "sprite")]
 z_index = 2
 y_sort_enabled = true
 script = ExtResource("1_m023r")
 item_slots_node = NodePath("ItemSlots")
 place_sound = NodePath("PlacedSound")
+sprite = NodePath("Sprite2D")
 
 [node name="BlockPlacement" type="Area2D" parent="."]
 collision_layer = 16

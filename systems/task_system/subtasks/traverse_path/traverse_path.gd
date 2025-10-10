@@ -2,6 +2,7 @@ extends SubTask
 
 @export var stuck_time_threshold_sec: float = 60.0
 @export var stuck_timer: Timer
+@export var acceptable_target_distance: float = 5.0
 
 ## state variables
 var _path_traversed: bool = false
@@ -27,7 +28,8 @@ func reset_state() -> void:
 
 ## -- main function --
 func _traverse_path() -> void:
-	if not parent_task.adventurer.nav_agent.is_target_reached():
+	var distance_to_target: float = parent_task.adventurer.nav_agent.distance_to_target()
+	if distance_to_target > acceptable_target_distance:
 		var direction: Vector2 = parent_task.adventurer.to_local(
 			parent_task.adventurer.nav_agent.get_next_path_position()
 		).normalized()

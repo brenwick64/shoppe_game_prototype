@@ -1,0 +1,48 @@
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://bev6choaoujtv"]
+
+[ext_resource type="Texture2D" uid="uid://bdmoierj2wdno" path="res://assets/placeholder_assets/ui/Square Buttons 26x26.png" id="1_ege1m"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_es85q"]
+load_path = "res://.godot/imported/Square Buttons 26x26.png-53db01eabc9d0b9acb87c8860e6c57ec.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pw0y2"]
+atlas = SubResource("CompressedTexture2D_es85q")
+region = Rect2(59, 109, 26, 26)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u817f"]
+texture = SubResource("AtlasTexture_pw0y2")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l486u"]
+atlas = ExtResource("1_ege1m")
+region = Rect2(59, 157, 26, 26)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eqm0m"]
+texture = SubResource("AtlasTexture_l486u")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_reskp"]
+load_path = "res://.godot/imported/Square Buttons 26x26.png-53db01eabc9d0b9acb87c8860e6c57ec.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvhyi"]
+atlas = SubResource("CompressedTexture2D_reskp")
+region = Rect2(59, 61, 26, 26)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tppy8"]
+texture = SubResource("AtlasTexture_lvhyi")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[resource]
+Btn/base_type = &"Button"
+Btn/styles/hover = SubResource("StyleBoxTexture_u817f")
+Btn/styles/normal = SubResource("StyleBoxTexture_eqm0m")
+Btn/styles/pressed = SubResource("StyleBoxTexture_tppy8")

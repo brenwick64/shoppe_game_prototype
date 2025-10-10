@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="RShoppeItemStats" load_steps=2 format=3 uid="uid://dp06ddwqa02ic"]
+
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RShoppeItemStats.gd" id="1_4mact"]
+
+[resource]
+script = ExtResource("1_4mact")
+base_price = 5
+item_rarity = 0

@@ -1,6 +1,8 @@
 ## GlobalItemSpawner.gd
 extends Node
 
+@onready var coin_scene: PackedScene = preload("res://scenes/objects/coin/coin.tscn")
+
 ## -- public methods --
 func spawn_item_pickup(
 	item_id: int, 
@@ -22,6 +24,23 @@ func spawn_item_pickup(
 		pickup_ins.owner_id = pickup_owner.get_instance_id()
 	spawned_items.add_child(pickup_ins)
 	return pickup_ins
+
+func spawn_coins(start_pos: Vector2, item_price: int) -> void:
+	var coin_count: int = min(item_price, 5)
+	for i: int in range(coin_count):
+		var random_dist: int = randi_range(-10, 10)
+		var max_rotation_deg_left = 45
+		var max_rotation_deg_right = 135
+		const ROTATION_SCALAR: float = 4.5 # the mapping of degrees to 10
+		var end_pos: Vector2 = start_pos + Vector2(random_dist, 0)
+		var coin_ins: Node2D = coin_scene.instantiate()
+		coin_ins.global_position = start_pos
+		coin_ins.start_pos = start_pos
+		coin_ins.end_pos = end_pos
+		coin_ins.rotation_degrees = 90 + (random_dist * ROTATION_SCALAR)
+		
+		await get_tree().create_timer(0.05).timeout
+		get_tree().root.add_child(coin_ins)
 
 
 ## -- helper functions

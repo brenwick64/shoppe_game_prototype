@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RToolItemData" load_steps=2 format=3 uid="uid://dl5rxkhf6jdt3"]
+
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RToolItemData.gd" id="1_h0qca"]
+
+[resource]
+script = ExtResource("1_h0qca")
+tool_name = "shoppe_item_remover"
+item_id = 0
+item_name = ""
+icon_scale_multiplier = 2.0
+pickup_scale = Vector2(1, 1)

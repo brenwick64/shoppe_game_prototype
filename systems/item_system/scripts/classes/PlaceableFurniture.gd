@@ -30,6 +30,12 @@ func add_item_by_slot_index(item: PlaceableItem, slot_index: int) -> void:
 		return
 	_item_slots[slot_index].add_item(item)
 
+func get_full_item_slots() -> Array[PlaceableItemSlot]:
+	var full_slots: Array[PlaceableItemSlot] = []
+	for slot: PlaceableItemSlot in _item_slots:
+		if slot.placed_item:
+			full_slots.append(slot)
+	return full_slots
 
 func get_free_item_slots(item_dimensions: Vector2i) -> Array[PlaceableItemSlot]:
 	var free_slots: Array[PlaceableItemSlot] = []
@@ -58,6 +64,7 @@ func _get_needed_item_coords(item_slot: PlaceableItemSlot) -> Array[Vector2i]:
 ## -- signals --
 func _on_item_slot_item_added(item_slot: PlaceableItemSlot, placed_item: PlaceableItem) -> void:
 	var coords_added: Array[Vector2i] = _get_needed_item_coords(item_slot)
+	item_slot.placed_item_tile_coords = coords_added
 	_occupied_item_tiles += coords_added
 	
 func _on_item_slot_item_removed(item_slot: PlaceableItemSlot, placed_item: PlaceableItem) -> void:

@@ -5,6 +5,8 @@ extends RItemData
 @export var preview_scene: PackedScene
 @export var scale_value: Vector2 = Vector2.ONE
 @export var dimensions: Vector2i = Vector2i.ONE
+@export var shoppe_item_stats: RShoppeItemStats
+
 
 func new_placeable() -> Placeable:
 	var placeable_ins: Placeable = placeable_scene.instantiate()

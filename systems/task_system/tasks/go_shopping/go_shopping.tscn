@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://c2s6si25jpbos"]
+
+[ext_resource type="Script" path="res://systems/task_system/tasks/go_shopping/go_shopping.gd" id="1_dcjtd"]
+[ext_resource type="PackedScene" uid="uid://dvmmfnstuhkud" path="res://systems/task_system/subtasks/get_item_to_buy/get_item_to_buy.tscn" id="2_f31lj"]
+[ext_resource type="PackedScene" uid="uid://xmcllv6oyeom" path="res://systems/task_system/subtasks/get_adjacent_shoppe_tile_from_item/get_adjacent_shoppe_tile_from_item.tscn" id="3_ldsmt"]
+[ext_resource type="PackedScene" uid="uid://d2iewrw2hcm4n" path="res://systems/task_system/subtasks/set_path_to_target_gp/set_path_to_target_gp.tscn" id="4_873s5"]
+[ext_resource type="PackedScene" uid="uid://u7xi1nkbk70c" path="res://systems/task_system/subtasks/traverse_path/traverse_path.tscn" id="5_8vvex"]
+[ext_resource type="PackedScene" uid="uid://dppekferca52p" path="res://systems/task_system/subtasks/face_target_node/face_target_node.tscn" id="6_6715e"]
+[ext_resource type="PackedScene" uid="uid://onbio3fr54dq" path="res://systems/task_system/subtasks/buy_item/buy_item.tscn" id="7_6g6yn"]
+
+[node name="GoShopping" type="Node"]
+script = ExtResource("1_dcjtd")
+
+[node name="SubtaskTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="RetryTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="GetItemToBuy" parent="." instance=ExtResource("2_f31lj")]
+
+[node name="GetAdjacentShoppeTileFromItem" parent="." instance=ExtResource("3_ldsmt")]
+
+[node name="SetPathToTargetGP" parent="." instance=ExtResource("4_873s5")]
+input_var_name = "closest_tile_gp"
+
+[node name="TraversePath" parent="." instance=ExtResource("5_8vvex")]
+acceptable_target_distance = 15.0
+
+[node name="FaceTargetNode" parent="." instance=ExtResource("6_6715e")]
+input_var_name = "target_item_node"
+
+[node name="BuyItem" parent="." instance=ExtResource("7_6g6yn")]

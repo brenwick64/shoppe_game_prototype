@@ -5,9 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="3_glsfe"]
 [ext_resource type="AudioStream" uid="uid://dxlkymo3h6qjg" path="res://audio/actions/place_object/place_object_3.wav" id="4_3t3lv"]
 
-[node name="HealthPotionSmall" type="Node2D" node_paths=PackedStringArray("place_sound")]
+[node name="HealthPotionSmall" type="Node2D" node_paths=PackedStringArray("place_sound", "sprite")]
 script = ExtResource("1_572j7")
 place_sound = NodePath("SingleSoundComponent")
+sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -8)

@@ -1,0 +1,139 @@
+[gd_scene load_steps=10 format=3 uid="uid://dare4tbedue2"]
+
+[ext_resource type="Theme" uid="uid://d3hq7cut50woy" path="res://resources/config/ui/ui_theme.tres" id="1_7q4yh"]
+[ext_resource type="Script" path="res://scenes/ui/temp_ui_game_utils.gd" id="1_13xgn"]
+[ext_resource type="Theme" uid="uid://bev6choaoujtv" path="res://resources/config/ui/placeholder_themes.tres" id="2_1t1dy"]
+[ext_resource type="PackedScene" uid="uid://bfdoq5u0xisrw" path="res://scenes/ui/centered_texture_rect/centered_texture_rect.tscn" id="3_7mxcu"]
+[ext_resource type="Texture2D" uid="uid://ry4vmtdwvorg" path="res://assets/placeholder_assets/ui/Emoji_Spritesheet_Free.png" id="4_iulm5"]
+[ext_resource type="PackedScene" uid="uid://cgas7a3ix2k3e" path="res://scenes/ui/gold_count/ui_gold_count.tscn" id="5_gh80n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gm1t7"]
+atlas = ExtResource("4_iulm5")
+region = Rect2(34, 226, 28, 28)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5c3fl"]
+load_path = "res://.godot/imported/Emoji_Spritesheet_Free.png-dc81eb204617b3f129233a06341efc5a.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7rvk"]
+atlas = SubResource("CompressedTexture2D_5c3fl")
+region = Rect2(0, 257, 32, 30)
+
+[node name="TempUIGameUtils" type="Control"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 326.0
+offset_top = -90.0
+offset_right = 366.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_13xgn")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(110, 107)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7q4yh")
+theme_type_variation = &"MainPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="UIUtilButtons" type="Control" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/UIUtilButtons"]
+layout_mode = 2
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/UIUtilButtons/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="RemoverTool" type="Button" parent="Panel/MarginContainer/VBoxContainer/UIUtilButtons/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_1t1dy")
+theme_type_variation = &"Btn"
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/UIUtilButtons/HBoxContainer/MarginContainer/RemoverTool"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 7
+
+[node name="CenteredTextureRect" parent="Panel/MarginContainer/VBoxContainer/UIUtilButtons/HBoxContainer/MarginContainer/RemoverTool/MarginContainer" instance=ExtResource("3_7mxcu")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_gm1t7")
+icon_scale_multiplier = 1.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/UIUtilButtons/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MiscButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/UIUtilButtons/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_1t1dy")
+theme_type_variation = &"Btn"
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/UIUtilButtons/HBoxContainer/MarginContainer2/MiscButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 7
+
+[node name="CenteredTextureRect" parent="Panel/MarginContainer/VBoxContainer/UIUtilButtons/HBoxContainer/MarginContainer2/MiscButton/MarginContainer" instance=ExtResource("3_7mxcu")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_a7rvk")
+icon_scale_multiplier = 1.0
+
+[node name="UIGoldCount" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("5_gh80n")]
+layout_mode = 2
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/UIUtilButtons/HBoxContainer/MarginContainer/RemoverTool" to="." method="_on_remove_button_pressed"]

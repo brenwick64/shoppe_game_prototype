@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://onbio3fr54dq"]
+
+[ext_resource type="Script" path="res://systems/task_system/subtasks/buy_item/buy_item.gd" id="1_a07gp"]
+
+[node name="BuyItem" type="Node"]
+script = ExtResource("1_a07gp")
+input_var_name = "target_item_node"

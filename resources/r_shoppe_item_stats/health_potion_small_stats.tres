@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="RShoppeItemStats" load_steps=2 format=3 uid="uid://wrusmomu676p"]
+
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RShoppeItemStats.gd" id="1_828gg"]
+
+[resource]
+script = ExtResource("1_828gg")
+base_price = 1
+item_rarity = 0

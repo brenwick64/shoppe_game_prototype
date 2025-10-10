@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://xmcllv6oyeom"]
+
+[ext_resource type="Script" path="res://systems/task_system/subtasks/get_adjacent_shoppe_tile_from_item/get_adjacent_shoppe_tile_from_item.gd" id="1_p0ks8"]
+
+[node name="GetAdjacentShoppeTileFromItem" type="Node"]
+script = ExtResource("1_p0ks8")
+input_var_name = "target_item_node"
+output_var_name = "closest_tile_gp"

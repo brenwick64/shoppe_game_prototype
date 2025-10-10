@@ -17,6 +17,21 @@ func get_closest_target_node(source_node: Node2D, target_nodes: Array[Node2D]) -
 			closest_target = t
 	return closest_target
 
+## string operations
+func int_to_comma_string(value: int) -> String:
+	var str_val: String = str(abs(value))
+	var result: String = ""
+	
+	while str_val.length() > 3:
+		result = "," + str_val.substr(str_val.length() - 3, 3) + result
+		str_val = str_val.substr(0, str_val.length() - 3)
+	
+	result = str_val + result
+	if value < 0:
+		result = "-" + result
+	return result
+
+
 ## array operations
 func arrays_overlap(a: Array, b:Array) -> bool:
 	for element in a:

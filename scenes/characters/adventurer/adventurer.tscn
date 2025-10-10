@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/characters/adventurer/adventurer.gd" id="1_k3kjk"]
 [ext_resource type="Texture2D" uid="uid://cn53uads4bci0" path="res://resources/textures/adventurer_spritesheets/character_001.png" id="2_a67wa"]
 [ext_resource type="Script" path="res://scripts/state_machine/state_machine.gd" id="2_ltfms"]
-[ext_resource type="Script" path="res://systems/task_system/current_tasks.gd" id="4_5x25t"]
+[ext_resource type="Script" path="res://systems/task_system/scenes/task_manager.gd" id="4_5x25t"]
 [ext_resource type="Texture2D" uid="uid://bm4qwa2l1e5n2" path="res://resources/textures/adventurer_spritesheets/Character_011.png" id="4_26ufd"]
 [ext_resource type="PackedScene" uid="uid://calcpqgx4m6pj" path="res://scenes/components/npc_movement/npc_movement_component.tscn" id="4_ebekr"]
 [ext_resource type="FontFile" uid="uid://5dmksnqi7msu" path="res://assets/fonts/Abaddon Light.ttf" id="4_ty7al"]
@@ -17,7 +17,7 @@
 [ext_resource type="Script" path="res://scripts/state_machine/states/adventurer_states/aquire_task.gd" id="9_8j8a2"]
 [ext_resource type="Script" path="res://systems/chat_and_message_system/scenes/chat_manager/chat_manager.gd" id="9_48k2g"]
 [ext_resource type="Script" path="res://scripts/state_machine/states/adventurer_states/afk.gd" id="9_be1el"]
-[ext_resource type="PackedScene" uid="uid://bf7qaitvv6rri" path="res://systems/task_system/tasks/harvest_resource/harvest_resource.tscn" id="10_oe17w"]
+[ext_resource type="PackedScene" uid="uid://c2s6si25jpbos" path="res://systems/task_system/tasks/go_shopping/go_shopping.tscn" id="11_h5sku"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_njwo6"]
 radius = 5.0
@@ -103,13 +103,11 @@ animated_sprite = NodePath("../AnimatedSprite2D")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 5.0
-target_desired_distance = 3.0
+target_desired_distance = 5.0
 path_postprocessing = 1
 
-[node name="ChatManager" type="Node2D" parent="." node_paths=PackedStringArray("parent_adventurer", "chat_area")]
+[node name="ChatManager" type="Node2D" parent="."]
 script = ExtResource("9_48k2g")
-parent_adventurer = NodePath("..")
-chat_area = NodePath("ChatArea")
 
 [node name="ChatArea" type="Area2D" parent="ChatManager"]
 collision_layer = 0
@@ -130,15 +128,10 @@ one_shot = true
 wait_time = 2.5
 one_shot = true
 
-[node name="CurrentTasks" type="Node" parent="."]
+[node name="TaskManager" type="Node" parent="."]
 script = ExtResource("4_5x25t")
 
-[node name="HarvestResource" parent="CurrentTasks" instance=ExtResource("10_oe17w")]
-iterations = 100
-
-[node name="HarvestResource2" parent="CurrentTasks" instance=ExtResource("10_oe17w")]
-harvestable_type = "rock"
-iterations = 1
+[node name="GoShopping" parent="TaskManager" instance=ExtResource("11_h5sku")]
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_node_state")]
 script = ExtResource("2_ltfms")
@@ -161,14 +154,15 @@ animated_sprite_2d = NodePath("../../AnimatedSprite2D")
 [node name="RoamingTimer" type="Timer" parent="StateMachine/Roaming"]
 one_shot = true
 
-[node name="PerformTask" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d", "current_tasks")]
+[node name="PerformTask" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d", "task_manager")]
 script = ExtResource("7_1omw2")
 parent = NodePath("../..")
 animated_sprite_2d = NodePath("../../AnimatedSprite2D")
-current_tasks = NodePath("../../CurrentTasks")
+task_manager = NodePath("../../TaskManager")
 
-[node name="AquireTask" type="Node" parent="StateMachine"]
+[node name="AquireTask" type="Node" parent="StateMachine" node_paths=PackedStringArray("task_manager")]
 script = ExtResource("9_8j8a2")
+task_manager = NodePath("../../TaskManager")
 
 [node name="AFK" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d", "name_label")]
 script = ExtResource("9_be1el")

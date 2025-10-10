@@ -21,7 +21,7 @@ func init(p_parent_task: Task, p_payload: Dictionary) -> void:
 func on_physics_process(delta: float) -> void:
 	super.on_physics_process(delta)
 	if _harvestable_depleted:
-		print("node depleted before i could farm it, getting new node")
+		_statement_about_taken_node()
 		_target_harvestable.harvested.disconnect(_on_harvestable_harvested)
 		super.fail(self, payload, "retry_task")
 	elif not _harvested:
@@ -46,6 +46,13 @@ func _start_conversation_about_harvesting() -> void:
 	message_context.type = Constants.CHAT_MESSAGE_TYPE.QUESTION
 	message_context.subject_tags = ["level_inquiry", parent_task.harvestable_type]
 	parent_task.adventurer.chat_manager.start_conversation(message_context)
+
+func _statement_about_taken_node() -> void:
+	var message_context: RMessageContext = RMessageContext.new()
+	message_context.can_reply = false
+	message_context.type = Constants.CHAT_MESSAGE_TYPE.STATEMENT
+	message_context.subject_tags = ["stolen_node"]
+	parent_task.adventurer.chat_manager.statement(message_context)
 
 
 ## - main function --

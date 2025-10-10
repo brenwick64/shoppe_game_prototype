@@ -23,6 +23,13 @@ func _get_slot_by_index(index: int) -> UIActionBarSlot:
 
 
 ## -- signals --
+func _on_slot_focused(focused_slot: UIActionBarSlot) -> void:
+	focused_slot.set_focus(true)
+	for slot: UIActionBarSlot in action_bar_slots:
+		if slot.index != focused_slot.index:
+			slot.set_focus(false)
+	item_focused.emit(focused_slot.item_id)
+	
 func _on_ui_inventory_inventory_slot_updated(inv_slot: UIInventorySlot, inv_item: RInventoryItem) -> void:
 	var matching_slot: UIActionBarSlot = _get_slot_by_index(inv_slot.index)
 	if not matching_slot: return
@@ -36,9 +43,6 @@ func _on_ui_inventory_inventory_slot_depleted(inv_slot: UIInventorySlot) -> void
 	
 	matching_slot.clear_item()
 
-func _on_slot_focused(focused_slot: UIActionBarSlot) -> void:
-	focused_slot.set_focus(true)
+func _on_equipped_item_manager_item_deselected() -> void:
 	for slot: UIActionBarSlot in action_bar_slots:
-		if slot.index != focused_slot.index:
-			slot.set_focus(false)
-	item_focused.emit(focused_slot.item_id)
+		slot.set_focus(false)
