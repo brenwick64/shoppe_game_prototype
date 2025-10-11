@@ -9,8 +9,7 @@ func save_data(arr: Array) -> void:
 	for element in arr:
 		var _save_data: RSaveData = save_data_type.pack_save_data(element)
 		save_data_arr.append(_save_data)
-	if save_data_arr.size() > 0:
-		GlobalSaveLoadManager.save_resource_data(save_filename, save_data_arr)
+	GlobalSaveLoadManager.save_resource_data(save_filename, save_data_arr)
 
 func check_save_data() -> bool:
 	return GlobalSaveLoadManager.does_save_file_exist(save_filename)

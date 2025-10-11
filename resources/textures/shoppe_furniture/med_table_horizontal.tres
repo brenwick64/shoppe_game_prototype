@@ -1,7 +1,10 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://dl3sgfx16pco7"]
+[gd_resource type="AtlasTexture" load_steps=3 format=3 uid="uid://dl3sgfx16pco7"]
 
-[ext_resource type="Texture2D" uid="uid://dn8y4mjnnvyfy" path="res://assets/objects/tables-redwood.png" id="1_j2ucj"]
+[ext_resource type="Texture2D" uid="uid://bm1mdn88lfs7c" path="res://assets/objects/tables.png" id="1_bk4kj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_guklo"]
+atlas = ExtResource("1_bk4kj")
+region = Rect2(17, 17, 31, 16)
 
 [resource]
-atlas = ExtResource("1_j2ucj")
-region = Rect2(0, 0, 34, 16)
+atlas = SubResource("AtlasTexture_guklo")

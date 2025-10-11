@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/ui/inventory/ui_inventory.gd" id="1_rtt0d"]
 [ext_resource type="PackedScene" uid="uid://dnib5xa846xpu" path="res://scenes/ui/inventory/inventory_slot.tscn" id="2_j844i"]
 [ext_resource type="PackedScene" uid="uid://cxtu01o27robl" path="res://systems/save_and_load_system/scenes/save_load_component.tscn" id="4_qk7d6"]
-[ext_resource type="Script" path="res://systems/save_and_load_system/scripts/RInventorySlotMappingSaveData.gd" id="5_h2vtk"]
+[ext_resource type="Script" path="res://systems/save_and_load_system/scripts/save_data_types/RInventorySlotMappingSaveData.gd" id="5_h2vtk"]
 
 [sub_resource type="Resource" id="Resource_l28s2"]
 script = ExtResource("5_h2vtk")

@@ -18,4 +18,4 @@ item_name = "Small Health Potion"
 icon_texture = ExtResource("1_0eckd")
 icon_scale_multiplier = 2.0
 pickup_texture = ExtResource("1_0eckd")
-pickup_scale = Vector2(1, 1)
+pickup_scale = Vector2(0.5, 0.5)

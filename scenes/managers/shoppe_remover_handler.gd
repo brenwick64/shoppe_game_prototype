@@ -1,6 +1,7 @@
 class_name ShoppeRemoverHandler
 extends ItemHandler
 
+var player: Player
 var shoppe_floor_layer: TileMapLayer
 var shoppe_furniture_ref: ShoppeFurniture
 
@@ -34,6 +35,16 @@ func _physics_process(_delta: float) -> void:
 		if placeable_to_delete:
 			placeable_to_delete.show_outline()
 		_current_placeable_to_delete = placeable_to_delete
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("click"):
+		if not _current_placeable_to_delete: return
+		if _current_placeable_to_delete is PlaceableFurniture:
+			_current_placeable_to_delete.remove_furniture(player)
+			_current_placeable_to_delete = null
+		elif _current_placeable_to_delete is PlaceableItem:
+			_current_placeable_to_delete.remove_item(player)
+			_current_placeable_to_delete = null
 
 
 ## -- helper functions --

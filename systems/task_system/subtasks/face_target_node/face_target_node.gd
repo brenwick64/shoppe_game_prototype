@@ -11,7 +11,10 @@ func on_physics_process(delta: float) -> void:
 
 ## -- main function --
 func _face_target() -> void:
-	var target_node: Node2D = payload[input_var_name]
+	var target_node: Variant = payload[input_var_name]
+	if not is_instance_valid(target_node): 
+		failed.emit(self, payload, "retry_task")
+		return
 	parent_task.adventurer.npc_animation_component.last_direction_name = _get_direction_facing_target(
 		parent_task.adventurer,
 		target_node

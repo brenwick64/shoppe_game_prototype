@@ -34,6 +34,10 @@ func _get_closest_item_slot(free_slots: Array[PlaceableItemSlot]) -> PlaceableIt
 
 
 ## -- overrides --
+func clear_item() -> void:
+	super.clear_item()
+	_clear_preview()
+
 func _ready() -> void:
 	var shoppe_furniture_node: ShoppeFurniture = get_tree().get_first_node_in_group("shoppe_furniture")
 	if not shoppe_furniture_node:

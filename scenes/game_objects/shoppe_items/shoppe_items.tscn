@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/game_objects/shoppe_items/shoppe_items.gd" id="1_1ov5x"]
 [ext_resource type="PackedScene" uid="uid://cxtu01o27robl" path="res://systems/save_and_load_system/scenes/save_load_component.tscn" id="2_me25q"]
-[ext_resource type="Script" path="res://systems/save_and_load_system/scripts/RShoppeItemSaveData.gd" id="3_2w34d"]
+[ext_resource type="Script" path="res://systems/save_and_load_system/scripts/save_data_types/RShoppeItemSaveData.gd" id="3_2w34d"]
 
 [sub_resource type="Resource" id="Resource_adgcx"]
 script = ExtResource("3_2w34d")

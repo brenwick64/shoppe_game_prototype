@@ -95,7 +95,6 @@ shape = SubResource("CircleShape2D_yqt4t")
 [node name="NPCMovementComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("4_ebekr")]
 script = ExtResource("5_5gn7x")
 parent = NodePath("..")
-max_speed = 120.0
 
 [node name="NPCAnimationComponent" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("6_fw7qb")]
 script = ExtResource("7_7ybgr")

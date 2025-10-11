@@ -26,4 +26,7 @@ func on_physics_process(delta: float) -> void:
 ## -- main function --
 func _get_random_item() -> PlaceableItem:
 	if not shoppe_items: return null
-	return shoppe_items.shoppe_items.pick_random()
+	if not shoppe_items.shoppe_items: return null
+	var random_item: Variant = shoppe_items.shoppe_items.pick_random()
+	if not is_instance_valid(random_item): return null
+	return random_item

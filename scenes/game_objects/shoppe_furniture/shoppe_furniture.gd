@@ -37,9 +37,13 @@ func add_placeable_furniture(placeable_furniture: PlaceableFurniture) -> void:
 	_update_layer_navigation()
 	_save_furniture()
 
-func remove_placeable_furniture(placeable_furniture: PlaceableFurniture) -> void:
+func handle_furniture_removed(placeable_furniture: PlaceableFurniture) -> void:
 	var tiles_to_remove: Array[Vector2i] = _get_furniture_occupied_tiles(placeable_furniture.origin_tile_coords, placeable_furniture.dimensions)
 	_remove_occupied_tiles(tiles_to_remove)
+	var index: int = shoppe_furniture.find(placeable_furniture)
+	if index != -1:
+			shoppe_furniture.remove_at(index)
+	_save_furniture()
 	_update_layer_navigation()
 	placeable_furniture.queue_free()
 
@@ -55,9 +59,11 @@ func check_placeable_collision(tile_origin: Vector2i, furniture_dimensions: Vect
 func _add_occupied_tiles(new_occupied_tiles: Array[Vector2i]) -> void:
 	occupied_tiles += new_occupied_tiles
 
-# TODO:
 func _remove_occupied_tiles(tiles_to_remove: Array[Vector2i]) -> void:
-	pass
+	for tile: Vector2i in tiles_to_remove:
+		var index: int = occupied_tiles.find(tile)
+		if index != -1:
+			occupied_tiles.remove_at(index)
 
 func _update_layer_navigation():
 	var layer: TileMapLayer = GlobalTileManager.get_tilemap_layer_by_name("ShoppeFloor")

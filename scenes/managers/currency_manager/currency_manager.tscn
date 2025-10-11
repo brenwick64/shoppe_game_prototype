@@ -1,3 +1,17 @@
-[gd_scene format=3 uid="uid://bcuw2a3mfjchs"]
+[gd_scene load_steps=5 format=3 uid="uid://bcuw2a3mfjchs"]
+
+[ext_resource type="Script" path="res://scenes/managers/currency_manager/currency_manager.gd" id="1_ofijh"]
+[ext_resource type="PackedScene" uid="uid://cxtu01o27robl" path="res://systems/save_and_load_system/scenes/save_load_component.tscn" id="1_uuv3b"]
+[ext_resource type="Script" path="res://systems/save_and_load_system/scripts/save_data_types/RCurrencySaveData.gd" id="2_8sgeh"]
+
+[sub_resource type="Resource" id="Resource_s2yon"]
+script = ExtResource("2_8sgeh")
+type = ""
+amount = 0
 
 [node name="CurrencyManager" type="Node" groups=["player_currency"]]
+script = ExtResource("1_ofijh")
+
+[node name="SaveLoadComponent" parent="." instance=ExtResource("1_uuv3b")]
+save_filename = "player_currency"
+save_data_type = SubResource("Resource_s2yon")

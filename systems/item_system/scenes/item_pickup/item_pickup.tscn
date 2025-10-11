@@ -7,6 +7,7 @@
 radius = 9.05539
 
 [node name="ItemPickup" type="Node2D"]
+z_index = 2
 script = ExtResource("1_efsof")
 
 [node name="PickupArea" type="Area2D" parent="."]

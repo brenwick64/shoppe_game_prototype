@@ -30,20 +30,31 @@ func _ready() -> void:
 	if not player_inv_manager:
 		push_error("EquippedItemManager error: no player inventory found.")
 		return
+	var player: Player = get_tree().get_first_node_in_group("player")
+	if not player:
+		push_error("EquippedItemManager error: no player found.")
+		return
 	player_inv_manager.item_depleted.connect(_on_player_inv_item_depleted)
-	_update_item_handlers(main_scene, player_inv_manager)
-	_update_tool_handlers(main_scene)
+	_initialize_item_handlers(main_scene, player_inv_manager)
+	_initialize_tool_handlers(main_scene, player)
 
 
 ## -- helper functions --
-func _update_item_handlers(main_scene: Node2D, player_inv_manager: InventoryManager) -> void:
+func _initialize_item_handlers(main_scene: Node2D, player_inv_manager: InventoryManager) -> void:
 	for handler: ItemHandler in item_handlers:
 		handler.main_scene = main_scene
 		handler.player_inventory_manager = player_inv_manager
 
-func _update_tool_handlers(main_scene: Node2D) -> void:
+func _initialize_tool_handlers(main_scene: Node2D, player: Player) -> void:
 	for handler: ItemHandler in tool_handlers:
 		handler.main_scene = main_scene
+		handler.player = player
+
+func _clear_handlers() -> void:
+	for handler: ItemHandler in item_handlers:
+		handler.clear_item()
+	for handler: ItemHandler in tool_handlers:
+		handler.clear_item()
 
 func _clear_item_handlers() -> void:
 	for handler: ItemHandler in item_handlers:
@@ -72,7 +83,7 @@ func _on_ui_action_bar_item_focused(item_id: int) -> void:
 		return
 	# clear other handlers
 	_current_selected_tool = null
-	_clear_tool_handlers()
+	_clear_handlers()
 	# enable item handler
 	_current_held_item = item_data
 	_handle_equipped_item(item_data)
@@ -86,7 +97,7 @@ func _on_player_inv_item_depleted(item_id: int) -> void:
 func _on_temp_ui_game_utils_tool_focused(tool: RToolItemData) -> void:
 	# clear other handlers
 	_current_held_item = null
-	_clear_item_handlers()
+	_clear_handlers()
 	# enable tool handler
 	_current_selected_tool = tool
 	_handle_equipped_tool(tool)

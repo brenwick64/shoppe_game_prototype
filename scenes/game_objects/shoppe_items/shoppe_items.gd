@@ -18,7 +18,7 @@ func handle_item_added(placeable_item: PlaceableItem) -> void:
 
 func handle_item_removed(placeable_item: PlaceableItem) -> void:
 	var index: int = shoppe_items.find(placeable_item)
-	if index:
+	if index != -1:
 		shoppe_items.remove_at(index)
 	_save_shoppe_items()
 

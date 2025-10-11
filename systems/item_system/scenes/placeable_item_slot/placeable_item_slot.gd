@@ -2,7 +2,7 @@ class_name PlaceableItemSlot
 extends Node2D
 
 signal item_added(item_slot: PlaceableItemSlot, placed_item: PlaceableItem)
-signal item_removed(item_slot: PlaceableItemSlot, placed_item: PlaceableItem)
+signal item_removed(item_slot: PlaceableItemSlot, placed_item: PlaceableItem, placed_item_tile_coords: Array[Vector2i])
 
 @export var parent_furniture: PlaceableFurniture
 @export var slot_index: int
@@ -31,8 +31,16 @@ func item_purchased(placeable_item: PlaceableItem) -> void:
 	_spawn_coins(item_price)
 	_play_coin_sound()
 	_update_player_currency(item_price)
-	#TODO:
-	#remove_item()
+	remove_item()
+
+func item_removed_by_player(item_id: int, player_node: Player) -> void:
+	remove_item()
+	GlobalItemSpawner.spawn_item_pickup(
+		item_id,
+		global_position,
+		player_node.global_position,
+		player_node
+	)
 
 func add_item(placeable_item: PlaceableItem) -> void:
 	placeable_item.furniture_unique_id = parent_furniture.furniture_unique_id
@@ -44,7 +52,7 @@ func add_item(placeable_item: PlaceableItem) -> void:
 	item_added.emit(self, placeable_item)
 
 func remove_item() -> void:
-	item_removed.emit(self, placed_item)
+	item_removed.emit(self, placed_item, placed_item_tile_coords)
 	shoppe_items.handle_item_removed(placed_item)
 	placed_item.queue_free()
 	_reset_item_slot()
@@ -54,6 +62,7 @@ func remove_item() -> void:
 func _reset_item_slot() -> void:
 	placed_item_id = -1
 	placed_item = null
+	placed_item_tile_coords = []
 
 func _spawn_coins(item_price: int) -> void:
 	GlobalItemSpawner.spawn_coins(global_position, item_price)

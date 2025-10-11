@@ -7,7 +7,10 @@ var shoppe_items: ShoppeItems
 
 func on_physics_process(delta: float) -> void:
 	super.on_physics_process(delta)
-	var target_item: PlaceableItem = payload[input_var_name]
+	var target_item: Variant = payload[input_var_name]
+	if not is_instance_valid(target_item):
+		super.fail(self, payload, "retry_task")
+		return
 	if not target_item:
 		super.fail(self, payload, "retry_subtask")
 		return

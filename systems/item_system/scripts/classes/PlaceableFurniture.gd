@@ -3,6 +3,7 @@ extends Placeable
 
 @export var item_slots_node: Node2D
 
+var shoppe_furniture: ShoppeFurniture
 var furniture_unique_id: String
 var origin_tile_coords: Vector2i
 var occupied_tiles: Array[Vector2i]
@@ -15,6 +16,10 @@ func _ready() -> void:
 	super._ready()
 	if not is_loaded_in: # assign new uuid on creation
 		furniture_unique_id = uuid.v4()
+	var shoppe_furniture_node: ShoppeFurniture = get_tree().get_first_node_in_group("shoppe_furniture")
+	if not shoppe_furniture_node:
+		push_error("PlaceableFurniture error.  No ShoppeFurniture node found in tree.")
+	shoppe_furniture = shoppe_furniture_node
 	# populate item slot array
 	for node: Node in item_slots_node.get_children():
 		var item_slot: PlaceableItemSlot = node
@@ -24,12 +29,6 @@ func _ready() -> void:
 
 
 ## -- public methods --
-func add_item_by_slot_index(item: PlaceableItem, slot_index: int) -> void:
-	if _item_slots.size() < slot_index:
-		push_error("PlaceableFurniture error: trying to add item into out of bounds slot index.") 
-		return
-	_item_slots[slot_index].add_item(item)
-
 func get_full_item_slots() -> Array[PlaceableItemSlot]:
 	var full_slots: Array[PlaceableItemSlot] = []
 	for slot: PlaceableItemSlot in _item_slots:
@@ -46,8 +45,32 @@ func get_free_item_slots(item_dimensions: Vector2i) -> Array[PlaceableItemSlot]:
 		free_slots.append(slot)
 	return free_slots
 
+func add_item_by_slot_index(item: PlaceableItem, slot_index: int) -> void:
+	if _item_slots.size() < slot_index:
+		push_error("PlaceableFurniture error: trying to add item into out of bounds slot index.") 
+		return
+	_item_slots[slot_index].add_item(item)
+
+func remove_furniture(player_node: Player) -> void:
+	_remove_all_items(player_node)
+	_spawn_furniture_pickup(player_node)
+	shoppe_furniture.handle_furniture_removed(self)
+
 
 ## -- helper functions --
+func _spawn_furniture_pickup(player_node: Player) -> void:
+	GlobalItemSpawner.spawn_item_pickup(
+		self.item_id,
+		global_position,
+		player_node.global_position,
+		player_node
+	)
+
+func _remove_all_items(player_node: Player) -> void:
+	for slot: PlaceableItemSlot in _item_slots:
+		if slot.placed_item:
+			slot.item_removed_by_player(slot.placed_item_id, player_node)
+
 func _has_empty_item_coords(item_slot: PlaceableItemSlot) -> bool:
 	var coords_needed: Array[Vector2i] = _get_needed_item_coords(item_slot)
 	var has_coords: bool = not Utils.arrays_overlap(coords_needed, _occupied_item_tiles)
@@ -60,6 +83,12 @@ func _get_needed_item_coords(item_slot: PlaceableItemSlot) -> Array[Vector2i]:
 		coords_needed.append(origin_tile_coords + vector + item_slot.distance_from_origin)
 	return coords_needed
 
+func _remove_tile_coords(item_tile_coords: Array[Vector2i]) -> void:
+	for coords: Vector2i in item_tile_coords:
+		var index: int = _occupied_item_tiles.find(coords)
+		if index != -1:
+			_occupied_item_tiles.remove_at(index)
+
 
 ## -- signals --
 func _on_item_slot_item_added(item_slot: PlaceableItemSlot, placed_item: PlaceableItem) -> void:
@@ -67,6 +96,5 @@ func _on_item_slot_item_added(item_slot: PlaceableItemSlot, placed_item: Placeab
 	item_slot.placed_item_tile_coords = coords_added
 	_occupied_item_tiles += coords_added
 	
-func _on_item_slot_item_removed(item_slot: PlaceableItemSlot, placed_item: PlaceableItem) -> void:
-	# TODO:
-	pass
+func _on_item_slot_item_removed(item_slot: PlaceableItemSlot, placed_item: PlaceableItem, placed_item_tile_coords: Array[Vector2i]) -> void:
+	_remove_tile_coords(placed_item_tile_coords)
