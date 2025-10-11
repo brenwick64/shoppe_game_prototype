@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl873s53iqi1r"]
+
+[ext_resource type="Script" path="res://systems/state_machine_system/states/bird_states/bird_idle/bird_idle_state.gd" id="1_og0ac"]
+
+[node name="Idle" type="Node"]
+script = ExtResource("1_og0ac")

@@ -1,27 +1,24 @@
 [gd_scene load_steps=6 format=3 uid="uid://da6of7tcgp3c7"]
 
 [ext_resource type="Script" path="res://systems/item_system/scripts/classes/PlaceableItem.gd" id="1_572j7"]
+[ext_resource type="PackedScene" uid="uid://0hho8rov58ie" path="res://scenes/effects/bounce_on_spawn/bounce_on_spawn.tscn" id="2_0uemd"]
 [ext_resource type="Texture2D" uid="uid://dyv0duku6ree3" path="res://resources/textures/shoppe_items/health_potion_small.tres" id="2_huuhu"]
-[ext_resource type="Script" path="res://bounce_on_spawn.gd" id="2_oecsh"]
 [ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="3_glsfe"]
-[ext_resource type="AudioStream" uid="uid://dxlkymo3h6qjg" path="res://audio/actions/place_object/place_object_3.wav" id="4_3t3lv"]
+[ext_resource type="AudioStream" uid="uid://cibw7s6ns7gmi" path="res://audio/actions/place_object/glass/place_vial.wav" id="5_ojvqm"]
 
 [node name="HealthPotionSmall" type="Node2D" node_paths=PackedStringArray("place_sound", "sprite")]
 script = ExtResource("1_572j7")
 place_sound = NodePath("SingleSoundComponent")
 sprite = NodePath("Sprite2D")
 
-[node name="BounceOnSpawn" type="Node" parent="." node_paths=PackedStringArray("target")]
-script = ExtResource("2_oecsh")
-target = NodePath("../Sprite2D")
-dip_scale = 0.75
-peak_scale = 1.2
+[node name="BounceOnSpawn" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_0uemd")]
+target = NodePath("..")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -10)
+position = Vector2(0, -8)
 scale = Vector2(1.35, 1.35)
 texture = ExtResource("2_huuhu")
 
 [node name="SingleSoundComponent" parent="." instance=ExtResource("3_glsfe")]
-sound = ExtResource("4_3t3lv")
+sound = ExtResource("5_ojvqm")
 pitch_variance_range = Vector2(0.9, 1.1)

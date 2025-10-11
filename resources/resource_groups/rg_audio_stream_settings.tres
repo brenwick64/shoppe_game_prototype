@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://d1ifgv26orivh"]
+
+[ext_resource type="Script" path="res://addons/godot_resource_groups/resource_group.gd" id="1_xu5o5"]
+
+[resource]
+script = ExtResource("1_xu5o5")
+base_folder = "res://resources/r_audio_stream_settings"
+includes = Array[String]([])
+excludes = Array[String]([])
+paths = Array[String](["res://resources/r_audio_stream_settings/harvestables/tree/chop_tree_1.tres", "res://resources/r_audio_stream_settings/harvestables/tree/chop_tree_2.tres", "res://resources/r_audio_stream_settings/player_movement/walk_grass_1.tres", "res://resources/r_audio_stream_settings/player_movement/walk_grass_2.tres", "res://resources/r_audio_stream_settings/player_movement/walk_wood_1.tres", "res://resources/r_audio_stream_settings/player_movement/walk_wood_2.tres"])

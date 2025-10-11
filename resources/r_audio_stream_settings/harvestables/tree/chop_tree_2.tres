@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RAudioStreamSettings" load_steps=3 format=3 uid="uid://4nsws13d03bp"]
+
+[ext_resource type="AudioStream" uid="uid://bkospxftj3cv1" path="res://audio/actions/chop_wood/wood_chop_2.wav" id="1_mb1jj"]
+[ext_resource type="Script" path="res://systems/audio_system/scripts/RAudioStreamSettings.gd" id="2_m37n1"]
+
+[resource]
+script = ExtResource("2_m37n1")
+unique_name = "chop_tree"
+tags = Array[String](["chop_tree"])
+audio_stream = ExtResource("1_mb1jj")
+decibel_scalar = 0.0
+pitch_range = Vector2(1, 1)

@@ -62,8 +62,11 @@ func _check_tile_audio() -> void:
 			terrain_type = terrain
 	# if the type changes, switch track, and re-loop
 	if terrain_type != _current_terrain:
-		var new_track: Array[AudioStream] = GlobalAudioManager.get_audio_track("move_" + terrain_type)
-		movement_sound.switch_tracks(new_track)
+		var new_tracks: Array[RAudioStreamSettings] = GlobalAudioManager.get_movement_audio_tracks("move_" + terrain_type)
+		if not new_tracks:
+			push_error("Player error: no movement sound found.")
+			return
+		movement_sound.switch_tracks(new_tracks)
 		_current_terrain = terrain_type
 
 

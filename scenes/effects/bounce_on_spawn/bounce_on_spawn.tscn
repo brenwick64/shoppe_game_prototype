@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://0hho8rov58ie"]
+
+[ext_resource type="Script" path="res://scenes/effects/bounce_on_spawn/bounce_on_spawn.gd" id="1_n54j2"]
+
+[node name="BounceOnSpawn" type="Node" node_paths=PackedStringArray("target")]
+script = ExtResource("1_n54j2")
+target = NodePath("")
+dip_scale = 0.0
+peak_scale = 1.2

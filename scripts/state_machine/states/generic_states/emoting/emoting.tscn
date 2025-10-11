@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqigwm5m08lwe"]
-
-[ext_resource type="Script" path="res://scripts/state_machine/states/generic_states/emoting/emoting.gd" id="1_1lhvw"]
-
-[node name="Emoting" type="Node"]
-script = ExtResource("1_1lhvw")

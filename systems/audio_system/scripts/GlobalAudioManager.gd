@@ -1,15 +1,28 @@
 extends Node
-# TODO: Create custom audio resources with tags and whatnot
-const grass_walk_1: AudioStream = preload("res://audio/player_movement/01_step_grass_01.wav")
-const grass_walk_2: AudioStream = preload("res://audio/player_movement/02_step_grass_02.wav")
 
-const wood_walk_1: AudioStream = preload("res://audio/player_movement/10_step_wood_01.wav")
-const wood_walk_3: AudioStream = preload("res://audio/player_movement/12_step_wood_03.wav")
-
-const music_bias: float = 20.0
+var audio_settings_rg: ResourceGroup = preload("res://resources/resource_groups/rg_audio_stream_settings.tres")
+var audio_stream_settings: Array[RAudioStreamSettings]
 
 func _ready() -> void:
+	audio_settings_rg.load_all_into(audio_stream_settings)
 	load_bus_layout()
+
+
+## -- helper functions --
+func _get_audio_by_tag(tag: String) -> Array[RAudioStreamSettings]:
+	var settings: Array[RAudioStreamSettings] = []
+	for setting: RAudioStreamSettings in audio_stream_settings:
+		if tag in setting.tags:
+			settings.append(setting)
+	return settings
+
+
+func get_movement_audio_tracks(tag: String) -> Array[RAudioStreamSettings]:
+	match tag:
+		"move_grass" : return _get_audio_by_tag("move_grass")
+		"move_wood"  : return _get_audio_by_tag("move_wood")
+	push_warning("GlobalAudioManager warning: no sound found for: " + tag)
+	return _get_audio_by_tag("default_movement")
 
 func save_bus_layout(path: String = "res://audio/default_bus_layout.tres") -> void:
 	var layout: AudioBusLayout = AudioServer.generate_bus_layout()
@@ -20,17 +33,6 @@ func load_bus_layout(path: String = "res://audio/default_bus_layout.tres") -> vo
 	if layout:
 		AudioServer.set_bus_layout(layout)
 
-# TODO: migrate this to local scene
-func get_audio_track(key: String) -> Array[AudioStream]:
-	match key:
-		"move_grass" : return [grass_walk_1, grass_walk_2]
-		"move_wood"  : return [wood_walk_1, wood_walk_3]
-		#"move_dirt"  : return [dirt_walk_1, dirt_walk_2]
-		#"move_stone"  : return [stone_walk_1, stone_walk_2]
-	push_warning("GlobalAudioManager warning: no sound found for: " + key)
-	
-	return [grass_walk_1, grass_walk_2]
-	
 func get_bus_db(bus_name: String) -> float:
 	var bus_index: int = AudioServer.get_bus_index(bus_name)
 	if bus_index != -1:
