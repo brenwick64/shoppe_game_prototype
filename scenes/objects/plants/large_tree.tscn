@@ -4,10 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://b7fwl3qqy6fwj" path="res://scenes/components/health_component/health_component.tscn" id="2_murj8"]
 [ext_resource type="Shader" path="res://shaders/tree_shake.gdshader" id="2_np3t6"]
 [ext_resource type="PackedScene" uid="uid://bvbq04va7bwnw" path="res://scenes/components/interactable/interactable.tscn" id="2_v8c7g"]
-[ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="3_44dpx"]
 [ext_resource type="Texture2D" uid="uid://enn3407yt6jb" path="res://assets/objects/large_tree.png" id="4_3kqt2"]
-[ext_resource type="AudioStream" uid="uid://is774anw6y5p" path="res://audio/actions/chop_wood/wood_chop_1.wav" id="4_ggvt3"]
+[ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="6_16tvn"]
 [ext_resource type="PackedScene" uid="uid://dcm4u45j52yfi" path="res://scenes/ui/resource_icon/resource_icon.tscn" id="7_8qovx"]
+[ext_resource type="Resource" uid="uid://ds8mt74x3wjan" path="res://resources/r_audio_stream_data/harvestables/tree/chop_tree_1.tres" id="7_y4imn"]
 [ext_resource type="Texture2D" uid="uid://brcl7l06edlw4" path="res://resources/textures/icons/chop_tree.tres" id="8_7v3qx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kgj21"]
@@ -42,7 +42,7 @@ full_sprite = NodePath("TreeSprite")
 depleted_sprite = NodePath("StumpSprite")
 health_component = NodePath("HealthComponent")
 interactable = NodePath("Interactable")
-harvest_sound = NodePath("ChopSound")
+harvest_sound = NodePath("OneShotSoundComponent")
 resource_icon = NodePath("ResourceIcon")
 harvest_cooldown = NodePath("ChopCooldown")
 respawn_timer = NodePath("Respawn")
@@ -74,12 +74,9 @@ offset = Vector2(0, 7)
 position = Vector2(0, -3.25)
 shape = SubResource("RectangleShape2D_cygtp")
 
-[node name="ChopSound" parent="." instance=ExtResource("3_44dpx")]
-max_distance = 550.0
-attenuation = 2.92817
+[node name="OneShotSoundComponent" parent="." instance=ExtResource("6_16tvn")]
 bus = &"sfx"
-sound = ExtResource("4_ggvt3")
-pitch_variance_range = Vector2(0.75, 1.5)
+audio_data = ExtResource("7_y4imn")
 
 [node name="ResourceIcon" parent="." instance=ExtResource("7_8qovx")]
 visible = false

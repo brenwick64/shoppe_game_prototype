@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3jm1vcatpfkg"]
+
+[ext_resource type="Script" path="res://systems/audio_system/scenes/base_sound_component/base_sound_component.gd" id="1_4mav3"]
+
+[node name="BaseSoundComponent" type="AudioStreamPlayer2D"]
+script = ExtResource("1_4mav3")

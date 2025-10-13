@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RAudioStreamSettings" load_steps=3 format=3 uid="uid://iinf5stseqgm"]
+
+[ext_resource type="AudioStream" uid="uid://cibw7s6ns7gmi" path="res://audio/actions/place_object/glass/place_vial.wav" id="1_uqnws"]
+[ext_resource type="Script" path="res://systems/audio_system/scripts/RAudioStreamData.gd" id="2_loigm"]
+
+[resource]
+script = ExtResource("2_loigm")
+unique_name = "place_vial"
+tags = Array[String](["place_health_potion"])
+audio_stream = ExtResource("1_uqnws")
+decibel_scalar = 0.0
+pitch_range = Vector2(1, 1)

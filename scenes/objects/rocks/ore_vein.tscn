@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://sn2yhfto3y44"]
+[gd_scene load_steps=17 format=3 uid="uid://sn2yhfto3y44"]
 
 [ext_resource type="Texture2D" uid="uid://b333mb8j7sp5p" path="res://assets/tilesets/CuteRPG_Caves.png" id="1_7xt18"]
 [ext_resource type="Script" path="res://scripts/classes/Harvestable.gd" id="1_cn3qr"]
@@ -9,6 +9,8 @@
 [ext_resource type="AudioStream" uid="uid://me8gr5gwfqhx" path="res://audio/actions/mine_rock/mining_rock_2.wav" id="5_bpnn6"]
 [ext_resource type="PackedScene" uid="uid://dcm4u45j52yfi" path="res://scenes/ui/resource_icon/resource_icon.tscn" id="6_itq03"]
 [ext_resource type="Texture2D" uid="uid://c1ooach6tk1jc" path="res://resources/textures/icons/mine_rock.tres" id="7_2ytpq"]
+[ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="8_6mwxq"]
+[ext_resource type="Resource" uid="uid://ciifae35mdlqm" path="res://resources/r_audio_stream_data/harvestables/rock/mine_rock.tres" id="9_i2jds"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aomom"]
 radius = 18.0
@@ -40,7 +42,7 @@ full_sprite = NodePath("FullSprite")
 depleted_sprite = NodePath("DepletedSprite")
 health_component = NodePath("HealthComponent")
 interactable = NodePath("Interactable")
-harvest_sound = NodePath("MineSound")
+harvest_sound = NodePath("OneShotSoundComponent")
 resource_icon = NodePath("ResourceIcon")
 harvest_cooldown = NodePath("HarvestCooldown")
 respawn_timer = NodePath("RespawnTimer")
@@ -66,10 +68,12 @@ texture = SubResource("AtlasTexture_tbn8u")
 shape = SubResource("CircleShape2D_atjvl")
 
 [node name="MineSound" parent="." instance=ExtResource("4_4pltn")]
-max_distance = 500.0
 bus = &"sfx"
 sound = ExtResource("5_bpnn6")
 pitch_variance_range = Vector2(0.75, 1.25)
+
+[node name="OneShotSoundComponent" parent="." instance=ExtResource("8_6mwxq")]
+audio_data = ExtResource("9_i2jds")
 
 [node name="ResourceIcon" parent="." instance=ExtResource("6_itq03")]
 visible = false

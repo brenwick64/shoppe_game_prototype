@@ -17,7 +17,7 @@ signal harvested(pickup: ItemPickup)
 @export var depleted_sprite: Sprite2D
 @export var health_component: HealthComponent
 @export var interactable: Interactable
-@export var harvest_sound: SingleSoundComponent
+@export var harvest_sound: OneShotSoundComponent
 @export var resource_icon: Panel
 @export var harvest_cooldown: Timer
 @export var respawn_timer: Timer

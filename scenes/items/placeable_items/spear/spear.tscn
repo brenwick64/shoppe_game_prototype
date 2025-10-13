@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdtkl68yy7y7p"]
+[gd_scene load_steps=4 format=3 uid="uid://cdtkl68yy7y7p"]
 
 [ext_resource type="Script" path="res://systems/item_system/scripts/classes/PlaceableItem.gd" id="1_lv04p"]
 [ext_resource type="Texture2D" uid="uid://yd0i42v0ua1y" path="res://resources/textures/shoppe_items/spear.tres" id="2_2dtay"]
 [ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="3_0xj15"]
-[ext_resource type="AudioStream" uid="uid://dxlkymo3h6qjg" path="res://audio/actions/place_object/place_object_3.wav" id="4_41yxi"]
 
 [node name="Spear" type="Node2D" node_paths=PackedStringArray("place_sound", "sprite")]
 script = ExtResource("1_lv04p")
@@ -15,4 +14,3 @@ position = Vector2(0, -2)
 texture = ExtResource("2_2dtay")
 
 [node name="SingleSoundComponent" parent="." instance=ExtResource("3_0xj15")]
-sound = ExtResource("4_41yxi")

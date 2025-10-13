@@ -1,7 +1,7 @@
 class_name MovementSoundComponent
 extends AudioStreamPlayer2D
 
-@export var audio_tracks: Array[RAudioStreamSettings]
+@export var audio_tracks: Array[RAudioStreamData]
 @export var delay_between_tracks: float = 0.38
 @export var play_cooldown_sec: float = 0.2  # prevents rapid spamming
 
@@ -41,7 +41,7 @@ func stop_loop() -> void:
 	_reset_vars()
 	track_delay.stop()
 
-func switch_tracks(new_tracks: Array[RAudioStreamSettings]) -> void:
+func switch_tracks(new_tracks: Array[RAudioStreamData]) -> void:
 	audio_tracks = new_tracks
 
 
@@ -55,9 +55,9 @@ func _load_next_track() -> void:
 	stream = audio_tracks[_current_index].audio_stream
 
 func _initialize_current_track() -> void:
-	var current_audio_settings: RAudioStreamSettings = audio_tracks[_current_index]
+	var current_audio_settings: RAudioStreamData = audio_tracks[_current_index]
 	var volume_scalar: float = current_audio_settings.decibel_scalar
-	var pitch_range: Vector2 = current_audio_settings.pitch_range
+	var pitch_range: Vector2 = current_audio_settings.pitch_range_percent
 	volume_db = base_volume_db + volume_scalar
 	# guard clause against bug with audio player 2D
 	if pitch_range.x <= 0 or pitch_range.y <= 0: return

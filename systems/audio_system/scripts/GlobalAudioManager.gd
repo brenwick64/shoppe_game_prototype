@@ -1,23 +1,23 @@
 extends Node
 
-var audio_settings_rg: ResourceGroup = preload("res://resources/resource_groups/rg_audio_stream_settings.tres")
-var audio_stream_settings: Array[RAudioStreamSettings]
+var audio_settings_rg: ResourceGroup = preload("res://resources/resource_groups/rg_audio_stream_data.tres")
+var audio_stream_data: Array[RAudioStreamData]
 
 func _ready() -> void:
-	audio_settings_rg.load_all_into(audio_stream_settings)
+	audio_settings_rg.load_all_into(audio_stream_data)
 	load_bus_layout()
 
 
 ## -- helper functions --
-func _get_audio_by_tag(tag: String) -> Array[RAudioStreamSettings]:
-	var settings: Array[RAudioStreamSettings] = []
-	for setting: RAudioStreamSettings in audio_stream_settings:
+func _get_audio_by_tag(tag: String) -> Array[RAudioStreamData]:
+	var settings: Array[RAudioStreamData] = []
+	for setting: RAudioStreamData in audio_stream_data:
 		if tag in setting.tags:
 			settings.append(setting)
 	return settings
 
 
-func get_movement_audio_tracks(tag: String) -> Array[RAudioStreamSettings]:
+func get_movement_audio_tracks(tag: String) -> Array[RAudioStreamData]:
 	match tag:
 		"move_grass" : return _get_audio_by_tag("move_grass")
 		"move_wood"  : return _get_audio_by_tag("move_wood")

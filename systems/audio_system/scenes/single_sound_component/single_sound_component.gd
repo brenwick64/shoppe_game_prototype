@@ -1,7 +1,7 @@
 class_name SingleSoundComponent
 extends SoundComponent
 
-signal play_sound_finished()
+signal play_sound_finished
 
 @export var sound: AudioStream
 @export var initial_delay_sec: float = 0.0

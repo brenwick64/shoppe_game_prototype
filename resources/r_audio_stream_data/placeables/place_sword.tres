@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RAudioStreamSettings" load_steps=3 format=3 uid="uid://cqg402gisbb1f"]
+
+[ext_resource type="AudioStream" uid="uid://514yr6mchf8d" path="res://audio/actions/place_object/blades/sword_unsheath_1.wav" id="1_xclec"]
+[ext_resource type="Script" path="res://systems/audio_system/scripts/RAudioStreamData.gd" id="2_umcdo"]
+
+[resource]
+script = ExtResource("2_umcdo")
+unique_name = "place_sword"
+tags = Array[String](["place_sword"])
+audio_stream = ExtResource("1_xclec")
+decibel_scalar = 0.0
+pitch_range = Vector2(1, 1)

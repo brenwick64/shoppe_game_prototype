@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://vx7l7yoxtgjd"]
+
+[ext_resource type="Script" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.gd" id="1_kosmk"]
+
+[node name="OneShotSoundComponent" type="AudioStreamPlayer2D"]
+script = ExtResource("1_kosmk")
+
+[node name="InitialDelayTimer" type="Timer" parent="."]
+
+[connection signal="finished" from="." to="." method="_on_finished"]

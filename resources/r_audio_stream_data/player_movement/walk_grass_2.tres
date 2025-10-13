@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="RAudioStreamSettings" load_steps=3 format=3 uid="uid://b4mj0s3mm88na"]
+[gd_resource type="Resource" script_class="RAudioStreamData" load_steps=3 format=3 uid="uid://b4mj0s3mm88na"]
 
 [ext_resource type="AudioStream" uid="uid://bpqmvukyrc5p1" path="res://audio/player_movement/walk_grass/02_step_grass_02.wav" id="1_ekdja"]
-[ext_resource type="Script" path="res://systems/audio_system/scripts/RAudioStreamSettings.gd" id="2_hir1k"]
+[ext_resource type="Script" path="res://systems/audio_system/scripts/RAudioStreamData.gd" id="2_hir1k"]
 
 [resource]
 script = ExtResource("2_hir1k")
@@ -9,4 +9,4 @@ unique_name = "walk_grass_2"
 tags = Array[String](["default_movement", "move_grass"])
 audio_stream = ExtResource("1_ekdja")
 decibel_scalar = -8.0
-pitch_range = Vector2(0.85, 1.1)
+pitch_range_percent = Vector2(0.9, 1.1)
