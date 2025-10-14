@@ -2,17 +2,17 @@
 
 [ext_resource type="Script" path="res://systems/item_system/scripts/classes/PlaceableItem.gd" id="1_pq38f"]
 [ext_resource type="Texture2D" uid="uid://jrkkk66ogdiu" path="res://resources/textures/shoppe_items/sword.tres" id="2_q4s07"]
-[ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="3_3vpxs"]
-[ext_resource type="AudioStream" uid="uid://514yr6mchf8d" path="res://audio/actions/place_object/blades/sword_unsheath_1.wav" id="4_8psxk"]
+[ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="3_17mjf"]
+[ext_resource type="Resource" uid="uid://cqg402gisbb1f" path="res://resources/r_audio_stream_data/placeables/place_sword.tres" id="4_6m3f2"]
 
-[node name="Sword" type="Node2D" node_paths=PackedStringArray("place_sound", "sprite")]
+[node name="Sword" type="Node2D" node_paths=PackedStringArray("placed_sound", "sprite")]
 script = ExtResource("1_pq38f")
-place_sound = NodePath("SingleSoundComponent")
+placed_sound = NodePath("PlacedSound")
 sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -2)
 texture = ExtResource("2_q4s07")
 
-[node name="SingleSoundComponent" parent="." instance=ExtResource("3_3vpxs")]
-sound = ExtResource("4_8psxk")
+[node name="PlacedSound" parent="." instance=ExtResource("3_17mjf")]
+audio_data = ExtResource("4_6m3f2")

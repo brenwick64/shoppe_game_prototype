@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RAudioStreamData" load_steps=3 format=3 uid="uid://42yhgm406gdt"]
+
+[ext_resource type="AudioStream" uid="uid://dtrm12scpa0bh" path="res://audio/actions/pickup/pickup_1.wav" id="1_6aiph"]
+[ext_resource type="Script" path="res://systems/audio_system/scripts/RAudioStreamData.gd" id="1_k1off"]
+
+[resource]
+script = ExtResource("1_k1off")
+unique_name = "pickup_sound"
+tags = Array[String]([])
+audio_stream = ExtResource("1_6aiph")
+decibel_scalar = 0.0
+pitch_range_percent = Vector2(0.75, 1.25)

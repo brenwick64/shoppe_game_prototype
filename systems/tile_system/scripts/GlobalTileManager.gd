@@ -1,6 +1,8 @@
 ## GlobalTileManager.gd
 extends Node
 
+var navigation_blacklist_tile_gps: Array[Vector2]
+
 var _tilemap_layers: Array[TileMapLayer]
 
 ## -- overrides --
@@ -62,7 +64,6 @@ func get_adjacent_ground_tiles_gp(global_position: Vector2, layer_name: String, 
 			adjacent_tiles = adjacent_tiles.filter(func(coords: Vector2i): return not _is_tile_obstructed(layer, coords))
 		for tile_coords: Vector2i in adjacent_tiles:
 			tile_gps.append(get_global_position_from_tile(layer, tile_coords))
-
 	return tile_gps
 
 # checks to see if multiple navigation layers are trying to populate the same tile
@@ -88,6 +89,13 @@ func is_obstructable_tile_collision(main_layer: TileMapLayer, coords: Vector2i) 
 		if source_id != -1: # there is a collision
 			return true
 	return false # no collision
+
+# checks against the list of all world objects which need to block ALL navigation on that tile
+func is_blacklisted_from_navigation(layer: TileMapLayer, tile_coords: Vector2i) -> bool:
+	var tile_gp: Vector2 = get_global_position_from_tile(layer, tile_coords)
+	if tile_gp in navigation_blacklist_tile_gps:
+		return true
+	return false
 
 ## -- helper functions --
 func _load_tilemap_layers(tile_map: Node2D) -> void:

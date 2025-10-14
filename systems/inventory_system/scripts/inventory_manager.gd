@@ -39,7 +39,6 @@ func _load_inventory():
 		push_error("InventoryManager error: corrupted load file for inventory")
 		_create_new_inventory()
 		return
-		
 	inventory = loaded_data[0]
 
 func _create_new_inventory():

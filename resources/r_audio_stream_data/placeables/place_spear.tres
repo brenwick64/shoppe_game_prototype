@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RAudioStreamData" load_steps=3 format=3 uid="uid://dvgj8pfemfmcx"]
+
+[ext_resource type="Script" path="res://systems/audio_system/scripts/RAudioStreamData.gd" id="1_255td"]
+[ext_resource type="AudioStream" uid="uid://514yr6mchf8d" path="res://audio/actions/place_object/blades/sword_unsheath_1.wav" id="1_ow7ew"]
+
+[resource]
+script = ExtResource("1_255td")
+unique_name = "place_spear"
+tags = Array[String]([])
+audio_stream = ExtResource("1_ow7ew")
+decibel_scalar = 0.0
+pitch_range_percent = Vector2(0.8, 0.9)

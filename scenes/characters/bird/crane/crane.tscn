@@ -12,23 +12,23 @@
 [ext_resource type="Script" path="res://scripts/resource_definitions/REmote.gd" id="9_uavbj"]
 [ext_resource type="PackedScene" uid="uid://dkgiu5xo5ydyv" path="res://systems/state_machine_system/states/generic_states/despawning/despawning.tscn" id="10_0iwf5"]
 [ext_resource type="SpriteFrames" uid="uid://dvy18wsnnrct6" path="res://resources/config/animated_spriteframes/crane_spriteframes.tres" id="10_2q6jn"]
-[ext_resource type="AudioStream" uid="uid://1xio8osumiq7" path="res://audio/actions/water/splash_1.wav" id="11_o05qs"]
-[ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="11_v0gxv"]
-[ext_resource type="AudioStream" uid="uid://bc5cdliutx5i" path="res://audio/ambience/birds/crane/sandhill_crane_call_2.wav" id="12_c3knu"]
+[ext_resource type="Resource" uid="uid://bn2q8ira4huo3" path="res://resources/r_audio_stream_data/birds/crane/crane_call.tres" id="10_bc7e7"]
+[ext_resource type="Resource" uid="uid://boa4wwdgsmd5o" path="res://resources/r_audio_stream_data/birds/crane/crane_forage.tres" id="11_653mv"]
+[ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="13_qhsyl"]
 
 [sub_resource type="Resource" id="Resource_6ecwm"]
 script = ExtResource("9_uavbj")
 emote_name = "bird_call"
 animation_name = "emote_call"
-audio_stream = ExtResource("12_c3knu")
 audio_delay = 0.0
+audio_data = ExtResource("10_bc7e7")
 
 [sub_resource type="Resource" id="Resource_e18wr"]
 script = ExtResource("9_uavbj")
 emote_name = "bird_forage"
 animation_name = "emote_forage"
-audio_stream = ExtResource("11_o05qs")
 audio_delay = 0.0
+audio_data = ExtResource("11_653mv")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wbbwi"]
 radius = 21.095
@@ -68,11 +68,11 @@ parent = NodePath("../..")
 animated_sprite_2d = NodePath("../../AnimatedSprite2D")
 area_2d = NodePath("../../Area2D")
 
-[node name="Emoting" parent="StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d", "area_2d", "bird_call_audio") instance=ExtResource("8_r44py")]
+[node name="Emoting" parent="StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d", "area_2d", "bird_audio") instance=ExtResource("8_r44py")]
 parent = NodePath("../..")
 animated_sprite_2d = NodePath("../../AnimatedSprite2D")
 area_2d = NodePath("../../Area2D")
-bird_call_audio = NodePath("../../BirdSounds")
+bird_audio = NodePath("../../BirdAudio")
 emotes = Array[ExtResource("9_uavbj")]([SubResource("Resource_6ecwm"), SubResource("Resource_e18wr")])
 next_state_name = "roaming"
 
@@ -97,7 +97,4 @@ position = Vector2(-2, -18)
 sprite_frames = ExtResource("10_2q6jn")
 animation = &"emote_forage_right"
 
-[node name="BirdSounds" parent="." instance=ExtResource("11_v0gxv")]
-bus = &"sfx"
-sound = ExtResource("12_c3knu")
-pitch_variance_range = Vector2(0.9, 1.1)
+[node name="BirdAudio" parent="." instance=ExtResource("13_qhsyl")]

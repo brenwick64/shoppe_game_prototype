@@ -11,10 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://cxtu01o27robl" path="res://systems/save_and_load_system/scenes/save_load_component.tscn" id="3_43mp2"]
 [ext_resource type="Script" path="res://scenes/components/animation_component/animation_component.gd" id="3_if003"]
 [ext_resource type="Script" path="res://systems/inventory_system/scripts/RInventoryItem.gd" id="4_ys0pp"]
-[ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="5_7mu1s"]
 [ext_resource type="Script" path="res://systems/save_and_load_system/scripts/save_data_types/RInventorySaveData.gd" id="5_j57la"]
 [ext_resource type="PackedScene" uid="uid://b70c2uctc5fc0" path="res://systems/audio_system/scenes/movement_sound_component/movement_sound_component.tscn" id="6_673vk"]
-[ext_resource type="AudioStream" uid="uid://dtrm12scpa0bh" path="res://audio/actions/pickup/pickup_1.wav" id="6_uu587"]
+[ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="10_fi7sg"]
+[ext_resource type="Resource" uid="uid://42yhgm406gdt" path="res://resources/r_audio_stream_data/pickup/pickup_sound.tres" id="11_u6tj0"]
 [ext_resource type="FontFile" uid="uid://5dmksnqi7msu" path="res://assets/fonts/Abaddon Light.ttf" id="15_8m6wb"]
 
 [sub_resource type="Resource" id="Resource_kpg3b"]
@@ -259,10 +259,8 @@ debug_color = Color(0.547062, 0.424058, 0.952753, 0.42)
 
 [node name="MovementSoundComponent" parent="." instance=ExtResource("6_673vk")]
 
-[node name="PickupSound" parent="." instance=ExtResource("5_7mu1s")]
-bus = &"sfx"
-sound = ExtResource("6_uu587")
-pitch_variance_range = Vector2(0.75, 1.25)
+[node name="PickupSound" parent="." instance=ExtResource("10_fi7sg")]
+audio_data = ExtResource("11_u6tj0")
 
 [node name="MovementCollider" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)

@@ -9,17 +9,17 @@
 [ext_resource type="PackedScene" uid="uid://bqigwm5m08lwe" path="res://systems/state_machine_system/states/generic_states/emoting/emoting.tscn" id="7_l17fw"]
 [ext_resource type="Script" path="res://scripts/resource_definitions/REmote.gd" id="8_ee44t"]
 [ext_resource type="Script" path="res://scenes/characters/bird/bird.gd" id="9_837jx"]
+[ext_resource type="Resource" uid="uid://cjh43luodjufl" path="res://resources/r_audio_stream_data/birds/crow/crow_caw.tres" id="9_ph0rj"]
 [ext_resource type="PackedScene" uid="uid://dyht2bgp1t14x" path="res://systems/state_machine_system/states/bird_states/takeoff/takeoff.tscn" id="10_q6qrj"]
 [ext_resource type="PackedScene" uid="uid://dkgiu5xo5ydyv" path="res://systems/state_machine_system/states/generic_states/despawning/despawning.tscn" id="11_xveqc"]
-[ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="12_5ff13"]
-[ext_resource type="AudioStream" uid="uid://bpmyg5cipbopc" path="res://audio/ambience/birds/crow/crow_caw_2.wav" id="13_fpllw"]
+[ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="13_yljm7"]
 
 [sub_resource type="Resource" id="Resource_bulr3"]
 script = ExtResource("8_ee44t")
 emote_name = "caw"
 animation_name = "emote_caw"
-audio_stream = ExtResource("13_fpllw")
-audio_delay = 0.2
+audio_delay = 0.5
+audio_data = ExtResource("9_ph0rj")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qd7po"]
 radius = 12.0
@@ -54,11 +54,11 @@ parent = NodePath("../..")
 animated_sprite_2d = NodePath("../../AnimatedSprite2D")
 area_2d = NodePath("../../Area2D")
 
-[node name="Emoting" parent="StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d", "area_2d", "bird_call_audio") instance=ExtResource("7_l17fw")]
+[node name="Emoting" parent="StateMachine" node_paths=PackedStringArray("parent", "animated_sprite_2d", "area_2d", "bird_audio") instance=ExtResource("7_l17fw")]
 parent = NodePath("../..")
 animated_sprite_2d = NodePath("../../AnimatedSprite2D")
 area_2d = NodePath("../../Area2D")
-bird_call_audio = NodePath("../../BirdSounds")
+bird_audio = NodePath("../../BirdAudio")
 emotes = Array[ExtResource("8_ee44t")]([SubResource("Resource_bulr3")])
 next_state_name = "perching"
 
@@ -83,5 +83,4 @@ position = Vector2(-1, -9)
 sprite_frames = ExtResource("1_lus1e")
 animation = &"land_left"
 
-[node name="BirdSounds" parent="." instance=ExtResource("12_5ff13")]
-bus = &"sfx"
+[node name="BirdAudio" parent="." instance=ExtResource("13_yljm7")]

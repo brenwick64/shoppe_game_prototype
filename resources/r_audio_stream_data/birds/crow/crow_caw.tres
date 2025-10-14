@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RAudioStreamData" load_steps=3 format=3 uid="uid://cjh43luodjufl"]
+
+[ext_resource type="Script" path="res://systems/audio_system/scripts/RAudioStreamData.gd" id="1_hs0ng"]
+[ext_resource type="AudioStream" uid="uid://c0r11wgpbonvq" path="res://audio/ambience/birds/crow/crow_caw_1.wav" id="1_w25re"]
+
+[resource]
+script = ExtResource("1_hs0ng")
+unique_name = "crow_caw"
+tags = Array[String]([])
+audio_stream = ExtResource("1_w25re")
+decibel_scalar = 0.0
+pitch_range_percent = Vector2(0.9, 1.1)

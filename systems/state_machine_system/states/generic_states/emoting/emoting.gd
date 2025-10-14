@@ -3,7 +3,7 @@ extends State
 @export var parent: Node2D
 @export var animated_sprite_2d: AnimatedSprite2D
 @export var area_2d: Area2D
-@export var bird_call_audio: SingleSoundComponent
+@export var bird_audio: OneShotSoundComponent
 @export var emotes: Array[REmote]
 @export var next_state_name: String
 
@@ -14,10 +14,11 @@ func _random_emote() -> void:
 		return
 	
 	var emote: REmote = emotes.pick_random()
-	bird_call_audio.initial_delay_sec = emote.audio_delay
 	animated_sprite_2d.play(emote.animation_name + "_" + parent.direction_name)
-	if emote.audio_stream:
-		bird_call_audio.play_custom_sound(emote.audio_stream)
+	if emote.audio_data:
+		bird_audio.initial_delay_sec = emote.audio_delay
+		bird_audio.load_audio_data(emote.audio_data)
+		bird_audio.play_sound()
 
 ## -- overrides
 func _on_enter() -> void:

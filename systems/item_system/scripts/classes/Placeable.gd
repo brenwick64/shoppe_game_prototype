@@ -1,7 +1,7 @@
 class_name Placeable
 extends Node2D
 
-@export var place_sound: SingleSoundComponent
+@export var placed_sound: OneShotSoundComponent
 @export var sprite: Sprite2D
 
 @onready var outline_shader: Shader = preload("res://shaders/2d_outline.gdshader")
@@ -15,7 +15,7 @@ var is_loaded_in: bool = false
 func _ready() -> void:
 	# avoids playing the placed sound each time objects are loaded
 	if not is_loaded_in:
-		place_sound.play_sound()
+		placed_sound.play_sound()
 	
 	# assign shader material
 	var shader_material: ShaderMaterial = ShaderMaterial.new()

@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://ll2a2f3hyep7"]
+
+[ext_resource type="Script" path="res://ui_quest_menu.gd" id="1_tbyxu"]
+[ext_resource type="Theme" uid="uid://d3hq7cut50woy" path="res://resources/config/ui/ui_theme.tres" id="2_3sqff"]
+[ext_resource type="Theme" uid="uid://bev6choaoujtv" path="res://resources/config/ui/placeholder_themes.tres" id="3_cpgsf"]
+
+[node name="UIQuestMenu" type="Control" node_paths=PackedStringArray("create_quest_btn") groups=["ui_quest_menu"]]
+custom_minimum_size = Vector2(275, 400)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_tbyxu")
+create_quest_btn = NodePath("Panel/MarginContainer/VBoxContainer/CreateQuestBtn")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_3sqff")
+theme_type_variation = &"MainPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="QuestTypeSelection" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+alignment = 1
+
+[node name="Button" type="Button" parent="Panel/MarginContainer/VBoxContainer/QuestTypeSelection"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+theme = ExtResource("3_cpgsf")
+theme_type_variation = &"Btn"
+text = "<"
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/QuestTypeSelection"]
+layout_mode = 2
+text = "Quest Type"
+
+[node name="Button2" type="Button" parent="Panel/MarginContainer/VBoxContainer/QuestTypeSelection"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+theme = ExtResource("3_cpgsf")
+theme_type_variation = &"Btn"
+text = ">"
+
+[node name="QuestConfig" type="Control" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CreateQuestBtn" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Create Quest"

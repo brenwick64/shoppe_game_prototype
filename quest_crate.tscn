@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://y013bxqj8ude"]
+
+[ext_resource type="Script" path="res://quest_crate.gd" id="1_2qksc"]
+[ext_resource type="Texture2D" uid="uid://8nmamdahabq7" path="res://assets/tilesets/CuteRPG_Village.png" id="1_gnko8"]
+[ext_resource type="PackedScene" uid="uid://sr2swq8ses8w" path="res://scenes/components/remove_navigation/remove_navigation.tscn" id="2_de1f3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08fi0"]
+atlas = ExtResource("1_gnko8")
+region = Rect2(80, 128, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3x0al"]
+size = Vector2(13.5, 13.5)
+
+[node name="QuestCrate" type="StaticBody2D"]
+z_index = 1
+script = ExtResource("1_2qksc")
+
+[node name="RemoveNavigation" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("2_de1f3")]
+parent = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_08fi0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.25, 0.25)
+shape = SubResource("RectangleShape2D_3x0al")

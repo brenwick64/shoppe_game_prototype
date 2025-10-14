@@ -23,5 +23,6 @@ func _get_adjacent_tile_gp() -> Vector2:
 		["navigatable", "unobstructed"]
 	)
 	#TODO: add options for non-random?
+	#TODO: bugs out if potitions is empty
 	var adjacent_tile_gp: Vector2 = positions.pick_random()
 	return adjacent_tile_gp

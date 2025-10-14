@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://systems/item_system/scripts/classes/PlaceableFurniture.gd" id="1_m023r"]
 [ext_resource type="Texture2D" uid="uid://bwpsy33chrv8k" path="res://resources/textures/shoppe_furniture/large_table_horizontal.tres" id="2_3kvqj"]
-[ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="3_v888b"]
-[ext_resource type="AudioStream" uid="uid://bv02g04vkgdar" path="res://audio/actions/place_object/place_object_1.wav" id="4_3fie6"]
+[ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="3_fnf7t"]
+[ext_resource type="Resource" uid="uid://dpacco0m302b7" path="res://resources/r_audio_stream_data/placeables/place_furniture.tres" id="4_d6l6h"]
 [ext_resource type="PackedScene" uid="uid://cj3lu0kp1ucot" path="res://systems/item_system/scenes/placeable_item_slot/placeable_item_slot.tscn" id="5_5un2y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jjcgv"]
@@ -12,12 +12,12 @@ size = Vector2(46, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t2ljr"]
 size = Vector2(46, 11)
 
-[node name="LargeaTableHorizontal" type="StaticBody2D" node_paths=PackedStringArray("item_slots_node", "place_sound", "sprite")]
+[node name="LargeaTableHorizontal" type="StaticBody2D" node_paths=PackedStringArray("item_slots_node", "placed_sound", "sprite")]
 z_index = 2
 y_sort_enabled = true
 script = ExtResource("1_m023r")
 item_slots_node = NodePath("ItemSlots")
-place_sound = NodePath("PlacedSound")
+placed_sound = NodePath("PlacedSound")
 sprite = NodePath("Sprite2D")
 
 [node name="BlockPlacement" type="Area2D" parent="."]
@@ -36,10 +36,8 @@ offset = Vector2(0, 5)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_t2ljr")
 
-[node name="PlacedSound" parent="." instance=ExtResource("3_v888b")]
-bus = &"sfx"
-sound = ExtResource("4_3fie6")
-pitch_variance_range = Vector2(0.75, 1.25)
+[node name="PlacedSound" parent="." instance=ExtResource("3_fnf7t")]
+audio_data = ExtResource("4_d6l6h")
 
 [node name="ItemSlots" type="Node2D" parent="."]
 

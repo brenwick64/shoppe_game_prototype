@@ -8,7 +8,7 @@ extends CharacterBody2D
 @export var animation_component: AnimationComponent
 @export var movement_sound: MovementSoundComponent
 
-@onready var pickup_sound: SingleSoundComponent = $PickupSound
+@onready var pickup_sound: OneShotSoundComponent = $PickupSound
 @onready var interactor: Interactor = $Interactor
 @onready var inventory_manager: InventoryManager = $InventoryManager
 @onready var name_label: Label = $NameLabel

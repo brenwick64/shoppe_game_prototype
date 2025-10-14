@@ -9,7 +9,7 @@ signal item_removed(item_slot: PlaceableItemSlot, placed_item: PlaceableItem, pl
 @export var dimensions: Vector2i = Vector2i.ONE
 @export var distance_from_origin: Vector2i = Vector2i.ZERO
 
-@onready var single_sound_component: SingleSoundComponent = $SingleSoundComponent
+@onready var purchase_sound: OneShotSoundComponent = $PurchaseSound
 
 var shoppe_items: ShoppeItems
 
@@ -68,7 +68,7 @@ func _spawn_coins(item_price: int) -> void:
 	GlobalItemSpawner.spawn_coins(global_position, item_price)
 
 func _play_coin_sound() -> void:
-	single_sound_component.play_sound()
+	purchase_sound.play_sound()
 
 func _get_item_price(item_id: int) -> int:
 	var item_data: RShoppeItemData = GlobalItemDb.get_item_by_id(item_id)

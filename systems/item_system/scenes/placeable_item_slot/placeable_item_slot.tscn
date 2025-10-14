@@ -1,15 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://cj3lu0kp1ucot"]
 
 [ext_resource type="Script" path="res://systems/item_system/scenes/placeable_item_slot/placeable_item_slot.gd" id="1_bl4m6"]
-[ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="2_cyhyx"]
-[ext_resource type="AudioStream" uid="uid://dcx7ebf8etftu" path="res://audio/actions/coins/selected/coins_rattle_on_carpet.wav" id="3_jtork"]
+[ext_resource type="Resource" uid="uid://3ldkxfhvvtsr" path="res://resources/r_audio_stream_data/money_sounds/coin_sound.tres" id="3_i6as5"]
+[ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="4_aj5a3"]
 
 [node name="PlaceableItemSlot" type="Node2D"]
 position = Vector2(0, -3)
 script = ExtResource("1_bl4m6")
 
-[node name="SingleSoundComponent" parent="." instance=ExtResource("2_cyhyx")]
-max_distance = 250.0
-bus = &"sfx"
-sound = ExtResource("3_jtork")
-pitch_variance_range = Vector2(0.9, 1.1)
+[node name="PurchaseSound" parent="." instance=ExtResource("4_aj5a3")]
+audio_data = ExtResource("3_i6as5")

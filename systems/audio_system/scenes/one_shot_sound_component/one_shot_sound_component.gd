@@ -7,23 +7,29 @@ signal sound_finished
 
 @onready var initial_delay_timer: Timer = $InitialDelayTimer
 
-var _is_delay: bool = true
+var _is_delay: bool = false
 
 
 ## -- overrides --
 func _ready() -> void:
 	super._ready()
-	stream = audio_data.audio_stream
+	if audio_data:
+		stream = audio_data.audio_stream
 	initial_delay_timer.timeout.connect(_on_initial_delay_timer_timeout)
 
 
 ## -- public methods --
 func play_sound() -> void:
-	if _is_delay and initial_delay_sec:
+	if not _is_delay and initial_delay_sec:
+		_is_delay = true
 		initial_delay_timer.wait_time = initial_delay_sec
 		initial_delay_timer.start()
 	else:
 		_configure_and_play_stream(audio_data)
+
+func load_audio_data(p_audio_data: RAudioStreamData) -> void:
+	audio_data = p_audio_data
+	stream = audio_data.audio_stream
 
 func stop_sound() -> void:
 	self.stop()

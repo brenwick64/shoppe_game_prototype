@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://systems/item_system/scripts/classes/PlaceableFurniture.gd" id="1_v3kir"]
 [ext_resource type="Texture2D" uid="uid://blmwn4j6f81mv" path="res://resources/textures/shoppe_furniture/small_table.tres" id="2_rrhal"]
-[ext_resource type="PackedScene" uid="uid://bkty4ssqdtcvx" path="res://systems/audio_system/scenes/single_sound_component/single_sound_component.tscn" id="3_snavw"]
-[ext_resource type="AudioStream" uid="uid://bv02g04vkgdar" path="res://audio/actions/place_object/place_object_1.wav" id="4_p6rrc"]
+[ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="3_eyunp"]
+[ext_resource type="Resource" uid="uid://dpacco0m302b7" path="res://resources/r_audio_stream_data/placeables/place_furniture.tres" id="4_abeup"]
 [ext_resource type="PackedScene" uid="uid://cj3lu0kp1ucot" path="res://systems/item_system/scenes/placeable_item_slot/placeable_item_slot.tscn" id="5_l5t0n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1lof1"]
@@ -12,12 +12,12 @@ size = Vector2(14, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b7a5n"]
 size = Vector2(13.5, 11.5)
 
-[node name="SmallTable" type="StaticBody2D" node_paths=PackedStringArray("item_slots_node", "place_sound", "sprite")]
+[node name="SmallTable" type="StaticBody2D" node_paths=PackedStringArray("item_slots_node", "placed_sound", "sprite")]
 z_index = 2
 y_sort_enabled = true
 script = ExtResource("1_v3kir")
 item_slots_node = NodePath("ItemSlots")
-place_sound = NodePath("PlacedSound")
+placed_sound = NodePath("PlacedSound")
 sprite = NodePath("Sprite")
 
 [node name="BlockPlacement" type="Area2D" parent="."]
@@ -37,10 +37,8 @@ offset = Vector2(0, 10)
 position = Vector2(0, 0.25)
 shape = SubResource("RectangleShape2D_b7a5n")
 
-[node name="PlacedSound" parent="." instance=ExtResource("3_snavw")]
-bus = &"sfx"
-sound = ExtResource("4_p6rrc")
-pitch_variance_range = Vector2(0.75, 1.25)
+[node name="PlacedSound" parent="." instance=ExtResource("3_eyunp")]
+audio_data = ExtResource("4_abeup")
 
 [node name="ItemSlots" type="Node2D" parent="."]
 
