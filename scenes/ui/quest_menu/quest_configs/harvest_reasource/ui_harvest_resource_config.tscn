@@ -1,0 +1,121 @@
+[gd_scene load_steps=5 format=3 uid="uid://cscrf5b8d6s0s"]
+
+[ext_resource type="Script" path="res://scenes/ui/quest_menu/quest_configs/harvest_reasource/ui_harvest_resource_config.gd" id="1_57pms"]
+[ext_resource type="Theme" uid="uid://bev6choaoujtv" path="res://resources/config/ui/placeholder_themes.tres" id="2_5rps7"]
+[ext_resource type="Texture2D" uid="uid://enn3407yt6jb" path="res://assets/objects/large_tree.png" id="3_rxm05"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmvpy"]
+atlas = ExtResource("3_rxm05")
+region = Rect2(2, 0, 25, 31)
+
+[node name="UIHarvestResourceConfig" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_57pms")
+quest_key = "harvest_resource"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="QuestTitle2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 7
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/QuestTitle2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Harvest"
+horizontal_alignment = 1
+
+[node name="CountTitleLabel" type="Label" parent="MarginContainer/VBoxContainer/QuestTitle2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "HARVESTABLE"
+horizontal_alignment = 1
+
+[node name="HarvestableTitleLabel" type="Label" parent="MarginContainer/VBoxContainer/QuestTitle2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "COUNT"
+horizontal_alignment = 1
+
+[node name="HarvestableSelection" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="LeftBtn" type="Button" parent="MarginContainer/VBoxContainer/HarvestableSelection"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme = ExtResource("2_5rps7")
+theme_type_variation = &"Btn"
+text = "<"
+
+[node name="HarvestableTexture" type="TextureRect" parent="MarginContainer/VBoxContainer/HarvestableSelection"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_rmvpy")
+expand_mode = 2
+
+[node name="RightBtn" type="Button" parent="MarginContainer/VBoxContainer/HarvestableSelection"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme = ExtResource("2_5rps7")
+theme_type_variation = &"Btn"
+text = ">"
+
+[node name="CountSelection" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="LeftBtn" type="Button" parent="MarginContainer/VBoxContainer/CountSelection"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme = ExtResource("2_5rps7")
+theme_type_variation = &"Btn"
+text = "<"
+
+[node name="CountLabel" type="Label" parent="MarginContainer/VBoxContainer/CountSelection"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightBtn" type="Button" parent="MarginContainer/VBoxContainer/CountSelection"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme = ExtResource("2_5rps7")
+theme_type_variation = &"Btn"
+text = ">"

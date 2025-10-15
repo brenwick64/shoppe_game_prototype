@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RHarvestableData" load_steps=4 format=3 uid="uid://cd10sphprosoq"]
+
+[ext_resource type="Script" path="res://scripts/resource_definitions/RHarvestableData.gd" id="1_purth"]
+[ext_resource type="Texture2D" uid="uid://b333mb8j7sp5p" path="res://assets/tilesets/CuteRPG_Caves.png" id="2_2lm1y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hal1q"]
+atlas = ExtResource("2_2lm1y")
+region = Rect2(176, 368, 16, 17)
+
+[resource]
+script = ExtResource("1_purth")
+harvestable_name = "rock"
+harvestable_name_plural = "rocks"
+texture = SubResource("AtlasTexture_hal1q")

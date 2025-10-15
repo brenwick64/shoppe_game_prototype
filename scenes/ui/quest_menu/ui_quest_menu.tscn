@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://d3hq7cut50woy" path="res://resources/config/ui/ui_theme.tres" id="2_3sqff"]
 [ext_resource type="Theme" uid="uid://bev6choaoujtv" path="res://resources/config/ui/placeholder_themes.tres" id="3_cpgsf"]
 
-[node name="UIQuestMenu" type="Control" node_paths=PackedStringArray("create_quest_btn") groups=["ui_quest_menu"]]
+[node name="UIQuestMenu" type="Control" node_paths=PackedStringArray("create_quest_btn", "quest_config_container") groups=["ui_quest_menu"]]
 custom_minimum_size = Vector2(275, 400)
 layout_mode = 3
 anchors_preset = 0
@@ -12,6 +12,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_tbyxu")
 create_quest_btn = NodePath("Panel/MarginContainer/VBoxContainer/CreateQuestBtn")
+quest_config_container = NodePath("Panel/MarginContainer/VBoxContainer/QuestConfigContainer")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -52,7 +53,7 @@ text = "<"
 
 [node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/QuestTypeSelection"]
 layout_mode = 2
-text = "Quest Type"
+text = "Quests"
 
 [node name="Button2" type="Button" parent="Panel/MarginContainer/VBoxContainer/QuestTypeSelection"]
 custom_minimum_size = Vector2(35, 35)
@@ -61,7 +62,7 @@ theme = ExtResource("3_cpgsf")
 theme_type_variation = &"Btn"
 text = ">"
 
-[node name="QuestConfig" type="Control" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="QuestConfigContainer" type="Control" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 

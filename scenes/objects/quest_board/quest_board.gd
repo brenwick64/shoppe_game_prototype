@@ -21,11 +21,8 @@ func get_quest() -> Quest:
 	return null
 
 
-func add_quest() -> void:
-	#TODO: connect to ui's parameters
-	var harvestable: String = "tree" if Utils.roll_percentage(0.5) else "rock"
-	var count: int = randi_range(1, 4)
-	var new_quest: Quest = GlobalQuestManager.new_harvest_quest(harvestable, count)
+func add_quest(quest_key: String, quest_config: Dictionary) -> void:
+	var new_quest: Quest = GlobalQuestManager.new_quest(quest_key, quest_config)
 	_quests.append(new_quest)
 	_update_floating_label()
 	_toggle_ui()
@@ -50,9 +47,12 @@ func npc_get_quest(adventurer: Adventurer) -> Quest:
 	return null
 
 func npc_complete_quest(adventurer: Adventurer) -> void:
+	var completed_quest_index: int = -1
 	for quest: Quest in _quests:
 		if quest.quest_owner == adventurer:
-			quest.quest_status = Constants.QUEST_STATUS.COMPLETED
+			completed_quest_index = _quests.find(quest)
+	if completed_quest_index != -1:
+		_quests.remove_at(completed_quest_index)
 	_update_floating_label()
 	print("quest complete.")
 
