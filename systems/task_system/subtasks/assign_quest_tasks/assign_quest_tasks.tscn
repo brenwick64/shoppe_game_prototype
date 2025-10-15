@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq03rcpg08k8n"]
+
+[ext_resource type="Script" path="res://systems/task_system/subtasks/assign_quest_tasks/assign_quest_tasks.gd" id="1_d5r44"]
+
+[node name="AssignQuestTasks" type="Node"]
+script = ExtResource("1_d5r44")

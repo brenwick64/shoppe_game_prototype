@@ -1,0 +1,53 @@
+[gd_scene load_steps=11 format=3 uid="uid://cvm50s1fu8bxp"]
+
+[ext_resource type="Script" path="res://systems/task_system/tasks/pickup_quest/pickup_quest.gd" id="1_wp430"]
+[ext_resource type="PackedScene" uid="uid://dd2u7amj6dgtv" path="res://systems/task_system/subtasks/get_node_from_node_group_name/get_node_from_group_name.tscn" id="2_eyyh4"]
+[ext_resource type="PackedScene" uid="uid://dm8mhxfe327" path="res://systems/task_system/subtasks/get_navigation_marker_gp/get_navigation_marker_gp.tscn" id="3_coo6q"]
+[ext_resource type="PackedScene" uid="uid://d2iewrw2hcm4n" path="res://systems/task_system/subtasks/set_path_to_target_gp/set_path_to_target_gp.tscn" id="4_aqbmw"]
+[ext_resource type="PackedScene" uid="uid://cldfsfga8ujlu" path="res://systems/task_system/subtasks/true_false_check.tscn" id="4_kq60f"]
+[ext_resource type="Script" path="res://systems/task_system/subtasks/true_false_check.gd" id="5_88q5y"]
+[ext_resource type="PackedScene" uid="uid://u7xi1nkbk70c" path="res://systems/task_system/subtasks/traverse_path/traverse_path.tscn" id="5_l80tt"]
+[ext_resource type="PackedScene" uid="uid://dppekferca52p" path="res://systems/task_system/subtasks/face_target_node/face_target_node.tscn" id="6_fy0k5"]
+[ext_resource type="PackedScene" uid="uid://dyddfbty7hpng" path="res://systems/task_system/subtasks/call_node_method/call_node_method.tscn" id="7_u643k"]
+[ext_resource type="PackedScene" uid="uid://bq03rcpg08k8n" path="res://systems/task_system/subtasks/assign_quest_tasks/assign_quest_tasks.tscn" id="10_n0t1s"]
+
+[node name="PickupQuest" type="Node"]
+script = ExtResource("1_wp430")
+
+[node name="SubtaskTimer" type="Timer" parent="."]
+
+[node name="RetryTimer" type="Timer" parent="."]
+
+[node name="GetNodeFromGroupName" parent="." instance=ExtResource("2_eyyh4")]
+
+[node name="CallNodeMethod" parent="." instance=ExtResource("7_u643k")]
+method_name = "npc_reserve_quest"
+has_return_value = true
+input_var_name = "quest_board_node"
+output_var_name = "has_reserved_quest"
+
+[node name="TrueFalseCheck" parent="." instance=ExtResource("4_kq60f")]
+script = ExtResource("5_88q5y")
+exit_strategy = "kill_task"
+input_var_name = "has_reserved_quest"
+
+[node name="GetNavigationMarkerGP" parent="." instance=ExtResource("3_coo6q")]
+input_var_name = "quest_board_node"
+output_var_name = "nav_marker_gp"
+
+[node name="SetPathToTargetGP" parent="." instance=ExtResource("4_aqbmw")]
+input_var_name = "nav_marker_gp"
+
+[node name="TraversePath" parent="." instance=ExtResource("5_l80tt")]
+
+[node name="FaceTargetNode" parent="." instance=ExtResource("6_fy0k5")]
+input_var_name = "quest_board_node"
+
+[node name="CallNodeMethod3" parent="." instance=ExtResource("7_u643k")]
+method_name = "npc_get_quest"
+has_return_value = true
+input_var_name = "quest_board_node"
+output_var_name = "quest"
+
+[node name="AssignQuestTasks" parent="." instance=ExtResource("10_n0t1s")]
+input_var_name = "quest"

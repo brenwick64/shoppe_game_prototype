@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dd2u7amj6dgtv"]
+
+[ext_resource type="Script" path="res://systems/task_system/subtasks/get_node_from_node_group_name/get_node_from_group_name.gd" id="1_mvkyg"]
+
+[node name="GetNodeFromGroupName" type="Node"]
+script = ExtResource("1_mvkyg")
+group_name = "quest_board"
+output_var_name = "quest_board_node"

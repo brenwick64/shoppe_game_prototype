@@ -8,7 +8,7 @@ extends State
 
 var _is_walking: bool = false
 
-var next_states: Array[String] = ["aquiretask"]
+var next_states: Array[String] = ["performtask"]
 
 ## -- overrides -- 
 func _ready() -> void:

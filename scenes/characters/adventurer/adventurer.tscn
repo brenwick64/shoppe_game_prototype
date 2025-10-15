@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://q1jxj01w08oq"]
+[gd_scene load_steps=26 format=3 uid="uid://q1jxj01w08oq"]
 
 [ext_resource type="Script" path="res://systems/adventurer_system/animated_sprite_2d.gd" id="1_imomm"]
 [ext_resource type="Script" path="res://scenes/characters/adventurer/adventurer.gd" id="1_k3kjk"]
@@ -17,7 +17,6 @@
 [ext_resource type="Script" path="res://systems/state_machine_system/states/adventurer_states/aquire_task.gd" id="9_8j8a2"]
 [ext_resource type="Script" path="res://systems/chat_and_message_system/scenes/chat_manager/chat_manager.gd" id="9_48k2g"]
 [ext_resource type="Script" path="res://systems/state_machine_system/states/adventurer_states/afk.gd" id="9_be1el"]
-[ext_resource type="PackedScene" uid="uid://c2s6si25jpbos" path="res://systems/task_system/tasks/go_shopping/go_shopping.tscn" id="11_h5sku"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_njwo6"]
 radius = 5.0
@@ -65,7 +64,7 @@ radius = 3.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_cfkh8"]
 radius = 198.003
 
-[node name="Adventurer" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "chat_manager")]
+[node name="Adventurer" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "chat_manager", "task_manager")]
 z_index = 2
 y_sort_enabled = true
 collision_layer = 4
@@ -73,6 +72,7 @@ motion_mode = 1
 script = ExtResource("1_k3kjk")
 animated_sprite = NodePath("AnimatedSprite2D")
 chat_manager = NodePath("ChatManager")
+task_manager = NodePath("TaskManager")
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2(0, -4)
@@ -130,8 +130,6 @@ one_shot = true
 [node name="TaskManager" type="Node" parent="."]
 script = ExtResource("4_5x25t")
 
-[node name="GoShopping" parent="TaskManager" instance=ExtResource("11_h5sku")]
-
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_node_state")]
 script = ExtResource("2_ltfms")
 initial_node_state = NodePath("Idle")
@@ -184,7 +182,6 @@ text = "<xXSepirophxX420>"
 horizontal_alignment = 1
 
 [node name="DebugCurrentState" type="Label" parent="."]
-visible = false
 offset_left = -64.0
 offset_top = -27.0
 offset_right = 65.0

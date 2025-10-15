@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dm8mhxfe327"]
+
+[ext_resource type="Script" path="res://systems/task_system/subtasks/get_navigation_marker_gp/get_navigation_marker_gp.gd" id="1_fquky"]
+
+[node name="GetNavigationMarkerGP" type="Node"]
+script = ExtResource("1_fquky")

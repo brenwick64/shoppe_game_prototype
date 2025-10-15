@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyddfbty7hpng"]
+
+[ext_resource type="Script" path="res://systems/task_system/subtasks/call_node_method/call_node_method.gd" id="1_gp3kt"]
+
+[node name="CallNodeMethod" type="Node"]
+script = ExtResource("1_gp3kt")

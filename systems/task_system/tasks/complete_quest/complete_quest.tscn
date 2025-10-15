@@ -1,0 +1,34 @@
+[gd_scene load_steps=8 format=3 uid="uid://cq4mkuqewbgg8"]
+
+[ext_resource type="Script" path="res://systems/task_system/tasks/complete_quest/complete_quest.gd" id="1_4mavk"]
+[ext_resource type="PackedScene" uid="uid://dd2u7amj6dgtv" path="res://systems/task_system/subtasks/get_node_from_node_group_name/get_node_from_group_name.tscn" id="2_40br2"]
+[ext_resource type="PackedScene" uid="uid://dm8mhxfe327" path="res://systems/task_system/subtasks/get_navigation_marker_gp/get_navigation_marker_gp.tscn" id="3_qhriw"]
+[ext_resource type="PackedScene" uid="uid://d2iewrw2hcm4n" path="res://systems/task_system/subtasks/set_path_to_target_gp/set_path_to_target_gp.tscn" id="4_i4daa"]
+[ext_resource type="PackedScene" uid="uid://u7xi1nkbk70c" path="res://systems/task_system/subtasks/traverse_path/traverse_path.tscn" id="5_b2hwa"]
+[ext_resource type="PackedScene" uid="uid://dppekferca52p" path="res://systems/task_system/subtasks/face_target_node/face_target_node.tscn" id="6_jjbdw"]
+[ext_resource type="PackedScene" uid="uid://dyddfbty7hpng" path="res://systems/task_system/subtasks/call_node_method/call_node_method.tscn" id="7_fywe5"]
+
+[node name="CompleteQuest" type="Node"]
+script = ExtResource("1_4mavk")
+
+[node name="SubtaskTimer" type="Timer" parent="."]
+
+[node name="RetryTimer" type="Timer" parent="."]
+
+[node name="GetNodeFromGroupName" parent="." instance=ExtResource("2_40br2")]
+
+[node name="GetNavigationMarkerGP" parent="." instance=ExtResource("3_qhriw")]
+input_var_name = "quest_board_node"
+output_var_name = "nav_marker_gp"
+
+[node name="SetPathToTargetGP" parent="." instance=ExtResource("4_i4daa")]
+input_var_name = "nav_marker_gp"
+
+[node name="TraversePath" parent="." instance=ExtResource("5_b2hwa")]
+
+[node name="FaceTargetNode" parent="." instance=ExtResource("6_jjbdw")]
+input_var_name = "quest_board_node"
+
+[node name="CallNodeMethod" parent="." instance=ExtResource("7_fywe5")]
+method_name = "npc_complete_quest"
+input_var_name = "quest_board_node"

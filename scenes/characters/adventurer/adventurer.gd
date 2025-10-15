@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var chat_manager: ChatManager
 @export var adventurer_name: String
 @export var adventurer_persona: RAdventurerPersona
+@export var task_manager: TaskManager
 
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var state_machine: NodeStateMachine = $StateMachine
@@ -12,6 +13,7 @@ extends CharacterBody2D
 @onready var npc_animation_component: NPCAnimationComponent = $NPCAnimationComponent
 @onready var name_label: Label = $NameLabel
 @onready var debug_current_state: Label = $DebugCurrentState
+
 
 var direction_name: String = "down"
 var current_direction: Vector2 = Vector2.ZERO

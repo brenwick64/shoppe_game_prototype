@@ -1,31 +1,60 @@
 class_name QuestBoard
 extends StaticBody2D
 
+@export var debug_show_quest_list: bool = false
+
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var menu_open: OneShotSoundComponent = $MenuOpen
 @onready var menu_close: OneShotSoundComponent = $MenuClose
 @onready var floating_label: FloatLabelTween = $FloatingLabel
+@onready var navigation_marker: Marker2D = $NavigationMarker
+@onready var debug_quest_list: Panel = $DebugQuestList
 
 var quest_ui: UIQuestMenu
-
-var _available_quests: Array[String] = []
-var _active_quests: Array[String] = []
-
+var _quests: Array[Quest] = []
 
 ## -- public methods --
+func get_quest() -> Quest:
+	for quest: Quest in _quests:
+		if not quest.quest_owner:
+			return quest
+	return null
+
+
 func add_quest() -> void:
-	_available_quests.append("placeholder")
+	#TODO: connect to ui's parameters
+	var harvestable: String = "tree" if Utils.roll_percentage(0.5) else "rock"
+	var count: int = randi_range(1, 4)
+	var new_quest: Quest = GlobalQuestManager.new_harvest_quest(harvestable, count)
+	_quests.append(new_quest)
 	_update_floating_label()
 	_toggle_ui()
 
 
 ## -- npc methods --
-func npc_get_quest() -> String:
-	if not _available_quests: return ""
-	return "PLACEHOLDER"
+func npc_reserve_quest(adventurer: Adventurer) -> bool:
+	var new_quest: Quest = get_quest()
+	if not new_quest: return false
+	new_quest.quest_owner = adventurer
+	# debug
+	debug_quest_list.update_list(_quests)
+	return true
 
-func npc_turn_in_quest() -> void:
-	print("quest turned in.")
+func npc_get_quest(adventurer: Adventurer) -> Quest:
+	var npc_quest: Quest
+	for quest: Quest in _quests:
+		if quest.quest_owner == adventurer:
+			quest.quest_status = Constants.QUEST_STATUS.STARTED
+			_update_floating_label()
+			return quest
+	return null
+
+func npc_complete_quest(adventurer: Adventurer) -> void:
+	for quest: Quest in _quests:
+		if quest.quest_owner == adventurer:
+			quest.quest_status = Constants.QUEST_STATUS.COMPLETED
+	_update_floating_label()
+	print("quest complete.")
 
 
 ## -- overrides --
@@ -40,7 +69,12 @@ func _ready() -> void:
 
 ## -- helper functions --
 func _update_floating_label() -> void:
-	floating_label.visible = _available_quests.size() > 0
+	var is_new_quests: bool = _quests.filter(
+		func(q: Quest): return q.quest_status == Constants.QUEST_STATUS.NONE
+	).size() > 0
+	floating_label.visible = is_new_quests
+	# debug
+	debug_quest_list.update_list(_quests)
 
 func _toggle_ui() -> void:
 	if quest_ui.visible:

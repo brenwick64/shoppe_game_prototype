@@ -1,13 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://kt60ux60mwa6"]
+[gd_scene load_steps=16 format=3 uid="uid://kt60ux60mwa6"]
 
 [ext_resource type="Texture2D" uid="uid://8nmamdahabq7" path="res://assets/tilesets/CuteRPG_Village.png" id="1_8pp38"]
-[ext_resource type="Script" path="res://quest_board.gd" id="1_d1k07"]
+[ext_resource type="Script" path="res://scenes/objects/quest_board/quest_board.gd" id="1_d1k07"]
 [ext_resource type="PackedScene" uid="uid://bvbq04va7bwnw" path="res://scenes/components/interactable/interactable.tscn" id="1_x40l5"]
-[ext_resource type="Script" path="res://new_quest_label.gd" id="2_w7nap"]
+[ext_resource type="Script" path="res://scenes/objects/quest_board/new_quest_label.gd" id="2_w7nap"]
 [ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="3_m0fie"]
 [ext_resource type="Shader" path="res://shaders/2d_outline.gdshader" id="3_x545g"]
 [ext_resource type="Resource" uid="uid://bjutj1p0b7a54" path="res://resources/r_audio_stream_data/ui/menu_open.tres" id="6_soqdk"]
 [ext_resource type="Resource" uid="uid://di1whcwfww46t" path="res://resources/r_audio_stream_data/ui/menu_close.tres" id="7_7wtut"]
+[ext_resource type="Script" path="res://scenes/objects/quest_board/debug_quest_list.gd" id="9_8u286"]
+[ext_resource type="Theme" uid="uid://d3hq7cut50woy" path="res://resources/config/ui/ui_theme.tres" id="9_ovso1"]
+[ext_resource type="PackedScene" uid="uid://ceeve3ji8o787" path="res://scenes/objects/quest_board/debug_quest_desc.tscn" id="10_3ifxx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p4t2s"]
 size = Vector2(44, 28.5)
@@ -27,7 +30,7 @@ region = Rect2(129, 39, 30, 24)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7s7ie"]
 size = Vector2(21, 16)
 
-[node name="QuestBoard" type="StaticBody2D"]
+[node name="QuestBoard" type="StaticBody2D" groups=["quest_board"]]
 script = ExtResource("1_d1k07")
 
 [node name="Interactable" parent="." instance=ExtResource("1_x40l5")]
@@ -36,6 +39,9 @@ script = ExtResource("1_d1k07")
 position = Vector2(0, -4.25)
 shape = SubResource("RectangleShape2D_p4t2s")
 debug_color = Color(0.760933, 0.339496, 0.759394, 0.42)
+
+[node name="NavigationMarker" type="Marker2D" parent="."]
+position = Vector2(0, 9)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
@@ -65,6 +71,43 @@ theme_override_colors/font_color = Color(0.9027, 0.824762, 0.477036, 1)
 theme_override_font_sizes/font_size = 16
 text = "!"
 script = ExtResource("2_w7nap")
+
+[node name="DebugQuestList" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0.75)
+z_index = 99
+offset_left = -108.0
+offset_top = -104.0
+offset_right = 101.0
+offset_bottom = -23.0
+theme = ExtResource("9_ovso1")
+theme_type_variation = &"MainPanel"
+script = ExtResource("9_8u286")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="DebugQuestList"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="DebugQuestList/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugQuestList/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DebugQuestDesc" parent="DebugQuestList/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10_3ifxx")]
+layout_mode = 2
 
 [connection signal="focus_changed" from="Interactable" to="." method="_on_interactable_focus_changed"]
 [connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
