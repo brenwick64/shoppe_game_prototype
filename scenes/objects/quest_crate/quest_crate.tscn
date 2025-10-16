@@ -1,26 +1,58 @@
-[gd_scene load_steps=6 format=3 uid="uid://y013bxqj8ude"]
+[gd_scene load_steps=12 format=3 uid="uid://y013bxqj8ude"]
 
 [ext_resource type="Script" path="res://scenes/objects/quest_crate/quest_crate.gd" id="1_2qksc"]
-[ext_resource type="Texture2D" uid="uid://8nmamdahabq7" path="res://assets/tilesets/CuteRPG_Village.png" id="1_gnko8"]
+[ext_resource type="PackedScene" uid="uid://bvbq04va7bwnw" path="res://scenes/components/interactable/interactable.tscn" id="2_1yj5s"]
 [ext_resource type="PackedScene" uid="uid://sr2swq8ses8w" path="res://scenes/components/remove_navigation/remove_navigation.tscn" id="2_de1f3"]
+[ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="4_ihtba"]
+[ext_resource type="Shader" path="res://shaders/2d_outline.gdshader" id="4_mvd1i"]
+[ext_resource type="Resource" uid="uid://42yhgm406gdt" path="res://resources/r_audio_stream_data/pickup/pickup_sound.tres" id="5_4dipx"]
+[ext_resource type="Texture2D" uid="uid://b8vrqes6bxhlk" path="res://assets/objects/crates.png" id="5_8ikvt"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_08fi0"]
-atlas = ExtResource("1_gnko8")
-region = Rect2(80, 128, 16, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q77cn"]
+size = Vector2(30, 20.75)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_12xe2"]
+shader = ExtResource("4_mvd1i")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arv40"]
+atlas = ExtResource("5_8ikvt")
+region = Rect2(1, 1, 18, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3x0al"]
 size = Vector2(13.5, 13.5)
 
-[node name="QuestCrate" type="StaticBody2D"]
+[node name="QuestCrate" type="StaticBody2D" node_paths=PackedStringArray("sprite") groups=["quest_crate"]]
 z_index = 1
 script = ExtResource("1_2qksc")
+sprite = NodePath("Sprite2D")
+
+[node name="Interactable" parent="." instance=ExtResource("2_1yj5s")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(-1, 2.625)
+shape = SubResource("RectangleShape2D_q77cn")
+debug_color = Color(0.743529, 0.343638, 0.792971, 0.42)
 
 [node name="RemoveNavigation" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("2_de1f3")]
 parent = NodePath("..")
 
+[node name="NavigationMarker" type="Marker2D" parent="."]
+position = Vector2(0, 14)
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_08fi0")
+material = SubResource("ShaderMaterial_12xe2")
+texture = SubResource("AtlasTexture_arv40")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.25, 0.25)
 shape = SubResource("RectangleShape2D_3x0al")
+
+[node name="OneShotSoundComponent" parent="." instance=ExtResource("4_ihtba")]
+audio_data = ExtResource("5_4dipx")
+
+[connection signal="focus_changed" from="Interactable" to="." method="_on_interactable_focus_changed"]

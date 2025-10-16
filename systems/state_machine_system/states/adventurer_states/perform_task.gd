@@ -31,7 +31,10 @@ func _on_exit() -> void:
 func _on_task_completed(task: Task) -> void:
 	task.queue_free()
 	_current_task = null
-	transition.emit("idle")
+	if task_manager.get_next_task():
+		transition.emit("performtask")
+	else:
+		transition.emit("idle")
 
 func _on_task_failed(task: Task) -> void:
 	task.queue_free()

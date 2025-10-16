@@ -16,6 +16,8 @@ script = ExtResource("1_4mavk")
 [node name="RetryTimer" type="Timer" parent="."]
 
 [node name="GetNodeFromGroupName" parent="." instance=ExtResource("2_40br2")]
+group_name = "quest_board"
+output_var_name = "quest_board_node"
 
 [node name="GetNavigationMarkerGP" parent="." instance=ExtResource("3_qhriw")]
 input_var_name = "quest_board_node"

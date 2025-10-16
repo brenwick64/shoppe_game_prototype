@@ -26,6 +26,7 @@ func pickup(item_id: int, count: int) -> void:
 	print(adventurer_name + " picked up " + str(count) + " x " + str(item_data.item_name))
 
 
+## -- overrides --
 func _ready() -> void:
 	state_machine.state_changed.connect(_on_state_changed)
 	name_label.text = "<" + adventurer_name + ">"

@@ -5,6 +5,7 @@ signal task_added
 signal task_complete
 signal task_failed
 
+
 func get_next_task() -> Task:
 	var task_list: Array[Node] = get_children()
 	if not task_list.is_empty(): return task_list[0]

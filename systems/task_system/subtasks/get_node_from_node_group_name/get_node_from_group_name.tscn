@@ -4,5 +4,3 @@
 
 [node name="GetNodeFromGroupName" type="Node"]
 script = ExtResource("1_mvkyg")
-group_name = "quest_board"
-output_var_name = "quest_board_node"

@@ -4,4 +4,3 @@
 
 [node name="SetPathToTargetGP" type="Node"]
 script = ExtResource("1_rjb68")
-input_var_name = "harvestable_node_gp"

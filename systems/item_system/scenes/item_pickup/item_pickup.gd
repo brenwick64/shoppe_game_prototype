@@ -2,6 +2,7 @@ class_name ItemPickup
 extends Node2D
 
 signal picked_up
+signal drop_finished(pickup: ItemPickup)
 
 @export var pickup_texture: AtlasTexture
 @export var item_id: int
@@ -24,6 +25,7 @@ func _on_arc_move_on_spawn_arc_motion_finished() -> void:
 	var collision_shape: CollisionShape2D = pickup_area.get_node("CollisionShape2D")
 	if collision_shape:
 		collision_shape.disabled = false
+	drop_finished.emit(self)
 
 func _on_pickup_area_area_entered(area: Area2D) -> void:
 	var area_parent: Node2D = area.get_parent()

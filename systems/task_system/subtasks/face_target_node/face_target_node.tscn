@@ -4,4 +4,3 @@
 
 [node name="FaceTargetNode" type="Node"]
 script = ExtResource("1_5gi80")
-input_var_name = "harvestable_node"

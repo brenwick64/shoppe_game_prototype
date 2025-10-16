@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://beo42isutcxyu"]
+
+[ext_resource type="Script" path="res://deposit_items_to_crate.gd" id="1_jejbr"]
+
+[node name="DepositItemsToCrate" type="Node"]
+script = ExtResource("1_jejbr")

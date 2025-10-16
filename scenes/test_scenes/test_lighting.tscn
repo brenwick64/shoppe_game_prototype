@@ -36,6 +36,7 @@ y_sort_enabled = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 2
+visible = false
 
 [node name="AudioSettings" parent="UI" instance=ExtResource("9_u8now")]
 visible = false
@@ -123,8 +124,7 @@ script = ExtResource("5_0snrh")
 y_sort_enabled = true
 
 [node name="QuestBoard" parent="PermanentGameObjects" instance=ExtResource("15_3sr2k")]
-position = Vector2(97, -72)
-debug_show_quest_list = true
+position = Vector2(88, -72)
 
 [node name="QuestCrate" parent="PermanentGameObjects" instance=ExtResource("16_bss1y")]
 position = Vector2(120, -72)

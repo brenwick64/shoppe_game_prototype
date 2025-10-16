@@ -19,6 +19,8 @@ script = ExtResource("1_wp430")
 [node name="RetryTimer" type="Timer" parent="."]
 
 [node name="GetNodeFromGroupName" parent="." instance=ExtResource("2_eyyh4")]
+group_name = "quest_board"
+output_var_name = "quest_board_node"
 
 [node name="CallNodeMethod" parent="." instance=ExtResource("7_u643k")]
 method_name = "npc_reserve_quest"

@@ -28,10 +28,12 @@ max_retries = 10
 max_retries = 3
 
 [node name="SetPathToTargetGP" parent="." instance=ExtResource("4_mt45g")]
+input_var_name = "harvestable_node_gp"
 
 [node name="TraversePath" parent="." instance=ExtResource("5_d4kno")]
 
 [node name="FaceTargetNode" parent="." instance=ExtResource("6_yga0b")]
+input_var_name = "harvestable_node"
 
 [node name="HarvestNode" parent="." instance=ExtResource("7_fl7uc")]
 

@@ -11,8 +11,9 @@ extends Control
 var _current_quest_config: Control
 
 func _ready() -> void:
-	#TODO: this is temporary
+	#TODO: this is temporary - will change to resource group
 	_current_quest_config = harvest_resource_config.instantiate()
+	
 	set_quest_config(_current_quest_config)
 	create_quest_btn.pressed.connect(_on_create_quest_btn_pressed)
 
