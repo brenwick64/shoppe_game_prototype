@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://b51r6ry5otg74"]
 
-[ext_resource type="Script" path="res://deposit_quest_crate.gd" id="1_6vgsb"]
+[ext_resource type="Script" path="res://systems/task_system/tasks/deposit_quest_crate/deposit_quest_crate.gd" id="1_6vgsb"]
 [ext_resource type="PackedScene" uid="uid://dd2u7amj6dgtv" path="res://systems/task_system/subtasks/get_node_from_node_group_name/get_node_from_group_name.tscn" id="2_erbwi"]
 [ext_resource type="PackedScene" uid="uid://dm8mhxfe327" path="res://systems/task_system/subtasks/get_navigation_marker_gp/get_navigation_marker_gp.tscn" id="3_eg0r6"]
 [ext_resource type="PackedScene" uid="uid://d2iewrw2hcm4n" path="res://systems/task_system/subtasks/set_path_to_target_gp/set_path_to_target_gp.tscn" id="4_mno8m"]
 [ext_resource type="PackedScene" uid="uid://u7xi1nkbk70c" path="res://systems/task_system/subtasks/traverse_path/traverse_path.tscn" id="5_m07p4"]
 [ext_resource type="PackedScene" uid="uid://dppekferca52p" path="res://systems/task_system/subtasks/face_target_node/face_target_node.tscn" id="6_2bx8d"]
-[ext_resource type="PackedScene" uid="uid://beo42isutcxyu" path="res://deposit_items_to_crate.tscn" id="8_bgtbu"]
+[ext_resource type="PackedScene" uid="uid://beo42isutcxyu" path="res://systems/task_system/subtasks/deposit_items_to_crate/deposit_items_to_crate.tscn" id="8_bgtbu"]
 
 [node name="DepositQuestCrate" type="Node"]
 script = ExtResource("1_6vgsb")

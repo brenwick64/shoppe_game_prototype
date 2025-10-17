@@ -1,18 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://ll2a2f3hyep7"]
+[gd_scene load_steps=7 format=3 uid="uid://ll2a2f3hyep7"]
 
 [ext_resource type="Script" path="res://scenes/ui/quest_menu/ui_quest_menu.gd" id="1_tbyxu"]
 [ext_resource type="Theme" uid="uid://d3hq7cut50woy" path="res://resources/config/ui/ui_theme.tres" id="2_3sqff"]
 [ext_resource type="Theme" uid="uid://bev6choaoujtv" path="res://resources/config/ui/placeholder_themes.tres" id="3_cpgsf"]
+[ext_resource type="Texture2D" uid="uid://dand3ribr45d5" path="res://assets/objects/Coin_Four.png" id="4_mdgma"]
+[ext_resource type="PackedScene" uid="uid://cwt0f0n0x8dbv" path="res://scenes/ui/counting_label/ui_counting_label.tscn" id="5_oxauv"]
 
-[node name="UIQuestMenu" type="Control" node_paths=PackedStringArray("create_quest_btn", "quest_config_container") groups=["ui_quest_menu"]]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jj0s"]
+atlas = ExtResource("4_mdgma")
+region = Rect2(0, 0, 16, 16)
+
+[node name="UIQuestMenu" type="Control" groups=["ui_quest_menu"]]
 custom_minimum_size = Vector2(275, 400)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_tbyxu")
-create_quest_btn = NodePath("Panel/MarginContainer/VBoxContainer/CreateQuestBtn")
-quest_config_container = NodePath("Panel/MarginContainer/VBoxContainer/QuestConfigContainer")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -41,23 +45,25 @@ layout_mode = 2
 
 [node name="QuestTypeSelection" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 35
 alignment = 1
 
 [node name="Button" type="Button" parent="Panel/MarginContainer/VBoxContainer/QuestTypeSelection"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
+size_flags_horizontal = 0
 theme = ExtResource("3_cpgsf")
 theme_type_variation = &"Btn"
 text = "<"
 
 [node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/QuestTypeSelection"]
 layout_mode = 2
-text = "Quests"
+size_flags_horizontal = 6
+text = "Collect Resource"
 
 [node name="Button2" type="Button" parent="Panel/MarginContainer/VBoxContainer/QuestTypeSelection"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
+size_flags_horizontal = 8
 theme = ExtResource("3_cpgsf")
 theme_type_variation = &"Btn"
 text = ">"
@@ -65,6 +71,35 @@ text = ">"
 [node name="QuestConfigContainer" type="Control" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+
+[node name="CoinTexture" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_6jj0s")
+stretch_mode = 3
+
+[node name="xLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "x"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 10
+
+[node name="UICountingLabel" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2" instance=ExtResource("5_oxauv")]
+layout_mode = 2
 
 [node name="CreateQuestBtn" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2

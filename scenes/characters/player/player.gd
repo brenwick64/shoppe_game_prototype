@@ -11,6 +11,7 @@ extends CharacterBody2D
 @onready var pickup_sound: OneShotSoundComponent = $PickupSound
 @onready var interactor: Interactor = $Interactor
 @onready var inventory_manager: InventoryManager = $InventoryManager
+@onready var currency_manager: CurrencyManager = $CurrencyManager
 @onready var name_label: Label = $NameLabel
 
 

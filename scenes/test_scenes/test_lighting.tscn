@@ -84,6 +84,10 @@ layer = 2
 
 [node name="UIQuestMenu" parent="MenuUI" node_paths=PackedStringArray("quest_board") instance=ExtResource("6_w7eot")]
 visible = false
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 295.0
+offset_bottom = 420.0
 quest_board = NodePath("../../PermanentGameObjects/QuestBoard")
 
 [node name="ChatMessagesUI" parent="." instance=ExtResource("5_76mqh")]

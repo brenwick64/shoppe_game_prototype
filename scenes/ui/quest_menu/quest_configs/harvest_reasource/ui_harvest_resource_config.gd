@@ -1,7 +1,7 @@
 class_name UIHarvestResourceConfig
 extends Control
 
-@export var quest_key: String
+signal cost_changed(new_cost: int)
 
 @onready var rg_harvestable_data: ResourceGroup = preload("res://resources/resource_groups/rg_harvestable_data.tres")
 ## static data views
@@ -15,6 +15,7 @@ extends Control
 @onready var count_left_btn: Button = $MarginContainer/VBoxContainer/CountSelection/LeftBtn
 @onready var count_right_btn: Button = $MarginContainer/VBoxContainer/CountSelection/RightBtn
 
+var quest_data: RQuestData
 var harvestables: Array[RHarvestableData]
 
 var _current_harvestable: RHarvestableData
@@ -47,9 +48,15 @@ func _update_ui() -> void:
 	_update_quest_text()
 	_update_harvestable_texture()
 
+func _update_quest_cost() -> void:
+	var base_price: int = quest_data.base_cost_gold
+	var additional_price: int = (_current_count - 1) * 1
+	cost_changed.emit(base_price + additional_price)
+
 func _update_quest_text() -> void:
 	count_title_label.text = str(_current_count)
 	harvestable_title_label.text = _current_harvestable.harvestable_name_plural if _current_count > 1 else _current_harvestable.harvestable_name
+	harvestable_title_label.text = harvestable_title_label.text.capitalize()
 	count_label.text = str(_current_count)
 
 func _update_harvestable_texture() -> void:
@@ -76,7 +83,9 @@ func _on_harvestable_right_btn_pressed() -> void:
 func _on_count_left_btn_pressed() -> void:
 	_current_count = max(1, _current_count - 1)
 	_update_ui()
+	_update_quest_cost()
 	
 func _on_count_right_btn_pressed() -> void:
 	_current_count = min(9, _current_count + 1)
 	_update_ui()
+	_update_quest_cost()

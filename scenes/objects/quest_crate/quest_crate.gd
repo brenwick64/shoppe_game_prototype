@@ -23,7 +23,6 @@ func deposit_items(depositor: Node2D, item_id: int, count: int) -> void:
 func withdraw_items(player: Player) -> void:
 	for item: RInventoryItem in items:
 		await get_tree().create_timer(0.1).timeout
-		print(item.count)
 		GlobalItemSpawner.spawn_item_pickup(
 			item.item_id,
 			item.count,

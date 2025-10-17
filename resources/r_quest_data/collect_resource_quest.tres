@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RQuestDataCollectResource" load_steps=5 format=3 uid="uid://qklf2vhcf6mr"]
+
+[ext_resource type="Script" path="res://systems/quest_system/scripts/RQuestDataCollectResource.gd" id="1_b7q5s"]
+[ext_resource type="PackedScene" uid="uid://b51r6ry5otg74" path="res://systems/task_system/tasks/deposit_quest_crate/deposit_quest_crate.tscn" id="1_cj7tt"]
+[ext_resource type="PackedScene" uid="uid://cscrf5b8d6s0s" path="res://scenes/ui/quest_menu/quest_configs/harvest_reasource/ui_harvest_resource_config.tscn" id="2_ahvfk"]
+[ext_resource type="PackedScene" uid="uid://bf7qaitvv6rri" path="res://systems/task_system/tasks/harvest_resource/harvest_resource.tscn" id="2_kiq84"]
+
+[resource]
+script = ExtResource("1_b7q5s")
+harvest_resource_task = ExtResource("2_kiq84")
+deposit_items_task = ExtResource("1_cj7tt")
+quest_name = "Collect Resource"
+base_cost_gold = 4
+ui_config_scene = ExtResource("2_ahvfk")

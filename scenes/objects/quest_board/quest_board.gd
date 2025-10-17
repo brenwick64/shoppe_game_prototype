@@ -6,6 +6,7 @@ extends StaticBody2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var menu_open: OneShotSoundComponent = $MenuOpen
 @onready var menu_close: OneShotSoundComponent = $MenuClose
+@onready var coin_sound: OneShotSoundComponent = $CoinSound
 @onready var floating_label: FloatLabelTween = $FloatingLabel
 @onready var navigation_marker: Marker2D = $NavigationMarker
 @onready var debug_quest_list: Panel = $DebugQuestList
@@ -20,10 +21,11 @@ func get_quest() -> Quest:
 			return quest
 	return null
 
-
-func add_quest(quest_key: String, quest_config: Dictionary) -> void:
-	var new_quest: Quest = GlobalQuestManager.new_quest(quest_key, quest_config)
+func add_quest(new_quest: Quest, quest_cost: int) -> void:
 	_quests.append(new_quest)
+	coin_sound.play_sound()
+	GlobalItemSpawner.spawn_coins(global_position, quest_cost)
+	_remove_player_currency(quest_cost)
 	_update_floating_label()
 	_toggle_ui()
 
@@ -75,6 +77,13 @@ func _update_floating_label() -> void:
 	floating_label.visible = is_new_quests
 	# debug
 	debug_quest_list.update_list(_quests)
+
+func _remove_player_currency(amount: int) -> void:
+	var player_currency_manager: CurrencyManager = get_tree().get_first_node_in_group("player_currency")
+	if not player_currency_manager:
+		push_error("QuestBoard error: cannot find player currency manager")
+		return
+	player_currency_manager.remove_currency(amount)
 
 func _toggle_ui() -> void:
 	if quest_ui.visible:
