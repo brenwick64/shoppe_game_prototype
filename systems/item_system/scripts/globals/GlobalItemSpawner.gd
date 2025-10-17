@@ -6,9 +6,10 @@ extends Node
 ## -- public methods --
 func spawn_item_pickup(
 	item_id: int, 
+	count: int,
 	start_pos: Vector2, 
 	end_pos: Vector2,
-	pickup_owner: Node2D = null
+	pickup_owner: Node2D = null,
 	) -> ItemPickup:
 		
 	var spawned_items: Node2D = _get_spawned_items()
@@ -17,6 +18,7 @@ func spawn_item_pickup(
 	if not item_data: return
 	
 	var pickup_ins: ItemPickup = item_data.new_pickup()
+	pickup_ins.count = count
 	pickup_ins.global_position = start_pos
 	pickup_ins.start_pos = start_pos
 	pickup_ins.end_pos = end_pos

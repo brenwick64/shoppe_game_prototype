@@ -61,6 +61,7 @@ func remove_furniture(player_node: Player) -> void:
 func _spawn_furniture_pickup(player_node: Player) -> void:
 	GlobalItemSpawner.spawn_item_pickup(
 		self.item_id,
+		1,
 		global_position,
 		player_node.global_position,
 		player_node

@@ -87,7 +87,8 @@ func _spawn_pickup(harvestor: Node2D) -> ItemPickup:
 	)
 	var target_gp: Vector2 = spawn_positions.pick_random() if spawn_positions else global_position
 	pickup_node = GlobalItemSpawner.spawn_item_pickup(
-		pickup_item_id, 
+		pickup_item_id,
+		1,
 		global_position, 
 		target_gp,
 		harvestor

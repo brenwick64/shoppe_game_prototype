@@ -1,7 +1,8 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://d3hq7cut50woy"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://d3hq7cut50woy"]
 
 [ext_resource type="Texture2D" uid="uid://dpawbul7jnh8f" path="res://assets/ui/base_ui/skill/board/board_02.png" id="1_7qf6k"]
 [ext_resource type="Texture2D" uid="uid://cipa7cuklb1la" path="res://assets/ui/base_ui/skill/frame/frame_06.png" id="1_i43un"]
+[ext_resource type="Texture2D" uid="uid://cxv0wrla6ejex" path="res://assets/sprout_lands_ui/Sprout Lands - UI Pack - Basic pack/Sprite sheets/Dialouge UI/dialog box.png" id="2_4fwgu"]
 [ext_resource type="Texture2D" uid="uid://cywmf6foanbcr" path="res://assets/ui/book_ui/Content/Boxes/Light/8.png" id="3_ilxie"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j5vn8"]
@@ -10,6 +11,13 @@ texture_margin_left = 4.0
 texture_margin_top = 4.0
 texture_margin_right = 4.0
 texture_margin_bottom = 4.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_364g2"]
+atlas = ExtResource("2_4fwgu")
+region = Rect2(7, 11, 30, 28)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2t67x"]
+texture = SubResource("AtlasTexture_364g2")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sslmu"]
 texture = ExtResource("1_7qf6k")
@@ -39,6 +47,8 @@ ConsoleMessage/base_type = &"Label"
 ConsoleMessage/colors/font_color = Color(0.2243, 0.15467, 0.0517902, 1)
 InventorySlot/base_type = &"Panel"
 InventorySlot/styles/panel = SubResource("StyleBoxTexture_j5vn8")
+ItemsReadyPanel/base_type = &"Panel"
+ItemsReadyPanel/styles/panel = SubResource("StyleBoxTexture_2t67x")
 MainPanel/base_type = &"Panel"
 MainPanel/styles/panel = SubResource("StyleBoxTexture_sslmu")
 ParchmentPanel/base_type = &"Panel"

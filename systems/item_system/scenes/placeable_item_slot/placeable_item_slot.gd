@@ -37,6 +37,7 @@ func item_removed_by_player(item_id: int, player_node: Player) -> void:
 	remove_item()
 	GlobalItemSpawner.spawn_item_pickup(
 		item_id,
+		1,
 		global_position,
 		player_node.global_position,
 		player_node
