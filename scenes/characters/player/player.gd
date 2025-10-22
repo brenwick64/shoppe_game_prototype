@@ -13,6 +13,7 @@ extends CharacterBody2D
 @onready var inventory_manager: InventoryManager = $InventoryManager
 @onready var currency_manager: CurrencyManager = $CurrencyManager
 @onready var name_label: Label = $NameLabel
+@onready var interact_icon: Panel = $InteractIcon
 
 
 var _current_terrain: String
@@ -71,7 +72,7 @@ func _check_tile_audio() -> void:
 		_current_terrain = terrain_type
 
 	
-## -- signals --
+## -- signals --s
 func _on_animation_component_animation_state_changed(state: String) -> void:
 	if state == "moving":
 		movement_sound.play_loop()
@@ -81,3 +82,8 @@ func _on_animation_component_animation_state_changed(state: String) -> void:
 func _on_movement_component_moveable_moved(_new_position: Vector2) -> void:
 	_check_tile_audio()
 	interactor.handle_parent_movement()
+
+func _on_interactor_closest_interactable_updated(interactable: Interactable) -> void:
+	interact_icon.visible = false
+	if interactable and interactable.has_interactable_menu:
+		interact_icon.visible = true

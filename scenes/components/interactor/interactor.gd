@@ -13,6 +13,7 @@ func _ready() -> void:
 	self.area_entered.connect(_on_area_entered)
 	self.area_exited.connect(_on_area_exited)
 
+
 ## -- methods --
 func interact() -> void:
 	if closest_interactable:
@@ -20,6 +21,7 @@ func interact() -> void:
 
 func handle_parent_movement() -> void:
 	_update_closest_interactable()
+
 
 ## -- signals --
 func _on_area_entered(area: Area2D) -> void:
@@ -37,12 +39,14 @@ func _on_area_exited(area: Area2D) -> void:
 	interactables_updated.emit(nearby_interactables)
 	_update_closest_interactable()
 
+
 ## -- helper functions --
 func _update_closest_interactable() -> void:
 	closest_interactable = _get_closest_interactable()
 	closest_interactable_updated.emit(closest_interactable)
 	for interactable: Interactable in nearby_interactables:
 		if interactable == closest_interactable:
+			
 			interactable.set_focus()
 		else:
 			interactable.unset_focus()

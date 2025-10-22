@@ -4,6 +4,8 @@ extends Area2D
 signal interacted(interactor: Node2D)
 signal focus_changed(is_focused: bool)
 
+@export var has_interactable_menu: bool = false
+
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 ## -- public methods --

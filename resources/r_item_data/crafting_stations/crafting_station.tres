@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="RShoppeFurnitureData" load_steps=5 format=3 uid="uid://cqqv3clhgpk0c"]
+
+[ext_resource type="Texture2D" uid="uid://cxt3nd4qr3rc2" path="res://resources/textures/crafting_stations/crafting_table.tres" id="1_rh6ti"]
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RShoppeFurnitureData.gd" id="1_tqkft"]
+[ext_resource type="PackedScene" uid="uid://3cew0v0ubca8" path="res://scenes/items/placeable_crafting_stations/crafting_table/crafting_table_horizontal.tscn" id="2_4k1r2"]
+[ext_resource type="PackedScene" uid="uid://d323asfijxwip" path="res://scenes/items/placeable_crafting_stations/crafting_table/crafting_table_horizontal_preview.tscn" id="3_p41vq"]
+
+[resource]
+script = ExtResource("1_tqkft")
+placeable_scene = ExtResource("2_4k1r2")
+preview_scene = ExtResource("3_p41vq")
+scale_value = Vector2(1, 1)
+dimensions = Vector2i(2, 1)
+item_id = 30
+item_name = "Crafting Table"
+icon_texture = ExtResource("1_rh6ti")
+icon_scale_multiplier = 2.0
+pickup_texture = ExtResource("1_rh6ti")
+pickup_scale = Vector2(0.5, 0.5)

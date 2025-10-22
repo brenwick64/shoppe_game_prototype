@@ -1,5 +1,5 @@
 class_name UIQuestMenu
-extends Control
+extends UIMenu
 
 @onready var quest_data_resource_group: ResourceGroup = preload("res://resources/resource_groups/rg_quest_data.tres")
 
@@ -31,6 +31,7 @@ func _ready() -> void:
 	create_quest_btn.pressed.connect(_on_create_quest_btn_pressed)
 
 
+## -- public methods --
 func set_quest_config(config_scene: PackedScene) -> void:
 	# remove previous quest config(s)
 	for child: Node in quest_config_container.get_children():

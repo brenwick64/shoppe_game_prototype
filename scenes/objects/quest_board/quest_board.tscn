@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://kt60ux60mwa6"]
+[gd_scene load_steps=15 format=3 uid="uid://kt60ux60mwa6"]
 
 [ext_resource type="Texture2D" uid="uid://8nmamdahabq7" path="res://assets/tilesets/CuteRPG_Village.png" id="1_8pp38"]
 [ext_resource type="Script" path="res://scenes/objects/quest_board/quest_board.gd" id="1_d1k07"]
@@ -6,8 +6,6 @@
 [ext_resource type="Script" path="res://scenes/objects/quest_board/new_quest_label.gd" id="2_w7nap"]
 [ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="3_m0fie"]
 [ext_resource type="Shader" path="res://shaders/2d_outline.gdshader" id="3_x545g"]
-[ext_resource type="Resource" uid="uid://bjutj1p0b7a54" path="res://resources/r_audio_stream_data/ui/menu_open.tres" id="6_soqdk"]
-[ext_resource type="Resource" uid="uid://di1whcwfww46t" path="res://resources/r_audio_stream_data/ui/menu_close.tres" id="7_7wtut"]
 [ext_resource type="Resource" uid="uid://3ldkxfhvvtsr" path="res://resources/r_audio_stream_data/money_sounds/coin_sound.tres" id="8_yu8rr"]
 [ext_resource type="Script" path="res://scenes/objects/quest_board/debug_quest_list.gd" id="9_8u286"]
 [ext_resource type="Theme" uid="uid://d3hq7cut50woy" path="res://resources/config/ui/ui_theme.tres" id="9_ovso1"]
@@ -35,6 +33,7 @@ size = Vector2(21, 16)
 script = ExtResource("1_d1k07")
 
 [node name="Interactable" parent="." instance=ExtResource("1_x40l5")]
+has_interactable_menu = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
 position = Vector2(0, -4.25)
@@ -49,14 +48,6 @@ z_index = 1
 material = SubResource("ShaderMaterial_eixgg")
 position = Vector2(0, -11)
 texture = SubResource("AtlasTexture_wtndy")
-
-[node name="MenuOpen" parent="." instance=ExtResource("3_m0fie")]
-bus = &"sfx"
-audio_data = ExtResource("6_soqdk")
-
-[node name="MenuClose" parent="." instance=ExtResource("3_m0fie")]
-bus = &"sfx"
-audio_data = ExtResource("7_7wtut")
 
 [node name="CoinSound" parent="." instance=ExtResource("3_m0fie")]
 audio_data = ExtResource("8_yu8rr")
@@ -77,6 +68,7 @@ text = "!"
 script = ExtResource("2_w7nap")
 
 [node name="DebugQuestList" type="Panel" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.75)
 z_index = 99
 offset_left = -88.0

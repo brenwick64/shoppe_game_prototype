@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://bavk4a3vq7nos"]
+
+[ext_resource type="Texture2D" uid="uid://dlmelfajdu5fn" path="res://assets/ui/2d_pixel_alchemy_kit/Reagent/Amanita.png" id="1_m5cxu"]
+
+[resource]
+atlas = ExtResource("1_m5cxu")
+region = Rect2(3, 2, 10, 12)

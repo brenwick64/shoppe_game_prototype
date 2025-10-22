@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://3cew0v0ubca8"]
+
+[ext_resource type="Script" path="res://systems/item_system/scripts/classes/PlaceableCraftingStation.gd" id="1_47iuc"]
+[ext_resource type="Shader" path="res://shaders/2d_outline.gdshader" id="2_8dmxr"]
+[ext_resource type="Texture2D" uid="uid://cxt3nd4qr3rc2" path="res://resources/textures/crafting_stations/crafting_table.tres" id="2_ep316"]
+[ext_resource type="PackedScene" uid="uid://bvbq04va7bwnw" path="res://scenes/components/interactable/interactable.tscn" id="2_n70bj"]
+[ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="3_luboe"]
+[ext_resource type="Resource" uid="uid://dpacco0m302b7" path="res://resources/r_audio_stream_data/placeables/place_furniture.tres" id="4_c7nx5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dlm2c"]
+size = Vector2(38.5, 25.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jjcgv"]
+size = Vector2(30, 14)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jthxm"]
+shader = ExtResource("2_8dmxr")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2ljr"]
+size = Vector2(27, 10.5)
+
+[node name="CraftingTableHorizontal" type="StaticBody2D" node_paths=PackedStringArray("item_slots_node", "placed_sound", "sprite")]
+z_index = 2
+y_sort_enabled = true
+script = ExtResource("1_47iuc")
+crafting_menu_name = "alchemy_table_menu"
+item_slots_node = NodePath("ItemSlots")
+placed_sound = NodePath("PlacedSound")
+sprite = NodePath("Sprite2D")
+
+[node name="Interactable" parent="." instance=ExtResource("2_n70bj")]
+has_interactable_menu = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(-0.25, 0.25)
+shape = SubResource("RectangleShape2D_dlm2c")
+debug_color = Color(0.788025, 0.0993744, 1, 0.42)
+
+[node name="BlockPlacement" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlockPlacement"]
+shape = SubResource("RectangleShape2D_jjcgv")
+debug_color = Color(0.876, 0.274, 0.531, 0.216)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_jthxm")
+position = Vector2(0, -5)
+texture = ExtResource("2_ep316")
+offset = Vector2(0, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.25)
+shape = SubResource("RectangleShape2D_t2ljr")
+
+[node name="PlacedSound" parent="." instance=ExtResource("3_luboe")]
+audio_data = ExtResource("4_c7nx5")
+
+[node name="ItemSlots" type="Node2D" parent="."]
+
+[connection signal="focus_changed" from="Interactable" to="." method="_on_interactable_focus_changed"]
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

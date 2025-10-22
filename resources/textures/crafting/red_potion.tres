@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://d1vmioelbt3s2"]
+
+[ext_resource type="Texture2D" uid="uid://bsvxq7clkmk7c" path="res://assets/ui/2d_pixel_alchemy_kit/Potion/Potion_Health.png" id="1_tyvw0"]
+
+[resource]
+atlas = ExtResource("1_tyvw0")
+region = Rect2(3, 0, 10, 16)

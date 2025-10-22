@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://br1aogt6bt252"]
+
+[ext_resource type="Texture2D" uid="uid://iqt4is3mgvpp" path="res://assets/ui/2d_pixel_alchemy_kit/Reagent/Blue_berry.png" id="1_s6cyw"]
+
+[resource]
+atlas = ExtResource("1_s6cyw")
+region = Rect2(1, 1, 14, 15)

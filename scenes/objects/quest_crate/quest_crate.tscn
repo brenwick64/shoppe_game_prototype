@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://y013bxqj8ude"]
+[gd_scene load_steps=13 format=3 uid="uid://y013bxqj8ude"]
 
 [ext_resource type="Script" path="res://scenes/objects/quest_crate/quest_crate.gd" id="1_2qksc"]
 [ext_resource type="PackedScene" uid="uid://bvbq04va7bwnw" path="res://scenes/components/interactable/interactable.tscn" id="2_1yj5s"]
@@ -7,9 +7,7 @@
 [ext_resource type="Shader" path="res://shaders/2d_outline.gdshader" id="4_mvd1i"]
 [ext_resource type="Resource" uid="uid://42yhgm406gdt" path="res://resources/r_audio_stream_data/pickup/pickup_sound.tres" id="5_4dipx"]
 [ext_resource type="Texture2D" uid="uid://b8vrqes6bxhlk" path="res://assets/objects/crates.png" id="5_8ikvt"]
-[ext_resource type="Theme" uid="uid://d3hq7cut50woy" path="res://resources/config/ui/ui_theme.tres" id="8_dqlol"]
-[ext_resource type="Script" path="res://quest_crate_items_panel.gd" id="9_k4s88"]
-[ext_resource type="Script" path="res://scenes/objects/quest_crate/move_up_and_down.gd" id="9_p5nn4"]
+[ext_resource type="PackedScene" uid="uid://dsqbct0sh4ky" path="res://scenes/objects/quest_crate/quest_crate_items_panel/quest_crate_items_panel.tscn" id="8_653xk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q77cn"]
 size = Vector2(30, 20.75)
@@ -58,46 +56,9 @@ shape = SubResource("RectangleShape2D_3x0al")
 [node name="OneShotSoundComponent" parent="." instance=ExtResource("4_ihtba")]
 audio_data = ExtResource("5_4dipx")
 
-[node name="QuestCrateItemsPanel" type="Panel" parent="." node_paths=PackedStringArray("interactable", "quest_crate")]
-z_index = 3
-offset_left = -9.0
-offset_top = -10.0
-offset_right = 9.0
-offset_bottom = 8.0
-rotation = 4.71239
-theme = ExtResource("8_dqlol")
-theme_type_variation = &"ItemsReadyPanel"
-script = ExtResource("9_k4s88")
+[node name="QuestCrateItemsPanel" parent="." node_paths=PackedStringArray("interactable", "quest_crate") instance=ExtResource("8_653xk")]
 interactable = NodePath("../Interactable")
 quest_crate = NodePath("..")
-
-[node name="MarginContainer" type="MarginContainer" parent="QuestCrateItemsPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = 2.0
-offset_right = 26.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 1.5708
-scale = Vector2(0.5, 0.5)
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="TextureRect" type="TextureRect" parent="QuestCrateItemsPanel/MarginContainer"]
-layout_mode = 2
-stretch_mode = 3
-
-[node name="MoveUpAndDown" type="Node" parent="QuestCrateItemsPanel" node_paths=PackedStringArray("parent")]
-script = ExtResource("9_p5nn4")
-parent = NodePath("..")
-amplitude = 0.0
-period = 1.0
 
 [connection signal="focus_changed" from="Interactable" to="." method="_on_interactable_focus_changed"]
 [connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

@@ -4,14 +4,12 @@ extends StaticBody2D
 @export var debug_show_quest_list: bool = false
 
 @onready var sprite: Sprite2D = $Sprite2D
-@onready var menu_open: OneShotSoundComponent = $MenuOpen
-@onready var menu_close: OneShotSoundComponent = $MenuClose
 @onready var coin_sound: OneShotSoundComponent = $CoinSound
 @onready var floating_label: FloatLabelTween = $FloatingLabel
 @onready var navigation_marker: Marker2D = $NavigationMarker
 @onready var debug_quest_list: Panel = $DebugQuestList
 
-var quest_ui: UIQuestMenu
+var menu_manager: MenuManager
 var _quests: Array[Quest] = []
 
 ## -- public methods --
@@ -27,7 +25,7 @@ func add_quest(new_quest: Quest, quest_cost: int) -> void:
 	GlobalItemSpawner.spawn_coins(global_position, quest_cost)
 	_remove_player_currency(quest_cost)
 	_update_floating_label()
-	_toggle_ui()
+	menu_manager.hide_menu("quest_menu")
 
 
 ## -- npc methods --
@@ -61,11 +59,11 @@ func npc_complete_quest(adventurer: Adventurer) -> void:
 
 ## -- overrides --
 func _ready() -> void:
-	var quest_menu_ui: UIQuestMenu = get_tree().get_first_node_in_group("ui_quest_menu")
-	if not quest_menu_ui:
-		push_error("QuestBoard error: no UIQuestMenu found in main tree.")
+	var menu_manager_node: MenuManager = get_tree().get_first_node_in_group("menu_manager")
+	if not menu_manager_node:
+		push_error("QuestBoard error: no QuestManager node found in main tree.")
 		return
-	quest_ui = quest_menu_ui
+	menu_manager = menu_manager_node 
 	_update_floating_label()
 
 
@@ -85,14 +83,6 @@ func _remove_player_currency(amount: int) -> void:
 		return
 	player_currency_manager.remove_currency(amount)
 
-func _toggle_ui() -> void:
-	if quest_ui.visible:
-		quest_ui.visible = false
-		menu_close.play_sound()
-	elif not quest_ui.visible:
-		quest_ui.visible = true
-		menu_open.play_sound()
-
 func _show_outline() -> void:
 	var shader_material: ShaderMaterial = sprite.material
 	shader_material.set_shader_parameter("width", 0.55)  
@@ -108,13 +98,13 @@ func _hide_outline() -> void:
 func _on_interactable_focus_changed(is_focused: bool) -> void:
 	if is_focused: 
 		_show_outline()
-		return
 	else:
 		_hide_outline()
-		if quest_ui.visible:
-			_toggle_ui()
+		# hide menu upon leaving interactable AOE
+		if menu_manager.is_menu_visible("quest_menu"):
+			menu_manager.hide_menu("quest_menu")
 
 func _on_interactable_interacted(interactor: Node2D) -> void:
 	var interactor_parent: Node2D = interactor.get_parent()
 	if interactor_parent is Player:
-		_toggle_ui()
+		menu_manager.toggle_menu("quest_menu")

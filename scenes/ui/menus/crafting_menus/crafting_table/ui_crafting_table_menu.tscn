@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://tgq1yw7e6d6e"]
+
+[ext_resource type="Script" path="res://scenes/ui/menus/crafting_menus/crafting_table/ui_crafting_table_menu.gd" id="1_3pgm6"]
+[ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="2_28e7h"]
+[ext_resource type="Resource" uid="uid://bjutj1p0b7a54" path="res://resources/r_audio_stream_data/ui/menu_open.tres" id="3_08nxq"]
+[ext_resource type="Resource" uid="uid://di1whcwfww46t" path="res://resources/r_audio_stream_data/ui/menu_close.tres" id="4_hd1f4"]
+
+[node name="UICraftingTableMenu" type="Control" node_paths=PackedStringArray("open_sound", "close_sound")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_3pgm6")
+menu_name = "crafting_table_menu"
+open_sound = NodePath("OpenSound")
+close_sound = NodePath("CloseSound")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OpenSound" parent="." instance=ExtResource("2_28e7h")]
+audio_data = ExtResource("3_08nxq")
+
+[node name="CloseSound" parent="." instance=ExtResource("2_28e7h")]
+audio_data = ExtResource("4_hd1f4")

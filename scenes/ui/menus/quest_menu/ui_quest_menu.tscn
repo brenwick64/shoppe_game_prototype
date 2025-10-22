@@ -1,22 +1,28 @@
-[gd_scene load_steps=7 format=3 uid="uid://ll2a2f3hyep7"]
+[gd_scene load_steps=10 format=3 uid="uid://ll2a2f3hyep7"]
 
-[ext_resource type="Script" path="res://scenes/ui/quest_menu/ui_quest_menu.gd" id="1_tbyxu"]
+[ext_resource type="Script" path="res://scenes/ui/menus/quest_menu/ui_quest_menu.gd" id="1_tbyxu"]
 [ext_resource type="Theme" uid="uid://d3hq7cut50woy" path="res://resources/config/ui/ui_theme.tres" id="2_3sqff"]
 [ext_resource type="Theme" uid="uid://bev6choaoujtv" path="res://resources/config/ui/placeholder_themes.tres" id="3_cpgsf"]
 [ext_resource type="Texture2D" uid="uid://dand3ribr45d5" path="res://assets/objects/Coin_Four.png" id="4_mdgma"]
 [ext_resource type="PackedScene" uid="uid://cwt0f0n0x8dbv" path="res://scenes/ui/counting_label/ui_counting_label.tscn" id="5_oxauv"]
+[ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="6_dhgnd"]
+[ext_resource type="Resource" uid="uid://bjutj1p0b7a54" path="res://resources/r_audio_stream_data/ui/menu_open.tres" id="7_segmb"]
+[ext_resource type="Resource" uid="uid://di1whcwfww46t" path="res://resources/r_audio_stream_data/ui/menu_close.tres" id="8_scue4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6jj0s"]
 atlas = ExtResource("4_mdgma")
 region = Rect2(0, 0, 16, 16)
 
-[node name="UIQuestMenu" type="Control" groups=["ui_quest_menu"]]
+[node name="UIQuestMenu" type="Control" node_paths=PackedStringArray("open_sound", "close_sound") groups=["ui_quest_menu"]]
 custom_minimum_size = Vector2(275, 400)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_tbyxu")
+menu_name = "quest_menu"
+open_sound = NodePath("OpenSound")
+close_sound = NodePath("CloseSound")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -104,3 +110,9 @@ layout_mode = 2
 [node name="CreateQuestBtn" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Create Quest"
+
+[node name="OpenSound" parent="." instance=ExtResource("6_dhgnd")]
+audio_data = ExtResource("7_segmb")
+
+[node name="CloseSound" parent="." instance=ExtResource("6_dhgnd")]
+audio_data = ExtResource("8_scue4")

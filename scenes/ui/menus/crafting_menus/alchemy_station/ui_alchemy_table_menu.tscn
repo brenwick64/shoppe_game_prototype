@@ -1,0 +1,369 @@
+[gd_scene load_steps=16 format=3 uid="uid://b18gfpxxxcnhl"]
+
+[ext_resource type="Script" path="res://scenes/ui/menus/crafting_menus/crafting_table/ui_crafting_table_menu.gd" id="1_twd7l"]
+[ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="2_18b1o"]
+[ext_resource type="Theme" uid="uid://cd0ehqjyjf7ty" path="res://resources/config/ui/alchemy_theme.tres" id="2_bvbkt"]
+[ext_resource type="Resource" uid="uid://begp3250ej68n" path="res://resources/r_audio_stream_data/ui/alchemy_menu_open.tres" id="3_17n5q"]
+[ext_resource type="Texture2D" uid="uid://751d81vy6v56" path="res://assets/ui/2d_pixel_alchemy_kit/Frame/Frame_Scroll_Open.png" id="3_rh24f"]
+[ext_resource type="PackedScene" uid="uid://bfdoq5u0xisrw" path="res://scenes/ui/centered_texture_rect/centered_texture_rect.tscn" id="3_wlm5q"]
+[ext_resource type="Theme" uid="uid://bev6choaoujtv" path="res://resources/config/ui/placeholder_themes.tres" id="3_yeljd"]
+[ext_resource type="Resource" uid="uid://cfna2bbi0mgrs" path="res://resources/r_audio_stream_data/ui/alchemy_menu_close.tres" id="4_fhck8"]
+[ext_resource type="Texture2D" uid="uid://d1vmioelbt3s2" path="res://resources/textures/crafting/red_potion.tres" id="4_g7po5"]
+[ext_resource type="Texture2D" uid="uid://br1aogt6bt252" path="res://resources/textures/crafting/herb_1.tres" id="7_itllu"]
+[ext_resource type="Texture2D" uid="uid://cjberoac75ww6" path="res://resources/textures/crafting/goomnut.tres" id="8_i1mf6"]
+[ext_resource type="Texture2D" uid="uid://bavk4a3vq7nos" path="res://resources/textures/crafting/mushroom_1.tres" id="9_wwn26"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_62a52"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6ddes"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65m83"]
+atlas = ExtResource("3_rh24f")
+region = Rect2(5, 5, 38, 40)
+
+[node name="UIAlchemyTableMenu" type="Control" node_paths=PackedStringArray("open_sound", "close_sound")]
+custom_minimum_size = Vector2(650, 450)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_twd7l")
+menu_name = "alchemy_table_menu"
+open_sound = NodePath("MenuOpen")
+close_sound = NodePath("MenuClose")
+
+[node name="MainPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_bvbkt")
+theme_type_variation = &"MainPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="LeftHalf" type="Control" parent="MainPanel/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(310, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel/MarginContainer/HBoxContainer/LeftHalf"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PotionSelector" type="Panel" parent="MainPanel/MarginContainer/HBoxContainer/LeftHalf/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_62a52")
+
+[node name="CenterContainer" type="CenterContainer" parent="MainPanel/MarginContainer/HBoxContainer/LeftHalf/VBoxContainer/PotionSelector"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainPanel/MarginContainer/HBoxContainer/LeftHalf/VBoxContainer/PotionSelector/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="LeftBtn" type="Button" parent="MainPanel/MarginContainer/HBoxContainer/LeftHalf/VBoxContainer/PotionSelector/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_yeljd")
+theme_type_variation = &"Btn"
+text = "<"
+
+[node name="PotionPanel" type="Panel" parent="MainPanel/MarginContainer/HBoxContainer/LeftHalf/VBoxContainer/PotionSelector/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6ddes")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainPanel/MarginContainer/HBoxContainer/LeftHalf/VBoxContainer/PotionSelector/CenterContainer/HBoxContainer/PotionPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="TextureRect" type="TextureRect" parent="MainPanel/MarginContainer/HBoxContainer/LeftHalf/VBoxContainer/PotionSelector/CenterContainer/HBoxContainer/PotionPanel/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("4_g7po5")
+
+[node name="RightBtn" type="Button" parent="MainPanel/MarginContainer/HBoxContainer/LeftHalf/VBoxContainer/PotionSelector/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_yeljd")
+theme_type_variation = &"Btn"
+text = ">"
+
+[node name="PotionDescription" type="NinePatchRect" parent="MainPanel/MarginContainer/HBoxContainer/LeftHalf/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_65m83")
+patch_margin_left = 4
+patch_margin_top = 5
+patch_margin_right = 11
+patch_margin_bottom = 7
+
+[node name="MarginContainer" type="MarginContainer" parent="MainPanel/MarginContainer/HBoxContainer/LeftHalf/VBoxContainer/PotionDescription"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel/MarginContainer/HBoxContainer/LeftHalf/VBoxContainer/PotionDescription/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="PotionName" type="Label" parent="MainPanel/MarginContainer/HBoxContainer/LeftHalf/VBoxContainer/PotionDescription/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_bvbkt")
+theme_type_variation = &"AlchemyLabel"
+theme_override_font_sizes/font_size = 24
+text = "Potion Name"
+horizontal_alignment = 1
+
+[node name="PotionDesc" type="Label" parent="MainPanel/MarginContainer/HBoxContainer/LeftHalf/VBoxContainer/PotionDescription/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("2_bvbkt")
+theme_type_variation = &"AlchemyLabel"
+text = "Brewed from sun-kissed mandrake roots and distilled phoenix ash, this potion restores vitality to those on the brink of collapse. Its warmth spreads through the body the moment it’s drunk.
+"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="RightHalf" type="Control" parent="MainPanel/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PotionRecipe" type="Panel" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_bvbkt")
+theme_type_variation = &"ScrollPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_bvbkt")
+theme_type_variation = &"AlchemyLabel"
+theme_override_font_sizes/font_size = 48
+text = "Recipe"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_bottom = 20
+
+[node name="Ingredients" type="VBoxContainer" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="Ingredient" type="HBoxContainer" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe/VBoxContainer/MarginContainer/Ingredients"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="IngredientPanel" type="Panel" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe/VBoxContainer/MarginContainer/Ingredients/Ingredient"]
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+theme = ExtResource("2_bvbkt")
+theme_type_variation = &"IngredientPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe/VBoxContainer/MarginContainer/Ingredients/Ingredient/IngredientPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="CenteredTextureRect" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe/VBoxContainer/MarginContainer/Ingredients/Ingredient/IngredientPanel/MarginContainer" instance=ExtResource("3_wlm5q")]
+layout_mode = 2
+texture = ExtResource("7_itllu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe/VBoxContainer/MarginContainer/Ingredients/Ingredient"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe/VBoxContainer/MarginContainer/Ingredients/Ingredient/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_bvbkt")
+theme_type_variation = &"AlchemyLabel"
+theme_override_font_sizes/font_size = 42
+text = "x"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe/VBoxContainer/MarginContainer/Ingredients/Ingredient/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_bvbkt")
+theme_type_variation = &"AlchemyLabel"
+theme_override_font_sizes/font_size = 42
+text = "2"
+horizontal_alignment = 1
+
+[node name="Ingredient2" type="HBoxContainer" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe/VBoxContainer/MarginContainer/Ingredients"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="IngredientPanel" type="Panel" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe/VBoxContainer/MarginContainer/Ingredients/Ingredient2"]
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+theme = ExtResource("2_bvbkt")
+theme_type_variation = &"IngredientPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe/VBoxContainer/MarginContainer/Ingredients/Ingredient2/IngredientPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="CenteredTextureRect" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe/VBoxContainer/MarginContainer/Ingredients/Ingredient2/IngredientPanel/MarginContainer" instance=ExtResource("3_wlm5q")]
+layout_mode = 2
+texture = ExtResource("8_i1mf6")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe/VBoxContainer/MarginContainer/Ingredients/Ingredient2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe/VBoxContainer/MarginContainer/Ingredients/Ingredient2/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_bvbkt")
+theme_type_variation = &"AlchemyLabel"
+theme_override_font_sizes/font_size = 42
+text = "x"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe/VBoxContainer/MarginContainer/Ingredients/Ingredient2/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_bvbkt")
+theme_type_variation = &"AlchemyLabel"
+theme_override_font_sizes/font_size = 42
+text = "2"
+horizontal_alignment = 1
+
+[node name="Ingredient3" type="HBoxContainer" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe/VBoxContainer/MarginContainer/Ingredients"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="IngredientPanel" type="Panel" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe/VBoxContainer/MarginContainer/Ingredients/Ingredient3"]
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+theme = ExtResource("2_bvbkt")
+theme_type_variation = &"IngredientPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe/VBoxContainer/MarginContainer/Ingredients/Ingredient3/IngredientPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="CenteredTextureRect" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe/VBoxContainer/MarginContainer/Ingredients/Ingredient3/IngredientPanel/MarginContainer" instance=ExtResource("3_wlm5q")]
+layout_mode = 2
+texture = ExtResource("9_wwn26")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe/VBoxContainer/MarginContainer/Ingredients/Ingredient3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe/VBoxContainer/MarginContainer/Ingredients/Ingredient3/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_bvbkt")
+theme_type_variation = &"AlchemyLabel"
+theme_override_font_sizes/font_size = 42
+text = "x"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer/PotionRecipe/VBoxContainer/MarginContainer/Ingredients/Ingredient3/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_bvbkt")
+theme_type_variation = &"AlchemyLabel"
+theme_override_font_sizes/font_size = 42
+text = "2"
+horizontal_alignment = 1
+
+[node name="CraftButton" type="Button" parent="MainPanel/MarginContainer/HBoxContainer/RightHalf/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_yeljd")
+theme_type_variation = &"Btn"
+text = "Craft"
+
+[node name="MenuOpen" parent="." instance=ExtResource("2_18b1o")]
+audio_data = ExtResource("3_17n5q")
+
+[node name="MenuClose" parent="." instance=ExtResource("2_18b1o")]
+audio_data = ExtResource("4_fhck8")

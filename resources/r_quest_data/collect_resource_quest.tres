@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://systems/quest_system/scripts/RQuestDataCollectResource.gd" id="1_b7q5s"]
 [ext_resource type="PackedScene" uid="uid://b51r6ry5otg74" path="res://systems/task_system/tasks/deposit_quest_crate/deposit_quest_crate.tscn" id="1_cj7tt"]
-[ext_resource type="PackedScene" uid="uid://cscrf5b8d6s0s" path="res://scenes/ui/quest_menu/quest_configs/harvest_reasource/ui_harvest_resource_config.tscn" id="2_ahvfk"]
+[ext_resource type="PackedScene" uid="uid://cscrf5b8d6s0s" path="res://scenes/ui/menus/quest_menu/quest_configs/harvest_reasource/ui_harvest_resource_config.tscn" id="2_ahvfk"]
 [ext_resource type="PackedScene" uid="uid://bf7qaitvv6rri" path="res://systems/task_system/tasks/harvest_resource/harvest_resource.tscn" id="2_kiq84"]
 
 [resource]

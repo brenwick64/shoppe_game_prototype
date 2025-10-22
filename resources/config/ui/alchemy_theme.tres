@@ -1,0 +1,46 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cd0ehqjyjf7ty"]
+
+[ext_resource type="Texture2D" uid="uid://bl44rjnqp5p41" path="res://assets/ui/2d_pixel_alchemy_kit/Frame/Frame_3.png" id="1_db4vg"]
+[ext_resource type="Texture2D" uid="uid://751d81vy6v56" path="res://assets/ui/2d_pixel_alchemy_kit/Frame/Frame_Scroll_Open.png" id="2_15k0w"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f7p7g"]
+texture = ExtResource("1_db4vg")
+texture_margin_left = 5.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(11, 11, 26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqo03"]
+atlas = ExtResource("1_db4vg")
+region = Rect2(11, 11, 26, 26)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v7i2c"]
+texture = SubResource("AtlasTexture_dqo03")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhyfj"]
+atlas = ExtResource("2_15k0w")
+region = Rect2(5, 5, 38, 40)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c12g2"]
+texture = SubResource("AtlasTexture_bhyfj")
+texture_margin_left = 4.0
+texture_margin_top = 5.0
+texture_margin_right = 11.0
+texture_margin_bottom = 7.0
+region_rect = Rect2(0, 0, 38, 40)
+
+[resource]
+AlchemyLabel/base_type = &"Label"
+AlchemyLabel/colors/font_color = Color(0, 0, 0, 1)
+AlchemyLabel/styles/normal = null
+IngredientPanel/base_type = &"Panel"
+IngredientPanel/styles/panel = SubResource("StyleBoxTexture_f7p7g")
+MainPanel/base_type = &"Panel"
+MainPanel/styles/panel = SubResource("StyleBoxTexture_v7i2c")
+ScrollPanel/base_type = &"Panel"
+ScrollPanel/styles/panel = SubResource("StyleBoxTexture_c12g2")

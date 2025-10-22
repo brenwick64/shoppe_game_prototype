@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://bev6choaoujtv"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://bev6choaoujtv"]
 
 [ext_resource type="Texture2D" uid="uid://bdmoierj2wdno" path="res://assets/placeholder_assets/ui/Square Buttons 26x26.png" id="1_ege1m"]
+[ext_resource type="Texture2D" uid="uid://blpgqvnobk8ep" path="res://assets/sprout_lands_ui/Sprout Lands - UI Pack - Basic pack/Sprite sheets/UI Settings Buttons.png" id="2_hx8do"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_es85q"]
 load_path = "res://.godot/imported/Square Buttons 26x26.png-53db01eabc9d0b9acb87c8860e6c57ec.ctex"
@@ -41,8 +42,21 @@ texture_margin_top = 4.0
 texture_margin_right = 4.0
 texture_margin_bottom = 4.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lally"]
+atlas = ExtResource("2_hx8do")
+region = Rect2(38, 86, 20, 20)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_omu8p"]
+texture = SubResource("AtlasTexture_lally")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
 [resource]
 Btn/base_type = &"Button"
 Btn/styles/hover = SubResource("StyleBoxTexture_u817f")
 Btn/styles/normal = SubResource("StyleBoxTexture_eqm0m")
 Btn/styles/pressed = SubResource("StyleBoxTexture_tppy8")
+CirclePanel/base_type = &"Panel"
+CirclePanel/styles/panel = SubResource("StyleBoxTexture_omu8p")

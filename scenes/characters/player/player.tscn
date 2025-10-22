@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://x0hp764aoxfp"]
+[gd_scene load_steps=43 format=3 uid="uid://x0hp764aoxfp"]
 
 [ext_resource type="Texture2D" uid="uid://cn53uads4bci0" path="res://resources/textures/adventurer_spritesheets/character_001.png" id="1_1m8w0"]
 [ext_resource type="Script" path="res://scenes/components/player_input_component/player_input_component.gd" id="1_bfyut"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="10_fi7sg"]
 [ext_resource type="Resource" uid="uid://42yhgm406gdt" path="res://resources/r_audio_stream_data/pickup/pickup_sound.tres" id="11_u6tj0"]
 [ext_resource type="FontFile" uid="uid://5dmksnqi7msu" path="res://assets/fonts/Abaddon Light.ttf" id="15_8m6wb"]
+[ext_resource type="Theme" uid="uid://bev6choaoujtv" path="res://resources/config/ui/placeholder_themes.tres" id="17_p4sdw"]
 
 [sub_resource type="Resource" id="Resource_kpg3b"]
 script = ExtResource("5_j57la")
@@ -293,5 +294,26 @@ theme_override_fonts/font = ExtResource("15_8m6wb")
 theme_override_font_sizes/font_size = 8
 horizontal_alignment = 1
 
+[node name="InteractIcon" type="Panel" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.75)
+z_index = 2
+offset_left = -10.0
+offset_top = -38.0
+offset_right = 9.0
+offset_bottom = -19.0
+theme = ExtResource("17_p4sdw")
+theme_type_variation = &"CirclePanel"
+
+[node name="Label" type="Label" parent="InteractIcon"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 4.0
+offset_right = 16.0
+offset_bottom = 27.0
+theme_override_font_sizes/font_size = 8
+text = "E"
+
+[connection signal="closest_interactable_updated" from="Interactor" to="." method="_on_interactor_closest_interactable_updated"]
 [connection signal="moveable_moved" from="MovementComponent" to="." method="_on_movement_component_moveable_moved"]
 [connection signal="animation_state_changed" from="AnimationComponent" to="." method="_on_animation_component_animation_state_changed"]

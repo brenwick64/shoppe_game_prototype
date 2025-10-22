@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RAudioStreamData" load_steps=3 format=3 uid="uid://cfna2bbi0mgrs"]
+
+[ext_resource type="AudioStream" uid="uid://be7ythlksnnsh" path="res://audio/ui/glass_handle_2.wav" id="1_2ayt8"]
+[ext_resource type="Script" path="res://systems/audio_system/scripts/RAudioStreamData.gd" id="1_26p6a"]
+
+[resource]
+script = ExtResource("1_26p6a")
+unique_name = "alchemy_menu_close"
+tags = Array[String]([])
+audio_stream = ExtResource("1_2ayt8")
+decibel_scalar = 0.0
+pitch_range_percent = Vector2(1, 1)

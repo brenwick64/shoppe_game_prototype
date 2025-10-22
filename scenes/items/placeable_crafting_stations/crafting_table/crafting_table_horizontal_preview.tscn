@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://d323asfijxwip"]
+
+[ext_resource type="Script" path="res://systems/item_system/scripts/classes/PlaceableFurniturePreview.gd" id="1_omtvp"]
+[ext_resource type="Texture2D" uid="uid://cxt3nd4qr3rc2" path="res://resources/textures/crafting_stations/crafting_table.tres" id="2_kyn6v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_71la1"]
+size = Vector2(29, 14)
+
+[node name="CraftingTableHorizontalPreview" type="Node2D" node_paths=PackedStringArray("placement_pivot", "sprite")]
+z_index = 2
+y_sort_enabled = true
+script = ExtResource("1_omtvp")
+placement_pivot = NodePath("PlacementPivot")
+sprite = NodePath("Sprite")
+
+[node name="PlacementPivot" type="Marker2D" parent="."]
+position = Vector2(-7, 0)
+
+[node name="BlockPlacement" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlockPlacement"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_71la1")
+debug_color = Color(0.99, 0.575, 0.601, 0.167)
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+texture = ExtResource("2_kyn6v")
+offset = Vector2(0, 10)

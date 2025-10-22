@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://cxt3nd4qr3rc2"]
+
+[ext_resource type="Texture2D" uid="uid://ddfb8lws8sb64" path="res://assets/objects/crafting_table.png" id="1_30u3v"]
+
+[resource]
+atlas = ExtResource("1_30u3v")
+region = Rect2(10, 5, 31, 16)
