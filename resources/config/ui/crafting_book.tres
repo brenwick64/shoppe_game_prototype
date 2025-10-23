@@ -1,0 +1,99 @@
+[gd_resource type="Theme" load_steps=23 format=3 uid="uid://dofxggolabuhr"]
+
+[ext_resource type="Texture2D" uid="uid://mubsx7ang1wf" path="res://assets/ui/book_ui/BookSprite_Animation/Page1.png" id="1_40wic"]
+[ext_resource type="Texture2D" uid="uid://dlavywkspfwlg" path="res://assets/ui/book_ui/Content/Titles and Underlying/21_1.png" id="2_03n1x"]
+[ext_resource type="Texture2D" uid="uid://mynubjk40sr0" path="res://assets/ui/book_ui/Content/Boxes/Dark/14.png" id="2_a1ie0"]
+[ext_resource type="Texture2D" uid="uid://b6mj04t4866k2" path="res://assets/ui/book_ui/Content/Titles and Underlying/19.png" id="2_iwa2l"]
+[ext_resource type="Texture2D" uid="uid://di32r52gopma5" path="res://assets/ui/book_ui/Content/Titles and Underlying/4.png" id="3_samly"]
+[ext_resource type="Texture2D" uid="uid://b4tib7slyqpj6" path="res://assets/ui/book_ui/Content/Boxes/Light/12_2.png" id="4_85a3n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqo8a"]
+atlas = ExtResource("1_40wic")
+region = Rect2(43, 35, 270, 165)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yjg8c"]
+texture = SubResource("AtlasTexture_nqo8a")
+texture_margin_left = 21.0
+texture_margin_top = 5.0
+texture_margin_right = 21.0
+texture_margin_bottom = 24.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_stjup"]
+load_path = "res://.godot/imported/21_1.png-3f627f44135ea003ff3387d75247d938.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wg6n0"]
+atlas = SubResource("CompressedTexture2D_stjup")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_at1x5"]
+texture = SubResource("AtlasTexture_wg6n0")
+texture_margin_left = 0.0585277
+texture_margin_top = 2.0
+texture_margin_bottom = 1.0
+region_rect = Rect2(0, 0, 22, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k50fg"]
+atlas = ExtResource("2_iwa2l")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hyuo6"]
+texture = SubResource("AtlasTexture_k50fg")
+texture_margin_left = 0.0585277
+texture_margin_top = 2.0
+texture_margin_bottom = 1.0
+region_rect = Rect2(0, 0, 22, 8)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oyc1w"]
+texture = ExtResource("2_a1ie0")
+texture_margin_left = 1.98994
+texture_margin_top = 1.0
+texture_margin_right = 2.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_auovs"]
+atlas = ExtResource("4_85a3n")
+region = Rect2(2, 3, 11, 11)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gclqs"]
+texture = SubResource("AtlasTexture_auovs")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+region_rect = Rect2(0, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2cfi"]
+atlas = ExtResource("3_samly")
+region = Rect2(0, 0, 30, 30)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b8omo"]
+texture = SubResource("AtlasTexture_y2cfi")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvrt1"]
+atlas = ExtResource("2_03n1x")
+region = Rect2(0, 0, 22, 8)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_35nae"]
+texture = SubResource("AtlasTexture_kvrt1")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yavia"]
+atlas = ExtResource("2_a1ie0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0jp3u"]
+texture = SubResource("AtlasTexture_yavia")
+
+[resource]
+BookPanel/base_type = &"Panel"
+BookPanel/styles/panel = SubResource("StyleBoxTexture_yjg8c")
+CraftBtn/base_type = &"Button"
+CraftBtn/styles/hover = SubResource("StyleBoxTexture_at1x5")
+CraftBtn/styles/normal = SubResource("StyleBoxTexture_hyuo6")
+IngredientPanel/base_type = &"Panel"
+IngredientPanel/styles/panel = SubResource("StyleBoxTexture_oyc1w")
+Label/colors/font_color = Color(0.263096, 0.130679, 0.00825541, 1)
+PageBtn/base_type = &"Button"
+PageBtn/styles/normal = SubResource("StyleBoxTexture_gclqs")
+RightPageOutputPanel/base_type = &"Panel"
+RightPageOutputPanel/styles/panel = SubResource("StyleBoxTexture_b8omo")
+SectionTitlePanel/base_type = &"Panel"
+SectionTitlePanel/styles/panel = SubResource("StyleBoxTexture_35nae")
+TextBoxPanel/base_type = &"Panel"
+TextBoxPanel/styles/panel = SubResource("StyleBoxTexture_0jp3u")

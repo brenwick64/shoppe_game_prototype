@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="RRecipe" load_steps=7 format=3 uid="uid://cnywhm4j36plp"]
+
+[ext_resource type="Script" path="res://systems/inventory_system/scripts/RInventoryItem.gd" id="1_s1ym3"]
+[ext_resource type="Script" path="res://systems/crafting_system/scripts/RRecipe.gd" id="2_0jb7w"]
+[ext_resource type="Texture2D" uid="uid://dyv0duku6ree3" path="res://resources/textures/shoppe_items/health_potion_small.tres" id="2_1dai1"]
+
+[sub_resource type="Resource" id="Resource_6bx86"]
+script = ExtResource("1_s1ym3")
+item_id = 0
+count = 2
+
+[sub_resource type="Resource" id="Resource_qjqgp"]
+script = ExtResource("1_s1ym3")
+item_id = 1
+count = 1
+
+[sub_resource type="Resource" id="Resource_adyfm"]
+script = ExtResource("1_s1ym3")
+item_id = 80
+count = 1
+
+[resource]
+script = ExtResource("2_0jb7w")
+recipe_name = &"Health Potion"
+recipe_tags = Array[String](["alchemy"])
+base_craft_time_seconds = 0.5
+input_items = Array[ExtResource("1_s1ym3")]([SubResource("Resource_6bx86"), SubResource("Resource_qjqgp")])
+output_items = Array[ExtResource("1_s1ym3")]([SubResource("Resource_adyfm")])
+output_texture = ExtResource("2_1dai1")
+output_desc = "A basic restorative brew that heals 40% of your maximum health when consumed. Crafted from common herbs and purified water, this potion is a reliable staple for adventurers recovering from battle wounds or harsh terrain."

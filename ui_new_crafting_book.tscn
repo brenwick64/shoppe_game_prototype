@@ -1,0 +1,270 @@
+[gd_scene load_steps=11 format=3 uid="uid://c5dukr1f4ynqr"]
+
+[ext_resource type="Script" path="res://ui_new_crafting_book.gd" id="1_5o501"]
+[ext_resource type="Theme" uid="uid://dofxggolabuhr" path="res://resources/config/ui/crafting_book.tres" id="1_tq2lx"]
+[ext_resource type="Texture2D" uid="uid://dicawvuoolvwc" path="res://assets/ui/book_ui/Content/Icons/16x16.png" id="2_txhsx"]
+[ext_resource type="Script" path="res://recipe_list_page.gd" id="3_46rtd"]
+[ext_resource type="Texture2D" uid="uid://mynubjk40sr0" path="res://assets/ui/book_ui/Content/Boxes/Dark/14.png" id="4_wgx2y"]
+[ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="5_4en44"]
+[ext_resource type="Script" path="res://recipe_information_page.gd" id="5_h712n"]
+[ext_resource type="Resource" uid="uid://bbx17x77au3x8" path="res://resources/r_audio_stream_data/ui/flip_page.tres" id="6_i81x0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6688o"]
+atlas = ExtResource("2_txhsx")
+region = Rect2(82, 50, 11, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwydi"]
+atlas = ExtResource("4_wgx2y")
+region = Rect2(0, 0, 17, 17)
+
+[node name="UICraftingBook" type="Control"]
+custom_minimum_size = Vector2(650, 450)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_5o501")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_tq2lx")
+theme_type_variation = &"BookPanel"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftPage" type="Control" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LeftMargins" type="MarginContainer" parent="Panel/HBoxContainer/LeftPage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 35
+
+[node name="RecipeListPage" type="Control" parent="Panel/HBoxContainer/LeftPage/LeftMargins" node_paths=PackedStringArray("crafting_book")]
+layout_mode = 2
+script = ExtResource("3_46rtd")
+crafting_book = NodePath("../../../../..")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/LeftPage/LeftMargins/RecipeListPage"]
+layout_mode = 2
+offset_right = 268.0
+offset_bottom = 400.0
+
+[node name="SectionTile" type="Control" parent="Panel/HBoxContainer/LeftPage/LeftMargins/RecipeListPage/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/LeftPage/LeftMargins/RecipeListPage/VBoxContainer/SectionTile"]
+layout_mode = 1
+offset_right = 268.0
+offset_bottom = 34.0
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer/LeftPage/LeftMargins/RecipeListPage/VBoxContainer/SectionTile/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_6688o")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/LeftPage/LeftMargins/RecipeListPage/VBoxContainer/SectionTile/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.517409, 0.364693, 0.0994987, 1)
+theme_override_font_sizes/font_size = 24
+
+[node name="RecipeList" type="Control" parent="Panel/HBoxContainer/LeftPage/LeftMargins/RecipeListPage/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Recipes" type="VBoxContainer" parent="Panel/HBoxContainer/LeftPage/LeftMargins/RecipeListPage/VBoxContainer/RecipeList"]
+layout_mode = 2
+offset_top = 4.0
+offset_right = 268.0
+offset_bottom = 162.0
+
+[node name="PageButtons" type="Control" parent="Panel/HBoxContainer/LeftPage/LeftMargins/RecipeListPage/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/LeftPage/LeftMargins/RecipeListPage/VBoxContainer/PageButtons"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="PageLeft" type="Button" parent="Panel/HBoxContainer/LeftPage/LeftMargins/RecipeListPage/VBoxContainer/PageButtons/HBoxContainer"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme = ExtResource("1_tq2lx")
+theme_type_variation = &"PageBtn"
+text = "<"
+
+[node name="PageRight" type="Button" parent="Panel/HBoxContainer/LeftPage/LeftMargins/RecipeListPage/VBoxContainer/PageButtons/HBoxContainer"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme = ExtResource("1_tq2lx")
+theme_type_variation = &"PageBtn"
+text = ">"
+
+[node name="RightPage" type="Control" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightMargins" type="MarginContainer" parent="Panel/HBoxContainer/RightPage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 35
+
+[node name="RecipeInformationPage" type="Control" parent="Panel/HBoxContainer/RightPage/RightMargins" node_paths=PackedStringArray("crafting_book")]
+layout_mode = 2
+script = ExtResource("5_h712n")
+crafting_book = NodePath("../../../../..")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage"]
+layout_mode = 2
+offset_right = 268.0
+offset_bottom = 400.0
+theme_override_constants/separation = 10
+
+[node name="OutputSection" type="Control" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer/OutputSection"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_tq2lx")
+theme_type_variation = &"RightPageOutputPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer/OutputSection/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 28
+
+[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer/OutputSection/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="DescriptionSection" type="Control" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer/DescriptionSection"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer/DescriptionSection/VBoxContainer"]
+layout_mode = 2
+
+[node name="SectionTitlePanel" type="Panel" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer/DescriptionSection/VBoxContainer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.75)
+custom_minimum_size = Vector2(120, 35)
+layout_mode = 2
+theme = ExtResource("1_tq2lx")
+theme_type_variation = &"SectionTitlePanel"
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer/DescriptionSection/VBoxContainer/HBoxContainer/SectionTitlePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.5
+offset_top = -11.5
+offset_right = 44.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Description
+"
+
+[node name="DescriptionContainer" type="NinePatchRect" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer/DescriptionSection/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_uwydi")
+patch_margin_left = 2
+patch_margin_right = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer/DescriptionSection/VBoxContainer/DescriptionContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer/DescriptionSection/VBoxContainer/DescriptionContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 14
+text = "A small glass vial filled with a vibrant red liquid that shimmers faintly when held to the light. Drinking it restores a portion of the user’s health, mending wounds and revitalizing the body. The taste is bittersweet — a mix of herbs"
+autowrap_mode = 3
+
+[node name="CraftBtn" type="Button" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_tq2lx")
+theme_type_variation = &"CraftBtn"
+text = "Craft"
+
+[node name="PageTurnSound" parent="." instance=ExtResource("5_4en44")]
+audio_data = ExtResource("6_i81x0")

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="RRecipe" load_steps=4 format=3 uid="uid://rjyjtetryt1d"]
+
+[ext_resource type="Script" path="res://systems/inventory_system/scripts/RInventoryItem.gd" id="1_0bmbq"]
+[ext_resource type="Texture2D" uid="uid://bceth2mvtngr0" path="res://resources/textures/shoppe_items/weapon_poison.tres" id="2_6o4k7"]
+[ext_resource type="Script" path="res://systems/crafting_system/scripts/RRecipe.gd" id="2_vgwp5"]
+
+[resource]
+script = ExtResource("2_vgwp5")
+recipe_name = &"Weapon Poison"
+recipe_tags = Array[String](["alchemy"])
+base_craft_time_seconds = 0.5
+input_items = Array[ExtResource("1_0bmbq")]([])
+output_items = Array[ExtResource("1_0bmbq")]([])
+output_texture = ExtResource("2_6o4k7")
+output_desc = "A small vial of toxic alchemical fluid that can be applied to blades or arrows. Once coated, your weapon delivers an extra 10 damage per hit for a limited time, making it a favorite among assassins and seasoned hunters alike."

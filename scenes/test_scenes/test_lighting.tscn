@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bmce4hybdi20v"]
+[gd_scene load_steps=31 format=3 uid="uid://bmce4hybdi20v"]
 
 [ext_resource type="PackedScene" uid="uid://d05xg5vjtcvs1" path="res://systems/day_night_system/scenes/day_night_manager/day_night_manager.tscn" id="1_0imsq"]
 [ext_resource type="PackedScene" uid="uid://csogmde7287ni" path="res://scenes/game_objects/player_camera/player_camera.tscn" id="2_vxtlm"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://tgq1yw7e6d6e" path="res://scenes/ui/menus/crafting_menus/crafting_table/ui_crafting_table_menu.tscn" id="7_gpmj2"]
 [ext_resource type="PackedScene" uid="uid://eeg5x8snkfqw" path="res://scenes/characters/firefly/firefly.tscn" id="7_ojd8x"]
 [ext_resource type="PackedScene" uid="uid://b18gfpxxxcnhl" path="res://scenes/ui/menus/crafting_menus/alchemy_station/ui_alchemy_table_menu.tscn" id="8_qprhu"]
+[ext_resource type="PackedScene" uid="uid://c5dukr1f4ynqr" path="res://ui_new_crafting_book.tscn" id="9_rs7ux"]
 [ext_resource type="PackedScene" uid="uid://bj616aj7lg3c7" path="res://scenes/ui/settings/settings.tscn" id="9_u8now"]
 [ext_resource type="AudioStream" uid="uid://dxv22jeorx386" path="res://audio/music/the_castle.wav" id="10_wpe11"]
 [ext_resource type="PackedScene" uid="uid://ck0xc31d7h62r" path="res://scenes/game_objects/shoppe_furniture/shoppe_furniture.tscn" id="11_g6s6c"]
@@ -98,6 +99,12 @@ visible = false
 
 [node name="UIAlchemyTableMenu" parent="MenuUI" instance=ExtResource("8_qprhu")]
 visible = false
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 670.0
+offset_bottom = 470.0
+
+[node name="UICraftingBook" parent="MenuUI" instance=ExtResource("9_rs7ux")]
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 670.0

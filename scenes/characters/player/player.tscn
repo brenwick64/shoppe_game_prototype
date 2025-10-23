@@ -302,6 +302,7 @@ offset_left = -10.0
 offset_top = -38.0
 offset_right = 9.0
 offset_bottom = -19.0
+mouse_filter = 2
 theme = ExtResource("17_p4sdw")
 theme_type_variation = &"CirclePanel"
 

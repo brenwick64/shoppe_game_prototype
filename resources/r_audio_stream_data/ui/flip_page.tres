@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RAudioStreamData" load_steps=3 format=3 uid="uid://bbx17x77au3x8"]
+
+[ext_resource type="Script" path="res://systems/audio_system/scripts/RAudioStreamData.gd" id="1_1n8lt"]
+[ext_resource type="AudioStream" uid="uid://2onkxcmty33y" path="res://audio/ui/flip_page.wav" id="1_yd5kf"]
+
+[resource]
+script = ExtResource("1_1n8lt")
+unique_name = "flip_page"
+tags = Array[String]([])
+audio_stream = ExtResource("1_yd5kf")
+decibel_scalar = 0.0
+pitch_range_percent = Vector2(0.9, 1.1)
