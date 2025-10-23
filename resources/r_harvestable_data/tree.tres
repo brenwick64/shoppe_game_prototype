@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RHarvestableData" load_steps=5 format=3 uid="uid://lfx18t0fadr6"]
 
 [ext_resource type="Script" path="res://scripts/resource_definitions/RHarvestableData.gd" id="1_08xqw"]
-[ext_resource type="Resource" uid="uid://doshf568ito4c" path="res://resources/r_item_data/wood.tres" id="1_26kqo"]
+[ext_resource type="Resource" uid="uid://doshf568ito4c" path="res://resources/r_item_data/reagents/wood.tres" id="1_26kqo"]
 [ext_resource type="Texture2D" uid="uid://enn3407yt6jb" path="res://assets/objects/large_tree.png" id="2_x5wen"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_byr0t"]

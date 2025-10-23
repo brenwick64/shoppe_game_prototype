@@ -1,29 +1,39 @@
-[gd_scene load_steps=11 format=3 uid="uid://c5dukr1f4ynqr"]
+[gd_scene load_steps=15 format=3 uid="uid://c5dukr1f4ynqr"]
 
-[ext_resource type="Script" path="res://ui_new_crafting_book.gd" id="1_5o501"]
+[ext_resource type="Script" path="res://ui_crafting_book.gd" id="1_5o501"]
 [ext_resource type="Theme" uid="uid://dofxggolabuhr" path="res://resources/config/ui/crafting_book.tres" id="1_tq2lx"]
 [ext_resource type="Texture2D" uid="uid://dicawvuoolvwc" path="res://assets/ui/book_ui/Content/Icons/16x16.png" id="2_txhsx"]
 [ext_resource type="Script" path="res://recipe_list_page.gd" id="3_46rtd"]
 [ext_resource type="Texture2D" uid="uid://mynubjk40sr0" path="res://assets/ui/book_ui/Content/Boxes/Dark/14.png" id="4_wgx2y"]
 [ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="5_4en44"]
 [ext_resource type="Script" path="res://recipe_information_page.gd" id="5_h712n"]
+[ext_resource type="Texture2D" uid="uid://ca2n6xs1o1bj4" path="res://assets/ui/book_ui/Content/Titles and Underlying/3_Right_16x16.png" id="6_emro7"]
 [ext_resource type="Resource" uid="uid://bbx17x77au3x8" path="res://resources/r_audio_stream_data/ui/flip_page.tres" id="6_i81x0"]
+[ext_resource type="Resource" uid="uid://baliwtxbo4ynu" path="res://resources/r_audio_stream_data/ui/book_open_1.tres" id="9_srip1"]
+[ext_resource type="Resource" uid="uid://d1pl1gp7whmwf" path="res://resources/r_audio_stream_data/ui/book_close_1.tres" id="10_mu0vq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6688o"]
 atlas = ExtResource("2_txhsx")
 region = Rect2(82, 50, 11, 12)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewxa1"]
+atlas = ExtResource("6_emro7")
+region = Rect2(34, 0, 32, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_uwydi"]
 atlas = ExtResource("4_wgx2y")
 region = Rect2(0, 0, 17, 17)
 
-[node name="UICraftingBook" type="Control"]
+[node name="UICraftingBook" type="Control" node_paths=PackedStringArray("open_sound", "close_sound")]
 custom_minimum_size = Vector2(650, 450)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_5o501")
+menu_name = "ui_crafting_book"
+open_sound = NodePath("OpenSound")
+close_sound = NodePath("CloseSound")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -160,9 +170,42 @@ offset_right = 268.0
 offset_bottom = 400.0
 theme_override_constants/separation = 10
 
+[node name="RecipeNamePanel" type="Panel" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme = ExtResource("1_tq2lx")
+theme_type_variation = &"OutputTitlePanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer/RecipeNamePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 5
+
+[node name="RecipeName" type="Label" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer/RecipeNamePanel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "San Wai Kiki"
+
 [node name="OutputSection" type="Control" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+
+[node name="LeftDecoration" type="TextureRect" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer/OutputSection"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 22.0
+offset_top = -17.0
+offset_right = 54.0
+offset_bottom = -1.0
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_ewxa1")
 
 [node name="Panel" type="Panel" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer/OutputSection"]
 custom_minimum_size = Vector2(100, 100)
@@ -195,6 +238,20 @@ theme_override_constants/margin_bottom = 28
 
 [node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer/OutputSection/Panel/MarginContainer"]
 layout_mode = 2
+
+[node name="RightDecoration" type="TextureRect" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer/OutputSection"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 246.0
+offset_top = 15.0
+offset_right = 278.0
+offset_bottom = 31.0
+grow_vertical = 2
+rotation = 3.14159
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_ewxa1")
 
 [node name="DescriptionSection" type="Control" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer"]
 layout_mode = 2
@@ -257,7 +314,6 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 14
-text = "A small glass vial filled with a vibrant red liquid that shimmers faintly when held to the light. Drinking it restores a portion of the user’s health, mending wounds and revitalizing the body. The taste is bittersweet — a mix of herbs"
 autowrap_mode = 3
 
 [node name="CraftBtn" type="Button" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer"]
@@ -268,3 +324,9 @@ text = "Craft"
 
 [node name="PageTurnSound" parent="." instance=ExtResource("5_4en44")]
 audio_data = ExtResource("6_i81x0")
+
+[node name="OpenSound" parent="." instance=ExtResource("5_4en44")]
+audio_data = ExtResource("9_srip1")
+
+[node name="CloseSound" parent="." instance=ExtResource("5_4en44")]
+audio_data = ExtResource("10_mu0vq")

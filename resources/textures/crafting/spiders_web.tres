@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://c3bq8yu7rj4ml"]
+
+[ext_resource type="Texture2D" uid="uid://cty0swfj2f7xt" path="res://assets/ui/2d_pixel_alchemy_kit/Reagent/Spider_web.png" id="1_vdf3b"]
+
+[resource]
+atlas = ExtResource("1_vdf3b")
+region = Rect2(1, 1, 14, 14)

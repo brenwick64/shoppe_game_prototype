@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://c5gk3dj8neat2"]
+
+[ext_resource type="Texture2D" uid="uid://db3orco0eyni0" path="res://assets/ui/2d_pixel_alchemy_kit/Reagent/Сave_mushrooms.png" id="1_6etdu"]
+
+[resource]
+atlas = ExtResource("1_6etdu")
+region = Rect2(0, 2, 15, 12)

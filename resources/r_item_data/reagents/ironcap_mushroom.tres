@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RItemData" load_steps=3 format=3 uid="uid://dkxl611jm0ogp"]
+
+[ext_resource type="Texture2D" uid="uid://dhb17ksnd2nhb" path="res://resources/textures/crafting/ironcap.tres" id="1_s04t8"]
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="2_dbxii"]
+
+[resource]
+script = ExtResource("2_dbxii")
+item_id = 102
+item_name = "Koopa Leaf"
+icon_texture = ExtResource("1_s04t8")
+icon_scale_multiplier = 2.0
+pickup_texture = ExtResource("1_s04t8")
+pickup_scale = Vector2(1, 1)

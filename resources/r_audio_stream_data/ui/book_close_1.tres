@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RAudioStreamData" load_steps=3 format=3 uid="uid://d1pl1gp7whmwf"]
+
+[ext_resource type="Script" path="res://systems/audio_system/scripts/RAudioStreamData.gd" id="1_gbdm5"]
+[ext_resource type="AudioStream" uid="uid://bro5srbxqpgus" path="res://audio/ui/book_close_1.wav" id="1_q0mo0"]
+
+[resource]
+script = ExtResource("1_gbdm5")
+unique_name = "book_close_1"
+tags = Array[String]([])
+audio_stream = ExtResource("1_q0mo0")
+decibel_scalar = 0.0
+pitch_range_percent = Vector2(1, 1)

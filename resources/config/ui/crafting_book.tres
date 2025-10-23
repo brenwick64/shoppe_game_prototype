@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=23 format=3 uid="uid://dofxggolabuhr"]
+[gd_resource type="Theme" load_steps=28 format=3 uid="uid://dofxggolabuhr"]
 
 [ext_resource type="Texture2D" uid="uid://mubsx7ang1wf" path="res://assets/ui/book_ui/BookSprite_Animation/Page1.png" id="1_40wic"]
 [ext_resource type="Texture2D" uid="uid://dlavywkspfwlg" path="res://assets/ui/book_ui/Content/Titles and Underlying/21_1.png" id="2_03n1x"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b6mj04t4866k2" path="res://assets/ui/book_ui/Content/Titles and Underlying/19.png" id="2_iwa2l"]
 [ext_resource type="Texture2D" uid="uid://di32r52gopma5" path="res://assets/ui/book_ui/Content/Titles and Underlying/4.png" id="3_samly"]
 [ext_resource type="Texture2D" uid="uid://b4tib7slyqpj6" path="res://assets/ui/book_ui/Content/Boxes/Light/12_2.png" id="4_85a3n"]
+[ext_resource type="Texture2D" uid="uid://cadnw0ghuxcqo" path="res://assets/ui/book_ui/Content/Titles and Underlying/1_16x16.png" id="4_uqd8p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nqo8a"]
 atlas = ExtResource("1_40wic")
@@ -48,6 +49,16 @@ texture_margin_top = 1.0
 texture_margin_right = 2.0
 texture_margin_bottom = 1.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0nra"]
+atlas = ExtResource("4_uqd8p")
+region = Rect2(7, 0, 66, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2eeq6"]
+texture = SubResource("AtlasTexture_j0nra")
+texture_margin_left = 13.0
+texture_margin_right = 13.0
+texture_margin_bottom = 4.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_auovs"]
 atlas = ExtResource("4_85a3n")
 region = Rect2(2, 3, 11, 11)
@@ -59,6 +70,12 @@ texture_margin_top = 1.0
 texture_margin_right = 1.0
 texture_margin_bottom = 1.0
 region_rect = Rect2(0, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6gqg"]
+atlas = ExtResource("2_a1ie0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pl58a"]
+texture = SubResource("AtlasTexture_b6gqg")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y2cfi"]
 atlas = ExtResource("3_samly")
@@ -89,8 +106,12 @@ CraftBtn/styles/normal = SubResource("StyleBoxTexture_hyuo6")
 IngredientPanel/base_type = &"Panel"
 IngredientPanel/styles/panel = SubResource("StyleBoxTexture_oyc1w")
 Label/colors/font_color = Color(0.263096, 0.130679, 0.00825541, 1)
+OutputTitlePanel/base_type = &"Panel"
+OutputTitlePanel/styles/panel = SubResource("StyleBoxTexture_2eeq6")
 PageBtn/base_type = &"Button"
 PageBtn/styles/normal = SubResource("StyleBoxTexture_gclqs")
+RecipeIconBtn/base_type = &"Button"
+RecipeIconBtn/styles/normal = SubResource("StyleBoxTexture_pl58a")
 RightPageOutputPanel/base_type = &"Panel"
 RightPageOutputPanel/styles/panel = SubResource("StyleBoxTexture_b8omo")
 SectionTitlePanel/base_type = &"Panel"

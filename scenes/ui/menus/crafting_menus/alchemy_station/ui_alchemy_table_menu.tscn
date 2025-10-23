@@ -9,9 +9,9 @@
 [ext_resource type="Theme" uid="uid://bev6choaoujtv" path="res://resources/config/ui/placeholder_themes.tres" id="3_yeljd"]
 [ext_resource type="Resource" uid="uid://cfna2bbi0mgrs" path="res://resources/r_audio_stream_data/ui/alchemy_menu_close.tres" id="4_fhck8"]
 [ext_resource type="Texture2D" uid="uid://d1vmioelbt3s2" path="res://resources/textures/crafting/red_potion.tres" id="4_g7po5"]
-[ext_resource type="Texture2D" uid="uid://br1aogt6bt252" path="res://resources/textures/crafting/herb_1.tres" id="7_itllu"]
+[ext_resource type="Texture2D" uid="uid://br1aogt6bt252" path="res://resources/textures/crafting/moonplum.tres" id="7_itllu"]
 [ext_resource type="Texture2D" uid="uid://cjberoac75ww6" path="res://resources/textures/crafting/goomnut.tres" id="8_i1mf6"]
-[ext_resource type="Texture2D" uid="uid://bavk4a3vq7nos" path="res://resources/textures/crafting/mushroom_1.tres" id="9_wwn26"]
+[ext_resource type="Texture2D" uid="uid://bavk4a3vq7nos" path="res://resources/textures/crafting/widows_umbra.tres" id="9_wwn26"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_62a52"]
 

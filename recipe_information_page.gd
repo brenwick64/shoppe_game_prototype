@@ -2,6 +2,7 @@ extends Control
 
 @export var crafting_book: UICraftingBook
 
+@onready var recipe_name: Label = $VBoxContainer/RecipeNamePanel/MarginContainer/RecipeName
 @onready var output_texture_rect: TextureRect = $VBoxContainer/OutputSection/Panel/MarginContainer/TextureRect
 @onready var recipe_description: Label = $VBoxContainer/DescriptionSection/VBoxContainer/DescriptionContainer/MarginContainer/Label
 
@@ -18,6 +19,7 @@ func _update_ui() -> void:
 	if not _current_recipe: return
 	output_texture_rect.texture = _current_recipe.output_texture
 	recipe_description.text = _current_recipe.output_desc
+	recipe_name.text = _current_recipe.recipe_name
 
 
 ## -- signals --

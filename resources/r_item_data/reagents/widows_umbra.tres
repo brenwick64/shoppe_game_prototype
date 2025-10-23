@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RItemData" load_steps=3 format=3 uid="uid://8qsw16ck4ikt"]
+
+[ext_resource type="Texture2D" uid="uid://bavk4a3vq7nos" path="res://resources/textures/crafting/widows_umbra.tres" id="1_cmqpi"]
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="2_dhxy5"]
+
+[resource]
+script = ExtResource("2_dhxy5")
+item_id = 104
+item_name = "Sickleweed"
+icon_texture = ExtResource("1_cmqpi")
+icon_scale_multiplier = 2.0
+pickup_texture = ExtResource("1_cmqpi")
+pickup_scale = Vector2(1, 1)

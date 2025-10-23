@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RItemData" load_steps=3 format=3 uid="uid://dh5oa11jyfrot"]
+
+[ext_resource type="Texture2D" uid="uid://uywiccq1whr0" path="res://resources/textures/crafting/sickleweed.tres" id="1_ifjsl"]
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="2_f6r3p"]
+
+[resource]
+script = ExtResource("2_f6r3p")
+item_id = 103
+item_name = "Sickleweed"
+icon_texture = ExtResource("1_ifjsl")
+icon_scale_multiplier = 2.0
+pickup_texture = ExtResource("1_ifjsl")
+pickup_scale = Vector2(1, 1)

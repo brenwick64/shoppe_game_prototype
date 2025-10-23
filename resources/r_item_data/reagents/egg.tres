@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RItemData" load_steps=3 format=3 uid="uid://b3gny8yb46pb0"]
+
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="1_enxku"]
+[ext_resource type="Texture2D" uid="uid://0g3oqrxhhm0p" path="res://resources/textures/crafting/egg.tres" id="1_u7uk1"]
+
+[resource]
+script = ExtResource("1_enxku")
+item_id = 101
+item_name = "Egg"
+icon_texture = ExtResource("1_u7uk1")
+icon_scale_multiplier = 2.0
+pickup_texture = ExtResource("1_u7uk1")
+pickup_scale = Vector2(1, 1)

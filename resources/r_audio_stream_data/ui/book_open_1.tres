@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RAudioStreamData" load_steps=3 format=3 uid="uid://baliwtxbo4ynu"]
+
+[ext_resource type="Script" path="res://systems/audio_system/scripts/RAudioStreamData.gd" id="1_llhq7"]
+[ext_resource type="AudioStream" uid="uid://8yavs8nqlk4v" path="res://audio/ui/book_open_1_fast.wav" id="1_o8qtr"]
+
+[resource]
+script = ExtResource("1_llhq7")
+unique_name = "book_open_1"
+tags = Array[String]([])
+audio_stream = ExtResource("1_o8qtr")
+decibel_scalar = 0.0
+pitch_range_percent = Vector2(1, 1)

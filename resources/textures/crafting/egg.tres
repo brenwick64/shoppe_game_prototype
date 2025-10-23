@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://0g3oqrxhhm0p"]
+
+[ext_resource type="Texture2D" uid="uid://bojslc0h160o1" path="res://assets/ui/2d_pixel_alchemy_kit/Reagent/Egg.png" id="1_qwegn"]
+
+[resource]
+atlas = ExtResource("1_qwegn")
+region = Rect2(3, 1, 11, 14)
