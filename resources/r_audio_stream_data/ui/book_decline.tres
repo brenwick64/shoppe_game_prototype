@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RAudioStreamData" load_steps=3 format=3 uid="uid://bbvqtimnebfcg"]
+
+[ext_resource type="AudioStream" uid="uid://dipfg8s22q5q" path="res://audio/ui/decline.wav" id="1_0fg4m"]
+[ext_resource type="Script" path="res://systems/audio_system/scripts/RAudioStreamData.gd" id="2_ss6hu"]
+
+[resource]
+script = ExtResource("2_ss6hu")
+unique_name = "book_decline"
+tags = Array[String]([])
+audio_stream = ExtResource("1_0fg4m")
+decibel_scalar = 0.0
+pitch_range_percent = Vector2(1, 1)

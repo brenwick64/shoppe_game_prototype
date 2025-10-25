@@ -15,38 +15,26 @@ func _ready() -> void:
 
 
 ## -- public methods --
-func show_menu(menu_name: String) -> void:
+func show_menu(menu_name: String, toggled_from: Node2D, toggled_by: Player) -> void:
 	for menu: UIMenu in menus:
 		if menu.menu_name == menu_name:
-			_show_menu(menu, true)
+			menu.show_menu(toggled_from, toggled_by, true)
 		else:
-			_hide_menu(menu, false)
+			menu.hide_menu(false)
 
 func hide_menu(menu_name: String) -> void:
 	for menu: UIMenu in menus:
 		if menu.menu_name == menu_name: 
-			_hide_menu(menu, true)
+			menu.hide_menu(true)
 
-func toggle_menu(menu_name: String) -> void:
+func toggle_menu(menu_name: String, toggled_from: Node2D, toggled_by: Player) -> void:
 	if is_menu_visible(menu_name):
 		hide_menu(menu_name)
 	else:
-		show_menu(menu_name)	
+		show_menu(menu_name, toggled_from, toggled_by)
 
 func is_menu_visible(menu_name: String) -> bool:
 	for menu: UIMenu in menus:
 		if menu.menu_name == menu_name: 
 			return menu.visible
 	return false
-
-
-## -- helper functions --
-func _show_menu(menu: UIMenu, play_sound: bool) -> void:
-	menu.visible = true
-	if play_sound:
-		menu.open_sound.play_sound()
-
-func _hide_menu(menu: UIMenu, play_sound: bool) -> void:
-	menu.visible = false
-	if play_sound:
-		menu.close_sound.play_sound()

@@ -16,10 +16,16 @@ func _ready() -> void:
 
 ## -- helper functions --
 func _update_ui() -> void:
-	if not _current_recipe: return
-	output_texture_rect.texture = _current_recipe.output_texture
-	recipe_description.text = _current_recipe.output_desc
-	recipe_name.text = _current_recipe.recipe_name
+	# clear data if there are no recipes
+	if not _current_recipe:
+		output_texture_rect.texture = null
+		recipe_description.text = ""
+		recipe_name.text = ""
+	# populate page with recipe data
+	else:
+		output_texture_rect.texture = _current_recipe.output_texture
+		recipe_description.text = _current_recipe.output_desc
+		recipe_name.text = _current_recipe.recipe_name
 
 
 ## -- signals --

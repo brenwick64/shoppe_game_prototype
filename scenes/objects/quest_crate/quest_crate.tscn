@@ -1,13 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://y013bxqj8ude"]
+[gd_scene load_steps=12 format=3 uid="uid://y013bxqj8ude"]
 
 [ext_resource type="Script" path="res://scenes/objects/quest_crate/quest_crate.gd" id="1_2qksc"]
 [ext_resource type="PackedScene" uid="uid://bvbq04va7bwnw" path="res://scenes/components/interactable/interactable.tscn" id="2_1yj5s"]
-[ext_resource type="PackedScene" uid="uid://sr2swq8ses8w" path="res://scenes/components/remove_navigation/remove_navigation.tscn" id="2_de1f3"]
+[ext_resource type="PackedScene" uid="uid://sr2swq8ses8w" path="res://scenes/components/remove_navigation/remove_navigation_component.tscn" id="2_de1f3"]
 [ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="4_ihtba"]
 [ext_resource type="Shader" path="res://shaders/2d_outline.gdshader" id="4_mvd1i"]
 [ext_resource type="Resource" uid="uid://42yhgm406gdt" path="res://resources/r_audio_stream_data/pickup/pickup_sound.tres" id="5_4dipx"]
 [ext_resource type="Texture2D" uid="uid://b8vrqes6bxhlk" path="res://assets/objects/crates.png" id="5_8ikvt"]
-[ext_resource type="PackedScene" uid="uid://dsqbct0sh4ky" path="res://scenes/objects/quest_crate/quest_crate_items_panel/quest_crate_items_panel.tscn" id="8_653xk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q77cn"]
 size = Vector2(30, 20.75)
@@ -55,10 +54,6 @@ shape = SubResource("RectangleShape2D_3x0al")
 
 [node name="OneShotSoundComponent" parent="." instance=ExtResource("4_ihtba")]
 audio_data = ExtResource("5_4dipx")
-
-[node name="QuestCrateItemsPanel" parent="." node_paths=PackedStringArray("interactable", "quest_crate") instance=ExtResource("8_653xk")]
-interactable = NodePath("../Interactable")
-quest_crate = NodePath("..")
 
 [connection signal="focus_changed" from="Interactable" to="." method="_on_interactable_focus_changed"]
 [connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

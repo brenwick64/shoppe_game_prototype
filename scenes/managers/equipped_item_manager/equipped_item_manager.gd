@@ -90,6 +90,7 @@ func _on_ui_action_bar_item_focused(item_id: int) -> void:
 	tool_deselected.emit()
 
 func _on_player_inv_item_depleted(item_id: int) -> void:
+	if not _current_held_item: return
 	if item_id == _current_held_item.item_id:
 		for handler: ItemHandler in item_handlers:
 			handler.clear_item()

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="RShoppeFurnitureData" load_steps=5 format=3 uid="uid://pjdvwrxkwupg"]
+
+[ext_resource type="Texture2D" uid="uid://dg418ubh0a3g8" path="res://resources/textures/crafting_stations/alchemy_table.tres" id="1_luf03"]
+[ext_resource type="PackedScene" uid="uid://dca0131anbhxk" path="res://scenes/items/placeable_crafting_stations/alchemy_table/alchemy_table_horizontal.tscn" id="2_nsv21"]
+[ext_resource type="PackedScene" uid="uid://dtxfckplwtlgd" path="res://scenes/items/placeable_crafting_stations/alchemy_table/alchemy_table_horizontal_preview.tscn" id="3_xjx0v"]
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RShoppeFurnitureData.gd" id="4_vyb6k"]
+
+[resource]
+script = ExtResource("4_vyb6k")
+placeable_scene = ExtResource("2_nsv21")
+preview_scene = ExtResource("3_xjx0v")
+scale_value = Vector2(1, 1)
+dimensions = Vector2i(2, 1)
+item_id = 31
+item_name = "Crafting Table"
+icon_texture = ExtResource("1_luf03")
+icon_scale_multiplier = 2.0
+pickup_texture = ExtResource("1_luf03")
+pickup_scale = Vector2(0.5, 0.5)

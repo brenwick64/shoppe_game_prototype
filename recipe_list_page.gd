@@ -56,8 +56,8 @@ func _on_filtered_recipes_changed(new_filtered_recipes: Array[RRecipe]) -> void:
 	_clear_recipe_list()
 	_update_recipe_list()
 	# focuses the first entry
+	await get_tree().process_frame # prevents issues with node free collisions
 	_set_recipe_entries_focus(_get_first_entry())
-
 
 func _on_recipe_selected(recipe_entry: UIRecipeEntry) -> void:
 	var is_new_selection: bool = recipe_entry.is_focused == false

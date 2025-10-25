@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://dg418ubh0a3g8"]
+
+[ext_resource type="Texture2D" uid="uid://b352q4j0eb4oy" path="res://assets/objects/alchemy_table.png" id="1_qnd3j"]
+
+[resource]
+atlas = ExtResource("1_qnd3j")
+region = Rect2(18, 16, 29, 16)

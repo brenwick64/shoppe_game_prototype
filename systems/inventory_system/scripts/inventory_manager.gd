@@ -24,6 +24,9 @@ func _ready() -> void:
 	inventory.item_updated.connect(_on_item_updated)
 	inventory.item_depleted.connect(_on_item_depleted)
 	
+	inventory.add_item(101, 10)
+	inventory.add_item(102, 10)
+	
 	# allows UI nodes to build and connect signals first
 	call_deferred("_update_inventory_ui")
 

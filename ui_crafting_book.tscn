@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c5dukr1f4ynqr"]
+[gd_scene load_steps=16 format=3 uid="uid://c5dukr1f4ynqr"]
 
 [ext_resource type="Script" path="res://ui_crafting_book.gd" id="1_5o501"]
 [ext_resource type="Theme" uid="uid://dofxggolabuhr" path="res://resources/config/ui/crafting_book.tres" id="1_tq2lx"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://bbx17x77au3x8" path="res://resources/r_audio_stream_data/ui/flip_page.tres" id="6_i81x0"]
 [ext_resource type="Resource" uid="uid://baliwtxbo4ynu" path="res://resources/r_audio_stream_data/ui/book_open_1.tres" id="9_srip1"]
 [ext_resource type="Resource" uid="uid://d1pl1gp7whmwf" path="res://resources/r_audio_stream_data/ui/book_close_1.tres" id="10_mu0vq"]
+[ext_resource type="Resource" uid="uid://bbvqtimnebfcg" path="res://resources/r_audio_stream_data/ui/book_decline.tres" id="12_435kx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6688o"]
 atlas = ExtResource("2_txhsx")
@@ -188,7 +189,6 @@ theme_override_constants/margin_bottom = 5
 [node name="RecipeName" type="Label" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer/RecipeNamePanel/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "San Wai Kiki"
 
 [node name="OutputSection" type="Control" parent="Panel/HBoxContainer/RightPage/RightMargins/RecipeInformationPage/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
@@ -330,3 +330,6 @@ audio_data = ExtResource("9_srip1")
 
 [node name="CloseSound" parent="." instance=ExtResource("5_4en44")]
 audio_data = ExtResource("10_mu0vq")
+
+[node name="DeclineSound" parent="." instance=ExtResource("5_4en44")]
+audio_data = ExtResource("12_435kx")

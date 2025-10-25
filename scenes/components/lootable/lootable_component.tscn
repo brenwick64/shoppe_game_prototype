@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwmarhe3us03m"]
+
+[ext_resource type="Script" path="res://scenes/components/lootable/lootable_component.gd" id="1_wnun6"]
+
+[node name="LootableComponent" type="Node"]
+script = ExtResource("1_wnun6")

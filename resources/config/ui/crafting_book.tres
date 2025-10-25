@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=28 format=3 uid="uid://dofxggolabuhr"]
+[gd_resource type="Theme" load_steps=30 format=3 uid="uid://dofxggolabuhr"]
 
 [ext_resource type="Texture2D" uid="uid://mubsx7ang1wf" path="res://assets/ui/book_ui/BookSprite_Animation/Page1.png" id="1_40wic"]
 [ext_resource type="Texture2D" uid="uid://dlavywkspfwlg" path="res://assets/ui/book_ui/Content/Titles and Underlying/21_1.png" id="2_03n1x"]
@@ -41,6 +41,12 @@ texture_margin_left = 0.0585277
 texture_margin_top = 2.0
 texture_margin_bottom = 1.0
 region_rect = Rect2(0, 0, 22, 8)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7irod"]
+bg_color = Color(0.974382, 0.790418, 0.636168, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v77vc"]
+bg_color = Color(0.432425, 0.757605, 0.493685, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oyc1w"]
 texture = ExtResource("2_a1ie0")
@@ -103,6 +109,9 @@ BookPanel/styles/panel = SubResource("StyleBoxTexture_yjg8c")
 CraftBtn/base_type = &"Button"
 CraftBtn/styles/hover = SubResource("StyleBoxTexture_at1x5")
 CraftBtn/styles/normal = SubResource("StyleBoxTexture_hyuo6")
+CraftingProgress/base_type = &"ProgressBar"
+CraftingProgress/styles/background = SubResource("StyleBoxFlat_7irod")
+CraftingProgress/styles/fill = SubResource("StyleBoxFlat_v77vc")
 IngredientPanel/base_type = &"Panel"
 IngredientPanel/styles/panel = SubResource("StyleBoxTexture_oyc1w")
 Label/colors/font_color = Color(0.263096, 0.130679, 0.00825541, 1)

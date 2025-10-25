@@ -18,6 +18,17 @@ func get_inventory_item(item_id: int) -> RInventoryItem:
 		return null
 	return inventory_items[item_index]
 
+func has_items(inv_items: Array[RInventoryItem]) -> bool:
+	for inv_item: RInventoryItem in inv_items:
+		var matched_item_arr: Array[RInventoryItem] = inventory_items.filter(
+			func(i: RInventoryItem): return i.item_id == inv_item.item_id
+		)
+		# case 1 - item doesnt exist
+		if not matched_item_arr: return false
+		# case 2 - not enough
+		if matched_item_arr[0].count < inv_item.count: return false
+	return true
+
 func add_item(item_id: int, count: int) -> void:
 	var item_index: int = _get_item_index(item_id)
 	if item_index == -1: # new item
@@ -30,6 +41,10 @@ func add_item(item_id: int, count: int) -> void:
 		else:
 			item_depleted.emit(updated_item.item_id)
 
+func add_items(inv_items: Array[RInventoryItem]) -> void:
+	for inv_item: RInventoryItem in inv_items:
+		add_item(inv_item.item_id, inv_item.count)
+
 func remove_item(item_id: int, count: int) -> void:
 	var item_index: int = _get_item_index(item_id)
 	if not item_index:
@@ -41,11 +56,15 @@ func remove_item(item_id: int, count: int) -> void:
 		_prune_depleted_items()
 		item_depleted.emit(updated_item.item_id)
 
+func remove_items(inv_items: Array[RInventoryItem]) -> void:
+	for inv_item: RInventoryItem in inv_items:
+		remove_item(inv_item.item_id, inv_item.count)
+
+
 ## -- helper functions --
 func _prune_depleted_items() -> void:
 	inventory_items = inventory_items.filter(
 		func(item: RInventoryItem): return item.count > 0)
-
 
 func _get_item_index(item_id: int) -> int:
 	for i: int in inventory_items.size():

@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://drjqhxqq8lak5"]
+
+[ext_resource type="Script" path="res://crafting_progress_bar.gd" id="1_lwu1b"]
+[ext_resource type="Theme" uid="uid://dofxggolabuhr" path="res://resources/config/ui/crafting_book.tres" id="2_e4pq8"]
+[ext_resource type="Texture2D" uid="uid://ckxeqbcxg18k" path="res://assets/ui/cog_2.png" id="2_u3yso"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8pt08"]
+atlas = ExtResource("2_u3yso")
+region = Rect2(5, 4, 38, 38)
+
+[node name="CraftingProgressBar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 5.0
+offset_right = 34.0
+offset_bottom = 12.0
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_lwu1b")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 12.0
+offset_right = 91.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_e4pq8")
+theme_type_variation = &"CraftingProgress"
+value = 50.0
+show_percentage = false
+
+[node name="CogWheel" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_top = -5.0
+offset_right = -9.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(25, 25)
+texture = SubResource("AtlasTexture_8pt08")

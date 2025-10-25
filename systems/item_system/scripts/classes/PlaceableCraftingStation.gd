@@ -1,7 +1,12 @@
 class_name PlaceableCraftingStation
 extends PlaceableFurniture
 
-@export var crafting_menu_name: String
+@export var crafting_type: String
+@export var lootable_component: LootableComponent
+@export var craft_sound: OneShotSoundComponent
+@export var loot_sound: OneShotSoundComponent
+
+const CRAFTING_MENU_NAME: String = "ui_crafting_book"
 
 var menu_manager: MenuManager
 
@@ -12,6 +17,13 @@ func _ready() -> void:
 		push_error("QuestBoard error: no QuestManager node found in main tree.")
 		return
 	menu_manager = menu_manager_node 
+
+
+## -- public methods --
+func craft(recipe: RRecipe, player: Player) -> void:
+	for inv_item: RInventoryItem in recipe.output_items:
+		lootable_component.deposit_items(player, inv_item.item_id, inv_item.count)
+	craft_sound.play_sound()
 
 
 ## -- helper functions --
@@ -33,10 +45,15 @@ func _on_interactable_focus_changed(is_focused: bool) -> void:
 	else:
 		_hide_outline()
 		# hide menu upon leaving interactable AOE
-		if menu_manager.is_menu_visible(crafting_menu_name):
-			menu_manager.hide_menu(crafting_menu_name)
+		if menu_manager.is_menu_visible(CRAFTING_MENU_NAME):
+			menu_manager.hide_menu(CRAFTING_MENU_NAME)
 
 func _on_interactable_interacted(interactor: Node2D) -> void:
 	var interactor_parent: Node2D = interactor.get_parent()
-	if interactor_parent is Player:
-		menu_manager.toggle_menu(crafting_menu_name)
+	if not interactor_parent is Player: return
+	if lootable_component.lootable_items:
+		var looted_items: Array[RInventoryItem] = lootable_component.loot_all_items()
+		interactor_parent.inventory_manager.inventory.add_items(looted_items)
+		loot_sound.play_sound()
+	else:
+		menu_manager.toggle_menu(CRAFTING_MENU_NAME, self, interactor_parent)

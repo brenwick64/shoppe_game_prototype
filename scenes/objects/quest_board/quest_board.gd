@@ -9,6 +9,8 @@ extends StaticBody2D
 @onready var navigation_marker: Marker2D = $NavigationMarker
 @onready var debug_quest_list: Panel = $DebugQuestList
 
+const QUEST_MENU_NAME: String = "quest_menu"
+
 var menu_manager: MenuManager
 var _quests: Array[Quest] = []
 
@@ -25,7 +27,7 @@ func add_quest(new_quest: Quest, quest_cost: int) -> void:
 	GlobalItemSpawner.spawn_coins(global_position, quest_cost)
 	_remove_player_currency(quest_cost)
 	_update_floating_label()
-	menu_manager.hide_menu("quest_menu")
+	menu_manager.hide_menu(QUEST_MENU_NAME)
 
 
 ## -- npc methods --
@@ -54,7 +56,6 @@ func npc_complete_quest(adventurer: Adventurer) -> void:
 	if completed_quest_index != -1:
 		_quests.remove_at(completed_quest_index)
 	_update_floating_label()
-	print("quest complete.")
 
 
 ## -- overrides --
@@ -101,10 +102,10 @@ func _on_interactable_focus_changed(is_focused: bool) -> void:
 	else:
 		_hide_outline()
 		# hide menu upon leaving interactable AOE
-		if menu_manager.is_menu_visible("quest_menu"):
-			menu_manager.hide_menu("quest_menu")
+		if menu_manager.is_menu_visible(QUEST_MENU_NAME):
+			menu_manager.hide_menu(QUEST_MENU_NAME)
 
 func _on_interactable_interacted(interactor: Node2D) -> void:
 	var interactor_parent: Node2D = interactor.get_parent()
 	if interactor_parent is Player:
-		menu_manager.toggle_menu("quest_menu")
+		menu_manager.toggle_menu(QUEST_MENU_NAME, self, interactor_parent)

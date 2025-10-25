@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://sr2swq8ses8w"]
+
+[ext_resource type="Script" path="res://scenes/components/remove_navigation/remove_navigation_component.gd" id="1_00guo"]
+
+[node name="RemoveNavigationComponent" type="Node"]
+script = ExtResource("1_00guo")
