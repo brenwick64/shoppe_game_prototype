@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://in0ylfxy7vfe"]
 
-[ext_resource type="Script" path="res://ingredient_panel.gd" id="1_crblw"]
+[ext_resource type="Script" path="res://scenes/ui/menus/crafting_menus/crafting_book/ingredient_panel/ingredient_panel.gd" id="1_crblw"]
 [ext_resource type="Texture2D" uid="uid://bavk4a3vq7nos" path="res://resources/textures/crafting/widows_umbra.tres" id="2_vj1yu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ywhos"]

@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://tgq1yw7e6d6e" path="res://scenes/ui/menus/crafting_menus/crafting_table/ui_crafting_table_menu.tscn" id="7_gpmj2"]
 [ext_resource type="PackedScene" uid="uid://eeg5x8snkfqw" path="res://scenes/characters/firefly/firefly.tscn" id="7_ojd8x"]
 [ext_resource type="PackedScene" uid="uid://b18gfpxxxcnhl" path="res://scenes/ui/menus/crafting_menus/alchemy_station/ui_alchemy_table_menu.tscn" id="8_qprhu"]
-[ext_resource type="PackedScene" uid="uid://c5dukr1f4ynqr" path="res://ui_crafting_book.tscn" id="9_rs7ux"]
+[ext_resource type="PackedScene" uid="uid://c5dukr1f4ynqr" path="res://scenes/ui/menus/crafting_menus/crafting_book/ui_crafting_book.tscn" id="9_rs7ux"]
 [ext_resource type="PackedScene" uid="uid://bj616aj7lg3c7" path="res://scenes/ui/settings/settings.tscn" id="9_u8now"]
 [ext_resource type="AudioStream" uid="uid://dxv22jeorx386" path="res://audio/music/the_castle.wav" id="10_wpe11"]
 [ext_resource type="PackedScene" uid="uid://ck0xc31d7h62r" path="res://scenes/game_objects/shoppe_furniture/shoppe_furniture.tscn" id="11_g6s6c"]

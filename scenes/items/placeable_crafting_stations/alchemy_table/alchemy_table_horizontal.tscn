@@ -10,7 +10,7 @@
 [ext_resource type="Resource" uid="uid://dpacco0m302b7" path="res://resources/r_audio_stream_data/placeables/place_furniture.tres" id="6_vxe3j"]
 [ext_resource type="Resource" uid="uid://42yhgm406gdt" path="res://resources/r_audio_stream_data/pickup/pickup_sound.tres" id="8_x3pe5"]
 [ext_resource type="Resource" uid="uid://c74eg67w14hcj" path="res://resources/r_audio_stream_data/ui/alchemy_craft_sound.tres" id="9_atkv8"]
-[ext_resource type="PackedScene" uid="uid://drjqhxqq8lak5" path="res://crafting_progress_bar.tscn" id="11_asvct"]
+[ext_resource type="PackedScene" uid="uid://drjqhxqq8lak5" path="res://scenes/ui/menus/crafting_menus/crafting_progress_bar/crafting_progress_bar.tscn" id="11_asvct"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlm2c"]
 size = Vector2(38.5, 25.5)
@@ -29,19 +29,23 @@ shader_parameter/add_margins = false
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t2ljr"]
 size = Vector2(27, 10.5)
 
-[node name="AlchemyTableHorizontal" type="StaticBody2D" node_paths=PackedStringArray("lootable_component", "craft_sound", "loot_sound", "item_slots_node", "placed_sound", "sprite")]
+[node name="AlchemyTableHorizontal" type="StaticBody2D" node_paths=PackedStringArray("item_slots_node", "placed_sound", "sprite")]
 z_index = 2
 y_sort_enabled = true
 script = ExtResource("1_oomrc")
 crafting_type = "alchemy"
-lootable_component = NodePath("LootableComponent")
-craft_sound = NodePath("CraftSound")
-loot_sound = NodePath("LootSound")
 item_slots_node = NodePath("ItemSlots")
 placed_sound = NodePath("PlacedSound")
 sprite = NodePath("Sprite2D")
 
 [node name="LootableComponent" parent="." instance=ExtResource("2_xxcwc")]
+
+[node name="CraftingProgressBar" parent="." instance=ExtResource("11_asvct")]
+visible = false
+offset_left = -11.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = -6.0
 
 [node name="LootableItemsPanel" parent="." node_paths=PackedStringArray("lootable_component") instance=ExtResource("3_krpdu")]
 z_index = 1
@@ -86,11 +90,6 @@ audio_data = ExtResource("8_x3pe5")
 
 [node name="ItemSlots" type="Node2D" parent="."]
 
-[node name="CraftingProgress" parent="." instance=ExtResource("11_asvct")]
-offset_left = -11.0
-offset_top = -19.0
-offset_right = 18.0
-offset_bottom = -7.0
-
+[connection signal="finished" from="CraftingProgressBar" to="." method="_on_crafting_progress_bar_finished"]
 [connection signal="focus_changed" from="Interactable" to="." method="_on_interactable_focus_changed"]
 [connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

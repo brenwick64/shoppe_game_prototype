@@ -7,7 +7,7 @@ var lootable_items: Array[RInventoryItem]
 
 
 ## -- public methods --
-func deposit_items(depositor: Node2D, item_id: int, count: int) -> void:
+func deposit_items(item_id: int, count: int) -> void:
 	var item_index: int = _get_item_index(item_id)
 	if item_index == -1:
 		_add_inv_item(item_id, count)

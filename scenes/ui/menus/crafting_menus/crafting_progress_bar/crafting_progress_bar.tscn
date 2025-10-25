@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://drjqhxqq8lak5"]
 
-[ext_resource type="Script" path="res://crafting_progress_bar.gd" id="1_lwu1b"]
+[ext_resource type="Script" path="res://scenes/ui/menus/crafting_menus/crafting_progress_bar/crafting_progress_bar.gd" id="1_lwu1b"]
 [ext_resource type="Theme" uid="uid://dofxggolabuhr" path="res://resources/config/ui/crafting_book.tres" id="2_e4pq8"]
 [ext_resource type="Texture2D" uid="uid://ckxeqbcxg18k" path="res://assets/ui/cog_2.png" id="2_u3yso"]
 
@@ -30,7 +30,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_e4pq8")
 theme_type_variation = &"CraftingProgress"
-value = 50.0
+step = 0.0
 show_percentage = false
 
 [node name="CogWheel" type="TextureRect" parent="."]
@@ -47,3 +47,6 @@ grow_vertical = 2
 scale = Vector2(0.75, 0.75)
 pivot_offset = Vector2(25, 25)
 texture = SubResource("AtlasTexture_8pt08")
+
+[node name="CraftTimer" type="Timer" parent="."]
+one_shot = true

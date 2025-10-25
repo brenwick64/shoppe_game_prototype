@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://1p21r2p2h5rs"]
 
 [ext_resource type="Theme" uid="uid://dofxggolabuhr" path="res://resources/config/ui/crafting_book.tres" id="1_0nr31"]
-[ext_resource type="Script" path="res://recipe_entry.gd" id="1_u6k6d"]
+[ext_resource type="Script" path="res://scenes/ui/menus/crafting_menus/crafting_book/recipe_entry/recipe_entry.gd" id="1_u6k6d"]
 [ext_resource type="Texture2D" uid="uid://b55ektocl7x1h" path="res://assets/ui/book_ui/Content/Inscriptions/Light/16x16.png" id="3_4p4mk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wdgga"]
