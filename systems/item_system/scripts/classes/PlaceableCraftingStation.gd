@@ -3,12 +3,10 @@ extends PlaceableFurniture
 
 @export var crafting_type: String
 
+# crafting component
+@onready var crafting_component: CraftingComponent = $CraftingComponent
 @onready var lootable_component: LootableComponent = $LootableComponent
-@onready var crafting_progress_bar: CraftingProgressBar = $CraftingProgressBar
-@onready var lootable_items_panel: Panel = $LootableItemsPanel
 @onready var interactable: Interactable = $Interactable
-@onready var craft_sound: OneShotSoundComponent = $CraftSound
-@onready var loot_sound: OneShotSoundComponent = $LootSound
 
 const CRAFTING_MENU_NAME: String = "ui_crafting_book"
 
@@ -24,8 +22,7 @@ func _ready() -> void:
 
 ## -- public methods --
 func craft(recipe: RRecipe, player: Player) -> void:
-	craft_sound.play_sound()
-	crafting_progress_bar.start(recipe.base_craft_time_seconds, recipe)
+	crafting_component.craft(recipe)
 	interactable.disable_collision()
 	
 
@@ -55,14 +52,13 @@ func _on_interactable_interacted(interactor: Node2D) -> void:
 	var interactor_parent: Node2D = interactor.get_parent()
 	if not interactor_parent is Player: return
 	if lootable_component.lootable_items:
-		
 		var looted_items: Array[RInventoryItem] = lootable_component.loot_all_items()
 		interactor_parent.inventory_manager.inventory.add_items(looted_items)
-		loot_sound.play_sound()
 	else:
 		menu_manager.toggle_menu(CRAFTING_MENU_NAME, self, interactor_parent)
 
-func _on_crafting_progress_bar_finished(recipe: RRecipe) -> void:
+
+func _on_crafting_component_crafting_finished(recipe: RRecipe) -> void:
 	interactable.enable_collision()
 	for inv_item: RInventoryItem in recipe.output_items:
 		lootable_component.deposit_items(inv_item.item_id, inv_item.count)

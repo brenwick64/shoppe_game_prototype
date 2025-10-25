@@ -1,12 +1,23 @@
 class_name LootableComponent
-extends Node
+extends Node2D
 
-signal items_changed(lootable_items: RInventoryItem)
+signal items_changed(lootable_items: Array[RInventoryItem])
+
+@export var loot_audio: RAudioStreamData
+@export var ui_z_index_modifier: int = 0
+
+@onready var lootable_items_panel: Panel = $LootableItemsPanel
+@onready var loot_sound: OneShotSoundComponent = $LootSound
 
 var lootable_items: Array[RInventoryItem]
 
+func _ready() -> void:
+	lootable_items_panel.z_index = lootable_items_panel.z_index + ui_z_index_modifier
+	loot_sound.load_audio_data(loot_audio)
+
 
 ## -- public methods --
+#TODO: refactor to use inventory items as input
 func deposit_items(item_id: int, count: int) -> void:
 	var item_index: int = _get_item_index(item_id)
 	if item_index == -1:
@@ -19,6 +30,7 @@ func loot_all_items() -> Array[RInventoryItem]:
 	var looted_items: Array[RInventoryItem] = lootable_items
 	lootable_items = []
 	items_changed.emit(lootable_items)
+	loot_sound.play_sound()
 	return looted_items
 
 

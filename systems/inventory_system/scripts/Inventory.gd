@@ -40,6 +40,11 @@ func add_item(item_id: int, count: int) -> void:
 			item_updated.emit(updated_item)
 		else:
 			item_depleted.emit(updated_item.item_id)
+	var item_data: RItemData = GlobalItemDb.get_item_by_id(item_id)
+	GlobalMessageManager.add_console_message(
+		"DEBUG", 
+		"added " + str(count) + " x " + item_data.item_name
+	) 
 
 func add_items(inv_items: Array[RInventoryItem]) -> void:
 	for inv_item: RInventoryItem in inv_items:

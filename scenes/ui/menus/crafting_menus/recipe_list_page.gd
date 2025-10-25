@@ -2,7 +2,7 @@ extends Control
 
 signal new_recipe_selected(recipe: RRecipe)
 
-@onready var recipe_entry_scene: PackedScene = preload("res://recipe_entry.tscn")
+@onready var recipe_entry_scene: PackedScene = preload("res://scenes/ui/menus/crafting_menus/crafting_book/recipe_entry/recipe_entry.tscn")
 
 @export var crafting_book: UICraftingBook
 

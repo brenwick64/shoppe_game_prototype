@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwmarhe3us03m"]
+[gd_scene load_steps=4 format=3 uid="uid://dwmarhe3us03m"]
 
 [ext_resource type="Script" path="res://scenes/components/lootable/lootable_component.gd" id="1_wnun6"]
+[ext_resource type="PackedScene" uid="uid://dsqbct0sh4ky" path="res://scenes/components/lootable/lootable_items_panel/lootable_items_panel.tscn" id="2_7rgi0"]
+[ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="3_fnal4"]
 
-[node name="LootableComponent" type="Node"]
+[node name="LootableComponent" type="Node2D"]
 script = ExtResource("1_wnun6")
+
+[node name="LootableItemsPanel" parent="." node_paths=PackedStringArray("lootable_component") instance=ExtResource("2_7rgi0")]
+visible = true
+z_index = 1
+lootable_component = NodePath("..")
+
+[node name="LootSound" parent="." instance=ExtResource("3_fnal4")]

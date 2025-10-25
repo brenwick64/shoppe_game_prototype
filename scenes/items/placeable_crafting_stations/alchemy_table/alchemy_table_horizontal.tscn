@@ -4,13 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://bvbq04va7bwnw" path="res://scenes/components/interactable/interactable.tscn" id="2_wj6s3"]
 [ext_resource type="PackedScene" uid="uid://dwmarhe3us03m" path="res://scenes/components/lootable/lootable_component.tscn" id="2_xxcwc"]
 [ext_resource type="Shader" path="res://shaders/2d_outline.gdshader" id="3_6g448"]
-[ext_resource type="PackedScene" uid="uid://dsqbct0sh4ky" path="res://scenes/components/lootable/lootable_items_panel/lootable_items_panel.tscn" id="3_krpdu"]
+[ext_resource type="PackedScene" uid="uid://d3uvfbythuk71" path="res://scenes/components/crafting/crafting_component.tscn" id="3_52wxc"]
 [ext_resource type="Texture2D" uid="uid://dg418ubh0a3g8" path="res://resources/textures/crafting_stations/alchemy_table.tres" id="4_f347o"]
 [ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="5_7cy56"]
 [ext_resource type="Resource" uid="uid://dpacco0m302b7" path="res://resources/r_audio_stream_data/placeables/place_furniture.tres" id="6_vxe3j"]
 [ext_resource type="Resource" uid="uid://42yhgm406gdt" path="res://resources/r_audio_stream_data/pickup/pickup_sound.tres" id="8_x3pe5"]
-[ext_resource type="Resource" uid="uid://c74eg67w14hcj" path="res://resources/r_audio_stream_data/ui/alchemy_craft_sound.tres" id="9_atkv8"]
-[ext_resource type="PackedScene" uid="uid://drjqhxqq8lak5" path="res://scenes/ui/menus/crafting_menus/crafting_progress_bar/crafting_progress_bar.tscn" id="11_asvct"]
+[ext_resource type="Resource" uid="uid://c74eg67w14hcj" path="res://resources/r_audio_stream_data/ui/alchemy_craft_start_sound.tres" id="9_atkv8"]
+[ext_resource type="Resource" uid="uid://d3j4isikwvg88" path="res://resources/r_audio_stream_data/ui/alchemy_craft_finish_sound.tres" id="10_far5o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlm2c"]
 size = Vector2(38.5, 25.5)
@@ -38,18 +38,12 @@ item_slots_node = NodePath("ItemSlots")
 placed_sound = NodePath("PlacedSound")
 sprite = NodePath("Sprite2D")
 
+[node name="CraftingComponent" parent="." instance=ExtResource("3_52wxc")]
+start_audio = ExtResource("9_atkv8")
+finish_audio = ExtResource("10_far5o")
+
 [node name="LootableComponent" parent="." instance=ExtResource("2_xxcwc")]
-
-[node name="CraftingProgressBar" parent="." instance=ExtResource("11_asvct")]
-visible = false
-offset_left = -11.0
-offset_top = -18.0
-offset_right = 18.0
-offset_bottom = -6.0
-
-[node name="LootableItemsPanel" parent="." node_paths=PackedStringArray("lootable_component") instance=ExtResource("3_krpdu")]
-z_index = 1
-lootable_component = NodePath("../LootableComponent")
+loot_audio = ExtResource("8_x3pe5")
 
 [node name="Interactable" parent="." instance=ExtResource("2_wj6s3")]
 visible = false
@@ -82,14 +76,8 @@ shape = SubResource("RectangleShape2D_t2ljr")
 [node name="PlacedSound" parent="." instance=ExtResource("5_7cy56")]
 audio_data = ExtResource("6_vxe3j")
 
-[node name="CraftSound" parent="." instance=ExtResource("5_7cy56")]
-audio_data = ExtResource("9_atkv8")
-
-[node name="LootSound" parent="." instance=ExtResource("5_7cy56")]
-audio_data = ExtResource("8_x3pe5")
-
 [node name="ItemSlots" type="Node2D" parent="."]
 
-[connection signal="finished" from="CraftingProgressBar" to="." method="_on_crafting_progress_bar_finished"]
+[connection signal="crafting_finished" from="CraftingComponent" to="." method="_on_crafting_component_crafting_finished"]
 [connection signal="focus_changed" from="Interactable" to="." method="_on_interactable_focus_changed"]
 [connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

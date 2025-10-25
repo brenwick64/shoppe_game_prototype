@@ -1,7 +1,7 @@
 class_name UIRecipeEntry
 extends HBoxContainer
 
-@onready var ingredient_panel: PackedScene = preload("res://ingredient_panel.tscn")
+@onready var ingredient_panel: PackedScene = preload("res://scenes/ui/menus/crafting_menus/crafting_book/ingredient_panel/ingredient_panel.tscn")
 
 signal recipe_selected(recipe_entry: UIRecipeEntry)
 

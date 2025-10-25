@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://y013bxqj8ude"]
+[gd_scene load_steps=13 format=3 uid="uid://y013bxqj8ude"]
 
 [ext_resource type="Script" path="res://scenes/objects/quest_crate/quest_crate.gd" id="1_2qksc"]
 [ext_resource type="PackedScene" uid="uid://bvbq04va7bwnw" path="res://scenes/components/interactable/interactable.tscn" id="2_1yj5s"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" path="res://shaders/2d_outline.gdshader" id="4_mvd1i"]
 [ext_resource type="Resource" uid="uid://42yhgm406gdt" path="res://resources/r_audio_stream_data/pickup/pickup_sound.tres" id="5_4dipx"]
 [ext_resource type="Texture2D" uid="uid://b8vrqes6bxhlk" path="res://assets/objects/crates.png" id="5_8ikvt"]
+[ext_resource type="PackedScene" uid="uid://dwmarhe3us03m" path="res://scenes/components/lootable/lootable_component.tscn" id="8_xhyu2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q77cn"]
 size = Vector2(30, 20.75)
@@ -31,6 +32,10 @@ z_index = 1
 script = ExtResource("1_2qksc")
 sprite = NodePath("Sprite2D")
 
+[node name="LootableComponent" parent="." instance=ExtResource("8_xhyu2")]
+loot_audio = ExtResource("5_4dipx")
+ui_z_index_modifier = 2
+
 [node name="Interactable" parent="." instance=ExtResource("2_1yj5s")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
@@ -52,8 +57,9 @@ texture = SubResource("AtlasTexture_arv40")
 position = Vector2(0.25, 0.25)
 shape = SubResource("RectangleShape2D_3x0al")
 
-[node name="OneShotSoundComponent" parent="." instance=ExtResource("4_ihtba")]
+[node name="DepositSound" parent="." instance=ExtResource("4_ihtba")]
 audio_data = ExtResource("5_4dipx")
 
+[connection signal="items_changed" from="LootableComponent" to="." method="_on_lootable_component_items_changed"]
 [connection signal="focus_changed" from="Interactable" to="." method="_on_interactable_focus_changed"]
 [connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

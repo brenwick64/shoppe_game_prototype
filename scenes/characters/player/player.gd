@@ -28,12 +28,6 @@ func _ready() -> void:
 func pickup(item_id: int, count: int) -> void:
 	pickup_sound.play_sound()
 	inventory_manager.inventory.add_item(item_id, count)
-	
-	var item_data: RItemData = GlobalItemDb.get_item_by_id(item_id)
-	GlobalMessageManager.add_console_message(
-		"DEBUG",
-		"picked up " + str(count) + " x " + item_data.item_name
-	)
 
 
 ## -- overrides --

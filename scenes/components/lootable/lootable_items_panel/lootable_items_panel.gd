@@ -12,6 +12,7 @@ func _ready() -> void:
 
 ## -- helper functions --
 func _hide_panel_ui() -> void:
+	texture_rect.texture = null
 	visible = false
 
 func _show_panel_ui(items: Array[RInventoryItem]) -> void:

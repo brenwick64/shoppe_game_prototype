@@ -22,4 +22,4 @@ base_craft_time_seconds = 3.5
 input_items = Array[ExtResource("1_0bmbq")]([SubResource("Resource_3x03e"), SubResource("Resource_m7b4u")])
 output_items = Array[ExtResource("1_0bmbq")]([])
 output_texture = ExtResource("2_6o4k7")
-output_desc = "A small vial of toxic alchemical fluid that can be applied to blades or arrows. Once coated, your weapon delivers an extra 10 damage per hit for a limited time, making it a favorite among assassins and seasoned hunters alike."
+output_desc = "A small vial of toxic alchemical fluid that can be applied to blades or arrows. Once coated, your weapon delivers an extra 10 damage per hit for a limited time."

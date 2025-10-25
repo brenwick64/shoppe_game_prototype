@@ -27,4 +27,4 @@ base_craft_time_seconds = 3.5
 input_items = Array[ExtResource("1_s1ym3")]([SubResource("Resource_n6c8d"), SubResource("Resource_0lmsi")])
 output_items = Array[ExtResource("1_s1ym3")]([SubResource("Resource_adyfm")])
 output_texture = ExtResource("2_1dai1")
-output_desc = "A basic restorative brew that heals 40% of your maximum health when consumed. Crafted from common herbs and purified water, this potion is a reliable staple for adventurers recovering from battle wounds or harsh terrain."
+output_desc = "A basic restorative brew that heals 40% of your maximum health when consumed. Crafted from common herbs and purified water."

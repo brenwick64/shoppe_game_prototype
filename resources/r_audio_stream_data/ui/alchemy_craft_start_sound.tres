@@ -9,4 +9,4 @@ unique_name = "alchemy_craft_sound"
 tags = Array[String]([])
 audio_stream = ExtResource("1_sdqov")
 decibel_scalar = 0.0
-pitch_range_percent = Vector2(0.8, 1.2)
+pitch_range_percent = Vector2(0.9, 1.1)
