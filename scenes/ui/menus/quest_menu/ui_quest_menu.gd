@@ -9,6 +9,7 @@ extends UIMenu
 @onready var quest_config_container: Control = $Panel/MarginContainer/VBoxContainer/QuestConfigContainer
 @onready var create_quest_btn: Button = $Panel/MarginContainer/VBoxContainer/CreateQuestBtn
 @onready var quest_cost_label: UICountingLabel = $Panel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/UICountingLabel
+@onready var fail_sound: OneShotSoundComponent = $FailSound
 
 var _quest_list: Array[RQuestData]
 var _current_quest_data: RQuestData
@@ -44,8 +45,20 @@ func set_quest_config(config_scene: PackedScene) -> void:
 	quest_config_container.add_child(config_ui)
 
 
+## -- helper functions --
+func _player_has_enough_gold(cost_gold: int) -> bool:
+	var player: Player = get_tree().get_first_node_in_group("player")
+	if not player:
+		push_error("UIQuestMenu error.  No player node found in tree.")
+		return false
+	return player.currency_manager.has_enough_currency(cost_gold)
+
+
 ## -- signals --
 func _on_create_quest_btn_pressed() -> void:
+	if not _player_has_enough_gold(_current_quest_cost):
+		fail_sound.play_sound() 
+		return #TODO: add tooltip or toast notification?
 	var quest_config: Dictionary = _current_quest_config.get_config_data()
 	var new_quest: Quest = _current_quest_data.new_quest(quest_config)
 	quest_board.add_quest(new_quest, _current_quest_cost)

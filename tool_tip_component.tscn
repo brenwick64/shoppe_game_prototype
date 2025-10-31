@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxkflma7lqn7u"]
+
+[ext_resource type="Script" path="res://tool_tip_component.gd" id="1_yh86d"]
+[ext_resource type="PackedScene" uid="uid://dri8sutbtih3p" path="res://ingredient_tooltip.tscn" id="2_0gkce"]
+
+[node name="ToolTipComponent" type="Node2D"]
+visible = false
+script = ExtResource("1_yh86d")
+
+[node name="ToolTipContainer" type="Control" parent="."]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="IngredientToolTip" parent="ToolTipContainer" instance=ExtResource("2_0gkce")]
+layout_mode = 1
+
+[node name="ToolTipTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true

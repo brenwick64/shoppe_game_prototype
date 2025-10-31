@@ -1,9 +1,10 @@
-[gd_resource type="Theme" load_steps=30 format=3 uid="uid://dofxggolabuhr"]
+[gd_resource type="Theme" load_steps=35 format=3 uid="uid://dofxggolabuhr"]
 
 [ext_resource type="Texture2D" uid="uid://mubsx7ang1wf" path="res://assets/ui/book_ui/BookSprite_Animation/Page1.png" id="1_40wic"]
 [ext_resource type="Texture2D" uid="uid://dlavywkspfwlg" path="res://assets/ui/book_ui/Content/Titles and Underlying/21_1.png" id="2_03n1x"]
 [ext_resource type="Texture2D" uid="uid://mynubjk40sr0" path="res://assets/ui/book_ui/Content/Boxes/Dark/14.png" id="2_a1ie0"]
 [ext_resource type="Texture2D" uid="uid://b6mj04t4866k2" path="res://assets/ui/book_ui/Content/Titles and Underlying/19.png" id="2_iwa2l"]
+[ext_resource type="Texture2D" uid="uid://citv184ttjmth" path="res://assets/ui/book_ui/Content/Boxes/Light/1.png" id="2_v1gop"]
 [ext_resource type="Texture2D" uid="uid://di32r52gopma5" path="res://assets/ui/book_ui/Content/Titles and Underlying/4.png" id="3_samly"]
 [ext_resource type="Texture2D" uid="uid://b4tib7slyqpj6" path="res://assets/ui/book_ui/Content/Boxes/Light/12_2.png" id="4_85a3n"]
 [ext_resource type="Texture2D" uid="uid://cadnw0ghuxcqo" path="res://assets/ui/book_ui/Content/Titles and Underlying/1_16x16.png" id="4_uqd8p"]
@@ -18,6 +19,12 @@ texture_margin_left = 21.0
 texture_margin_top = 5.0
 texture_margin_right = 21.0
 texture_margin_bottom = 24.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djuvg"]
+atlas = ExtResource("2_v1gop")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_twg01"]
+texture = SubResource("AtlasTexture_djuvg")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_stjup"]
 load_path = "res://.godot/imported/21_1.png-3f627f44135ea003ff3387d75247d938.ctex"
@@ -53,6 +60,17 @@ texture = ExtResource("2_a1ie0")
 texture_margin_left = 1.98994
 texture_margin_top = 1.0
 texture_margin_right = 2.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bu1j"]
+atlas = ExtResource("2_v1gop")
+region = Rect2(0, 0, 35, 41)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hclfj"]
+texture = SubResource("AtlasTexture_5bu1j")
+texture_margin_left = 3.0
+texture_margin_top = 7.0
+texture_margin_right = 3.0
 texture_margin_bottom = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j0nra"]
@@ -106,6 +124,8 @@ texture = SubResource("AtlasTexture_yavia")
 [resource]
 BookPanel/base_type = &"Panel"
 BookPanel/styles/panel = SubResource("StyleBoxTexture_yjg8c")
+BorderedIngredientPanel/base_type = &"Panel"
+BorderedIngredientPanel/styles/panel = SubResource("StyleBoxTexture_twg01")
 CraftBtn/base_type = &"Button"
 CraftBtn/styles/hover = SubResource("StyleBoxTexture_at1x5")
 CraftBtn/styles/normal = SubResource("StyleBoxTexture_hyuo6")
@@ -114,6 +134,8 @@ CraftingProgress/styles/background = SubResource("StyleBoxFlat_7irod")
 CraftingProgress/styles/fill = SubResource("StyleBoxFlat_v77vc")
 IngredientPanel/base_type = &"Panel"
 IngredientPanel/styles/panel = SubResource("StyleBoxTexture_oyc1w")
+IngredientToolTipPanel/base_type = &"Panel"
+IngredientToolTipPanel/styles/panel = SubResource("StyleBoxTexture_hclfj")
 Label/colors/font_color = Color(0.263096, 0.130679, 0.00825541, 1)
 OutputTitlePanel/base_type = &"Panel"
 OutputTitlePanel/styles/panel = SubResource("StyleBoxTexture_2eeq6")
