@@ -6,7 +6,9 @@
 [resource]
 script = ExtResource("2_dhxy5")
 item_id = 104
-item_name = "Sickleweed"
+item_name = "Widow's Umbra"
+item_tooltip_desc = "A noxious mushroom with vile properties found within heavily shaded areas."
+item_type = 0
 icon_texture = ExtResource("1_cmqpi")
 icon_scale_multiplier = 2.0
 pickup_texture = ExtResource("1_cmqpi")

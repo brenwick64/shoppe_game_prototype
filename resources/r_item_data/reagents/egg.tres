@@ -7,6 +7,8 @@
 script = ExtResource("1_enxku")
 item_id = 101
 item_name = "Egg"
+item_tooltip_desc = "This has been a staple in many hearty meals.  Likely found not too far from a chicken."
+item_type = 0
 icon_texture = ExtResource("1_u7uk1")
 icon_scale_multiplier = 2.0
 pickup_texture = ExtResource("1_u7uk1")

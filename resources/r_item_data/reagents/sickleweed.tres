@@ -7,6 +7,8 @@
 script = ExtResource("2_f6r3p")
 item_id = 103
 item_name = "Sickleweed"
+item_tooltip_desc = "A razor-edged vine that bleeds bitterness, commonly found growing near dead trees."
+item_type = 0
 icon_texture = ExtResource("1_ifjsl")
 icon_scale_multiplier = 2.0
 pickup_texture = ExtResource("1_ifjsl")

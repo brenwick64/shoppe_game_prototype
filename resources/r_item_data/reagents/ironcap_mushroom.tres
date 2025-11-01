@@ -6,7 +6,9 @@
 [resource]
 script = ExtResource("2_dbxii")
 item_id = 102
-item_name = "Koopa Leaf"
+item_name = "Ironcap Mushroom"
+item_tooltip_desc = "Known for it's fortifying properties, these mushrooms can be found while mining rocks."
+item_type = 0
 icon_texture = ExtResource("1_s04t8")
 icon_scale_multiplier = 2.0
 pickup_texture = ExtResource("1_s04t8")

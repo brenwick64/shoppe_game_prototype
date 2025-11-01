@@ -4,6 +4,7 @@ extends Node
 enum CHAT_MESSAGE_TYPE { QUESTION, ANSWER, CLOSURE, STATEMENT }
 enum ITEM_RARITY { COMMON, UNCOMMON, RARE, EPIC, LEGENDARY }
 enum QUEST_STATUS { NONE, CLAIMED, STARTED, COMPLETED, FAILED }
+enum ITEM_TYPES { REAGENT }
 
 
 ## -- audio--
@@ -16,6 +17,11 @@ const CONSOLE_TEXT_INFO: Color = Color.BLACK
 const CONSOLE_TEXT_DEBUG: Color = Color.DIM_GRAY
 const CONSOLE_TEXT_CHAT_SENDER: Color = Color.ROYAL_BLUE
 const CONSOLE_TEXT_CHAT: Color = Color.CORNFLOWER_BLUE
+
+func get_item_type_color(item_type: ITEM_TYPES) -> Color:
+	match item_type:
+		ITEM_TYPES.REAGENT: return Color("4db57d")
+		_: return Color.BLACK
 
 
 ## -- chat --
