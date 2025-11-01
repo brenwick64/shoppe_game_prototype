@@ -4,7 +4,7 @@ extends Node
 enum CHAT_MESSAGE_TYPE { QUESTION, ANSWER, CLOSURE, STATEMENT }
 enum ITEM_RARITY { COMMON, UNCOMMON, RARE, EPIC, LEGENDARY }
 enum QUEST_STATUS { NONE, CLAIMED, STARTED, COMPLETED, FAILED }
-enum ITEM_TYPES { REAGENT }
+enum ITEM_TYPES { INGREDIENT }
 
 
 ## -- audio--
@@ -12,6 +12,7 @@ const MIN_DB: float = -80
 
 
 ## -- colors --
+const ERROR_TEXT: Color = Color.INDIAN_RED
 const CONSOLE_TEXT_DEFAULT: Color = Color.BLACK
 const CONSOLE_TEXT_INFO: Color = Color.BLACK
 const CONSOLE_TEXT_DEBUG: Color = Color.DIM_GRAY
@@ -20,7 +21,7 @@ const CONSOLE_TEXT_CHAT: Color = Color.CORNFLOWER_BLUE
 
 func get_item_type_color(item_type: ITEM_TYPES) -> Color:
 	match item_type:
-		ITEM_TYPES.REAGENT: return Color("4db57d")
+		ITEM_TYPES.INGREDIENT: return Color("4db57d")
 		_: return Color.BLACK
 
 
