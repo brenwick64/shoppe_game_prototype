@@ -18,6 +18,11 @@ func get_inventory_item(item_id: int) -> RInventoryItem:
 		return null
 	return inventory_items[item_index]
 
+func has_item_id(item_id: int) -> bool:
+	for inv_item: RInventoryItem in inventory_items:
+		if inv_item.item_id == item_id: return true
+	return false
+
 func has_items(inv_items: Array[RInventoryItem]) -> bool:
 	for inv_item: RInventoryItem in inv_items:
 		var matched_item_arr: Array[RInventoryItem] = inventory_items.filter(

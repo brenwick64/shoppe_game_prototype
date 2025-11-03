@@ -19,13 +19,7 @@ func _ready() -> void:
 		push_error("QuestBoard error: no QuestManager node found in main tree.")
 		return
 	menu_manager = menu_manager_node
-	GlobalItemSpawner.spawn_item_pickup(
-		103, 
-		1, 
-		global_position, 
-		global_position + Vector2(0, 20),
-		get_tree().get_first_node_in_group("player")
-		)
+
 
 ## -- public methods --
 func craft(recipe: RRecipe, player: Player) -> void:
