@@ -14,9 +14,16 @@ item_id = 0
 [node name="UIInventory" type="Control"]
 custom_minimum_size = Vector2(520, 308)
 layout_mode = 3
-anchors_preset = 0
-offset_right = 520.0
-offset_bottom = 308.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -260.0
+offset_top = -308.0
+offset_right = 260.0
+grow_horizontal = 2
+grow_vertical = 0
 size_flags_vertical = 0
 script = ExtResource("1_rtt0d")
 

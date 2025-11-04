@@ -11,19 +11,27 @@ var inventory_slots: Array[UIInventorySlot]
 
 ## -- overrides --
 func _ready() -> void:
+	# connect player inventory signals
+	GlobalPlayerInventory.item_added.connect(_on_item_added)
+	GlobalPlayerInventory.item_updated.connect(_on_item_updated)
+	GlobalPlayerInventory.item_depleted.connect(_on_item_depleted)
+	# connect mapping container signals
 	for node: Node in grid_container.get_children():
 		if node is not UIInventorySlot: continue
-		inventory_slots.append(node)
-		# connect signals
 		node.slot_hovered.connect(_on_slot_hovered)
 		node.slot_updated.connect(_on_slot_updated)
 		node.slot_depleted.connect(_on_slot_depleted)
 		node.slot_dropped.connect(_on_slot_dropped)
+		inventory_slots.append(node)
 	# load inventory mapping data
 	var mappings_exist: bool = save_load_component.check_save_data() 
 	if mappings_exist:
 		var mappings: Array = save_load_component.load_data()
 		_load_inv_slot_mappings(mappings)
+	# load_inventory_data
+	for inv_item in GlobalPlayerInventory.get_items():
+		handle_item_loaded(inv_item)
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory"):
@@ -39,31 +47,31 @@ func handle_item_loaded(loaded_item: RInventoryItem) -> void:
 	slot_to_load.add_item(loaded_item)
 	inventory_slot_updated.emit(slot_to_load, loaded_item)
 
-func handle_item_added(new_item: RInventoryItem) -> void:
-	var free_slot: UIInventorySlot = _get_inv_slot_by_id(-1)
-	if not free_slot:
-		push_warning("UIInventory failed to add item. no free slot available.") 
-		return
-	free_slot.add_item(new_item)
-	inventory_slot_updated.emit(free_slot, new_item)
-	_save_inv_slot_mappings()
-
-func handle_item_updated(item: RInventoryItem) -> void:
-	var slot_to_update: UIInventorySlot = _get_inv_slot_by_id(item.item_id)
-	if not slot_to_update:
-		push_warning("UIInventory failed to update item. item slot not found.") 
-		return
-	slot_to_update.update_item_count(item.count)
-	inventory_slot_updated.emit(slot_to_update, item)
-
-func handle_item_depleted(item_id: int) -> void:
-	var slot_to_deplete: UIInventorySlot = _get_inv_slot_by_id(item_id)
-	if not slot_to_deplete:
-		push_warning("UIInventory failed to deplete item. item slot not found.") 
-		return
-	slot_to_deplete.clear_item()
-	inventory_slot_depleted.emit(slot_to_deplete)
-	_save_inv_slot_mappings()
+#func handle_item_added(new_item: RInventoryItem) -> void:
+	#var free_slot: UIInventorySlot = _get_inv_slot_by_id(-1)
+	#if not free_slot:
+		#push_warning("UIInventory failed to add item. no free slot available.") 
+		#return
+	#free_slot.add_item(new_item)
+	#inventory_slot_updated.emit(free_slot, new_item)
+	#_save_inv_slot_mappings()
+#
+#func handle_item_updated(item: RInventoryItem) -> void:
+	#var slot_to_update: UIInventorySlot = _get_inv_slot_by_id(item.item_id)
+	#if not slot_to_update:
+		#push_warning("UIInventory failed to update item. item slot not found.") 
+		#return
+	#slot_to_update.update_item_count(item.count)
+	#inventory_slot_updated.emit(slot_to_update, item)
+#
+#func handle_item_depleted(item_id: int) -> void:
+	#var slot_to_deplete: UIInventorySlot = _get_inv_slot_by_id(item_id)
+	#if not slot_to_deplete:
+		#push_warning("UIInventory failed to deplete item. item slot not found.") 
+		#return
+	#slot_to_deplete.clear_item()
+	#inventory_slot_depleted.emit(slot_to_deplete)
+	#_save_inv_slot_mappings()
 
 
 ## -- save / load --
@@ -72,7 +80,11 @@ func _save_inv_slot_mappings() -> void:
 
 func _load_inv_slot_mappings(mappings: Array) -> void:
 	for mapping in mappings:
-		if mapping.item_id == -1: continue # slot already defaults to this value
+		# item no longer exists
+		if not GlobalPlayerInventory.has_item_id(mapping.item_id):
+			mapping.item_id = -1
+		# slot already defaults to this value
+		if mapping.item_id == -1: continue
 		for slot: UIInventorySlot in inventory_slots:
 			if mapping.index == slot.index:
 				slot.item_id = mapping.item_id
@@ -90,6 +102,17 @@ func _toggle_visible() -> void:
 
 
 ## -- signals --
+# ITEM
+func _on_item_added(inv_item: RInventoryItem) -> void:
+	pass
+
+func _on_item_updated(inv_item: RInventoryItem) -> void:
+	pass
+
+func _on_item_depleted(item_id: int) -> void:
+	pass
+
+# SLOTS
 func _on_slot_updated(inv_slot: UIInventorySlot, inv_item: RInventoryItem) -> void:
 	inventory_slot_updated.emit(inv_slot, inv_item)
 	_save_inv_slot_mappings()

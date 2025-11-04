@@ -24,8 +24,8 @@ func _ready() -> void:
 	inventory.item_updated.connect(_on_item_updated)
 	inventory.item_depleted.connect(_on_item_depleted)
 		
-	# allows UI nodes to build and connect signals first
-	call_deferred("_update_inventory_ui")
+	## allows UI nodes to build and connect signals first
+	#call_deferred("_update_inventory_ui")
 
 
 ## -- helper functions --
@@ -47,9 +47,9 @@ func _create_new_inventory():
 	new_inv.uuid = new_inv_uuid
 	inventory = new_inv
 
-func _update_inventory_ui() -> void:
-	for inv_item: RInventoryItem in inventory.inventory_items:
-		inventory_ui.handle_item_loaded(inv_item)
+#func _update_inventory_ui() -> void:
+	#for inv_item: RInventoryItem in inventory.inventory_items:
+		#inventory_ui.handle_item_loaded(inv_item)
 
 
 ## -- signals --

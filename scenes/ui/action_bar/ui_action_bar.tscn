@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dx8fctcgp1stc"]
+[gd_scene load_steps=7 format=3 uid="uid://dx8fctcgp1stc"]
 
 [ext_resource type="Theme" uid="uid://d3hq7cut50woy" path="res://resources/config/ui/ui_theme.tres" id="1_i5wd4"]
 [ext_resource type="Script" path="res://scenes/ui/action_bar/ui_action_bar.gd" id="1_srgu8"]
 [ext_resource type="PackedScene" uid="uid://vayujw0a8tl6" path="res://scenes/ui/action_bar/ui_action_bar_slot.tscn" id="1_v580u"]
+[ext_resource type="PackedScene" uid="uid://cxtu01o27robl" path="res://systems/save_and_load_system/scenes/save_load_component.tscn" id="4_48c4e"]
+[ext_resource type="Script" path="res://systems/save_and_load_system/scripts/save_data_types/RActionBarSlotMappingSaveData.gd" id="5_bvxlc"]
+
+[sub_resource type="Resource" id="Resource_1eckx"]
+script = ExtResource("5_bvxlc")
+index = 0
+item_id = 0
 
 [node name="UIActionBar" type="Control"]
 layout_mode = 3
@@ -60,3 +67,7 @@ index = 6
 [node name="UIActionBarSlot7" parent="MainPanel/HBoxContainer" instance=ExtResource("1_v580u")]
 layout_mode = 2
 index = 7
+
+[node name="SaveLoadComponent" parent="." instance=ExtResource("4_48c4e")]
+save_filename = "action_bar_slot_mappings"
+save_data_type = SubResource("Resource_1eckx")
