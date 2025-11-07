@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scenes/ui/menus/crafting_menus/crafting_book/ingredient_panel/ingredient_panel.gd" id="1_crblw"]
 [ext_resource type="Texture2D" uid="uid://bavk4a3vq7nos" path="res://resources/textures/crafting/widows_umbra.tres" id="2_vj1yu"]
-[ext_resource type="PackedScene" uid="uid://bxkflma7lqn7u" path="res://tool_tip_component.tscn" id="3_g30lq"]
-[ext_resource type="PackedScene" uid="uid://dri8sutbtih3p" path="res://ingredient_tooltip.tscn" id="4_oe3ll"]
+[ext_resource type="PackedScene" uid="uid://bxkflma7lqn7u" path="res://scenes/ui/tooltips/tooltip_component/tooltip_component.tscn" id="3_g30lq"]
+[ext_resource type="PackedScene" uid="uid://dri8sutbtih3p" path="res://scenes/ui/tooltips/ingredient_tooltip/ingredient_tooltip.tscn" id="4_oe3ll"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ywhos"]
 

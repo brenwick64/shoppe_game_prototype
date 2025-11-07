@@ -31,7 +31,7 @@ GlobalTileManager="*res://systems/tile_system/scripts/GlobalTileManager.gd"
 GlobalSaveLoadManager="*res://systems/save_and_load_system/scripts/GlobalSaveLoadManager.gd"
 GlobalMessageManager="*res://systems/chat_and_message_system/scripts/GlobalMessageManager.gd"
 GlobalTaskManager="*res://systems/task_system/scripts/GlobalTaskManager.gd"
-GlobalPlayerInventory="*res://GlobalPlayerInventory.gd"
+GlobalPlayerInventory="*res://systems/inventory_system/scripts/GlobalPlayerInventory.gd"
 
 [display]
 

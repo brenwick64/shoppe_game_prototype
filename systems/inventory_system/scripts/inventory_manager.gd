@@ -1,3 +1,4 @@
+##DEPRECATED - to phase out in favor of GlobalPlayerInventory class
 class_name InventoryManager
 extends Node
 
@@ -20,10 +21,10 @@ func _ready() -> void:
 	else: _load_inventory()
 		
 	# connect signals
-	inventory.item_added.connect(_on_item_added)
-	inventory.item_updated.connect(_on_item_updated)
-	inventory.item_depleted.connect(_on_item_depleted)
-		
+	#inventory.item_added.connect(_on_item_added)
+	#inventory.item_updated.connect(_on_item_updated)
+	#inventory.item_depleted.connect(_on_item_depleted)
+		#
 	## allows UI nodes to build and connect signals first
 	#call_deferred("_update_inventory_ui")
 
@@ -53,15 +54,15 @@ func _create_new_inventory():
 
 
 ## -- signals --
-func _on_item_added(new_item: RInventoryItem) -> void:
-	inventory_ui.handle_item_added(new_item)
-	_save_inventory()
-
-func _on_item_updated(item: RInventoryItem) -> void:
-	inventory_ui.handle_item_updated(item)
-	_save_inventory()
-
-func _on_item_depleted(item_id: int) -> void:
-	item_depleted.emit(item_id)
-	inventory_ui.handle_item_depleted(item_id)
-	_save_inventory()
+#func _on_item_added(new_item: RInventoryItem) -> void:
+	#inventory_ui.handle_item_added(new_item)
+	#_save_inventory()
+#
+#func _on_item_updated(item: RInventoryItem) -> void:
+	#inventory_ui.handle_item_updated(item)
+	#_save_inventory()
+#
+#func _on_item_depleted(item_id: int) -> void:
+	#item_depleted.emit(item_id)
+	#inventory_ui.handle_item_depleted(item_id)
+	#_save_inventory()

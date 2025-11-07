@@ -56,8 +56,9 @@ func add_items(inv_items: Array[RInventoryItem]) -> void:
 		add_item(inv_item.item_id, inv_item.count)
 
 func remove_item(item_id: int, count: int) -> void:
+	var item_data = GlobalItemDb.get_item_by_id(item_id)
 	var item_index: int = _get_item_index(item_id)
-	if not item_index:
+	if item_index == -1:
 		push_error("Inventory error: attempted to remove non existing item.")
 	var updated_item: RInventoryItem = _update_item((count * -1), item_index)
 	if updated_item.count > 0:

@@ -22,12 +22,20 @@ func _ready() -> void:
 	physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
 	GlobalMessageManager.add_console_message("INFO", player_name + " has entered the game")
 	name_label.text = "<" + player_name + ">"
+	
+	GlobalItemSpawner.spawn_item_pickup(
+		102,
+		10,
+		global_position,
+		global_position + Vector2(10, 10),
+		self
+	)
 
 
 ## -- public methods --
 func pickup(item_id: int, count: int) -> void:
 	pickup_sound.play_sound()
-	inventory_manager.inventory.add_item(item_id, count)
+	GlobalPlayerInventory.add_item(item_id, count)
 
 
 ## -- overrides --

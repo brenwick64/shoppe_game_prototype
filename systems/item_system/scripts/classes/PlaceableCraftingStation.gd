@@ -54,7 +54,7 @@ func _on_interactable_interacted(interactor: Node2D) -> void:
 	if not interactor_parent is Player: return
 	if lootable_component.lootable_items:
 		var looted_items: Array[RInventoryItem] = lootable_component.loot_all_items()
-		interactor_parent.inventory_manager.inventory.add_items(looted_items)
+		GlobalPlayerInventory.add_items(looted_items)
 	else:
 		menu_manager.toggle_menu(CRAFTING_MENU_NAME, self, interactor_parent)
 

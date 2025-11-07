@@ -19,7 +19,7 @@ func deposit_items(depositor: Node2D, item_id: int, count: int) -> void:
 
 func withdraw_items(player: Player) -> void:
 	var items: Array[RInventoryItem] = lootable_component.loot_all_items()
-	player.inventory_manager.inventory.add_items(items)
+	GlobalPlayerInventory.add_items(items)
 
 
 ## -- helper functions --

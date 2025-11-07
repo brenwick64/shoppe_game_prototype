@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dri8sutbtih3p"]
 
-[ext_resource type="Script" path="res://ingredient_tooltip.gd" id="1_rbko5"]
+[ext_resource type="Script" path="res://scenes/ui/tooltips/ingredient_tooltip/ingredient_tooltip.gd" id="1_rbko5"]
 [ext_resource type="Theme" uid="uid://dofxggolabuhr" path="res://resources/config/ui/crafting_book.tres" id="3_3i555"]
 
 [node name="IngredientToolTip" type="Panel"]

@@ -97,4 +97,4 @@ func _spawn_placeable() -> void:
 	_current_preview.placeable_item_slot.add_item(placeable_ins)
 
 func _remove_item_from_inv() -> void:
-	player_inventory_manager.inventory.remove_item(_current_item_data.item_id, 1)
+	GlobalPlayerInventory.remove_item(_current_item_data.item_id, 1)

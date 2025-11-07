@@ -73,10 +73,6 @@ func set_recipe_tag(new_tag: String) -> void:
 func _filter_recipes() -> void:
 	filtered_recipes = all_recipes.filter(func(r: RRecipe): return recipe_tag in r.recipe_tags)
 
-func _remove_player_items(player: Player, inv_items: Array[RInventoryItem]) -> void:
-	for inv_item: RInventoryItem in inv_items:
-		player.inventory_manager.inventory.remove_item(inv_item.item_id, inv_item.count)
-
 
 ## -- signals --
 func _on_new_recipe_selected(new_recipe: RRecipe) -> void:
@@ -85,11 +81,11 @@ func _on_new_recipe_selected(new_recipe: RRecipe) -> void:
 
 func _on_craft_btn_pressed() -> void:
 	if not current_recipe: return
-	var has_items: bool = _current_toggled_by.inventory_manager.inventory.has_items(current_recipe.input_items)
+	var has_items: bool = GlobalPlayerInventory.has_items(current_recipe.input_items)
 	#TODO: show notification
 	if not has_items: 
 		decline_sound.play_sound()
 	if has_items:
-		_remove_player_items(_current_toggled_by, current_recipe.input_items)
+		GlobalPlayerInventory.remove_items(current_recipe.input_items)
 		_current_toggled_from.craft(current_recipe, _current_toggled_by) 
 		hide_menu(false)
