@@ -5,9 +5,12 @@ var go_shopping_task_scene: PackedScene = preload("res://systems/task_system/tas
 var pickup_quest_task: PackedScene = preload("res://systems/task_system/tasks/pickup_quest/pickup_quest.tscn")
 
 func get_new_task() -> Task:
-	#var flip: bool = Utils.roll_percentage(0.5)
-	return _get_pickup_quest_task()
-	#return _get_go_shopping_task() if flip else _get_random_harvest_task()
+	var task_generator: Array[Callable] = [
+		_get_go_shopping_task,
+		_get_pickup_quest_task,
+		_get_random_harvest_task
+	]
+	return task_generator.pick_random().call()
 
 func _get_pickup_quest_task() -> Task:
 	var pickup_quest_ins: Task = pickup_quest_task.instantiate()
