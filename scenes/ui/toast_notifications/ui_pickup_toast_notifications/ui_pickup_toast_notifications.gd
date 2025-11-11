@@ -3,22 +3,22 @@ extends Control
 
 @export var parent_canvas_layer: CanvasLayer
 
-@onready var item_toast_scene: PackedScene = preload("res://item_toast_ui.tscn")
-
+@onready var item_toast_scene: PackedScene = preload("res://scenes/ui/toast_notifications/item_toast_ui/item_toast_ui.tscn")
 @onready var v_box_container: VBoxContainer = $MarginContainer/VBoxContainer
-@onready var test_spawner: Timer = $TestSpawner
-
-var TEST_ITEM_IDS = [0, 1, 101, 102, 80]
 
 
 ## -- public methods --
-func add_item(item_id: int, count: int) -> void:
+func add_pickup_toast(item_id: int, count: int) -> void:
 	var matching_toast: ItemToastUI = _get_existing_item_toast(item_id)
 	if matching_toast:
 		matching_toast.update_toast(item_id, count)
 	else:
 		_add_new_toast(item_id, count)
 
+
+## -- overrides --
+func _ready() -> void:
+	GlobalPlayerInventory.item_aquired.connect(_on_item_aquired)
 
 ## -- helper functions --
 func _add_new_toast(item_id: int, count: int) -> void:
@@ -36,7 +36,5 @@ func _get_existing_item_toast(item_id: int) -> Control:
 
 
 ## -- signals --
-func _on_test_spawner_timeout() -> void:
-	var item_id: int = TEST_ITEM_IDS.pick_random()
-	var count: int = randf_range(1, 3)
-	add_item(item_id, count)
+func _on_item_aquired(item_id: int, count: int) -> void:
+	add_pickup_toast(item_id, count)

@@ -28,7 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://ttyaryp0n5ea" path="res://scenes/ui/console/ui_console.tscn" id="19_wvxil"]
 [ext_resource type="Script" path="res://systems/adventurer_system/scenes/adventurer_spawner.gd" id="20_bowqb"]
 [ext_resource type="PackedScene" uid="uid://q1jxj01w08oq" path="res://scenes/characters/adventurer/adventurer.tscn" id="21_soude"]
-[ext_resource type="PackedScene" uid="uid://cwxip4u4r3acy" path="res://ui_pickup_toast_notifications.tscn" id="30_41e7w"]
+[ext_resource type="PackedScene" uid="uid://cwxip4u4r3acy" path="res://scenes/ui/toast_notifications/ui_pickup_toast_notifications/ui_pickup_toast_notifications.tscn" id="30_41e7w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yikv7"]
 radius = 103.121

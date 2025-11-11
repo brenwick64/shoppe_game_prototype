@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://cwxip4u4r3acy"]
 
-[ext_resource type="Script" path="res://ui_pickup_toast_notifications.gd" id="1_tnkbh"]
+[ext_resource type="Script" path="res://scenes/ui/toast_notifications/ui_pickup_toast_notifications/ui_pickup_toast_notifications.gd" id="1_tnkbh"]
 
 [node name="UIPickupToastNotifications" type="Control"]
-custom_minimum_size = Vector2(300, 10000)
+custom_minimum_size = Vector2(500, 10000)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -23,8 +23,3 @@ theme_override_constants/margin_bottom = 20
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 alignment = 2
-
-[node name="TestSpawner" type="Timer" parent="."]
-autostart = true
-
-[connection signal="timeout" from="TestSpawner" to="." method="_on_test_spawner_timeout"]

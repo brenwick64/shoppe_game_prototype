@@ -1,6 +1,7 @@
 class_name Inventory
 extends Node
 
+signal item_aquired(item_id: int, count: int)
 signal item_added(inv_item: RInventoryItem)
 signal item_updated(inv_item: RInventoryItem)
 signal item_depleted(item_id: int)
@@ -35,6 +36,7 @@ func has_items(inv_items: Array[RInventoryItem]) -> bool:
 	return true
 
 func add_item(item_id: int, count: int) -> void:
+	item_aquired.emit(item_id, count)
 	var item_index: int = _get_item_index(item_id)
 	if item_index == -1: # new item
 		var added_item: RInventoryItem = _insert_item(item_id, count)

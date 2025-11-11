@@ -1,6 +1,7 @@
 # GlobalPlayerInventory.gd
 extends Node
 
+signal item_aquired(item_id: int, count: int)
 signal item_added(inv_item: RInventoryItem)
 signal item_updated(inv_item: RInventoryItem)
 signal item_depleted(item_id: int)
@@ -25,6 +26,7 @@ func _ready() -> void:
 	inventory.item_added.connect(_on_item_added)
 	inventory.item_updated.connect(_on_item_updated)
 	inventory.item_depleted.connect(_on_item_depleted)
+	inventory.item_aquired.connect(_on_item_aquired)
 
 
 ## -- public methods --
@@ -96,3 +98,6 @@ func _on_item_updated(item: RInventoryItem) -> void:
 func _on_item_depleted(item_id: int) -> void:
 	item_depleted.emit(item_id)
 	_save_inventory()
+
+func _on_item_aquired(item_id: int, count: int) -> void:
+	item_aquired.emit(item_id, count)
