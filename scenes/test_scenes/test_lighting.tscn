@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bmce4hybdi20v"]
+[gd_scene load_steps=34 format=3 uid="uid://bmce4hybdi20v"]
 
 [ext_resource type="PackedScene" uid="uid://d05xg5vjtcvs1" path="res://systems/day_night_system/scenes/day_night_manager/day_night_manager.tscn" id="1_0imsq"]
 [ext_resource type="PackedScene" uid="uid://csogmde7287ni" path="res://scenes/game_objects/player_camera/player_camera.tscn" id="2_vxtlm"]
@@ -14,9 +14,11 @@
 [ext_resource type="PackedScene" uid="uid://tgq1yw7e6d6e" path="res://scenes/ui/menus/crafting_menus/crafting_table/ui_crafting_table_menu.tscn" id="7_gpmj2"]
 [ext_resource type="PackedScene" uid="uid://eeg5x8snkfqw" path="res://scenes/characters/firefly/firefly.tscn" id="7_ojd8x"]
 [ext_resource type="PackedScene" uid="uid://b18gfpxxxcnhl" path="res://scenes/ui/menus/crafting_menus/alchemy_station/ui_alchemy_table_menu.tscn" id="8_qprhu"]
+[ext_resource type="PackedScene" uid="uid://cyb886a40j61g" path="res://ui_gold_pouch.tscn" id="9_gta17"]
 [ext_resource type="PackedScene" uid="uid://c5dukr1f4ynqr" path="res://scenes/ui/menus/crafting_menus/crafting_book/ui_crafting_book.tscn" id="9_rs7ux"]
 [ext_resource type="PackedScene" uid="uid://bj616aj7lg3c7" path="res://scenes/ui/settings/settings.tscn" id="9_u8now"]
 [ext_resource type="AudioStream" uid="uid://dxv22jeorx386" path="res://audio/music/the_castle.wav" id="10_wpe11"]
+[ext_resource type="Script" path="res://ui_gold_pouch.gd" id="10_wxqun"]
 [ext_resource type="PackedScene" uid="uid://ck0xc31d7h62r" path="res://scenes/game_objects/shoppe_furniture/shoppe_furniture.tscn" id="11_g6s6c"]
 [ext_resource type="PackedScene" uid="uid://8hkhsmiruadb" path="res://scenes/objects/bird_area/bird_area.tscn" id="11_xlv5u"]
 [ext_resource type="PackedScene" uid="uid://1w3dnrty1m8p" path="res://scenes/game_objects/shoppe_items/shoppe_items.tscn" id="12_p0erb"]
@@ -88,6 +90,17 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="TempUIGameUtils" parent="MainUI" instance=ExtResource("5_67lla")]
+
+[node name="UIGoldPouch" parent="MainUI" instance=ExtResource("9_gta17")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -135.0
+offset_top = 7.0
+offset_right = -95.0
+offset_bottom = 47.0
+grow_horizontal = 0
+script = ExtResource("10_wxqun")
 
 [node name="MenuUI" type="CanvasLayer" parent="." groups=["menu_ui"]]
 layer = 2

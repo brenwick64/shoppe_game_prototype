@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyb886a40j61g"]
+
+[ext_resource type="PackedScene" uid="uid://cgas7a3ix2k3e" path="res://scenes/ui/gold_count/ui_gold_count.tscn" id="1_umdh7"]
+
+[node name="UIGoldPouch" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="UIGoldCount" parent="." instance=ExtResource("1_umdh7")]
