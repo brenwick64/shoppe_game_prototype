@@ -1,0 +1,58 @@
+[gd_scene load_steps=12 format=3 uid="uid://dphuceg0wphca"]
+
+[ext_resource type="Texture2D" uid="uid://dkscsp1042kyy" path="res://assets/objects/training_dummy.png" id="1_jdxo3"]
+[ext_resource type="Script" path="res://training_dummy.gd" id="1_ucw2r"]
+[ext_resource type="Shader" path="res://shaders/tree_shake.gdshader" id="2_r8l3o"]
+[ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="4_milgq"]
+[ext_resource type="AudioStream" uid="uid://dbd22idehys6b" path="res://audio/combat/dummy_hit_2.wav" id="5_nhocg"]
+[ext_resource type="Script" path="res://systems/audio_system/scripts/RAudioStreamData.gd" id="6_n2n76"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oa151"]
+shader = ExtResource("2_r8l3o")
+shader_parameter/shake_intensity = 0.0
+shader_parameter/shake_speed = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kk570"]
+atlas = ExtResource("1_jdxo3")
+region = Rect2(3, 5, 26, 23)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fwjgt"]
+radius = 4.12311
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ygkty"]
+radius = 11.0
+height = 24.0
+
+[sub_resource type="Resource" id="Resource_ql4w7"]
+script = ExtResource("6_n2n76")
+unique_name = "Dummy Hit"
+tags = Array[String]([])
+audio_stream = ExtResource("5_nhocg")
+decibel_scalar = -4.0
+pitch_range_percent = Vector2(0.9, 1.1)
+
+[node name="TrainingDummy" type="StaticBody2D"]
+script = ExtResource("1_ucw2r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_oa151")
+position = Vector2(0, -12)
+texture = SubResource("AtlasTexture_kk570")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_fwjgt")
+
+[node name="EnemyHurtBox" type="Area2D" parent="."]
+collision_layer = 16384
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtBox"]
+position = Vector2(0, -12)
+shape = SubResource("CapsuleShape2D_ygkty")
+debug_color = Color(0.634191, 0.522605, 0.208108, 0.42)
+
+[node name="HitSound" parent="." instance=ExtResource("4_milgq")]
+audio_data = SubResource("Resource_ql4w7")
+
+[connection signal="area_entered" from="EnemyHurtBox" to="." method="_on_enemy_hurt_box_area_entered"]

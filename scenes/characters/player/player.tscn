@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://x0hp764aoxfp"]
+[gd_scene load_steps=49 format=3 uid="uid://x0hp764aoxfp"]
 
 [ext_resource type="Texture2D" uid="uid://cn53uads4bci0" path="res://resources/textures/adventurer_spritesheets/character_001.png" id="1_1m8w0"]
 [ext_resource type="Script" path="res://scenes/components/player_input_component/player_input_component.gd" id="1_bfyut"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://b70c2uctc5fc0" path="res://systems/audio_system/scenes/movement_sound_component/movement_sound_component.tscn" id="6_673vk"]
 [ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="10_fi7sg"]
 [ext_resource type="Resource" uid="uid://42yhgm406gdt" path="res://resources/r_audio_stream_data/pickup/pickup_sound.tres" id="11_u6tj0"]
+[ext_resource type="Script" path="res://scenes/characters/player/player_equiped_weapon.gd" id="13_wi3nt"]
+[ext_resource type="PackedScene" uid="uid://dvcmrxa73nlss" path="res://scenes/weapons/test_dagger.tscn" id="14_yal35"]
 [ext_resource type="FontFile" uid="uid://5dmksnqi7msu" path="res://assets/fonts/Abaddon Light.ttf" id="15_8m6wb"]
 [ext_resource type="Theme" uid="uid://bev6choaoujtv" path="res://resources/config/ui/placeholder_themes.tres" id="17_p4sdw"]
 
@@ -215,6 +217,96 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_2ykem"]
+length = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponPivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_icr3x"]
+resource_name = "stab_right"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponPivot:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-5, -4), Vector2(10, -4), Vector2(-5, -4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponPivot:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.5708, 1.5708]
+}
+
+[sub_resource type="Animation" id="Animation_o4nqn"]
+resource_name = "stab_left"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponPivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(5, -4), Vector2(-8, -4), Vector2(5, -4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [4.71239, 4.71239]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1b0f1"]
+_data = {
+"RESET": SubResource("Animation_2ykem"),
+"stab_left": SubResource("Animation_o4nqn"),
+"stab_right": SubResource("Animation_icr3x")
+}
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_input_component", "movement_component", "animation_component", "movement_sound") groups=["player"]]
 z_index = 2
 texture_filter = 1
@@ -274,6 +366,20 @@ sprite_frames = SubResource("SpriteFrames_y4dbi")
 animation = &"idle_down"
 autoplay = "idle_down"
 
+[node name="PlayerWeaponManager" type="Node2D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("13_wi3nt")
+player = NodePath("..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerWeaponManager"]
+libraries = {
+"": SubResource("AnimationLibrary_1b0f1")
+}
+
+[node name="WeaponPivot" type="Node2D" parent="PlayerWeaponManager"]
+
+[node name="TestWeapon" parent="PlayerWeaponManager/WeaponPivot" instance=ExtResource("14_yal35")]
+visible = false
+
 [node name="PlayerInputComponent" type="Node" parent="."]
 script = ExtResource("1_bfyut")
 
@@ -316,5 +422,6 @@ theme_override_font_sizes/font_size = 8
 text = "E"
 
 [connection signal="closest_interactable_updated" from="Interactor" to="." method="_on_interactor_closest_interactable_updated"]
+[connection signal="animation_finished" from="PlayerWeaponManager/AnimationPlayer" to="PlayerWeaponManager" method="_on_animation_player_animation_finished"]
 [connection signal="moveable_moved" from="MovementComponent" to="." method="_on_movement_component_moveable_moved"]
 [connection signal="animation_state_changed" from="AnimationComponent" to="." method="_on_animation_component_animation_state_changed"]

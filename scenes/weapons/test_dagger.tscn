@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvcmrxa73nlss"]
+
+[ext_resource type="Texture2D" uid="uid://c2wqbqhakln8v" path="res://assets/objects/swords.png" id="1_es6mr"]
+[ext_resource type="Script" path="res://scenes/weapons/test_weapon.gd" id="1_xco28"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_li40q"]
+atlas = ExtResource("1_es6mr")
+region = Rect2(1, 10, 17, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7duuh"]
+size = Vector2(6.875, 12.5)
+
+[node name="TestDagger" type="Node2D"]
+visible = false
+script = ExtResource("1_xco28")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+rotation = 4.71239
+texture = SubResource("AtlasTexture_li40q")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 2048
+collision_mask = 16384
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_7duuh")
+disabled = true

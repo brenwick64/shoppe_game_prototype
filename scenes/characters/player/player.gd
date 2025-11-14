@@ -66,7 +66,7 @@ func _check_tile_audio() -> void:
 		_current_terrain = terrain_type
 
 	
-## -- signals --s
+## -- signals --
 func _on_animation_component_animation_state_changed(state: String) -> void:
 	if state == "moving":
 		movement_sound.play_loop()

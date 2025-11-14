@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bmce4hybdi20v"]
+[gd_scene load_steps=35 format=3 uid="uid://bmce4hybdi20v"]
 
 [ext_resource type="PackedScene" uid="uid://d05xg5vjtcvs1" path="res://systems/day_night_system/scenes/day_night_manager/day_night_manager.tscn" id="1_0imsq"]
 [ext_resource type="PackedScene" uid="uid://csogmde7287ni" path="res://scenes/game_objects/player_camera/player_camera.tscn" id="2_vxtlm"]
@@ -31,6 +31,7 @@
 [ext_resource type="Script" path="res://systems/adventurer_system/scenes/adventurer_spawner.gd" id="20_bowqb"]
 [ext_resource type="PackedScene" uid="uid://q1jxj01w08oq" path="res://scenes/characters/adventurer/adventurer.tscn" id="21_soude"]
 [ext_resource type="PackedScene" uid="uid://cwxip4u4r3acy" path="res://scenes/ui/toast_notifications/ui_pickup_toast_notifications/ui_pickup_toast_notifications.tscn" id="30_41e7w"]
+[ext_resource type="PackedScene" uid="uid://dphuceg0wphca" path="res://training_dummy.tscn" id="32_d17l6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yikv7"]
 radius = 103.121
@@ -142,6 +143,7 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 2
 parent_canvas_layer = NodePath("..")
 
 [node name="ChatMessagesUI" parent="." instance=ExtResource("5_76mqh")]
@@ -226,7 +228,7 @@ debug_color = Color(1, 1, 1, 0.42)
 
 [node name="AdventurerSpawner" type="Node2D" parent="PermanentGameObjects"]
 script = ExtResource("20_bowqb")
-max_adventurers = 5
+max_adventurers = 0
 adventurer_scene = ExtResource("21_soude")
 
 [node name="Timer" type="Timer" parent="PermanentGameObjects/AdventurerSpawner"]
@@ -249,6 +251,8 @@ y_sort_enabled = true
 [node name="Player" parent="." instance=ExtResource("4_p0uxn")]
 y_sort_enabled = true
 position = Vector2(-41, -19)
+
+[node name="TrainingDummy" parent="." instance=ExtResource("32_d17l6")]
 
 [connection signal="item_deselected" from="Managers/EquippedItemManager" to="MainUI/UIActionBar" method="_on_equipped_item_manager_item_deselected"]
 [connection signal="tool_deselected" from="Managers/EquippedItemManager" to="MainUI/TempUIGameUtils" method="_on_equipped_item_manager_tool_deselected"]

@@ -69,6 +69,8 @@ func _handle_equipped_item(item_data: RItemData) -> void:
 		shoppe_furniture_handler.set_item(item_data)
 	elif item_data is RShoppeItemData:
 		shoppe_item_handler.set_item(item_data)
+	elif item_data is RWeaponData:
+		print("weapon")
 
 func _handle_equipped_tool(tool: RToolItemData) -> void:
 	if tool.tool_name == "shoppe_item_remover":
