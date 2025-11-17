@@ -16,6 +16,8 @@
 script = ExtResource("1_vpm26")
 
 [node name="DayNightModulate" parent="." instance=ExtResource("1_ck73m")]
+day_color = Color(0.682172, 0.752315, 0.888794, 1)
+night_color = Color(0.195064, 0.271073, 0.423969, 1)
 
 [node name="NightCricketsLoop" parent="." instance=ExtResource("2_gukxd")]
 bus = &"ambience"

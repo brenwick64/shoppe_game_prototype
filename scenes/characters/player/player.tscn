@@ -244,34 +244,6 @@ tracks/1/keys = {
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_icr3x"]
-resource_name = "stab_right"
-length = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WeaponPivot:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(-5, -4), Vector2(10, -4), Vector2(-5, -4)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponPivot:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [1.5708, 1.5708]
-}
-
 [sub_resource type="Animation" id="Animation_o4nqn"]
 resource_name = "stab_left"
 length = 0.25
@@ -298,6 +270,34 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [4.71239, 4.71239]
+}
+
+[sub_resource type="Animation" id="Animation_icr3x"]
+resource_name = "stab_right"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponPivot:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-5, -4), Vector2(10, -4), Vector2(-5, -4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponPivot:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.5708, 1.5708]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1b0f1"]
@@ -378,7 +378,6 @@ libraries = {
 [node name="WeaponPivot" type="Node2D" parent="PlayerWeaponManager"]
 
 [node name="TestWeapon" parent="PlayerWeaponManager/WeaponPivot" instance=ExtResource("14_yal35")]
-visible = false
 
 [node name="PlayerInputComponent" type="Node" parent="."]
 script = ExtResource("1_bfyut")

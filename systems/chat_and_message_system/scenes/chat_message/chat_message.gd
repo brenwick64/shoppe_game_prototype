@@ -5,7 +5,7 @@ signal deleted(message_id: String)
 
 @onready var despawn_timer: Timer = $DespawnTimer
 
-const Y_OFFSET: float = -65.0
+#const Y_OFFSET: float = -65.0
 
 var message_id: String
 var message_owner: Node2D

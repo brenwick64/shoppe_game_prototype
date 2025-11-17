@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvcmrxa73nlss"]
+[gd_scene load_steps=9 format=3 uid="uid://dvcmrxa73nlss"]
 
 [ext_resource type="Texture2D" uid="uid://c2wqbqhakln8v" path="res://assets/objects/swords.png" id="1_es6mr"]
 [ext_resource type="Script" path="res://scenes/weapons/test_weapon.gd" id="1_xco28"]
+[ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="3_inb2s"]
+[ext_resource type="AudioStream" uid="uid://mtyh4t1eljes" path="res://audio/combat/knife_thust_1.wav" id="4_ew6ku"]
+[ext_resource type="Script" path="res://systems/audio_system/scripts/RAudioStreamData.gd" id="5_ldvbg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_li40q"]
 atlas = ExtResource("1_es6mr")
@@ -9,6 +12,14 @@ region = Rect2(1, 10, 17, 7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7duuh"]
 size = Vector2(6.875, 12.5)
+
+[sub_resource type="Resource" id="Resource_drwp2"]
+script = ExtResource("5_ldvbg")
+unique_name = "Dagger Attack"
+tags = Array[String]([])
+audio_stream = ExtResource("4_ew6ku")
+decibel_scalar = -10.0
+pitch_range_percent = Vector2(0.9, 1.1)
 
 [node name="TestDagger" type="Node2D"]
 visible = false
@@ -27,3 +38,6 @@ collision_mask = 16384
 position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_7duuh")
 disabled = true
+
+[node name="AttackSound" parent="." instance=ExtResource("3_inb2s")]
+audio_data = SubResource("Resource_drwp2")
