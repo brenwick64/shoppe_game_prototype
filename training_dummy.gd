@@ -14,7 +14,7 @@ func _shake_sprite() -> void:
 func _add_floating_text(text: String) -> void:
 	var floating_text_ui: FloatingTextUI = get_tree().get_first_node_in_group("floating_text_ui")
 	if not floating_text_ui: return
-	floating_text_ui.add_text(self, text)
+	floating_text_ui.add_text(self, text, -65)
 
 
 ## -- signals --

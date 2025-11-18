@@ -1,12 +1,12 @@
 class_name FloatingText
 extends Label
 
-@export var Y_OFFSET: float = -65.0
 @export var FLOAT_DISTANCE: float = 20.0
 @export var FLOAT_DURATION: float = 0.75
 
 var parent_node: Node2D
 var floating_text: String
+var y_offset: float
 
 # Extra offset from the float-up animation
 var float_offset_y: float = 0.0
@@ -24,7 +24,7 @@ func _process(_delta: float) -> void:
 	var screen_pos: Vector2 = canvas_transform * parent_node.global_position
 
 	var x_offset: float = size.x / 2.0
-	position = screen_pos + Vector2(-x_offset, Y_OFFSET + float_offset_y)
+	position = screen_pos + Vector2(-x_offset, y_offset + float_offset_y)
 
 
 ## -- helper functions --

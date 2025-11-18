@@ -15,11 +15,12 @@ func _physics_process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("click"):
 		if test_weapon.is_attacking: return
-		
-		var mouse_pos: Vector2 = get_global_mouse_position()
-		var direction_str: String = _get_mouse_side(player.global_position, mouse_pos)
 		test_weapon.start_attack()
-		animation_player.play("stab_" + direction_str)
+		animation_player.play("slash_" + player.current_direction)
+	if event.is_action_pressed("right_click"):
+		if test_weapon.is_attacking: return
+		test_weapon.start_attack()
+		animation_player.play("stab_" + player.current_direction)
 
 
 func _get_mouse_side(player_pos: Vector2, mouse_pos: Vector2) -> String:
@@ -28,4 +29,4 @@ func _get_mouse_side(player_pos: Vector2, mouse_pos: Vector2) -> String:
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	test_weapon.end_attack	()
+	test_weapon.end_attack()

@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/managers/equipped_item_manager/equipped_item_manager.gd" id="1_sgwao"]
 [ext_resource type="Script" path="res://scenes/managers/shoppe_item_handler.gd" id="3_5701j"]
 [ext_resource type="Script" path="res://scenes/managers/shoppe_remover_handler.gd" id="4_kv70c"]
-[ext_resource type="Script" path="res://weapon_handler.gd" id="5_k43vc"]
+[ext_resource type="Script" path="res://systems/combat_system/weapon_handler.gd" id="5_k43vc"]
 
 [node name="EquippedItemManager" type="Node" node_paths=PackedStringArray("shoppe_furniture_handler", "shoppe_item_handler", "shoppe_remover_handler")]
 script = ExtResource("1_sgwao")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b03t6wfqgdf54"]
 
-[ext_resource type="Script" path="res://floating_text_ui.gd" id="1_d3iwn"]
+[ext_resource type="Script" path="res://scenes/ui/floating_text/floating_text_ui.gd" id="1_d3iwn"]
 
 [node name="FloatingTextUI" type="CanvasLayer" groups=["floating_text_ui"]]
 script = ExtResource("1_d3iwn")

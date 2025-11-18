@@ -15,8 +15,8 @@ extends CharacterBody2D
 @onready var name_label: Label = $NameLabel
 @onready var interact_icon: Panel = $InteractIcon
 
-
-var _current_terrain: String
+var current_direction: String = "down"
+var current_terrain: String
 
 func _ready() -> void:
 	physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
@@ -33,6 +33,9 @@ func pickup(item_id: int, count: int) -> void:
 ## -- overrides --
 func _physics_process(delta: float) -> void:
 	var input_direction: Vector2 = player_input_component.get_input_direction()
+	var direction_name: String = _get_direction_name(input_direction)
+	if direction_name:
+		current_direction = _get_direction_name(input_direction)
 	animation_component.handle_movement(input_direction, delta)
 	movement_component.handle_movement(input_direction, delta)
 
@@ -57,15 +60,24 @@ func _check_tile_audio() -> void:
 		if terrain != "":
 			terrain_type = terrain
 	# if the type changes, switch track, and re-loop
-	if terrain_type != _current_terrain:
+	if terrain_type != current_terrain:
 		var new_tracks: Array[RAudioStreamData] = GlobalAudioManager.get_movement_audio_tracks("move_" + terrain_type)
 		if not new_tracks:
 			push_error("Player error: no movement sound found.")
 			return
 		movement_sound.switch_tracks(new_tracks)
-		_current_terrain = terrain_type
+		current_terrain = terrain_type
 
+func _get_direction_name(direction: Vector2) -> String:
+	if direction == Vector2.ZERO: return ""
 	
+	# Pick whichever axis has the strongest component
+	if abs(direction.x) > abs(direction.y):
+		return "right" if direction.x > 0 else "left"
+	else:
+		return "down" if direction.y > 0 else "up"
+
+
 ## -- signals --
 func _on_animation_component_animation_state_changed(state: String) -> void:
 	if state == "moving":

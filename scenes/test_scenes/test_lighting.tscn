@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bmce4hybdi20v"]
+[gd_scene load_steps=44 format=3 uid="uid://bmce4hybdi20v"]
 
 [ext_resource type="PackedScene" uid="uid://d05xg5vjtcvs1" path="res://systems/day_night_system/scenes/day_night_manager/day_night_manager.tscn" id="1_0imsq"]
 [ext_resource type="PackedScene" uid="uid://csogmde7287ni" path="res://scenes/game_objects/player_camera/player_camera.tscn" id="2_vxtlm"]
@@ -14,11 +14,11 @@
 [ext_resource type="PackedScene" uid="uid://tgq1yw7e6d6e" path="res://scenes/ui/menus/crafting_menus/crafting_table/ui_crafting_table_menu.tscn" id="7_gpmj2"]
 [ext_resource type="PackedScene" uid="uid://eeg5x8snkfqw" path="res://scenes/characters/firefly/firefly.tscn" id="7_ojd8x"]
 [ext_resource type="PackedScene" uid="uid://b18gfpxxxcnhl" path="res://scenes/ui/menus/crafting_menus/alchemy_station/ui_alchemy_table_menu.tscn" id="8_qprhu"]
-[ext_resource type="PackedScene" uid="uid://cyb886a40j61g" path="res://ui_gold_pouch.tscn" id="9_gta17"]
+[ext_resource type="PackedScene" uid="uid://cyb886a40j61g" path="res://scenes/ui/gold_count/ui_gold_pouch.tscn" id="9_gta17"]
 [ext_resource type="PackedScene" uid="uid://c5dukr1f4ynqr" path="res://scenes/ui/menus/crafting_menus/crafting_book/ui_crafting_book.tscn" id="9_rs7ux"]
 [ext_resource type="PackedScene" uid="uid://bj616aj7lg3c7" path="res://scenes/ui/settings/settings.tscn" id="9_u8now"]
 [ext_resource type="AudioStream" uid="uid://dxv22jeorx386" path="res://audio/music/the_castle.wav" id="10_wpe11"]
-[ext_resource type="Script" path="res://ui_gold_pouch.gd" id="10_wxqun"]
+[ext_resource type="Script" path="res://scenes/ui/gold_count/ui_gold_pouch.gd" id="10_wxqun"]
 [ext_resource type="PackedScene" uid="uid://ck0xc31d7h62r" path="res://scenes/game_objects/shoppe_furniture/shoppe_furniture.tscn" id="11_g6s6c"]
 [ext_resource type="PackedScene" uid="uid://8hkhsmiruadb" path="res://scenes/objects/bird_area/bird_area.tscn" id="11_xlv5u"]
 [ext_resource type="PackedScene" uid="uid://1w3dnrty1m8p" path="res://scenes/game_objects/shoppe_items/shoppe_items.tscn" id="12_p0erb"]
@@ -27,18 +27,54 @@
 [ext_resource type="PackedScene" uid="uid://dx8fctcgp1stc" path="res://scenes/ui/action_bar/ui_action_bar.tscn" id="15_h53hr"]
 [ext_resource type="PackedScene" uid="uid://dbae2nfocdnev" path="res://scenes/managers/menu_manager/menu_manager.tscn" id="16_b22fq"]
 [ext_resource type="PackedScene" uid="uid://y013bxqj8ude" path="res://scenes/objects/quest_crate/quest_crate.tscn" id="16_bss1y"]
-[ext_resource type="PackedScene" uid="uid://b03t6wfqgdf54" path="res://floating_text_ui.tscn" id="17_q3qgh"]
+[ext_resource type="PackedScene" uid="uid://b03t6wfqgdf54" path="res://scenes/ui/floating_text/floating_text_ui.tscn" id="17_q3qgh"]
 [ext_resource type="PackedScene" uid="uid://ttyaryp0n5ea" path="res://scenes/ui/console/ui_console.tscn" id="19_wvxil"]
 [ext_resource type="Script" path="res://systems/adventurer_system/scenes/adventurer_spawner.gd" id="20_bowqb"]
 [ext_resource type="PackedScene" uid="uid://q1jxj01w08oq" path="res://scenes/characters/adventurer/adventurer.tscn" id="21_soude"]
 [ext_resource type="PackedScene" uid="uid://cwxip4u4r3acy" path="res://scenes/ui/toast_notifications/ui_pickup_toast_notifications/ui_pickup_toast_notifications.tscn" id="30_41e7w"]
 [ext_resource type="PackedScene" uid="uid://dphuceg0wphca" path="res://training_dummy.tscn" id="32_d17l6"]
+[ext_resource type="Script" path="res://test_enemy.gd" id="34_4ss7a"]
+[ext_resource type="PackedScene" uid="uid://crsh6e74t5tnf" path="res://enemy_hurt_box.tscn" id="35_5ftsv"]
+[ext_resource type="Texture2D" uid="uid://d1axs1dnnr04n" path="res://assets/enemies/Enemy07_02.png" id="35_xx3r1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yikv7"]
 radius = 103.121
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5iy8r"]
 radius = 94.6414
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sb5ae"]
+radius = 7.07107
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgiyo"]
+atlas = ExtResource("35_xx3r1")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etqad"]
+atlas = ExtResource("35_xx3r1")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pdxkq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgiyo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etqad")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uudlj"]
+radius = 5.0
 
 [node name="TestLighting" type="Node2D" groups=["main_scene"]]
 y_sort_enabled = true
@@ -257,6 +293,26 @@ position = Vector2(-41, -19)
 
 [node name="TrainingDummy" parent="." instance=ExtResource("32_d17l6")]
 
+[node name="TestEnemy" type="CharacterBody2D" parent="."]
+z_index = 2
+y_sort_enabled = true
+position = Vector2(-157, -47)
+script = ExtResource("34_4ss7a")
+
+[node name="EnemyHurtBox" parent="TestEnemy" instance=ExtResource("35_5ftsv")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestEnemy/EnemyHurtBox"]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_sb5ae")
+debug_color = Color(0.822705, 0.380432, 0.340867, 0.42)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TestEnemy"]
+sprite_frames = SubResource("SpriteFrames_pdxkq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestEnemy"]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_uudlj")
+
 [connection signal="item_deselected" from="Managers/EquippedItemManager" to="MainUI/UIActionBar" method="_on_equipped_item_manager_item_deselected"]
 [connection signal="tool_deselected" from="Managers/EquippedItemManager" to="MainUI/TempUIGameUtils" method="_on_equipped_item_manager_tool_deselected"]
 [connection signal="inventory_slot_depleted" from="MainUI/UIInventory" to="MainUI/UIActionBar" method="_on_ui_inventory_inventory_slot_depleted"]
@@ -265,3 +321,4 @@ position = Vector2(-41, -19)
 [connection signal="tool_focused" from="MainUI/TempUIGameUtils" to="Managers/EquippedItemManager" method="_on_temp_ui_game_utils_tool_focused"]
 [connection signal="timeout" from="PlayerCamera/CameraSpawner/SpawnTimer" to="PlayerCamera/CameraSpawner" method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="PermanentGameObjects/AdventurerSpawner/Timer" to="PermanentGameObjects/AdventurerSpawner" method="_on_timer_timeout"]
+[connection signal="area_entered" from="TestEnemy/EnemyHurtBox" to="TestEnemy" method="_on_enemy_hurt_box_area_entered"]

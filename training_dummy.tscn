@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dphuceg0wphca"]
+[gd_scene load_steps=13 format=3 uid="uid://dphuceg0wphca"]
 
 [ext_resource type="Texture2D" uid="uid://dkscsp1042kyy" path="res://assets/objects/training_dummy.png" id="1_jdxo3"]
 [ext_resource type="Script" path="res://training_dummy.gd" id="1_ucw2r"]
 [ext_resource type="Shader" path="res://shaders/tree_shake.gdshader" id="2_r8l3o"]
+[ext_resource type="PackedScene" uid="uid://crsh6e74t5tnf" path="res://enemy_hurt_box.tscn" id="4_ii042"]
 [ext_resource type="PackedScene" uid="uid://vx7l7yoxtgjd" path="res://systems/audio_system/scenes/one_shot_sound_component/one_shot_sound_component.tscn" id="4_milgq"]
 [ext_resource type="AudioStream" uid="uid://dbd22idehys6b" path="res://audio/combat/dummy_hit_2.wav" id="5_nhocg"]
 [ext_resource type="Script" path="res://systems/audio_system/scripts/RAudioStreamData.gd" id="6_n2n76"]
@@ -19,9 +20,8 @@ region = Rect2(3, 5, 26, 23)
 [sub_resource type="CircleShape2D" id="CircleShape2D_fwjgt"]
 radius = 4.12311
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ygkty"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_enpi5"]
 radius = 11.0
-height = 24.0
 
 [sub_resource type="Resource" id="Resource_ql4w7"]
 script = ExtResource("6_n2n76")
@@ -46,14 +46,12 @@ offset = Vector2(36, -5)
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_fwjgt")
 
-[node name="EnemyHurtBox" type="Area2D" parent="."]
-collision_layer = 16384
-collision_mask = 2048
+[node name="EnemyHurtBox" parent="." instance=ExtResource("4_ii042")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtBox"]
-position = Vector2(0, -12)
-shape = SubResource("CapsuleShape2D_ygkty")
-debug_color = Color(0.634191, 0.522605, 0.208108, 0.42)
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_enpi5")
+debug_color = Color(0.740538, 0.46141, 0.185415, 0.42)
 
 [node name="HitSound" parent="." instance=ExtResource("4_milgq")]
 audio_data = SubResource("Resource_ql4w7")
