@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://4mcpuvfnyb3k"]
+
+[ext_resource type="PackedScene" uid="uid://ll2a2f3hyep7" path="res://scenes/ui/menus/quest_menu/ui_quest_menu.tscn" id="1_7c3r2"]
+[ext_resource type="PackedScene" uid="uid://tgq1yw7e6d6e" path="res://scenes/ui/menus/crafting_menus/crafting_table/ui_crafting_table_menu.tscn" id="2_6jkd2"]
+[ext_resource type="PackedScene" uid="uid://b18gfpxxxcnhl" path="res://scenes/ui/menus/crafting_menus/alchemy_station/ui_alchemy_table_menu.tscn" id="3_c6ffl"]
+[ext_resource type="PackedScene" uid="uid://c5dukr1f4ynqr" path="res://scenes/ui/menus/crafting_menus/crafting_book/ui_crafting_book.tscn" id="4_pcfo0"]
+[ext_resource type="PackedScene" uid="uid://cwxip4u4r3acy" path="res://scenes/ui/toast_notifications/ui_pickup_toast_notifications/ui_pickup_toast_notifications.tscn" id="5_u4g42"]
+
+[node name="MenuUI" type="CanvasLayer" groups=["menu_ui"]]
+layer = 2
+
+[node name="UIQuestMenu" parent="." node_paths=PackedStringArray("quest_board") instance=ExtResource("1_7c3r2")]
+visible = false
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 295.0
+offset_bottom = 420.0
+quest_board = NodePath("")
+
+[node name="UICraftingTableMenu" parent="." instance=ExtResource("2_6jkd2")]
+visible = false
+
+[node name="UIAlchemyTableMenu" parent="." instance=ExtResource("3_c6ffl")]
+visible = false
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 670.0
+offset_bottom = 470.0
+
+[node name="UICraftingBook" parent="." instance=ExtResource("4_pcfo0")]
+visible = false
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 670.0
+offset_bottom = 470.0
+
+[node name="UIPickupToastNotifications" parent="." node_paths=PackedStringArray("parent_canvas_layer") instance=ExtResource("5_u4g42")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -10000.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+parent_canvas_layer = NodePath("..")

@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://ddh5dhqnelalv"]
+
+[ext_resource type="PackedScene" uid="uid://bj616aj7lg3c7" path="res://scenes/ui/settings/settings.tscn" id="1_4563k"]
+[ext_resource type="PackedScene" uid="uid://mq3r2wcoavar" path="res://scenes/ui/inventory/ui_inventory.tscn" id="2_e0adh"]
+[ext_resource type="PackedScene" uid="uid://ttyaryp0n5ea" path="res://scenes/ui/console/ui_console.tscn" id="3_hmsmi"]
+[ext_resource type="PackedScene" uid="uid://dx8fctcgp1stc" path="res://scenes/ui/action_bar/ui_action_bar.tscn" id="4_vxwf5"]
+[ext_resource type="PackedScene" uid="uid://dare4tbedue2" path="res://scenes/ui/temp_ui_game_utils.tscn" id="5_y25ol"]
+[ext_resource type="PackedScene" uid="uid://cyb886a40j61g" path="res://scenes/ui/gold_count/ui_gold_pouch.tscn" id="6_3nngj"]
+[ext_resource type="Script" path="res://scenes/ui/gold_count/ui_gold_pouch.gd" id="7_100js"]
+
+[node name="MainUI" type="CanvasLayer"]
+layer = 2
+
+[node name="AudioSettings" parent="." instance=ExtResource("1_4563k")]
+visible = false
+
+[node name="UIInventory" parent="." groups=["ui_player_inventory"] instance=ExtResource("2_e0adh")]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -556.0
+offset_top = -324.0
+offset_right = -36.0
+offset_bottom = -16.0
+grow_horizontal = 0
+
+[node name="UIConsole" parent="." instance=ExtResource("3_hmsmi")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -267.0
+offset_right = 660.0
+offset_bottom = -17.0
+grow_vertical = 0
+
+[node name="UIActionBar" parent="." instance=ExtResource("4_vxwf5")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -290.5
+offset_top = -123.0
+offset_right = 290.5
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TempUIGameUtils" parent="." instance=ExtResource("5_y25ol")]
+
+[node name="UIGoldPouch" parent="." instance=ExtResource("6_3nngj")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -135.0
+offset_top = 7.0
+offset_right = -95.0
+offset_bottom = 47.0
+grow_horizontal = 0
+script = ExtResource("7_100js")
+
+[connection signal="inventory_slot_depleted" from="UIInventory" to="UIActionBar" method="_on_ui_inventory_inventory_slot_depleted"]
+[connection signal="inventory_slot_updated" from="UIInventory" to="UIActionBar" method="_on_ui_inventory_inventory_slot_updated"]

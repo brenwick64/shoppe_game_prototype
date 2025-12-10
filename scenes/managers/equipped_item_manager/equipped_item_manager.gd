@@ -4,9 +4,9 @@ extends Node
 signal item_deselected
 signal tool_deselected
 
-@export var shoppe_furniture_handler: ShoppeFurnitureHandler
-@export var shoppe_item_handler: ShoppeItemHandler
-@export var shoppe_remover_handler: ShoppeRemoverHandler
+@onready var shoppe_furniture_handler: ShoppeFurnitureHandler = $ShoppeFurnitureHandler
+@onready var shoppe_item_handler: ShoppeItemHandler = $ShoppeItemHandler
+@onready var shoppe_remover_handler: ShoppeRemoverHandler = $ShoppeRemoverHandler
 
 @onready var item_handlers: Array = [
 	shoppe_furniture_handler,

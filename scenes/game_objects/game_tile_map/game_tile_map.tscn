@@ -17,7 +17,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i56v2"]
 size = Vector2(209, 93)
 
-[node name="GameTileMap" type="Node2D"]
+[node name="GameTileMap" type="Node2D" groups=["tile_map"]]
 y_sort_enabled = true
 
 [node name="Water" type="TileMapLayer" parent="."]

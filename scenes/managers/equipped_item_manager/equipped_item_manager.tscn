@@ -6,11 +6,8 @@
 [ext_resource type="Script" path="res://scenes/managers/shoppe_remover_handler.gd" id="4_kv70c"]
 [ext_resource type="Script" path="res://systems/combat_system/weapon_handler.gd" id="5_k43vc"]
 
-[node name="EquippedItemManager" type="Node" node_paths=PackedStringArray("shoppe_furniture_handler", "shoppe_item_handler", "shoppe_remover_handler")]
+[node name="EquippedItemManager" type="Node"]
 script = ExtResource("1_sgwao")
-shoppe_furniture_handler = NodePath("ShoppeFurnitureHandler")
-shoppe_item_handler = NodePath("ShoppeItemHandler")
-shoppe_remover_handler = NodePath("ShoppeRemoverHandler")
 
 [node name="ShoppeFurnitureHandler" type="Node" parent="."]
 script = ExtResource("1_lbura")

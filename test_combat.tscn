@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=3 uid="uid://b8appdt82fdta"]
+
+[ext_resource type="PackedScene" uid="uid://dbae2nfocdnev" path="res://scenes/managers/menu_manager/menu_manager.tscn" id="1_o1kxq"]
+[ext_resource type="PackedScene" uid="uid://chtm7kcr0w04x" path="res://scenes/managers/equipped_item_manager/equipped_item_manager.tscn" id="2_82fyx"]
+[ext_resource type="PackedScene" uid="uid://b03t6wfqgdf54" path="res://scenes/ui/floating_text/floating_text_ui.tscn" id="6_1ymdr"]
+[ext_resource type="PackedScene" uid="uid://dphuceg0wphca" path="res://training_dummy.tscn" id="7_7c7io"]
+[ext_resource type="PackedScene" uid="uid://csogmde7287ni" path="res://scenes/game_objects/player_camera/player_camera.tscn" id="7_d583r"]
+[ext_resource type="PackedScene" uid="uid://b3e78tu5wd3qe" path="res://scenes/game_objects/game_tile_map/game_tile_map.tscn" id="8_a2av4"]
+[ext_resource type="PackedScene" uid="uid://x0hp764aoxfp" path="res://scenes/characters/player/player.tscn" id="9_0bn3v"]
+
+[node name="TestCombat" type="Node2D" groups=["main_scene"]]
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="MenuManager" parent="Managers" instance=ExtResource("1_o1kxq")]
+
+[node name="EquippedItemManager" parent="Managers" instance=ExtResource("2_82fyx")]
+
+[node name="UI" type="Node" parent="."]
+
+[node name="FloatingTextUI" parent="UI" instance=ExtResource("6_1ymdr")]
+
+[node name="GameTileMap" parent="." instance=ExtResource("8_a2av4")]
+
+[node name="PlayerCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("7_d583r")]
+zoom = Vector2(2, 2)
+target = NodePath("../Player")
+
+[node name="Player" parent="." instance=ExtResource("9_0bn3v")]
+
+[node name="TrainingDummy" parent="." instance=ExtResource("7_7c7io")]
